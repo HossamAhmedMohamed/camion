@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "577587095942",
+    "project_id": "camion-21921",
+    "storage_bucket": "camion-21921.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577587095942:android:09346bc915a8c82078a407",
+        "android_client_info": {
+          "package_name": "com.example.camion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-DeGePk-OALHs6-A3YnCp5jPlACavJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577587095942:android:0496ddc076f23b4778a407",
+        "android_client_info": {
+          "package_name": "com.example.camion.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-DeGePk-OALHs6-A3YnCp5jPlACavJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
