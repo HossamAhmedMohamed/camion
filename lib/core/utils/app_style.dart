@@ -102,6 +102,16 @@ abstract class AppStyle {
     );
   }
 
+
+  static TextStyle styleSemiBold18(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF232323),
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w500,
+    );
+  }
+
   static TextStyle styleSemiBold20(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF232323),
@@ -138,14 +148,6 @@ abstract class AppStyle {
     );
   }
 
-  static TextStyle styleRegular25W(BuildContext context) {
-    return TextStyle(
-      color: Colors.white,
-      fontSize: getResponsiveFontSize(context, fontSize: 25),
-      fontFamily: 'Cairo',
-      fontWeight: FontWeight.w400,
-    );
-  }
 
   static TextStyle styleRegular40(BuildContext context) {
     return TextStyle(
@@ -158,11 +160,11 @@ abstract class AppStyle {
 
    
 
-  static TextStyle styleRegular17(BuildContext context) {
+  static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
-      color: const Color(0xFF5C5858),
-      fontSize: getResponsiveFontSize(context, fontSize: 17),
-      fontFamily: 'Inter',
+      color: const Color(0xFFFFFFFF),
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w400,
     );
   }
