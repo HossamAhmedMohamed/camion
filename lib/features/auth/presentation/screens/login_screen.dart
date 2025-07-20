@@ -35,8 +35,7 @@ class LoginScreen extends StatelessWidget {
                     CustomTextFormField(
                       hintText: "الاسم هنا",
                        
-                      onTapOnSuffixIcon: null,
-                      suffixIcon: false,
+                     
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'الرجاء إدخال الاسم';
@@ -54,8 +53,8 @@ class LoginScreen extends StatelessWidget {
                           child: CustomTextFormField(
                              
                             hintText: "رقم الهاتف",
-                            onTapOnSuffixIcon: null,
-                            suffixIcon: false,
+                           
+                         
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'الرجاء إدخال كلمة المرور';

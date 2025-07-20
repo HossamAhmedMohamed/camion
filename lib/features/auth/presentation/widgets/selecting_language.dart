@@ -1,5 +1,3 @@
- 
-
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -71,7 +69,7 @@ class _SelectingLanguageState extends State<SelectingLanguage> {
                     fieldColor: AppColors.primaryColor,
                     hintText: "ما هي لغتك",
                     controller: localSearchController,
-                     
+
                     prefixIcon: Icon(Icons.search, size: 24.sp),
                   ),
                 ),
@@ -119,8 +117,18 @@ class _SelectingLanguageState extends State<SelectingLanguage> {
     return CustomTextFormField(
       controller: widget._languageController,
       hintText: "اللغة",
-      onTapOnSuffixIcon: _showCountryPicker,
-      suffixIcon: true,
+
+      suffixIcon: GestureDetector(
+        onTap: _showCountryPicker,
+        child: Container(
+          padding: EdgeInsets.all(12.h),
+          child: Icon(
+            Icons.keyboard_arrow_down,
+            color: Colors.grey.shade700,
+            size: 24.r,
+          ),
+        ),
+      ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'الرجاء إدخال اللغة';

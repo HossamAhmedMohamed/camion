@@ -39,6 +39,25 @@ abstract class AppStyle {
     );
   }
 
+
+  static TextStyle styleBold18(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF232323),
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
+  static TextStyle styleBold20(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF232323),
+      fontSize: getResponsiveFontSize(context, fontSize: 20),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w700,
+    );
+  }
+
   static TextStyle styleBold25(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF232323),
@@ -79,7 +98,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 15),
-      fontFamily: 'Inter',
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w400,
     );
   }
@@ -153,6 +172,16 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 40),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+
+  static TextStyle styleRegular10(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFFFFFFFF),
+      fontSize: getResponsiveFontSize(context, fontSize: 10),
       fontFamily: 'Cairo',
       fontWeight: FontWeight.w400,
     );

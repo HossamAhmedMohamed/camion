@@ -120,8 +120,18 @@ class _SelectingCountryState extends State<SelectingCountry> {
       readOnly: true,
       controller: widget._countryController,
       hintText: "الدولة",
-      onTapOnSuffixIcon: _showCountryPicker,
-      suffixIcon: true,
+     
+      suffixIcon:  GestureDetector(
+                  onTap: _showCountryPicker,
+                  child: Container(
+                    padding: EdgeInsets.all(12.h),
+                    child: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.grey.shade700,
+                      size: 24.r,
+                    ),
+                  ),
+                ),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'الرجاء إدخال الدولة';

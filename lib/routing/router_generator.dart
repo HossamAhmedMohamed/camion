@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/selecting_from_bottom_navbar.dart';
 import 'package:camion/features/auth/presentation/screens/confirm_phone_number_screen.dart';
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
 import 'package:camion/features/auth/presentation/screens/login_screen.dart';
@@ -8,7 +9,7 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: AppRouter.firstScreenIfFirstLaunch,
+    initialLocation: AppRouter.selectingFromBottomNavBar,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -35,6 +36,12 @@ class RouterGenerator {
         name: AppRouter.confirmPhoneNumberScreen,
         path: AppRouter.confirmPhoneNumberScreen,
         builder: (context, state) => const ConfirmPhoneNumberScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.selectingFromBottomNavBar,
+        path: AppRouter.selectingFromBottomNavBar,
+        builder: (context, state) => const SelectingFromBottomNavBar(),
       ),
     ],
   );
