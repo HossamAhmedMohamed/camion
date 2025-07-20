@@ -58,6 +58,8 @@ dependencies:
   firebase_core: ^3.15.1
   flutter_dotenv: ^5.2.1
   firebase_messaging: ^15.2.9
+  flutter_localizations:
+        sdk: flutter
 
 dev_dependencies:
   flutter_test:

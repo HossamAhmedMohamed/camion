@@ -53,7 +53,7 @@ flutter_native_splash:
   # Please visit https://developer.android.com/guide/topics/ui/splash-screen
   # Following are specific parameters for Android 12+.
   android_12:
-    image: assets/images/splash_12.png
+    image: assets/images/splash_12_final.png
     color: "#650B0D"
     
      
