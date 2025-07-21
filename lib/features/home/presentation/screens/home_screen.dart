@@ -176,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen>
                   crossAxisCount: 2,
                   childAspectRatio: screenWidth > 800 ? 0.8.r : 0.5.r,
                   crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 10.h,
+                  mainAxisSpacing: 20.h,
                 ),
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final product = ProductData.products[index];
