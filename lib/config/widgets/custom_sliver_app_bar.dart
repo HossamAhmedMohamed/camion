@@ -1,12 +1,15 @@
-import 'package:camion/core/utils/app_colors.dart';
+
 import 'package:camion/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({super.key});
 
+class CustomSliverAppBar extends StatelessWidget {
+  const CustomSliverAppBar({super.key, required this.title, this.leading});
+
+  final Widget title;
+  final Widget? leading;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -20,25 +23,9 @@ class CustomSliverAppBar extends StatelessWidget {
       actionsPadding: EdgeInsets.only(left: 12.w),
 
       leadingWidth: 70.w,
-      leading: Container(
-        margin: EdgeInsets.only(right: 12.w),
-        padding: EdgeInsets.all(2.r),
-        decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50.r),
-            side: BorderSide(color: AppColors.grayB4, width: 1.w),
-          ),
-         
-        ),
-        child: Image.asset(
-          Assets.imagesWoman,
-          width: 65.w,
-          height: 65.h,
-          fit: BoxFit.cover,
-        ),
-      ),
+      leading: leading,
 
-      title: Image.asset(Assets.imagesCamionLogo, width: 65.w, height: 50.h),
+      title: title,
       centerTitle: true,
 
       actions: [
@@ -50,9 +37,9 @@ class CustomSliverAppBar extends StatelessWidget {
               width: 30.w,
               height: 30.h,
             ),
-
+    
             SizedBox(width: 16.w),
-
+    
             SvgPicture.asset(
               Assets.imagesNotification,
               width: 30.w,

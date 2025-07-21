@@ -3,6 +3,9 @@ import 'package:camion/features/auth/presentation/screens/confirm_phone_number_s
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
 import 'package:camion/features/auth/presentation/screens/login_screen.dart';
 import 'package:camion/features/auth/presentation/screens/register_screen.dart';
+import 'package:camion/features/home/data/models/product_model.dart';
+import 'package:camion/features/home/presentation/screens/category_screen.dart';
+import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -42,6 +45,37 @@ class RouterGenerator {
         name: AppRouter.selectingFromBottomNavBar,
         path: AppRouter.selectingFromBottomNavBar,
         builder: (context, state) => const SelectingFromBottomNavBar(),
+      ),
+
+      GoRoute(
+        name: AppRouter.category,
+        path: AppRouter.category,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return CategoryScreen(
+            title: extra['title'] as Widget,
+            leading: extra['leading'] as Widget,
+          );
+        },
+      ),
+
+      GoRoute(
+        name: AppRouter.productDetails,
+        path: AppRouter.productDetails,
+
+        builder: (context, state) {
+          final extra = state.extra as ProductModel;
+          return ProductDetails(
+            productImages: extra.productImages,
+            discountImage: extra.discountImage,
+            productName: extra.productName,
+            originalPrice: extra.originalPrice,
+            discountedPrice: extra.discountedPrice,
+            rating: extra.rating,
+            reviewCount: extra.reviewCount,
+            sellCount: extra.sellCount,
+          );
+        },
       ),
     ],
   );

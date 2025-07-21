@@ -42,6 +42,10 @@ class Assets {
   /// assets/images/children.png
   static const String imagesChildren = "assets/images/children.png";
 
+  /// Assets for imagesClothes
+  /// assets/images/clothes.png
+  static const String imagesClothes = "assets/images/clothes.png";
+
   /// Assets for imagesConfirmPhoneText
   /// assets/images/confirm_phone_text.png
   static const String imagesConfirmPhoneText = "assets/images/confirm_phone_text.png";
@@ -74,6 +78,10 @@ class Assets {
   /// assets/images/google_icon.svg
   static const String imagesGoogleIcon = "assets/images/google_icon.svg";
 
+  /// Assets for imagesHome
+  /// assets/images/home.png
+  static const String imagesHome = "assets/images/home.png";
+
   /// Assets for imagesHomeCategory
   /// assets/images/home_category.png
   static const String imagesHomeCategory = "assets/images/home_category.png";
@@ -102,9 +110,9 @@ class Assets {
   /// assets/images/join_us.png
   static const String imagesJoinUs = "assets/images/join_us.png";
 
-  /// Assets for imagesKitchen
-  /// assets/images/kitchen.png
-  static const String imagesKitchen = "assets/images/kitchen.png";
+  /// Assets for imagesKithcen
+  /// assets/images/kithcen.png
+  static const String imagesKithcen = "assets/images/kithcen.png";
 
   /// Assets for imagesLogoSvg
   /// assets/images/logo_svg.svg
@@ -125,10 +133,6 @@ class Assets {
   /// Assets for imagesMobile
   /// assets/images/mobile.png
   static const String imagesMobile = "assets/images/mobile.png";
-
-  /// Assets for imagesModaaa
-  /// assets/images/modaaa.png
-  static const String imagesModaaa = "assets/images/modaaa.png";
 
   /// Assets for imagesMohamed
   /// assets/images/mohamed.png
@@ -154,9 +158,17 @@ class Assets {
   /// assets/images/notification.svg
   static const String imagesNotification = "assets/images/notification.svg";
 
+  /// Assets for imagesProductRate
+  /// assets/images/product_rate.png
+  static const String imagesProductRate = "assets/images/product_rate.png";
+
   /// Assets for imagesSave
   /// assets/images/save.png
   static const String imagesSave = "assets/images/save.png";
+
+  /// Assets for imagesSavedComplete
+  /// assets/images/saved_complete.svg
+  static const String imagesSavedComplete = "assets/images/saved_complete.svg";
 
   /// Assets for imagesSearchBar
   /// assets/images/search_bar.svg
@@ -165,6 +177,10 @@ class Assets {
   /// Assets for imagesSettings
   /// assets/images/settings.svg
   static const String imagesSettings = "assets/images/settings.svg";
+
+  /// Assets for imagesShareProduct
+  /// assets/images/share_product.svg
+  static const String imagesShareProduct = "assets/images/share_product.svg";
 
   /// Assets for imagesShoes
   /// assets/images/shoes.png
