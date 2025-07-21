@@ -1,7 +1,7 @@
 import 'package:camion/features/home/presentation/screens/box_screen.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
-import 'package:camion/features/home/presentation/screens/profile_screen.dart';
-import 'package:camion/features/home/presentation/screens/search_screen.dart';
+import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
+import 'package:camion/features/searching/presentation/screens/search_screen.dart';
 import 'package:camion/features/home/presentation/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 

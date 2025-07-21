@@ -76,7 +76,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
 
             Positioned(
               top: 16.h,
-              left: 16.h,
+              left: 16.w,
               child: Image.asset(widget.discountImage, width: 60, height: 60),
             ),
 
@@ -105,7 +105,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
 
             Positioned(
               left: 16.w,
-              bottom: 16.w,
+              bottom: 16.h,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 decoration: ShapeDecoration(

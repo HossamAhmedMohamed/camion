@@ -25,7 +25,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 14),
-      fontFamily: 'Inter',
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w700,
     );
   }
@@ -89,7 +89,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 18),
-      fontFamily: 'Inter',
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w400,
     );
   }

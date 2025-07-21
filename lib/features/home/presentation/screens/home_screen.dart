@@ -1,12 +1,12 @@
-import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/home/data/models/product_model.dart';
 import 'package:camion/features/home/presentation/widgets/categories_text.dart';
-import 'package:camion/features/home/presentation/widgets/custom_product.dart';
+import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
 import 'package:camion/features/home/presentation/widgets/join_us_now.dart';
 import 'package:camion/features/home/presentation/widgets/search_bar.dart';
+import 'package:camion/features/home/presentation/widgets/sliver_grid_view_building.dart';
+import 'package:camion/features/home/presentation/widgets/sliver_list_view_building.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     return CustomScrollView(
       slivers: [
-        const CustomSliverAppBar(),
+        const HomeSliverAppBar(),
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           sliver: const SearchBarHome(),
@@ -52,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen>
 
         SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
-        const CategoriesBody(),
+          CategoriesBody(
+          screenWidth: screenWidth,
+        ),
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
@@ -151,48 +153,8 @@ class _HomeScreenState extends State<HomeScreen>
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
 
         _isListView
-            ? SliverList.builder(
-                itemBuilder: (context, index) {
-                  final product = ProductData.products[index];
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: 20.h),
-                    child: ProductCarouselWidget(
-                      productImages: product.productImages,
-                      discountImage: product.discountImage,
-                      productName: product.productName,
-                      originalPrice: product.originalPrice,
-                      discountedPrice: product.discountedPrice,
-                      rating: product.rating,
-                      reviewCount: product.reviewCount,
-                      sellCount: product.sellCount,
-                      isGridView: false,
-                    ),
-                  );
-                },
-                itemCount: ProductData.products.length,
-              )
-            : SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: screenWidth > 800 ? 0.8.r : 0.5.r,
-                  crossAxisSpacing: 10.w,
-                  mainAxisSpacing: 20.h,
-                ),
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final product = ProductData.products[index];
-                  return ProductCarouselWidget(
-                    productImages: product.productImages,
-                    discountImage: product.discountImage,
-                    productName: product.productName,
-                    originalPrice: product.originalPrice,
-                    discountedPrice: product.discountedPrice,
-                    rating: product.rating,
-                    reviewCount: product.reviewCount,
-                    sellCount: product.sellCount,
-                    isGridView: true,
-                  );
-                }, childCount: ProductData.products.length),
-              ),
+            ? const SliverListViewBuilding()
+            : SliverGridViewBuilding(screenWidth: screenWidth),
 
         SliverToBoxAdapter(child: SizedBox(height: 100.h)),
 
