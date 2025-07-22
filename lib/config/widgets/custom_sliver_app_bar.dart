@@ -6,10 +6,11 @@ import 'package:flutter_svg/svg.dart';
 
 
 class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({super.key, required this.title, this.leading});
+  const CustomSliverAppBar({super.key, required this.title, this.leading , this.leadingWidth});
 
   final Widget title;
   final Widget? leading;
+  final double? leadingWidth;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -22,7 +23,7 @@ class CustomSliverAppBar extends StatelessWidget {
       scrolledUnderElevation: 0,
       actionsPadding: EdgeInsets.only(left: 12.w),
 
-      leadingWidth: 70.w,
+      leadingWidth: leadingWidth ?? 70.w,
       leading: leading,
 
       title: title,

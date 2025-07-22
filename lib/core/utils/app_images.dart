@@ -2,6 +2,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAccountDelete
+  /// assets/images/account_delete.svg
+  static const String imagesAccountDelete = "assets/images/account_delete.svg";
+
   /// Assets for imagesActiveBox
   /// assets/images/active_box.svg
   static const String imagesActiveBox = "assets/images/active_box.svg";
@@ -25,6 +29,10 @@ class Assets {
   /// Assets for imagesAppleIcon
   /// assets/images/apple_icon.svg
   static const String imagesAppleIcon = "assets/images/apple_icon.svg";
+
+  /// Assets for imagesArchiveProfile
+  /// assets/images/archive_profile.svg
+  static const String imagesArchiveProfile = "assets/images/archive_profile.svg";
 
   /// Assets for imagesBagCheck
   /// assets/images/BagCheck.png
@@ -58,6 +66,10 @@ class Assets {
   /// assets/images/discount.png
   static const String imagesDiscount = "assets/images/discount.png";
 
+  /// Assets for imagesEmptyWallet
+  /// assets/images/empty_wallet.svg
+  static const String imagesEmptyWallet = "assets/images/empty_wallet.svg";
+
   /// Assets for imagesFlag
   /// assets/images/flag.png
   static const String imagesFlag = "assets/images/flag.png";
@@ -73,6 +85,10 @@ class Assets {
   /// Assets for imagesFurniture
   /// assets/images/furniture.png
   static const String imagesFurniture = "assets/images/furniture.png";
+
+  /// Assets for imagesGlobal
+  /// assets/images/global.svg
+  static const String imagesGlobal = "assets/images/global.svg";
 
   /// Assets for imagesGoogleIcon
   /// assets/images/google_icon.svg
@@ -122,6 +138,10 @@ class Assets {
   /// assets/images/logos_facebook.svg
   static const String imagesLogosFacebook = "assets/images/logos_facebook.svg";
 
+  /// Assets for imagesLogout
+  /// assets/images/logout.svg
+  static const String imagesLogout = "assets/images/logout.svg";
+
   /// Assets for imagesMariem
   /// assets/images/mariem.png
   static const String imagesMariem = "assets/images/mariem.png";
@@ -161,6 +181,14 @@ class Assets {
   /// Assets for imagesProductRate
   /// assets/images/product_rate.png
   static const String imagesProductRate = "assets/images/product_rate.png";
+
+  /// Assets for imagesProfileEdit
+  /// assets/images/profile_edit.svg
+  static const String imagesProfileEdit = "assets/images/profile_edit.svg";
+
+  /// Assets for imagesProfileSettings
+  /// assets/images/profile_settings.svg
+  static const String imagesProfileSettings = "assets/images/profile_settings.svg";
 
   /// Assets for imagesSave
   /// assets/images/save.png
