@@ -1,8 +1,10 @@
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchBarHome extends StatelessWidget {
   const SearchBarHome({super.key});
@@ -61,10 +63,15 @@ class SearchBarHome extends StatelessWidget {
 
                 Expanded(
                   flex: 1,
-                  child: SvgPicture.asset(
-                    Assets.imagesSettings,
-                    width: 52.w,
-                    height: 52.h,
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.searchFilter);
+                    },
+                    child: SvgPicture.asset(
+                      Assets.imagesSettings,
+                      width: 52.w,
+                      height: 52.h,
+                    ),
                   ),
                 ),
               ],

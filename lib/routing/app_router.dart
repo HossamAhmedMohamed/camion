@@ -11,6 +11,7 @@ class AppRouter {
   static const String confirmAddress = '/address';
   static const String myWallet = '/myWallet';
   static const String notificationScreen = '/notificationScreen';
+  static const String searchFilter = '/searchFilter';
  
   
 }
