@@ -63,6 +63,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                 size: 25.sp,
               ),
             ),
+
+            isShownDivider: true,
+          ),
+
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 10.h,
+            ),
           ),
 
           SliverToBoxAdapter(

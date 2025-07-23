@@ -13,6 +13,7 @@ class CustomSliverAppBar extends StatelessWidget {
     this.leadingWidth,
     this.cartImage,
     this.isShoppingCartShown,
+    this.isShownDivider,
   });
 
   final Widget title;
@@ -20,6 +21,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final double? leadingWidth;
   final String? cartImage;
   final bool? isShoppingCartShown;
+  final bool? isShownDivider;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -42,16 +44,18 @@ class CustomSliverAppBar extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            isShoppingCartShown ?? true ? GestureDetector(
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.myCart);
-              },
-              child: SvgPicture.asset(
-                cartImage ?? Assets.imagesShoppingCart,
-                width: 30.w,
-                height: 30.h,
-              ),
-            ) : Container(),
+            isShoppingCartShown ?? true
+                ? GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.myCart);
+                    },
+                    child: SvgPicture.asset(
+                      cartImage ?? Assets.imagesShoppingCart,
+                      width: 30.w,
+                      height: 30.h,
+                    ),
+                  )
+                : Container(),
 
             SizedBox(width: 16.w),
 
@@ -63,6 +67,17 @@ class CustomSliverAppBar extends StatelessWidget {
           ],
         ),
       ],
+
+      bottom: isShownDivider == null
+          ? null
+          : PreferredSize(
+              preferredSize: const Size.fromHeight(1),
+              child: Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.grey.shade300,
+              ),
+            ),
     );
   }
 }

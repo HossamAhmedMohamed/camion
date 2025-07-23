@@ -28,6 +28,7 @@ class CartSliverAppBar extends StatelessWidget {
       ),
       cartImage: Assets.imagesActiveShoppingCart,
       isShoppingCartShown: isShoppingCart,
+      isShownDivider: true,
     );
   }
 }

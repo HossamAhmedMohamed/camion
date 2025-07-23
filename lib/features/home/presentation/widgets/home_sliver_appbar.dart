@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key});
+  const HomeSliverAppBar({super.key, this.isShownDivider});
 
+  final bool? isShownDivider;
   @override
   Widget build(BuildContext context) {
     return CustomSliverAppBar(
@@ -28,6 +29,7 @@ class HomeSliverAppBar extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+      isShownDivider: isShownDivider,
     );
   }
 }

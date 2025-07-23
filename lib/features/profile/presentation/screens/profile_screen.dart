@@ -177,6 +177,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ),
+
+        SliverToBoxAdapter(child: SizedBox(height: 100.h)),
       ],
     );
   }

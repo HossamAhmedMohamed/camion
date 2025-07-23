@@ -1,4 +1,4 @@
-import 'package:camion/features/order_tracks/presentation/screens/box_screen.dart';
+import 'package:camion/features/order_status/presentation/screens/order_status_screen.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen.dart';
@@ -27,7 +27,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
     HomeScreen(),
     SearchScreen(),
     // ReelsScreen(),
-    BoxScreen(),
+    OrderStatusScreen(),
     ProfileScreen(),
   ];
 

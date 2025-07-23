@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
@@ -55,18 +56,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(15),
-            spreadRadius: 2,
-            blurRadius: 4,
-            offset: Offset(0, 2.h),
-          ),
-        ],
-      ),
+      decoration: getContainerBoxDecoration(),
       child: Column(
         children: [
           // Header

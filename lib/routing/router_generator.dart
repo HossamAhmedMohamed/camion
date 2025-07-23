@@ -17,7 +17,7 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: AppRouter.confirmPayment,
+    initialLocation: AppRouter.selectingFromBottomNavBar,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },

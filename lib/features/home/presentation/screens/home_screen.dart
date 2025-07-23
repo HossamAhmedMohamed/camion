@@ -42,10 +42,7 @@ class _HomeScreenState extends State<HomeScreen>
     return CustomScrollView(
       slivers: [
         const HomeSliverAppBar(),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: 12.w),
-          sliver: const SearchBarHome(),
-        ),
+        const SearchBarHome(),
 
         SliverToBoxAdapter(child: SizedBox(height: 10.h)),
         JoinUsNow(screenWidth: screenWidth),

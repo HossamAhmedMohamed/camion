@@ -20,6 +20,8 @@ class ProfileSliverAppBar extends StatelessWidget {
           child: SvgPicture.asset(Assets.imagesProfileSettings),
         ),
       ),
+
+      isShownDivider: true,
     );
   }
 }
