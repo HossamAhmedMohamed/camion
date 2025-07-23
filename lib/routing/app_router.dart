@@ -10,6 +10,7 @@ class AppRouter {
   static const String confirmPayment = '/confirmPayment';
   static const String confirmAddress = '/address';
   static const String myWallet = '/myWallet';
+  static const String notificationScreen = '/notificationScreen';
  
   
 }
