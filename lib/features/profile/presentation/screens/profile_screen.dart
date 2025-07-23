@@ -3,9 +3,11 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/profile/data/models/profile_model.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_sliver_app_bar.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -15,20 +17,46 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  List<ProfileModel> profileList = [
-    ProfileModel(title: 'تغيير اللغة', image: Assets.imagesGlobal),
-    ProfileModel(title: 'المحفظة', image: Assets.imagesEmptyWallet),
-
-    ProfileModel(title: 'التسويق بالعمولة', image: Assets.imagesPlay),
-
-    ProfileModel(title: 'محفوظاتي', image: Assets.imagesArchiveProfile),
-
-    ProfileModel(title: 'تعديل بيانات الحساب', image: Assets.imagesProfileEdit),
-
-    ProfileModel(title: 'تسجيل الخروج', image: Assets.imagesLogout),
-  ];
   @override
   Widget build(BuildContext context) {
+    List<ProfileModel> profileList = [
+      ProfileModel(
+        onTap: () {},
+        title: 'تغيير اللغة',
+        image: Assets.imagesGlobal,
+      ),
+      ProfileModel(
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.myWallet);
+        },
+        title: 'المحفظة',
+        image: Assets.imagesEmptyWallet,
+      ),
+
+      ProfileModel(
+        onTap: () {},
+        title: 'التسويق بالعمولة',
+        image: Assets.imagesPlay,
+      ),
+
+      ProfileModel(
+        onTap: () {},
+        title: 'محفوظاتي',
+        image: Assets.imagesArchiveProfile,
+      ),
+
+      ProfileModel(
+        onTap: () {},
+        title: 'تعديل بيانات الحساب',
+        image: Assets.imagesProfileEdit,
+      ),
+
+      ProfileModel(
+        onTap: () {},
+        title: 'تسجيل الخروج',
+        image: Assets.imagesLogout,
+      ),
+    ];
     final screenWidth = MediaQuery.of(context).size.width;
     return CustomScrollView(
       slivers: [
@@ -136,9 +164,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 child: ListTile(
+                  onTap: profileList[index].onTap,
                   trailing: index == 0
                       ? GestureDetector(
-                          onTap: () {},
+                          onTap: (){},
                           child: Text(
                             "العربية",
                             style: AppStyle.styleRegular12(
