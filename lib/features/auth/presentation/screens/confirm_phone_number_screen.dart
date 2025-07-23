@@ -53,9 +53,9 @@ class ConfirmPhoneNumberScreen extends StatelessWidget {
                   FittedBox(
                     child: Text(
                       "ادخل رمز التحقيق المرسل علي جوالك :",
-                      style: AppStyle.styleRegular14(context).copyWith(
-                        color: AppColors.gray
-                      ),
+                      style: AppStyle.styleRegular14(
+                        context,
+                      ).copyWith(color: AppColors.gray),
                     ),
                   ),
                 ],
@@ -89,6 +89,10 @@ class ConfirmPhoneNumberScreen extends StatelessWidget {
 
             SliverToBoxAdapter(
               child: CustomElevatedButton(text: "متابعة", onPressed: () {}),
+            ),
+
+            SliverToBoxAdapter(
+              child: SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
             ),
           ],
         ),

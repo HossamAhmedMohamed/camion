@@ -1,3 +1,6 @@
+
+import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
+import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -5,8 +8,8 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Search"),
+    return const CustomScrollView(
+      slivers: [HomeSliverAppBar(), SearchBarHome()],
     );
   }
 }

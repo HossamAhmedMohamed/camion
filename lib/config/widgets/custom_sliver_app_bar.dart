@@ -1,15 +1,25 @@
-
 import 'package:camion/core/utils/app_images.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:go_router/go_router.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({super.key, required this.title, this.leading});
+  const CustomSliverAppBar({
+    super.key,
+    required this.title,
+    this.leading,
+    this.leadingWidth,
+    this.cartImage,
+    this.isShoppingCartShown,
+  });
 
   final Widget title;
   final Widget? leading;
+  final double? leadingWidth;
+  final String? cartImage;
+  final bool? isShoppingCartShown;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -22,7 +32,7 @@ class CustomSliverAppBar extends StatelessWidget {
       scrolledUnderElevation: 0,
       actionsPadding: EdgeInsets.only(left: 12.w),
 
-      leadingWidth: 70.w,
+      leadingWidth: leadingWidth ?? 70.w,
       leading: leading,
 
       title: title,
@@ -32,14 +42,19 @@ class CustomSliverAppBar extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(
-              Assets.imagesShoppingCart,
-              width: 30.w,
-              height: 30.h,
-            ),
-    
+            isShoppingCartShown ?? true ? GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.myCart);
+              },
+              child: SvgPicture.asset(
+                cartImage ?? Assets.imagesShoppingCart,
+                width: 30.w,
+                height: 30.h,
+              ),
+            ) : Container(),
+
             SizedBox(width: 16.w),
-    
+
             SvgPicture.asset(
               Assets.imagesNotification,
               width: 30.w,

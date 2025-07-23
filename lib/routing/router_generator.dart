@@ -3,16 +3,21 @@ import 'package:camion/features/auth/presentation/screens/confirm_phone_number_s
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
 import 'package:camion/features/auth/presentation/screens/login_screen.dart';
 import 'package:camion/features/auth/presentation/screens/register_screen.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/payment_method_cubit.dart';
+import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
+import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
+import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/data/models/product_model.dart';
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: AppRouter.selectingFromBottomNavBar,
+    initialLocation: AppRouter.confirmPayment,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -76,6 +81,30 @@ class RouterGenerator {
             sellCount: extra.sellCount,
           );
         },
+      ),
+
+      GoRoute(
+        name: AppRouter.myCart,
+        path: AppRouter.myCart,
+        builder: (context, state) => const MyCartScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.confirmPayment,
+        path: AppRouter.confirmPayment,
+        builder: (context, state) => BlocProvider(
+          create: (context) => PaymentMethodCubit(),
+          child: const ConfirmPaymentScreen(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.confirmAddress,
+        path: AppRouter.confirmAddress,
+        builder: (context, state) => BlocProvider(
+          create: (context) => PaymentMethodCubit(),
+          child: const ConfirmAddress(),
+        ),
       ),
     ],
   );

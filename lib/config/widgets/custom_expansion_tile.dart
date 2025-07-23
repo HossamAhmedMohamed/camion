@@ -60,10 +60,10 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withAlpha(30),
-            spreadRadius: 12,
-            blurRadius: 14,
-            offset: Offset(2.w, 2.h),
+            color: Colors.black.withAlpha(15),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: Offset(0, 2.h),
           ),
         ],
       ),

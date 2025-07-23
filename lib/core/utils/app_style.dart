@@ -1,5 +1,4 @@
- 
-
+import 'package:camion/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 abstract class AppStyle {
@@ -16,7 +15,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 12),
-      fontFamily: 'Inter',
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w700,
     );
   }
@@ -34,11 +33,10 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Inter',
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w700,
     );
   }
-
 
   static TextStyle styleBold18(BuildContext context) {
     return TextStyle(
@@ -103,12 +101,21 @@ abstract class AppStyle {
     );
   }
 
-    static TextStyle styleRegular12(BuildContext context) {
+  static TextStyle styleRegular12(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 12),
-      fontFamily: 'Inter',
+      fontFamily: 'Cairo',
       fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle styleSemiBold15(BuildContext context) {
+    return TextStyle(
+      color: const Color(0xFF5C5858),
+      fontSize: getResponsiveFontSize(context, fontSize: 15),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w600,
     );
   }
 
@@ -120,7 +127,6 @@ abstract class AppStyle {
       fontWeight: FontWeight.w600,
     );
   }
-
 
   static TextStyle styleSemiBold18(BuildContext context) {
     return TextStyle(
@@ -167,7 +173,6 @@ abstract class AppStyle {
     );
   }
 
-
   static TextStyle styleRegular40(BuildContext context) {
     return TextStyle(
       color: const Color(0xFF5C5858),
@@ -176,7 +181,6 @@ abstract class AppStyle {
       fontWeight: FontWeight.w400,
     );
   }
-
 
   static TextStyle styleRegular10(BuildContext context) {
     return TextStyle(
@@ -187,7 +191,17 @@ abstract class AppStyle {
     );
   }
 
-   
+  static TextStyle styleRegular11(BuildContext context) {
+    return TextStyle(
+      color:  AppColors.primaryColor,
+      fontSize: getResponsiveFontSize(context, fontSize: 11),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+ 
+
 
   static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
