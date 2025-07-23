@@ -9,6 +9,7 @@ class AppRouter {
   static const String myCart = '/cart';
   static const String confirmPayment = '/confirmPayment';
   static const String confirmAddress = '/address';
+  static const String myWallet = '/myWallet';
  
   
 }

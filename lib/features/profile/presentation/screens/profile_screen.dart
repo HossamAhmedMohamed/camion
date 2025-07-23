@@ -32,7 +32,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     return CustomScrollView(
       slivers: [
-        const ProfileSliverAppBar(),
+        ProfileSliverAppBar(
+          title: Image.asset(
+            Assets.imagesCamionLogo,
+            width: 65.w,
+            height: 50.h,
+          ),
+          isShoppingCartShown: true,
+          leading: Container(
+            // margin: EdgeInsets.only(right: 2.w),
+            padding: EdgeInsets.all(13.r),
+            child: GestureDetector(
+              onTap: () {},
+              child: SvgPicture.asset(Assets.imagesProfileSettings),
+            ),
+          ),
+        ),
 
         // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
         SliverToBoxAdapter(

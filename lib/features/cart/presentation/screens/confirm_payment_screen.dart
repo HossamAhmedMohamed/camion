@@ -1,5 +1,6 @@
 import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
+import 'package:camion/config/widgets/expanded_row_for_user.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -90,32 +91,12 @@ class ConfirmPaymentScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "تفاصيل العنوان",
-                        style: AppStyle.styleBold16(
-                          context,
-                        ).copyWith(color: AppColors.black),
-                      ),
-
-                      GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(AppRouter.confirmAddress);
-                        },
-                        child: Text(
-                          "تعديل العنوان ",
-                          style: AppStyle.styleRegular12(context).copyWith(
-                            color: AppColors.primaryColor,
-                            decoration: TextDecoration.underline,
-                            decorationColor: AppColors.primaryColor,
-                            decorationThickness: 1.5,
-                            height: 1.5,
-                          ),
-                        ),
-                      ),
-                    ],
+                  ExpandedRowForUserImplementation(
+                    firstTitle: "تفاصيل العنوان",
+                    secondTitle: "تعديل العنوان",
+                    onTapOnSecondTitle: () {
+                      GoRouter.of(context).push(AppRouter.confirmAddress);
+                    },
                   ),
 
                   SizedBox(height: 25.h),
@@ -304,7 +285,8 @@ class ConfirmPaymentScreen extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: CustomElevatedButton(
-                                          backgroundColor: AppColors.primaryColor,
+                                          backgroundColor:
+                                              AppColors.primaryColor,
                                           text: "مشاهده الطلب",
                                           onPressed: () {},
                                         ),

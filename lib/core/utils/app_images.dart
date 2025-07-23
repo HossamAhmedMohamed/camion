@@ -50,9 +50,17 @@ class Assets {
   /// assets/images/black_friday.png
   static const String imagesBlackFriday = "assets/images/black_friday.png";
 
+  /// Assets for imagesCalendar
+  /// assets/images/calendar.svg
+  static const String imagesCalendar = "assets/images/calendar.svg";
+
   /// Assets for imagesCamionLogo
   /// assets/images/camion_logo.png
   static const String imagesCamionLogo = "assets/images/camion_logo.png";
+
+  /// Assets for imagesCamionLogoWhite
+  /// assets/images/camion_logo_white.png
+  static const String imagesCamionLogoWhite = "assets/images/camion_logo_white.png";
 
   /// Assets for imagesCheck
   /// assets/images/check.png
@@ -234,6 +242,10 @@ class Assets {
   /// assets/images/profile_settings.svg
   static const String imagesProfileSettings = "assets/images/profile_settings.svg";
 
+  /// Assets for imagesRefresh
+  /// assets/images/refresh.png
+  static const String imagesRefresh = "assets/images/refresh.png";
+
   /// Assets for imagesSave
   /// assets/images/save.png
   static const String imagesSave = "assets/images/save.png";
@@ -301,6 +313,22 @@ class Assets {
   /// Assets for imagesVisa
   /// assets/images/visa.svg
   static const String imagesVisa = "assets/images/visa.svg";
+
+  /// Assets for imagesWalletCamionLogo
+  /// assets/images/wallet_camion_logo.svg
+  static const String imagesWalletCamionLogo = "assets/images/wallet_camion_logo.svg";
+
+  /// Assets for imagesWalletCode
+  /// assets/images/wallet_code.png
+  static const String imagesWalletCode = "assets/images/wallet_code.png";
+
+  /// Assets for imagesWalletRectangle
+  /// assets/images/wallet_rectangle.png
+  static const String imagesWalletRectangle = "assets/images/wallet_rectangle.png";
+
+  /// Assets for imagesWalletWifi
+  /// assets/images/wallet_wifi.svg
+  static const String imagesWalletWifi = "assets/images/wallet_wifi.svg";
 
   /// Assets for imagesWoman
   /// assets/images/woman.png
