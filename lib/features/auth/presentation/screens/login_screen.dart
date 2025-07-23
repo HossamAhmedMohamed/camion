@@ -3,7 +3,7 @@ import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/widgets/camion_logo.dart';
-import 'package:camion/features/auth/presentation/widgets/custom_signin_or_register_method.dart';
+import 'package:camion/config/widgets/custom_signin_or_register_method.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +112,7 @@ class LoginScreen extends StatelessWidget {
             SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
             SliverToBoxAdapter(
-              child: CustomSignInOrRegisterMethods(
+              child: CustomSelectingMethods(
                 onTap: () {},
                 registerLogo: Assets.imagesLogosFacebook,
                 text: 'الاستمرار ب Facebook',
@@ -122,7 +122,7 @@ class LoginScreen extends StatelessWidget {
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
             SliverToBoxAdapter(
-              child: CustomSignInOrRegisterMethods(
+              child: CustomSelectingMethods(
                 onTap: () {},
                 registerLogo: Assets.imagesGoogleIcon,
                 text: 'الاستمرار ب Google',
@@ -132,7 +132,7 @@ class LoginScreen extends StatelessWidget {
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
             SliverToBoxAdapter(
-              child: CustomSignInOrRegisterMethods(
+              child: CustomSelectingMethods(
                 onTap: () {},
                 registerLogo: Assets.imagesAppleIcon,
                 text: 'الاستمرار ب Apple',

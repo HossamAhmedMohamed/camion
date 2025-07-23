@@ -19,6 +19,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ProfileModel(title: 'تغيير اللغة', image: Assets.imagesGlobal),
     ProfileModel(title: 'المحفظة', image: Assets.imagesEmptyWallet),
 
+    ProfileModel(title: 'التسويق بالعمولة', image: Assets.imagesPlay),
+
     ProfileModel(title: 'محفوظاتي', image: Assets.imagesArchiveProfile),
 
     ProfileModel(title: 'تعديل بيانات الحساب', image: Assets.imagesProfileEdit),

@@ -2,19 +2,20 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
-class CustomSignInOrRegisterMethods extends StatelessWidget {
-  const CustomSignInOrRegisterMethods({
+class CustomSelectingCartDetailsMethod extends StatelessWidget {
+  const CustomSelectingCartDetailsMethod({
     super.key,
     required this.onTap,
     required this.registerLogo,
     required this.text,
+    required this.isSelected,
   });
 
   final VoidCallback onTap;
   final String registerLogo;
   final String text;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,20 +27,30 @@ class CustomSignInOrRegisterMethods extends StatelessWidget {
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
-            side: BorderSide(color: AppColors.metal, width: 1.w),
+            side: BorderSide(
+              color: isSelected ? AppColors.primaryColor : AppColors.metal,
+              width: 1.w,
+            ),
           ),
-          color: Colors.white,
+          color: isSelected
+              ? AppColors.primaryColor.withAlpha(15)
+              : Colors.white,
         ),
 
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(registerLogo, width: 24.w, height: 24.h),
+            Image.asset(
+              registerLogo,
+              width: 30.w,
+              height: 30.h,
+              fit: BoxFit.cover,
+            ),
 
-            SizedBox(width: 12.w),
+            SizedBox(width: 6.w),
             Text(
               text,
-              style: AppStyle.styleRegular14(
+              style: AppStyle.styleBold14(
                 context,
               ).copyWith(color: AppColors.black),
             ),
