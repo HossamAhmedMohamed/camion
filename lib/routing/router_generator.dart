@@ -10,6 +10,7 @@ import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/data/models/product_model.dart';
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
+import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: AppRouter.selectingFromBottomNavBar,
+    initialLocation: AppRouter.myWallet,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -105,6 +106,13 @@ class RouterGenerator {
           create: (context) => PaymentMethodCubit(),
           child: const ConfirmAddress(),
         ),
+      ),
+
+      
+      GoRoute(
+        name: AppRouter.myWallet,
+        path: AppRouter.myWallet,
+        builder: (context, state) => const MyWalletScreen(),
       ),
     ],
   );
