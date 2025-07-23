@@ -43,10 +43,7 @@ class _CategoryScreenState extends State<CategoryScreen>
         slivers: [
           CustomSliverAppBar(title: widget.title, leading: widget.leading),
 
-          SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            sliver: const SearchBarHome(),
-          ),
+          const SearchBarHome(),
 
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
