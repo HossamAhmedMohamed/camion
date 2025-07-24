@@ -20,7 +20,7 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: AppRouter.selectingFromBottomNavBar,
+    initialLocation: AppRouter.firstScreenIfFirstLaunch,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -110,20 +110,19 @@ class RouterGenerator {
         ),
       ),
 
-      
       GoRoute(
         name: AppRouter.myWallet,
         path: AppRouter.myWallet,
         builder: (context, state) => const MyWalletScreen(),
       ),
 
-        GoRoute(
+      GoRoute(
         name: AppRouter.notificationScreen,
         path: AppRouter.notificationScreen,
         builder: (context, state) => const NotificationsScreen(),
       ),
 
-        GoRoute(
+      GoRoute(
         name: AppRouter.searchFilter,
         path: AppRouter.searchFilter,
         builder: (context, state) => const SearchFilterScreen(),
