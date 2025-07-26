@@ -14,6 +14,7 @@ class CustomSliverAppBar extends StatelessWidget {
     this.cartImage,
     this.isShoppingCartShown,
     this.isShownDivider,
+    this.isShownActions,
   });
 
   final Widget title;
@@ -22,6 +23,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final String? cartImage;
   final bool? isShoppingCartShown;
   final bool? isShownDivider;
+  final bool? isShownActions;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -40,7 +42,7 @@ class CustomSliverAppBar extends StatelessWidget {
       title: title,
       centerTitle: true,
 
-      actions: [
+      actions: isShownActions ?? true ? [
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -59,14 +61,19 @@ class CustomSliverAppBar extends StatelessWidget {
 
             SizedBox(width: 16.w),
 
-            SvgPicture.asset(
-              Assets.imagesNotification,
-              width: 30.w,
-              height: 30.h,
+            GestureDetector(
+              onTap: (){
+                GoRouter.of(context).push(AppRouter.notificationScreen);
+              },
+              child: SvgPicture.asset(
+                Assets.imagesNotification,
+                width: 30.w,
+                height: 30.h,
+              ),
             ),
           ],
         ),
-      ],
+      ] : [],
 
       bottom: isShownDivider == null
           ? null

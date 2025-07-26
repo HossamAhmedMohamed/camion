@@ -1,11 +1,13 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
-class JoinUsNow extends StatelessWidget {
-  const JoinUsNow({
+class HomeJoinUsNow extends StatelessWidget {
+  const HomeJoinUsNow({
     super.key,
     required this.screenWidth,
   });
@@ -29,10 +31,12 @@ class JoinUsNow extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomRight,
             child: GestureDetector(
-              onTap: (){},
+              onTap: (){
+                GoRouter.of(context).push(AppRouter.supplierWelcome);
+              },
               child: Container(
                 // height: 32.h,
-                width: 100.w,
+                width: screenWidth > 800 ? 170.w : 100.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
                   color: AppColors.primaryColor,

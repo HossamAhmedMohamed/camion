@@ -1,4 +1,5 @@
 import 'package:camion/config/widgets/custom_elevated_button.dart';
+import 'package:camion/config/widgets/custom_modal_bottom_sheet.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/config/widgets/expanded_row_for_user.dart';
 import 'package:camion/core/utils/app_colors.dart';
@@ -225,90 +226,35 @@ class ConfirmPaymentScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 20.h),
                 child: CustomElevatedButton(
+                  padding: 4.h,
+                  height: 60.h,
                   text: "تأكيد الدفع",
                   onPressed: () {
-                    showModalBottomSheet(
-                      backgroundColor: Colors.white,
-                      constraints: BoxConstraints(maxWidth: screenWidth),
+                    customizeModalBottomSheet(
+                      title: "لقد تم تأكيد طلبك بنجاح",
+                      screenWidth: screenWidth,
                       context: context,
-                      builder: (context) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 16.w,
-                                vertical: 20.h,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      GoRouter.of(context).pop();
-                                    },
-                                    child: Icon(
-                                      Icons.close,
-                                      color: AppColors.black,
-                                      size: 30.sp,
-                                    ),
-                                  ),
-
-                                  SizedBox(height: 20.h),
-
-                                  Center(
-                                    child: Image.asset(
-                                      Assets.imagesCheck,
-                                      width: screenWidth > 800 ? 160.w : 120.w,
-                                      height: screenWidth > 800 ? 160.h : 120.h,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-
-                                  SizedBox(height: 35.h),
-
-                                  Center(
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Text(
-                                        "لقد تم تأكيد طلبك بنجاح",
-                                        style: AppStyle.styleSemiBold16(
-                                          context,
-                                        ).copyWith(color: Colors.black),
-                                      ),
-                                    ),
-                                  ),
-
-                                  SizedBox(height: 35.h),
-
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: CustomElevatedButton(
-                                          backgroundColor:
-                                              AppColors.primaryColor,
-                                          text: "مشاهده الطلب",
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                      SizedBox(width: 10.w),
-                                      Expanded(
-                                        child: CustomElevatedButton(
-                                          borderColor: AppColors.primaryColor,
-                                          backgroundColor: AppColors.white,
-                                          textColor: AppColors.primaryColor,
-                                          text: "متابعة التسوق",
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                      content: Row(
+                        children: [
+                          Expanded(
+                            child: CustomElevatedButton(
+                              backgroundColor: AppColors.primaryColor,
+                              text: "مشاهده الطلب",
+                              onPressed: () {},
                             ),
-                          ],
-                        );
-                      },
+                          ),
+                          SizedBox(width: 10.w),
+                          Expanded(
+                            child: CustomElevatedButton(
+                              borderColor: AppColors.primaryColor,
+                              backgroundColor: AppColors.white,
+                              textColor: AppColors.primaryColor,
+                              text: "متابعة التسوق",
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),

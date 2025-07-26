@@ -10,6 +10,15 @@ import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/data/models/product_model.dart';
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_selecting_cubit.dart';
+import 'package:camion/features/join_us/presentation/screens/create_code_screen.dart';
+import 'package:camion/features/join_us/presentation/screens/join_us_screen.dart';
+import 'package:camion/features/join_us/presentation/screens/my_codings_screen.dart';
+import 'package:camion/features/join_us/presentation/screens/select_countries_of_supplier.dart';
+import 'package:camion/features/join_us/presentation/screens/select_social_media_screen.dart';
+import 'package:camion/features/join_us/presentation/screens/supplier_account.dart';
+import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart';
 import 'package:camion/features/notifications/presentation/notifications_screen.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
@@ -20,7 +29,7 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: AppRouter.firstScreenIfFirstLaunch,
+    initialLocation: AppRouter.selectingFromBottomNavBar,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -126,6 +135,57 @@ class RouterGenerator {
         name: AppRouter.searchFilter,
         path: AppRouter.searchFilter,
         builder: (context, state) => const SearchFilterScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.joinUs,
+        path: AppRouter.joinUs,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ToggleJoinUsCubit(),
+          child: const JoinUsScreen(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.selectSocialMediaOfSupplierScreen,
+        path: AppRouter.selectSocialMediaOfSupplierScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ToggleSocialMediaSelectingCubit(),
+          child: const SelectSocialMediaScreen(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.selectCoutriesOfSupplier,
+        path: AppRouter.selectCoutriesOfSupplier,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ToggleSocialMediaSelectingCubit(),
+          child: const SelectCountriesOfSupplier(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.supplierWelcome,
+        path: AppRouter.supplierWelcome,
+        builder: (context, state) => const WelcomeScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.supplierAccount,
+        path: AppRouter.supplierAccount,
+        builder: (context, state) => const SupplierAccountScreen(),
+      ),
+
+        GoRoute(
+        name: AppRouter.myCodings,
+        path: AppRouter.myCodings,
+        builder: (context, state) => const MyCodingsScreen(),
+      ),
+
+        GoRoute(
+        name: AppRouter.createCode,
+        path: AppRouter.createCode,
+        builder: (context, state) => const CreateCodeScreen(),
       ),
     ],
   );

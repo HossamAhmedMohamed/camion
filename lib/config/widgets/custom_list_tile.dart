@@ -17,6 +17,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w ),
       leading: leading ,
       title: Text(

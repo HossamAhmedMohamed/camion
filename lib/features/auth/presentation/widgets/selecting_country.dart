@@ -43,7 +43,7 @@ class _SelectingCountryState extends State<SelectingCountry> {
                 } else {
                   final searchQuery = query.trim();
                   localFilteredCountries = allCountries.where((country) {
-                    // إزالة التشكيل والمسافات الزائدة
+                 
                     final cleanCountry = country.trim();
                     final cleanQuery = searchQuery;
 
