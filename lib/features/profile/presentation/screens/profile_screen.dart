@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             return ListTile(
                               title: Text(
                                 localFilteredLanguages[index],
-                                textAlign: TextAlign.right,
+                                textAlign: TextAlign.left,
                               ),
                               onTap: () {
                                 GoRouter.of(

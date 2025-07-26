@@ -87,7 +87,7 @@ class _SelectingLanguageState extends State<SelectingLanguage> {
                             return ListTile(
                               title: Text(
                                 localFilteredLanguages[index],
-                                textAlign: TextAlign.right,
+                                textAlign: TextAlign.left,
                               ),
                               onTap: () {
                                 GoRouter.of(
