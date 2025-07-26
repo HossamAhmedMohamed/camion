@@ -2,9 +2,11 @@ import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SupplierAccountScreen extends StatelessWidget {
   const SupplierAccountScreen({super.key});
@@ -20,7 +22,9 @@ class SupplierAccountScreen extends StatelessWidget {
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.myCodings);
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 margin: EdgeInsets.symmetric(horizontal: 16.w),
@@ -50,7 +54,9 @@ class SupplierAccountScreen extends StatelessWidget {
 
           SliverToBoxAdapter(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.createCode);
+              },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),

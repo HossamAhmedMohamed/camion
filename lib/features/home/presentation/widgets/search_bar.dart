@@ -1,3 +1,4 @@
+import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/routing/app_router.dart';
@@ -46,10 +47,15 @@ class SearchBarHome extends StatelessWidget {
                           // ),
                           // SizedBox(width: 8.w),
                           const Spacer(),
-                          SvgPicture.asset(
-                            Assets.imagesMdiBarcodeScan,
-                            width: 24.w,
-                            height: 24.h,
+                          GestureDetector(
+                            onTap: () async{
+                              await BarcodeScanner.scan();
+                            },
+                            child: SvgPicture.asset(
+                              Assets.imagesMdiBarcodeScan,
+                              width: 24.w,
+                              height: 24.h,
+                            ),
                           ),
 
                           SizedBox(width: 8.w),

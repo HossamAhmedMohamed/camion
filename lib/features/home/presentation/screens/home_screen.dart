@@ -13,15 +13,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static const List<String> stories = [
-    Assets.imagesMyStory,
-    Assets.imagesNehal,
-    Assets.imagesNada,
-    Assets.imagesMohamed,
-    Assets.imagesMona,
-    Assets.imagesMariem,
-  ];
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -34,6 +25,15 @@ class _HomeScreenState extends State<HomeScreen>
   // Add this boolean to track the current view mode
   bool _isListView = false;
 
+  static const List<String> stories = [
+   
+    Assets.imagesNehal,
+    Assets.imagesNada,
+    Assets.imagesMohamed,
+    Assets.imagesMona,
+    Assets.imagesMariem,
+  ];
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -44,14 +44,28 @@ class _HomeScreenState extends State<HomeScreen>
         const HomeSliverAppBar(),
         const SearchBarHome(),
 
+        SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 100.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: stories.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(right: 10.w),
+                  child: Image.asset(stories[index]),
+                );
+              },
+            ),
+          ),
+        ),
         SliverToBoxAdapter(child: SizedBox(height: 10.h)),
         HomeJoinUsNow(screenWidth: screenWidth),
 
         SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
-          CategoriesBody(
-          screenWidth: screenWidth,
-        ),
+        CategoriesBody(screenWidth: screenWidth),
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
