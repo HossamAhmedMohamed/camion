@@ -12,6 +12,14 @@ class AppRouter {
   static const String myWallet = '/myWallet';
   static const String notificationScreen = '/notificationScreen';
   static const String searchFilter = '/searchFilter';
+  static const String joinUs = '/joinUs';
+  static const String selectSocialMediaOfSupplierScreen = '/selectSocialMediaOfSupplierScreen';
+  static const String selectCoutriesOfSupplier = '/selectCoutriesOfSupplier';
+  static const String supplierWelcome = '/supplierWelcome';
+  static const String supplierAccount = '/supplierAccount';
+  static const String myCodings = '/myCodings';
+  static const String createCode = '/createCode';
+ 
  
   
 }

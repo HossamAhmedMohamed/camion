@@ -14,6 +14,7 @@ class CustomSliverAppBar extends StatelessWidget {
     this.cartImage,
     this.isShoppingCartShown,
     this.isShownDivider,
+    this.isShownActions,
   });
 
   final Widget title;
@@ -22,6 +23,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final String? cartImage;
   final bool? isShoppingCartShown;
   final bool? isShownDivider;
+  final bool? isShownActions;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -40,7 +42,7 @@ class CustomSliverAppBar extends StatelessWidget {
       title: title,
       centerTitle: true,
 
-      actions: [
+      actions: isShownActions ?? true ? [
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -66,7 +68,7 @@ class CustomSliverAppBar extends StatelessWidget {
             ),
           ],
         ),
-      ],
+      ] : [],
 
       bottom: isShownDivider == null
           ? null

@@ -10,6 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? borderColor;
   final double? padding;
   final Widget? widget;
+  final double? elevation;
   const CustomElevatedButton({
     super.key,
     required this.text,
@@ -19,6 +20,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.borderColor,
     this.padding,
     this.widget,
+    this.elevation ,
   });
 
   @override
@@ -39,7 +41,7 @@ class CustomElevatedButton extends StatelessWidget {
                   color: borderColor ?? Colors.transparent,
                   width: 1.5,
                 ),
-          elevation: 4,
+          elevation:elevation ?? 4,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

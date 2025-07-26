@@ -76,7 +76,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
                       textAlign: TextAlign.right,
                     ),
                   ),
-                  // Icon على اليسار
+
                   AnimatedBuilder(
                     animation: _rotationAnimation,
                     builder: (context, child) {

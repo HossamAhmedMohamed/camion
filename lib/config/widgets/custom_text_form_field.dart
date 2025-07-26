@@ -12,6 +12,8 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final FormFieldValidator<String>? validator;
   final bool? readOnly;
+  final int? maxLength;
+  final int? maxLines;
 
   const CustomTextFormField({
     super.key,
@@ -24,6 +26,8 @@ class CustomTextFormField extends StatelessWidget {
     this.readOnly,
     this.onChanged,
     this.prefixIcon,
+    this.maxLength,
+    this.maxLines,
   });
 
   @override
@@ -38,6 +42,9 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
+        style: AppStyle.styleRegular14(context).copyWith(
+          color: AppColors.gray,
+        ),
         readOnly: readOnly ?? false,
         controller: controller,
         validator: validator,
@@ -54,7 +61,10 @@ class CustomTextFormField extends StatelessWidget {
           ),
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
+          
         ),
+        maxLength: maxLength ,
+        maxLines: maxLines ?? 1,
       ),
     );
   }

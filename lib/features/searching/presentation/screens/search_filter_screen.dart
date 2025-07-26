@@ -1,4 +1,3 @@
- 
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
@@ -29,7 +28,7 @@ class SearchFilterScreen extends StatelessWidget {
 
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverList.builder(
-            itemCount: 4,
+            itemCount: categories.length,
             itemBuilder: (context, index) {
               return Container(
                 padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 26.w),
@@ -53,18 +52,18 @@ class SearchFilterScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
+                    SizedBox(height: 5.h),
 
                     const Row(
                       children: [
-                        Expanded(child: Divider(
-                          color: AppColors.paleGray,
-                          thickness: 1,
-                        ))
+                        Expanded(
+                          child: Divider(
+                            color: AppColors.paleGray,
+                            thickness: 1,
+                          ),
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               );

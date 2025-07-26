@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/active_home.svg
   static const String imagesActiveHome = "assets/images/active_home.svg";
 
+  /// Assets for imagesActiveMale
+  /// assets/images/active_male.svg
+  static const String imagesActiveMale = "assets/images/active_male.svg";
+
   /// Assets for imagesActiveProfile
   /// assets/images/active_profile.svg
   static const String imagesActiveProfile = "assets/images/active_profile.svg";
@@ -53,6 +57,14 @@ class Assets {
   /// Assets for imagesCalendar
   /// assets/images/calendar.svg
   static const String imagesCalendar = "assets/images/calendar.svg";
+
+  /// Assets for imagesCamera
+  /// assets/images/camera.svg
+  static const String imagesCamera = "assets/images/camera.svg";
+
+  /// Assets for imagesCameraPng
+  /// assets/images/camera_png.png
+  static const String imagesCameraPng = "assets/images/camera_png.png";
 
   /// Assets for imagesCamionLogo
   /// assets/images/camion_logo.png
@@ -146,6 +158,10 @@ class Assets {
   /// assets/images/in_active_home.svg
   static const String imagesInActiveHome = "assets/images/in_active_home.svg";
 
+  /// Assets for imagesInActiveMale
+  /// assets/images/in_active_male.svg
+  static const String imagesInActiveMale = "assets/images/in_active_male.svg";
+
   /// Assets for imagesInActiveProfile
   /// assets/images/in_active_profile.svg
   static const String imagesInActiveProfile = "assets/images/in_active_profile.svg";
@@ -158,9 +174,17 @@ class Assets {
   /// assets/images/inactive_box.svg
   static const String imagesInactiveBox = "assets/images/inactive_box.svg";
 
+  /// Assets for imagesInactiveFemale
+  /// assets/images/inactive_female.svg
+  static const String imagesInactiveFemale = "assets/images/inactive_female.svg";
+
   /// Assets for imagesInactiveSearch
   /// assets/images/inactive_search.svg
   static const String imagesInactiveSearch = "assets/images/inactive_search.svg";
+
+  /// Assets for imagesInstagram
+  /// assets/images/instagram.svg
+  static const String imagesInstagram = "assets/images/instagram.svg";
 
   /// Assets for imagesJoinUs
   /// assets/images/join_us.png
@@ -206,6 +230,10 @@ class Assets {
   /// assets/images/mona.png
   static const String imagesMona = "assets/images/mona.png";
 
+  /// Assets for imagesMosweqImage
+  /// assets/images/mosweq_image.png
+  static const String imagesMosweqImage = "assets/images/mosweq_image.png";
+
   /// Assets for imagesMyStory
   /// assets/images/my_story.png
   static const String imagesMyStory = "assets/images/my_story.png";
@@ -222,9 +250,17 @@ class Assets {
   /// assets/images/nehal.png
   static const String imagesNehal = "assets/images/nehal.png";
 
+  /// Assets for imagesNotSelectedCheckbox
+  /// assets/images/not_selected_checkbox.svg
+  static const String imagesNotSelectedCheckbox = "assets/images/not_selected_checkbox.svg";
+
   /// Assets for imagesNotification
   /// assets/images/notification.svg
   static const String imagesNotification = "assets/images/notification.svg";
+
+  /// Assets for imagesPhotoJoinUs
+  /// assets/images/photo_join_us.png
+  static const String imagesPhotoJoinUs = "assets/images/photo_join_us.png";
 
   /// Assets for imagesPlay
   /// assets/images/play.svg
@@ -258,6 +294,10 @@ class Assets {
   /// assets/images/search_bar.svg
   static const String imagesSearchBar = "assets/images/search_bar.svg";
 
+  /// Assets for imagesSelectedCheckbox
+  /// assets/images/selected_checkbox.svg
+  static const String imagesSelectedCheckbox = "assets/images/selected_checkbox.svg";
+
   /// Assets for imagesSettings
   /// assets/images/settings.svg
   static const String imagesSettings = "assets/images/settings.svg";
@@ -281,6 +321,14 @@ class Assets {
   /// Assets for imagesSignInMethods
   /// assets/images/sign_in_methods.png
   static const String imagesSignInMethods = "assets/images/sign_in_methods.png";
+
+  /// Assets for imagesSnapChat
+  /// assets/images/snap_chat.svg
+  static const String imagesSnapChat = "assets/images/snap_chat.svg";
+
+  /// Assets for imagesSnapChatPng
+  /// assets/images/snap_chat_png.png
+  static const String imagesSnapChatPng = "assets/images/snap_chat_png.png";
 
   /// Assets for imagesSplash12
   /// assets/images/splash_12.png
