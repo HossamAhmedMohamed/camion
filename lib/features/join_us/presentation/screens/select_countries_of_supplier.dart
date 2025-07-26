@@ -4,9 +4,11 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_selecting_cubit.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectCountriesOfSupplier extends StatelessWidget {
   const SelectCountriesOfSupplier({super.key});
@@ -183,7 +185,11 @@ class SelectCountriesOfSupplier extends StatelessWidget {
                     textColor: AppColors.primaryColor,
                     borderColor: AppColors.primaryColor,
                     text: "الذهاب للرئيسية",
-                    onPressed: () {},
+                    onPressed: () {
+                      GoRouter.of(
+                        context,
+                      ).push(AppRouter.selectingFromBottomNavBar);
+                    },
                   ),
                   screenWidth: screenWidth,
                   context: context,

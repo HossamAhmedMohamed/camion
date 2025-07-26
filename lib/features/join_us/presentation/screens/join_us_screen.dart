@@ -6,8 +6,10 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
 import 'package:camion/features/join_us/presentation/widgets/join_us_image.dart';
 import 'package:camion/features/join_us/presentation/widgets/selecting_male_or_female.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
  
 
 class JoinUsScreen extends StatelessWidget {
@@ -137,6 +139,8 @@ class JoinUsScreen extends StatelessWidget {
                 ),
               ),
 
+              SliverToBoxAdapter(child: SizedBox(height: 60.h)),
+
               SliverToBoxAdapter(
                 child: SizedBox(
                   height: MediaQuery.of(context).viewInsets.bottom,
@@ -152,7 +156,9 @@ class JoinUsScreen extends StatelessWidget {
             child: CustomElevatedButton(
               text: "التالي",
               onPressed: () {
-               
+               GoRouter.of(context).push(
+                  AppRouter.selectSocialMediaOfSupplierScreen,
+               );
               },
             ),
           ),

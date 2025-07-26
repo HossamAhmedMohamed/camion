@@ -5,10 +5,12 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/data/models/social_media_selecting_model.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_selecting_cubit.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SelectSocialMediaScreen extends StatelessWidget {
   const SelectSocialMediaScreen({super.key});
@@ -141,7 +143,11 @@ class SelectSocialMediaScreen extends StatelessWidget {
             bottom: 16.h,
             left: 16.w,
             right: 16.w,
-            child: CustomElevatedButton(text: "التالي", onPressed: () {}),
+            child: CustomElevatedButton(text: "التالي", onPressed: () {
+              GoRouter.of(context).push(
+                AppRouter.selectCoutriesOfSupplier,
+              );
+            }),
           ),
         ],
       ),

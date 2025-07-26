@@ -3,7 +3,7 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/presentation/widgets/categories_text.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
-import 'package:camion/features/home/presentation/widgets/join_us_now.dart';
+import 'package:camion/features/home/presentation/widgets/home_join_us_now.dart';
 import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_grid_view_building.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_list_view_building.dart';
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen>
         const SearchBarHome(),
 
         SliverToBoxAdapter(child: SizedBox(height: 10.h)),
-        JoinUsNow(screenWidth: screenWidth),
+        HomeJoinUsNow(screenWidth: screenWidth),
 
         SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 

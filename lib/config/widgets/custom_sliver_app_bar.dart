@@ -61,10 +61,15 @@ class CustomSliverAppBar extends StatelessWidget {
 
             SizedBox(width: 16.w),
 
-            SvgPicture.asset(
-              Assets.imagesNotification,
-              width: 30.w,
-              height: 30.h,
+            GestureDetector(
+              onTap: (){
+                GoRouter.of(context).push(AppRouter.notificationScreen);
+              },
+              child: SvgPicture.asset(
+                Assets.imagesNotification,
+                width: 30.w,
+                height: 30.h,
+              ),
             ),
           ],
         ),

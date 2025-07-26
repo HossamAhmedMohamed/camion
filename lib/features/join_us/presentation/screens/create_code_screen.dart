@@ -41,6 +41,12 @@ class CreateCodeScreen extends StatelessWidget {
                 onPressed: () {},
               ),
             ),
+
+            SliverToBoxAdapter(
+                child: SizedBox(
+                  height: MediaQuery.of(context).viewInsets.bottom,
+                ),
+              ),
           ],
         ),
       ),
