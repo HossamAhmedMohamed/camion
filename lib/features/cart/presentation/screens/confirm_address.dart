@@ -115,7 +115,10 @@ class ConfirmAddress extends StatelessWidget {
 
               child: Padding(
                 padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 20.h),
-                child: CustomElevatedButton(text: "حفظ", onPressed: () {
+                child: CustomElevatedButton(
+                  padding: 4.h,
+                  height: 60.h,
+                  text: "حفظ", onPressed: () {
                   GoRouter.of(context).pop();
                 }),
               ),

@@ -2,20 +2,19 @@ import 'package:camion/features/order_status/presentation/screens/order_status_s
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen.dart';
-import 'package:camion/features/home/presentation/widgets/bottom_nav_bar.dart';
+import 'package:camion/config/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class SelectingFromBottomNavBar extends StatefulWidget {
   const SelectingFromBottomNavBar({super.key});
 
-  
   @override
   State<SelectingFromBottomNavBar> createState() =>
       _SelectingFromBottomNavBarState();
 }
 
 class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   late PageController _pageController;
 
   @override
@@ -25,8 +24,8 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
   }
 
   List<Widget> screens = const [
-    HomeScreen(),
     SearchScreen(),
+    HomeScreen(),
     // ReelsScreen(),
     OrderStatusScreen(),
     ProfileScreen(),
@@ -40,7 +39,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
 
   bool _handleBackPressed() {
     if (currentIndex != 0) {
-      _pageController.jumpToPage(0);
+      _pageController.jumpToPage(1);
       return false;
     }
     return true;

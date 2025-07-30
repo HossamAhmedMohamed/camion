@@ -43,14 +43,19 @@ class ConfirmPaymentScreen extends StatelessWidget {
                     ).copyWith(color: AppColors.black),
                   ),
 
-                  Text(
-                    "تعديل الطلب ",
-                    style: AppStyle.styleRegular12(context).copyWith(
-                      color: AppColors.primaryColor,
-                      decoration: TextDecoration.underline,
-                      decorationColor: AppColors.primaryColor,
-                      decorationThickness: 1.5,
-                      height: 1.5,
+                  GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.myCart);
+                    },
+                    child: Text(
+                      "تعديل الطلب ",
+                      style: AppStyle.styleRegular12(context).copyWith(
+                        color: AppColors.primaryColor,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColors.primaryColor,
+                        decorationThickness: 1.5,
+                        height: 1.5,
+                      ),
                     ),
                   ),
                 ],
