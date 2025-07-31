@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
-import 'package:camion/features/home/presentation/logic/cubit/products_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/grid_item_skeletonizer.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +19,7 @@ class SearchScreenWithProducts extends StatefulWidget {
 }
 
 class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -33,7 +31,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
 
   @override
   void dispose() {
-    _controller.dispose();
+    _searchController.dispose();
     _focusNode.dispose();
     super.dispose();
   }
@@ -55,7 +53,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
             scrolledUnderElevation: 0,
             title: CustomTextFormField(
               autoFocus: true,
-              controller: _controller,
+              controller: _searchController,
               focusNode: _focusNode,
               hintText: 'ابحث عن ما تريد',
               onChanged: (value) {

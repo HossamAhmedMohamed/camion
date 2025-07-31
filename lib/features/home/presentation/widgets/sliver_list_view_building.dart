@@ -1,4 +1,4 @@
-import 'package:camion/features/home/presentation/logic/cubit/products_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/list_view_item_skeletonizer.dart';
 import 'package:camion/routing/app_router.dart';
@@ -18,12 +18,12 @@ class SliverListViewBuilding extends StatelessWidget {
         if (state is ProductsLoading) {
           return SliverList.builder(
             itemBuilder: (context, index) {
-             
               return Padding(
                 padding: EdgeInsets.only(bottom: 20.h),
                 child: const Skeletonizer(
                   enabled: true,
-                  child: ListViewItemBuildingSkeleton()),
+                  child: ListViewItemBuildingSkeleton(),
+                ),
               );
             },
             itemCount: 20,
@@ -40,7 +40,7 @@ class SliverListViewBuilding extends StatelessWidget {
                   onTap: () {
                     GoRouter.of(
                       context,
-                    ).push(AppRouter.productDetails, extra: product);
+                    ).push(AppRouter.productDetails, extra: product.spuCode);
                   },
                   child: ProductCarouselWidget(
                     imageUrl: product.picUrl,
@@ -60,6 +60,8 @@ class SliverListViewBuilding extends StatelessWidget {
           return SliverToBoxAdapter(
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(state.error.icon, color: Colors.red, size: 50),
 
@@ -67,6 +69,7 @@ class SliverListViewBuilding extends StatelessWidget {
                   Text(
                     state.error.message,
                     style: TextStyle(fontSize: 16.sp, color: Colors.red),
+                    textAlign: TextAlign.center,
                   ),
 
                   SizedBox(height: 10.h),

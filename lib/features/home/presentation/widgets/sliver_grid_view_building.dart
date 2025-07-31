@@ -1,4 +1,4 @@
-import 'package:camion/features/home/presentation/logic/cubit/products_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/grid_item_skeletonizer.dart';
 import 'package:camion/routing/app_router.dart';
@@ -62,7 +62,7 @@ class SliverGridViewBuilding extends StatelessWidget {
                 onTap: () {
                   GoRouter.of(
                     context,
-                  ).push(AppRouter.productDetails, extra: product);
+                  ).push(AppRouter.productDetails, extra: product.spuCode);
                 },
                 child: ProductCarouselWidget(
                   imageUrl: product.picUrl,
@@ -81,14 +81,26 @@ class SliverGridViewBuilding extends StatelessWidget {
           return SliverToBoxAdapter(
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(state.error.icon, color: Colors.red, size: 50),
+
                   SizedBox(height: 20.h),
                   Text(
                     state.error.message,
                     style: TextStyle(fontSize: 16.sp, color: Colors.red),
+                    textAlign: TextAlign.center,
                   ),
+
                   SizedBox(height: 10.h),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<ProductsCubit>().retryLoadMore();
+                    },
+                    child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                  ),
                 ],
               ),
             ),

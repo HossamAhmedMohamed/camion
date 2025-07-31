@@ -3,12 +3,11 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
-import 'package:camion/features/home/presentation/logic/cubit/products_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_cubit/toggle_list_and_grid_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/categories_text.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
 import 'package:camion/features/home/presentation/widgets/home_join_us_now.dart';
-import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_grid_view_building.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_list_view_building.dart';
 import 'package:camion/routing/app_router.dart';
@@ -51,8 +50,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
     Assets.imagesMona,
     Assets.imagesMariem,
   ];
-
-  final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {

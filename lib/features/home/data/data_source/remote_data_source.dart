@@ -7,7 +7,6 @@ class HomeRemoteDataSource {
   final ApiConsumer apiConsumer;
   HomeRemoteDataSource({required this.apiConsumer});
 
-
   Future<Response> getProducts() async {
     final response = await apiConsumer.get(
       EndPoints.products,
@@ -22,6 +21,12 @@ class HomeRemoteDataSource {
       EndPoints.products,
       queryParameters: {"keyword": query},
     );
+
+    return response;
+  }
+
+  Future<Response> getProductById({required String id}) async {
+    final response = await apiConsumer.get("${EndPoints.products}/$id");
 
     return response;
   }

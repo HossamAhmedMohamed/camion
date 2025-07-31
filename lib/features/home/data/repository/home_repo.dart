@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
+import 'package:camion/features/home/data/models/product_id_details_model/product_id_details_model.dart';
 import 'package:camion/features/home/data/models/product_model/product_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -37,6 +38,19 @@ class HomeRepository {
       return Right(products);
     } catch (e) {
       log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, ProductIdDetailsModel>> getProductById({
+    required String id,
+  }) async {
+    try {
+      final response = await remoteDataSource.getProductById(id: id);
+      return Right(
+        ProductIdDetailsModel.fromJson(response.data["data"]),
+      );
+    } catch (e) {
       return left(ApiErrorHandler.handle(e));
     }
   }

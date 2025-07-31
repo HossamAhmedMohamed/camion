@@ -212,19 +212,19 @@ class GridItemBuilding extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '${1500}}',
+                      '${originalPrice.toInt()}',
                       style: AppStyle.styleBold16(
                         context,
                       ).copyWith(color: AppColors.primaryColor),
                     ),
-                    SizedBox(width: 5.w),
-                    Text(
-                      '${originalPrice.toInt()}',
-                      style: AppStyle.styleRegular12(context).copyWith(
-                        color: AppColors.gray,
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
+                    // SizedBox(width: 5.w),
+                    // Text(
+                    //   '${originalPrice.toInt()}',
+                    //   style: AppStyle.styleRegular12(context).copyWith(
+                    //     color: AppColors.gray,
+                    //     decoration: TextDecoration.lineThrough,
+                    //   ),
+                    // ),
                   ],
                 ),
 

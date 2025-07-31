@@ -1,11 +1,17 @@
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
+import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key, this.isShownDivider , this.onSearchTap, this.readOnly});
+  const HomeSliverAppBar({
+    super.key,
+    this.isShownDivider,
+    this.onSearchTap,
+    this.readOnly,
+  });
 
   final bool? isShownDivider;
   final VoidCallback? onSearchTap;
@@ -33,6 +39,27 @@ class HomeSliverAppBar extends StatelessWidget {
         ),
       ),
       isShownDivider: isShownDivider,
+
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        background: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+
+            // Divider(
+            //     height: 1,
+            //     thickness: 1,
+            //     color: Colors.grey.shade300,
+            //   ),
+
+              
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: SearchBarHome(readOnly: readOnly, onTap: onSearchTap),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

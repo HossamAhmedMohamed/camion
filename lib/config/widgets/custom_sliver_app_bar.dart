@@ -1,5 +1,4 @@
 import 'package:camion/core/utils/app_images.dart';
-import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +17,8 @@ class CustomSliverAppBar extends StatelessWidget {
     this.isShownActions,
     this.readOnly,
     this.onSearchTap,
+    this.flexibleSpace,
+    this.appBarHeight,
   });
 
   final Widget title;
@@ -29,10 +30,12 @@ class CustomSliverAppBar extends StatelessWidget {
   final bool? isShownActions;
   final bool? readOnly;
   final VoidCallback? onSearchTap;
+  final Widget? flexibleSpace;
+  final double? appBarHeight;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 150.0.h,
+      expandedHeight: appBarHeight ?? 150.0.h,
 
       floating: true,
       snap: true,
@@ -93,19 +96,7 @@ class CustomSliverAppBar extends StatelessWidget {
             ]
           : [],
 
-      flexibleSpace: FlexibleSpaceBar(
-        centerTitle: true,
-        background: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: SearchBarHome(readOnly: readOnly, onTap: onSearchTap),
-            ),
-
-          ],
-        ),
-      ),
+      flexibleSpace: flexibleSpace,
 
       bottom: isShownDivider == null
           ? null
