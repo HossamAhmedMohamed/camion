@@ -8,87 +8,97 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchBarHome extends StatelessWidget {
-  const SearchBarHome({super.key});
+  const SearchBarHome({
+    super.key,
+    this.searchController,
+    this.onChanged,
 
+    this.readOnly,
+    this.onTap,
+  });
+
+  final TextEditingController? searchController;
+  final void Function(String)? onChanged;
+
+  final bool? readOnly;
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 6,
-                  child: CustomTextFormField(
-                    hintText: "ابحث عن ما تريد",
-
-                    prefixIcon: Padding(
-                      padding: EdgeInsets.all(12.r),
-                      child: SvgPicture.asset(
-                        Assets.imagesSearchBar,
-                        width: 24.w,
-                        height: 24.h,
-                      ),
-                    ),
-                    suffixIcon: SizedBox(
-                      width: 60.w,
-                      child: Row(
-                        children: [
-                          // // SvgPicture.asset(
-                          // //   Assets.imagesFluentScanCamera,
-                          // //   width: 24.w,
-                          // //   height: 24.h,
-                          // // ),
-                          // SizedBox(
-                          //   width: 24.h,
-                          //   height: 24.h,
-                          // ),
-                          // SizedBox(width: 8.w),
-                          const Spacer(),
-                          GestureDetector(
-                            onTap: () async{
-                              await BarcodeScanner.scan();
-                            },
-                            child: SvgPicture.asset(
-                              Assets.imagesMdiBarcodeScan,
-                              width: 24.w,
-                              height: 24.h,
-                            ),
-                          ),
-
-                          SizedBox(width: 8.w),
-                        ],
-                      ),
-                    ),
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              flex: 6,
+              child: CustomTextFormField(
+                onTap: onTap,
+                onChanged: onChanged,
+                controller: searchController,
+                hintText: "ابحث عن ما تريد",
+                readOnly: readOnly,
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(12.r),
+                  child: SvgPicture.asset(
+                    Assets.imagesSearchBar,
+                    width: 24.w,
+                    height: 24.h,
                   ),
                 ),
-
-                SizedBox(width: 6.w),
-
-                Expanded(
-                  flex: 1,
-                  child: GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRouter.searchFilter);
-                    },
-                    child: SvgPicture.asset(
-                      Assets.imagesSettings,
-                      width: 52.w,
-                      height: 52.h,
-                    ),
+                suffixIcon: SizedBox(
+                  width: 60.w,
+                  child: Row(
+                    children: [
+                      // // SvgPicture.asset(
+                      // //   Assets.imagesFluentScanCamera,
+                      // //   width: 24.w,
+                      // //   height: 24.h,
+                      // // ),
+                      // SizedBox(
+                      //   width: 24.h,
+                      //   height: 24.h,
+                      // ),
+                      // SizedBox(width: 8.w),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () async {
+                          await BarcodeScanner.scan();
+                        },
+                        child: SvgPicture.asset(
+                          Assets.imagesMdiBarcodeScan,
+                          width: 24.w,
+                          height: 24.h,
+                        ),
+                      ),
+        
+                      SizedBox(width: 8.w),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+        
+            SizedBox(width: 7.w),
+        
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.searchFilter);
+                },
+                child: SvgPicture.asset(
+                  Assets.imagesSettings,
+                  width: 52.w,
+                  height: 52.h,
+                ),
+              ),
+            ),
+          ],
+        ),
 
-          SizedBox(height: 15.h),
+        SizedBox(height: 10.h),
 
-          Divider(height: 1, thickness: 1, color: Colors.grey.shade300),
-        ],
-      ),
+        // Divider(height: 1, thickness: 1, color: Colors.grey.shade300),
+      ],
     );
   }
 }

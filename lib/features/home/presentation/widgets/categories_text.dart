@@ -7,15 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class CategoriesBody extends StatefulWidget {
+class CategoriesBody extends StatelessWidget {
   const CategoriesBody({super.key, required this.screenWidth});
 
   final double screenWidth;
-  @override
-  State<CategoriesBody> createState() => _CategoriesBodyState();
-}
-
-class _CategoriesBodyState extends State<CategoriesBody> {
   VoidCallback onCategoreyTap(BuildContext context, {required String title}) {
     return () {
       GoRouter.of(context).push(
@@ -124,8 +119,8 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                 return GestureDetector(
                   onTap: firstCategories[index].onTap,
                   child: Container(
-                    height: widget.screenWidth > 800 ? 120.h : 80.h,
-                    width: widget.screenWidth > 800 ? 120.w : 80.w,
+                    height: screenWidth > 800 ? 120.h : 80.h,
+                    width: screenWidth > 800 ? 120.w : 80.w,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(firstCategories[index].image!),
@@ -154,8 +149,8 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                 return GestureDetector(
                   onTap: secondCategories[index].onTap,
                   child: Container(
-                    height: widget.screenWidth > 800 ? 120.h : 80.h,
-                    width: widget.screenWidth > 800 ? 120.w : 80.w,
+                    height: screenWidth > 800 ? 120.h : 80.h,
+                    width: screenWidth > 800 ? 120.w : 80.w,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(secondCategories[index].image!),

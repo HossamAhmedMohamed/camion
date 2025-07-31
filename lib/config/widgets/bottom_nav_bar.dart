@@ -47,12 +47,12 @@ class CustomBottomNavBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: () => onTap(1),
+                  onTap: () => onTap(0),
 
                   child: SvgPicture.asset(
-                    currentIndex == 1
-                        ? Assets.imagesActiveHome
-                        : Assets.imagesInActiveHome,
+                    currentIndex == 0
+                        ? Assets.imagesActiveSearch
+                        : Assets.imagesInactiveSearch,
 
                     width: 24.w,
                     height: 24.h,
@@ -60,12 +60,12 @@ class CustomBottomNavBar extends StatelessWidget {
                 ),
 
                 GestureDetector(
-                  onTap: () => onTap(0),
+                  onTap: () => onTap(1),
 
                   child: SvgPicture.asset(
-                    currentIndex == 0
-                        ? Assets.imagesActiveSearch
-                        : Assets.imagesInactiveSearch,
+                    currentIndex == 1
+                        ? Assets.imagesActiveHome
+                        : Assets.imagesInActiveHome,
 
                     width: 24.w,
                     height: 24.h,

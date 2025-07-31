@@ -1,4 +1,5 @@
 import 'package:camion/config/widgets/selecting_from_bottom_navbar.dart';
+import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/auth/presentation/screens/confirm_phone_number_screen.dart';
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
 import 'package:camion/features/auth/presentation/screens/login_screen.dart';
@@ -8,6 +9,8 @@ import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/data/models/product_model.dart';
+import 'package:camion/features/home/data/repository/home_repo.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_cubit.dart';
@@ -22,6 +25,7 @@ import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart
 import 'package:camion/features/notifications/presentation/notifications_screen.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
+import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,25 +80,24 @@ class RouterGenerator {
         },
       ),
 
-      GoRoute(
-        name: AppRouter.productDetails,
-        path: AppRouter.productDetails,
+      // GoRoute(
+      //   name: AppRouter.productDetails,
+      //   path: AppRouter.productDetails,
 
-        builder: (context, state) {
-          final extra = state.extra as ProductModel;
-          return ProductDetails(
-            productImages: extra.productImages,
-            discountImage: extra.discountImage,
-            productName: extra.productName,
-            originalPrice: extra.originalPrice,
-            discountedPrice: extra.discountedPrice,
-            rating: extra.rating,
-            reviewCount: extra.reviewCount,
-            sellCount: extra.sellCount,
-          );
-        },
-      ),
-
+      //   builder: (context, state) {
+      //     final extra = state.extra as ProductModel;
+      //     return ProductDetails(
+      //       productImages: extra.productImages,
+      //       discountImage: extra.discountImage,
+      //       productName: extra.productName,
+      //       originalPrice: extra.originalPrice,
+      //       discountedPrice: extra.discountedPrice,
+      //       rating: extra.rating,
+      //       reviewCount: extra.reviewCount,
+      //       sellCount: extra.sellCount,
+      //     );
+      //   },
+      // ),
       GoRoute(
         name: AppRouter.myCart,
         path: AppRouter.myCart,
@@ -176,16 +179,27 @@ class RouterGenerator {
         builder: (context, state) => const SupplierAccountScreen(),
       ),
 
-        GoRoute(
+      GoRoute(
         name: AppRouter.myCodings,
         path: AppRouter.myCodings,
         builder: (context, state) => const MyCodingsScreen(),
       ),
 
-        GoRoute(
+      GoRoute(
         name: AppRouter.createCode,
         path: AppRouter.createCode,
         builder: (context, state) => const CreateCodeScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.searchScreenWithProducts,
+        path: AppRouter.searchScreenWithProducts,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ProductsCubit(
+            sl<HomeRepository>(),
+          ),
+          child: const SearchScreenWithProducts(),
+        ),
       ),
     ],
   );

@@ -1,17 +1,18 @@
-
-import 'package:camion/core/error_handling/error_model.dart';
-import 'package:camion/core/error_handling/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'api_consumer.dart';
-import 'api_interceptors.dart';
+
 import 'end_points.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = EndPoints.baseUrl;
-    dio.interceptors.add(ApiInterceptors());
+    dio.options
+      ..baseUrl = EndPoints.baseUrl
+      ..connectTimeout = const Duration(seconds: 20)
+      ..receiveTimeout = const Duration(seconds: 20)
+      ..sendTimeout = const Duration(seconds: 20);
+    // dio.interceptors.add(ApiInterceptors());
     dio.interceptors.add(LogInterceptor(
       request: true,
       requestHeader: true,
@@ -21,26 +22,22 @@ class DioConsumer extends ApiConsumer {
       error: true,
     ));
   }
+
   @override
   Future delete(
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
-    
   }) async {
-    try {
-      var options = Options(headers: headers);
-      var res = await dio.delete(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options
-      );
-      return res.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    var options = Options(headers: headers);
+    var response = await dio.delete(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
+    return response;
   }
 
   @override
@@ -50,18 +47,14 @@ class DioConsumer extends ApiConsumer {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
   }) async {
-    try {
-      var options = Options(headers: headers);
-      var res = await dio.get(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options
-      );
-      return res.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    var options = Options(headers: headers);
+    var response = await dio.get(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
+    return response;
   }
 
   @override
@@ -71,18 +64,14 @@ class DioConsumer extends ApiConsumer {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
   }) async {
-    try {
-      var options = Options(headers: headers);
-      var res = await dio.patch(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options
-      );
-      return res.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    var options = Options(headers: headers);
+    var response = await dio.patch(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
+    return response;
   }
 
   @override
@@ -92,18 +81,14 @@ class DioConsumer extends ApiConsumer {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
   }) async {
-    try {
-      var options = Options(headers: headers);
-      var res = await dio.put(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options
-      );
-      return res.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+    var options = Options(headers: headers);
+    var response = await dio.put(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
+    return response;
   }
 
   @override
@@ -113,63 +98,13 @@ class DioConsumer extends ApiConsumer {
     Map<String, dynamic>? queryParameters,
     Map<String, String>? headers,
   }) async {
-    try {
-      var options = Options(headers: headers);
-      var res = await dio.post(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: options
-      );
-      return res.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
-  }
-
-  handleDioException(e) {
-    switch (e.type) {
-      case DioExceptionType.badCertificate:
-        throw BadCertificateException(ErrorModel.fromJson(e.response!.data));
-      case DioExceptionType.connectionTimeout:
-        throw ConnectionTimeoutException(ErrorModel.fromJson(e.response!.data));
-      case DioExceptionType.receiveTimeout:
-      case DioExceptionType.connectionError:
-      case DioExceptionType.sendTimeout:
-        throw ServerException(ErrorModel.fromJson(e.response!.data));
-
-      case DioExceptionType.badResponse:
-        switch (e.response?.statusCode) {
-          case 400: //bad request
-            throw BadResposneException(ErrorModel.fromJson(e.response!.data));
-
-          case 401: //unauthorized
-            throw UnauthorizedException(ErrorModel.fromJson(e.response!.data));
-
-          case 403: //forbidden
-            throw ForbiddenException(ErrorModel.fromJson(e.response!.data));
-
-          case 404: //notFound
-            throw NotFoundException(ErrorModel.fromJson(e.response!.data));
-
-          case 409: //conflict
-            throw ServerException(ErrorModel.fromJson(e.response!.data));
-
-          case 500: //internal server error
-            throw ServerException(ErrorModel.fromJson(e.response!.data));
-
-          case 504:
-            throw BadRequestException(ErrorModel.fromJson(e.response!.data));
-
-          // print(e.response);
-        }
-      case DioExceptionType.cancel:
-        throw CancleExeption(ErrorModel.fromJson(e.response!.data));
-
-      case DioExceptionType.unknown:
-        throw ServerException(ErrorModel.fromJson(e.response!.data));
-
-      // throw ServerException('badResponse');
-    }
+    var options = Options(headers: headers);
+    var response = await dio.post(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
+    return response;
   }
 }

@@ -19,6 +19,7 @@ class AppRouter {
   static const String supplierAccount = '/supplierAccount';
   static const String myCodings = '/myCodings';
   static const String createCode = '/createCode';
+  static const String searchScreenWithProducts = '/searchScreenWithProducts';
  
  
   
