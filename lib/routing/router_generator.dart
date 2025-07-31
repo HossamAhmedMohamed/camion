@@ -1,4 +1,5 @@
 import 'package:camion/config/widgets/selecting_from_bottom_navbar.dart';
+import 'package:camion/core/services/cached_services/product_id_cache_service.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/auth/presentation/screens/confirm_phone_number_screen.dart';
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
@@ -90,8 +91,10 @@ class RouterGenerator {
           return MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) =>
-                    ProductIdDetailsCubit(sl<HomeRepository>()),
+                create: (context) => ProductIdDetailsCubit(
+                  sl<HomeRepository>(),
+                  ProductCacheService(),
+                ),
               ),
               BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
             ],

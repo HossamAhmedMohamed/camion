@@ -5,7 +5,8 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shimmer/shimmer.dart';
+
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ListViewItemBuilding extends StatefulWidget {
   const ListViewItemBuilding({
@@ -55,14 +56,14 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     ),
                   ),
                 ),
-                placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: Colors.grey.withAlpha(100),
-                  highlightColor: Colors.grey.withAlpha(100),
+                placeholder: (context, url) => Skeletonizer(
+                  enabled: true,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
+                    child: Image.asset(Assets.imagesShoes, fit: BoxFit.cover),
                   ),
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),

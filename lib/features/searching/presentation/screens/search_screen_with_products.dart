@@ -3,6 +3,7 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/grid_item_skeletonizer.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -123,7 +124,12 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                   itemBuilder: (context, index) {
                     final product = state.products[index];
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        GoRouter.of(context).push(
+                          AppRouter.productDetails,
+                          extra: product.spuCode,
+                        );
+                      },
                       child: ProductCarouselWidget(
                         imageUrl: product.picUrl,
                         productName: product.productName,
