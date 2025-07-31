@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -5,47 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class GridItemBuilding extends StatefulWidget {
-  final List<String> productImages;
-  final String discountImage;
+import 'package:skeletonizer/skeletonizer.dart';
+
+class GridItemBuilding extends StatelessWidget {
+  final String imageUrl;
   final String productName;
-  final double originalPrice;
-  final double discountedPrice;
-  final double rating;
-  final int reviewCount;
+  final int originalPrice;
   final int sellCount;
 
   const GridItemBuilding({
     super.key,
-    required this.productImages,
-    required this.discountImage,
+    required this.imageUrl,
     required this.productName,
     required this.originalPrice,
-    required this.discountedPrice,
-    required this.rating,
-    required this.reviewCount,
     required this.sellCount,
   });
-
-  @override
-  State<GridItemBuilding> createState() => _GridItemBuildingState();
-}
-
-class _GridItemBuildingState extends State<GridItemBuilding> {
-  int currentIndex = 0;
-  late PageController _imagePageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _imagePageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _imagePageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,34 +39,58 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
           ),
           child: Stack(
             children: [
-              // PageView للصور
-              PageView.builder(
-                controller: _imagePageController,
-                itemCount: widget.productImages.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.all(10.r),
-                    child: Center(
-                      child: Image.asset(
-                        widget.productImages[index],
-                        fit: BoxFit.contain,
-                      ),
+              CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: imageUrl,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
                     ),
-                  );
-                },
+                  ),
+                ),
+                  placeholder: (context, url) => Skeletonizer(
+        enabled: true,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Image.asset(Assets.imagesShoes, fit: BoxFit.cover),
+        ),
+      ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
+              // PageView للصور
+              // PageView.builder(
+              //   controller: _imagePageController,
+              //   itemCount: widget.productImages.length,
+              //   onPageChanged: (index) {
+              //     setState(() {
+              //       currentIndex = index;
+              //     });
+              //   },
+              //   itemBuilder: (context, index) {
+              //     return Padding(
+              //       padding: EdgeInsets.all(10.r),
+              //       child: Center(
+              //         child: Image.asset(
+              //           widget.productImages[index],
+              //           fit: BoxFit.contain,
+              //         ),
+              //       ),
+              //     );
+              //   },
+              // ),
 
               // Discount badge
               Positioned(
                 top: 8.h,
                 left: 8.w,
                 child: Image.asset(
-                  widget.discountImage,
+                  Assets.imagesDiscount,
                   width: 40.w,
                   height: 40.h,
                 ),
@@ -121,38 +120,38 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
               ),
 
               // Page indicators
-              if (widget.productImages.length > 1)
-                Positioned(
-                  bottom: 16.h,
-                  left: 0,
-                  right: 0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      widget.productImages.length,
-                      (index) => GestureDetector(
-                        onTap: () {
-                          _imagePageController.animateToPage(
-                            index,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          );
-                        },
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 4.w),
-                          width: currentIndex == index ? 20.w : 8.w,
-                          height: 8.h,
-                          decoration: BoxDecoration(
-                            color: currentIndex == index
-                                ? const Color(0xFFD32F2F)
-                                : Colors.grey.shade400,
-                            borderRadius: BorderRadius.circular(4.r),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              // if (widget.productImages.length > 1)
+              //   Positioned(
+              //     bottom: 16.h,
+              //     left: 0,
+              //     right: 0,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children: List.generate(
+              //         widget.productImages.length,
+              //         (index) => GestureDetector(
+              //           onTap: () {
+              //             _imagePageController.animateToPage(
+              //               index,
+              //               duration: const Duration(milliseconds: 300),
+              //               curve: Curves.easeInOut,
+              //             );
+              //           },,
+              //         child: Container(
+              //           margin: EdgeInsets.symmetric(horizontal: 4.w),
+              //           width: currentIndex == index ? 20.w : 8.w,
+              //           height: 8.h,
+              //           decoration: BoxDecoration(
+              //             color: currentIndex == index
+              //                 ? const Color(0xFFD32F2F)
+              //                 : Colors.grey.shade400,
+              //             borderRadius: BorderRadius.circular(4.r),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
 
               // Sold count badge
               // Positioned(
@@ -193,7 +192,7 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
 
         // Product details
         Expanded(
-          // استخدام Expanded لملء المساحة المتبقية
+       
           child: Padding(
             padding: EdgeInsets.all(8.r),
             child: Column(
@@ -201,10 +200,11 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
               children: [
                 // Product name
                 Text(
-                  widget.productName,
+                  productName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: AppStyle.styleBold14(context),
+                  textDirection: TextDirection.ltr,
                 ),
 
                 SizedBox(height: 4.h),
@@ -213,19 +213,19 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
                 Row(
                   children: [
                     Text(
-                      '${widget.discountedPrice.toInt()}',
+                      '${originalPrice.toInt()}',
                       style: AppStyle.styleBold16(
                         context,
                       ).copyWith(color: AppColors.primaryColor),
                     ),
-                    SizedBox(width: 5.w),
-                    Text(
-                      '${widget.originalPrice.toInt()}',
-                      style: AppStyle.styleRegular12(context).copyWith(
-                        color: AppColors.gray,
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
+                    // SizedBox(width: 5.w),
+                    // Text(
+                    //   '${originalPrice.toInt()}',
+                    //   style: AppStyle.styleRegular12(context).copyWith(
+                    //     color: AppColors.gray,
+                    //     decoration: TextDecoration.lineThrough,
+                    //   ),
+                    // ),
                   ],
                 ),
 
@@ -240,7 +240,7 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
                     ),
                     SizedBox(width: 5.h),
                     Text(
-                      '${widget.sellCount} منتجًا مباعًا',
+                      '$sellCount منتجًا مباعًا',
                       style: AppStyle.styleRegular14(
                         context,
                       ).copyWith(color: AppColors.gray),
@@ -253,7 +253,7 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
                 Row(
                   children: [
                     Text(
-                      '${widget.rating}',
+                      '${4.5}',
                       style: AppStyle.styleRegular12(
                         context,
                       ).copyWith(color: Colors.grey.shade600),
@@ -262,9 +262,7 @@ class _GridItemBuildingState extends State<GridItemBuilding> {
                     ...List.generate(
                       5,
                       (index) => Icon(
-                        index < widget.rating.floor()
-                            ? Icons.star
-                            : Icons.star_border,
+                        index < 4.5.floor() ? Icons.star : Icons.star_border,
                         color: Colors.amber,
                         size: 14.r,
                       ),

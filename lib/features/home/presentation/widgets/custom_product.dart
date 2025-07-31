@@ -3,25 +3,17 @@ import 'package:camion/features/home/presentation/widgets/list_view_item_buildin
 import 'package:flutter/material.dart';
 
 class ProductCarouselWidget extends StatefulWidget {
-  final List<String> productImages;
-  final String discountImage;
+  final String imageUrl;
   final String productName;
-  final double originalPrice;
-  final double discountedPrice;
-  final double rating;
-  final int reviewCount;
+  final int originalPrice;
   final int sellCount;
-  final bool isGridView; // Add this parameter
+  final bool isGridView;
 
   const ProductCarouselWidget({
     super.key,
-    required this.productImages,
-    required this.discountImage,
+    required this.imageUrl,
     required this.productName,
     required this.originalPrice,
-    required this.discountedPrice,
-    required this.rating,
-    required this.reviewCount,
     required this.sellCount,
     this.isGridView = true,
   });
@@ -31,38 +23,20 @@ class ProductCarouselWidget extends StatefulWidget {
 }
 
 class _ProductCarouselWidgetState extends State<ProductCarouselWidget> {
-  final PageController pageController = PageController();
-
   @override
   Widget build(BuildContext context) {
     return widget.isGridView
         ? GridItemBuilding(
-            productImages: widget.productImages,
-            discountImage: widget.discountImage,
+            imageUrl: widget.imageUrl ,
             productName: widget.productName,
             originalPrice: widget.originalPrice,
-            discountedPrice: widget.discountedPrice,
-            rating: widget.rating,
-            reviewCount: widget.reviewCount,
             sellCount: widget.sellCount,
           )
         : ListViewItemBuilding(
-            pageController: pageController,
-            productImages: widget.productImages,
-            discountImage: widget.discountImage,
+            imageUrl: widget.imageUrl,
             productName: widget.productName,
             originalPrice: widget.originalPrice,
-            discountedPrice: widget.discountedPrice,
-            rating: widget.rating,
-            reviewCount: widget.reviewCount,
             sellCount: widget.sellCount,
-            isGridView: widget.isGridView,
           );
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
   }
 }

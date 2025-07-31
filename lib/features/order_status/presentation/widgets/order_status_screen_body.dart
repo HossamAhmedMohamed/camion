@@ -29,7 +29,7 @@ class _OrderStatusScreenBodyState extends State<OrderStatusScreenBody> {
     return CustomScrollView(
       slivers: [
         const HomeSliverAppBar(
-          isShownDivider: true,
+           
         ),
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),

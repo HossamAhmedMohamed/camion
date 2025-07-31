@@ -7,10 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeJoinUsNow extends StatelessWidget {
-  const HomeJoinUsNow({
-    super.key,
-    required this.screenWidth,
-  });
+  const HomeJoinUsNow({super.key, required this.screenWidth});
 
   final double screenWidth;
 
@@ -31,7 +28,7 @@ class HomeJoinUsNow extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomRight,
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 GoRouter.of(context).push(AppRouter.supplierWelcome);
               },
               child: Container(
@@ -41,11 +38,11 @@ class HomeJoinUsNow extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.r),
                   color: AppColors.primaryColor,
                 ),
-    
+
                 child: Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 8.h),
+                  padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
                   child: FittedBox(
-                    fit: BoxFit.scaleDown,
+                    // fit: BoxFit.scaleDown,
                     child: Text(
                       "انضم الينا الان",
                       style: AppStyle.styleRegular14(

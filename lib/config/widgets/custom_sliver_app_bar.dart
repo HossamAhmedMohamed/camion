@@ -15,6 +15,10 @@ class CustomSliverAppBar extends StatelessWidget {
     this.isShoppingCartShown,
     this.isShownDivider,
     this.isShownActions,
+    this.readOnly,
+    this.onSearchTap,
+    this.flexibleSpace,
+    this.appBarHeight,
   });
 
   final Widget title;
@@ -24,10 +28,15 @@ class CustomSliverAppBar extends StatelessWidget {
   final bool? isShoppingCartShown;
   final bool? isShownDivider;
   final bool? isShownActions;
+  final bool? readOnly;
+  final VoidCallback? onSearchTap;
+  final Widget? flexibleSpace;
+  final double? appBarHeight;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 70.0.h,
+      expandedHeight: appBarHeight ?? 150.0.h,
+
       floating: true,
       snap: true,
       pinned: false,
@@ -86,6 +95,8 @@ class CustomSliverAppBar extends StatelessWidget {
               ),
             ]
           : [],
+
+      flexibleSpace: flexibleSpace,
 
       bottom: isShownDivider == null
           ? null

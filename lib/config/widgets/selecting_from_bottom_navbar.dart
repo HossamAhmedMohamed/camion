@@ -20,7 +20,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
+    _pageController = PageController(initialPage: currentIndex);
   }
 
   List<Widget> screens = const [
@@ -38,7 +38,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
   }
 
   bool _handleBackPressed() {
-    if (currentIndex != 0) {
+    if (currentIndex != 1) {
       _pageController.jumpToPage(1);
       return false;
     }
@@ -48,7 +48,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: currentIndex == 0,
+      canPop: currentIndex == 1,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           _handleBackPressed();

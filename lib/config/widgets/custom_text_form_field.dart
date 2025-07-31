@@ -14,12 +14,15 @@ class CustomTextFormField extends StatelessWidget {
   final bool? readOnly;
   final int? maxLength;
   final int? maxLines;
+  final VoidCallback? onTap;
+  final FocusNode? focusNode;
+  final bool? autoFocus;
 
   const CustomTextFormField({
     super.key,
     this.fieldColor,
     this.hintText,
-
+    this.focusNode,
     this.suffixIcon,
     this.validator,
     this.controller,
@@ -28,6 +31,8 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.maxLength,
     this.maxLines,
+    this.onTap,
+    this.autoFocus,
   });
 
   @override
@@ -42,9 +47,10 @@ class CustomTextFormField extends StatelessWidget {
         ),
       ),
       child: TextFormField(
-        style: AppStyle.styleRegular14(context).copyWith(
-          color: AppColors.gray,
-        ),
+        autofocus: autoFocus ?? false,
+        onChanged: onChanged,
+        style: AppStyle.styleRegular14(context).copyWith(color: AppColors.gray),
+        onTap: onTap,
         readOnly: readOnly ?? false,
         controller: controller,
         validator: validator,
@@ -61,9 +67,8 @@ class CustomTextFormField extends StatelessWidget {
           ),
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
-          
         ),
-        maxLength: maxLength ,
+        maxLength: maxLength,
         maxLines: maxLines ?? 1,
       ),
     );

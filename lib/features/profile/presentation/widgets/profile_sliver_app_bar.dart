@@ -12,6 +12,7 @@ class ProfileSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSliverAppBar(
+      appBarHeight: 70.h,
       title: title,
       leadingWidth: 50.w,
       leading: leading,
