@@ -91,7 +91,7 @@ class CustomBottomNavBar extends StatelessWidget {
                             : Assets
                                   .imagesIconsInactiveOrderStatusNewNavbarIcon,
 
-                        width: 24.w,
+                        width: 30.w,
                         height: 24.h,
                       ),
 
@@ -166,8 +166,8 @@ class CustomBottomNavBar extends StatelessWidget {
                             : Assets
                                   .imagesIconsInactiveShoppingCartIconNewNavbar,
 
-                        width: 24.w,
-                        height: 24.h,
+                        width: 26.w,
+                        height: 26.h,
                       ),
 
                       SizedBox(height: 8.h),

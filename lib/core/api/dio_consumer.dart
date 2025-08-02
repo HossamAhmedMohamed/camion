@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
 import 'api_consumer.dart';
 
-import 'end_points.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
     dio.options
-      ..baseUrl = EndPoints.baseUrl
+      // ..baseUrl = EndPoints.baseUrl
       ..connectTimeout = const Duration(seconds: 20)
       ..receiveTimeout = const Duration(seconds: 20)
       ..sendTimeout = const Duration(seconds: 20);

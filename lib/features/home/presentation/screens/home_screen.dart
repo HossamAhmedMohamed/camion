@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_cubit/toggle_list_and_grid_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/categories_text.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
@@ -15,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,6 +28,7 @@ class HomeScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ProductsCubit(sl<HomeRepository>())),
+        BlocProvider(create: (context) => StoriesCubit(sl<HomeRepository>())),
         BlocProvider(create: (context) => ToggleListAndGridCubit()),
       ],
       child: const HomeScreenBody(),
@@ -43,17 +48,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
   @override
   bool get wantKeepAlive => true;
 
-  static const List<String> stories = [
-    Assets.imagesNehal,
-    Assets.imagesNada,
-    Assets.imagesMohamed,
-    Assets.imagesMona,
-    Assets.imagesMariem,
-  ];
-
   @override
   void initState() {
     context.read<ProductsCubit>().getProducts();
+    context.read<StoriesCubit>().getStories();
     super.initState();
   }
 
@@ -61,10 +59,11 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
   Widget build(BuildContext context) {
     super.build(context);
     final screenWidth = MediaQuery.of(context).size.width;
-
+    final screenHeight = MediaQuery.of(context).size.height;
     return RefreshIndicator(
       onRefresh: () async {
         context.read<ProductsCubit>().getProducts();
+        context.read<StoriesCubit>().getStories();
       },
       child: CustomScrollView(
         slivers: [
@@ -83,22 +82,128 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
           //   },
           // ),
           SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-          // SliverToBoxAdapter(
-          //   child: SizedBox(
-          //     height: 100.h,
-          //     child: ListView.builder(
-          //       scrollDirection: Axis.horizontal,
-          //       itemCount: stories.length,
-          //       itemBuilder: (context, index) {
-          //         return Padding(
-          //           padding: EdgeInsets.only(right: 10.w),
-          //           child: Image.asset(stories[index]),
-          //         );
-          //       },
-          //     ),
-          //   ),
-          // ),
-          // SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Text(
+                "القصص",
+                style: AppStyle.styleSemiBold16(
+                  context,
+                ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 80.h,
+              child: BlocBuilder<StoriesCubit, StoriesState>(
+                builder: (context, state) {
+                  if (state is StoriesLoading) {
+                    return ListView.builder(
+                      padding: EdgeInsets.only(right: 16.w),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 16.w),
+                          child: Skeletonizer(
+                            enabled: true,
+                            child: Container(
+                              padding: EdgeInsets.all(3.r),
+                              height: 50.h,
+                              width: 50.w,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Center(
+                                child: ClipOval(
+                                  child: Image.asset(
+                                    Assets.imagesIconsStoriesWatch,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+
+                  if (state is StoriesLoaded) {
+                    return ListView.builder(
+                      padding: EdgeInsets.only(right: 16.w),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.storiesList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 16.w),
+                          child: GestureDetector(
+                            onTap: () {
+                              final extra = {
+                                'index': index,
+                                'stories': state.storiesList,
+                              };
+                              GoRouter.of(context).push(
+                                AppRouter.storiesView,
+                                extra: extra,
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(3.r),
+                              // height: 50.h,
+                              // width: 50.w,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: BoxBorder.all(
+                                  color: AppColors.primaryColor,
+                                  width: 2.w,
+                                ),
+                              ),
+
+                              child: Center(
+                                child: ClipOval(
+                                  child: CachedNetworkImage(
+                                    height: 40.h,
+                                    width: 40.w,
+                                    imageUrl: state.storiesList[index].mediaUrl,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => Skeletonizer(
+                                      enabled: true,
+                                      child: Container(
+                                        height: 44.h,
+                                        width: 44.w,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[300],
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Container(
+                                          color: Colors.grey[300],
+                                          child: Icon(
+                                            Icons.error,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+
+                  return const SizedBox();
+                },
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h)),
           HomeJoinUsNow(screenWidth: screenWidth),
 
           SliverToBoxAdapter(child: SizedBox(height: 10.h)),
@@ -108,10 +213,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
           SliverToBoxAdapter(
-            child: Image.asset(
-              Assets.imagesBlackFriday,
-              height: 180.h,
-              fit: BoxFit.fill,
+            child: AspectRatio(
+              aspectRatio: 371.w / 172.h,
+              child: Image.asset(
+                Assets.imagesIconsBlackfridayNotPixel,
+
+                fit: BoxFit.cover,
+              ),
             ),
           ),
 
@@ -119,15 +227,16 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
 
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "الاكثر مشاهدة",
-                    style: AppStyle.styleSemiBold18(
-                      context,
-                    ).copyWith(color: AppColors.black),
+                    "الاكثر مبيعا",
+                    style: AppStyle.styleSemiBold16(context).copyWith(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
 
                   BlocBuilder<ToggleListAndGridCubit, ToggleListAndGridState>(
@@ -209,7 +318,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
             builder: (context, state) {
               return state.isListView
                   ? const SliverListViewBuilding()
-                  : SliverGridViewBuilding(screenWidth: screenWidth);
+                  : SliverPadding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      sliver: SliverGridViewBuilding(
+                        screenWidth: screenWidth,
+                        screenHeight: screenHeight,
+                      ),
+                    );
             },
           ),
 

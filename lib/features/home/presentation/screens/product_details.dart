@@ -99,125 +99,25 @@ class _ProductDetailsState extends State<ProductDetails> {
                         }
         
                         if (state is ProductIdDetailsLoaded) {
-                          return Stack(
-                            children: [
-                              PageView.builder(
-                                controller: pageController,
-                                onPageChanged: (index) {
-                                  context
-                                      .read<ToggleProductIdImagesCubit>()
-                                      .toggle(index);
-                                },
-                                itemCount: state
+                          return PageView.builder(
+                            controller: pageController,
+                            onPageChanged: (index) {
+                              context
+                                  .read<ToggleProductIdImagesCubit>()
+                                  .toggle(index);
+                            },
+                            itemCount: state
+                                .productIdDetailsModel
+                                .productImageList
+                                .length,
+                            itemBuilder: (context, index) {
+                              return CustomCachedNetworkImage(
+                                fit: BoxFit.fill,
+                                imageUrl: state
                                     .productIdDetailsModel
-                                    .productImageList
-                                    .length,
-                                itemBuilder: (context, index) {
-                                  return SizedBox(
-                                    height: 215.h,
-                                    child: CustomCachedNetworkImage(
-                                      fit: BoxFit.contain,
-                                      imageUrl: state
-                                          .productIdDetailsModel
-                                          .productImageList[index],
-                                    ),
-                                  );
-                                },
-                              ),
-        
-                              Positioned(
-                                top: 16.h,
-                                left: 16.w,
-                                child: Image.asset(
-                                  Assets.imagesDiscount,
-                                  width: 60,
-                                  height: 60,
-                                ),
-                              ),
-        
-                              // Positioned(
-                              //   bottom: 16.h,
-                              //   left: 0,
-                              //   right: 0,
-                              //   child: Row(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     children: List.generate(
-                              //       state
-                              //           .productIdDetailsModel
-                              //           .productImageList
-                              //           .length,
-                              //       (index) =>
-                              //           BlocBuilder<
-                              //             ToggleProductIdImagesCubit,
-                              //             ToggleProductIdImagesState
-                              //           >(
-        
-                              //             builder: (context, state) {
-                              //               return Container(
-                              //                 margin: EdgeInsets.symmetric(
-                              //                   horizontal: 4.w,
-                              //                 ),
-                              //                 width: state.index == index
-                              //                     ? 20.w
-                              //                     : 8.w,
-                              //                 height: 8.h,
-                              //                 decoration: BoxDecoration(
-                              //                   color: state.index == index
-                              //                       ? const Color(0xFFD32F2F)
-                              //                       : Colors.grey.shade400,
-                              //                   borderRadius:
-                              //                       BorderRadius.circular(4.r),
-                              //                 ),
-                              //               );
-                              //             },
-                              //           ),
-                              //     ),
-                              //   ),
-                              // ),
-        
-                              // Positioned(
-                              //   left: 16.w,
-                              //   bottom: 16.h,
-                              //   child: Container(
-                              //     padding: EdgeInsets.symmetric(
-                              //       horizontal: 8.w,
-                              //       vertical: 4.h,
-                              //     ),
-                              //     decoration: ShapeDecoration(
-                              //       shape: RoundedRectangleBorder(
-                              //         borderRadius: BorderRadius.circular(
-                              //           30.r,
-                              //         ),
-                              //       ),
-                              //       color: const Color(0xFFF0F0F0),
-                              //     ),
-                              //     child: Row(
-                              //       children: [
-                              //         Image.asset(
-                              //           Assets.imagesBagCheck,
-                              //           width: 20.w,
-                              //           height: 20.h,
-                              //         ),
-                              //         SizedBox(width: 5.h),
-                              //         Text(
-                              //           '${state.productIdDetailsModel.} منتجًا مباعًا',
-                              //           style: AppStyle.styleRegular14(
-                              //             context,
-                              //           ).copyWith(color: AppColors.gray),
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   ),
-                              // ),
-                              Positioned(
-                                right: 6.w,
-                                bottom: 6.h,
-                                child: SvgPicture.asset(
-                                  Assets.imagesShareProduct,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
+                                    .productImageList[index],
+                              );
+                            },
                           );
                         }
         

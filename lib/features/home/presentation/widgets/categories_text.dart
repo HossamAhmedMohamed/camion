@@ -83,7 +83,7 @@ class CategoriesBody extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.all(15.w),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
         child: Column(
           children: [
             Row(
@@ -91,20 +91,24 @@ class CategoriesBody extends StatelessWidget {
               children: [
                 Text(
                   "الاقسام",
-                  style: AppStyle.styleSemiBold18(
-                    context,
-                  ).copyWith(color: AppColors.black),
+                  style: AppStyle.styleSemiBold16(context).copyWith(
+                    color: AppColors.black,
+
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
 
                 GestureDetector(
                   onTap: () {},
 
                   child: Text(
-                    "المزيد",
+                    "عرض الكل",
                     style: AppStyle.styleRegular14(context).copyWith(
                       color: AppColors.primaryColor,
 
                       decoration: TextDecoration.underline,
+                      decorationColor: AppColors.primaryColor,
+                     
                     ),
                   ),
                 ),

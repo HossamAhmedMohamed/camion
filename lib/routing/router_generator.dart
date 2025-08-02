@@ -9,12 +9,14 @@ import 'package:camion/features/cart/presentation/logic/cubit/payment_method_cub
 import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
+import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
+import 'package:camion/features/home/presentation/screens/stories_screen.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_cubit.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_selecting_cubit.dart';
 import 'package:camion/features/join_us/presentation/screens/create_code_screen.dart';
@@ -202,6 +204,18 @@ class RouterGenerator {
           create: (context) => ProductsCubit(sl<HomeRepository>()),
           child: const SearchScreenWithProducts(),
         ),
+      ),
+
+      GoRoute(
+        name: AppRouter.storiesView,
+        path: AppRouter.storiesView,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return StoryViewerScreen(
+            initialIndex: extra['index'] as int,
+            stories: extra['stories'] as List<StoriesModel>,
+          );
+        },
       ),
     ],
   );

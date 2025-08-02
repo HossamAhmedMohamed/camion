@@ -1,6 +1,6 @@
+import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/order_status/presentation/screens/order_status_screen.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
-import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen.dart';
 import 'package:camion/config/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +25,11 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
 
   List<Widget> screens = const [
     HomeScreen(),
+    OrderStatusScreen(),
     SearchScreen(),
 
     // ReelsScreen(),
-    OrderStatusScreen(),
-    ProfileScreen(),
+    MyCartScreen(),
   ];
 
   @override
