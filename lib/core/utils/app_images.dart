@@ -142,6 +142,38 @@ class Assets {
   /// assets/images/home_category.png
   static const String imagesHomeCategory = "assets/images/home_category.png";
 
+  /// Assets for imagesIconsActiveFavouriteNewIconNavbar
+  /// assets/images/icons/active_favourite_new_icon_navbar.svg
+  static const String imagesIconsActiveFavouriteNewIconNavbar = "assets/images/icons/active_favourite_new_icon_navbar.svg";
+
+  /// Assets for imagesIconsActiveHomeIconNewNavbar
+  /// assets/images/icons/active_home_icon_new_navbar.svg
+  static const String imagesIconsActiveHomeIconNewNavbar = "assets/images/icons/active_home_icon_new_navbar.svg";
+
+  /// Assets for imagesIconsActiveOrderStatusNewIconNavbar
+  /// assets/images/icons/active_order_status_new_icon_navbar.svg
+  static const String imagesIconsActiveOrderStatusNewIconNavbar = "assets/images/icons/active_order_status_new_icon_navbar.svg";
+
+  /// Assets for imagesIconsActiveShoppingCartNewIconNavbar
+  /// assets/images/icons/active_Shopping_Cart_new_icon_navbar.svg
+  static const String imagesIconsActiveShoppingCartNewIconNavbar = "assets/images/icons/active_Shopping_Cart_new_icon_navbar.svg";
+
+  /// Assets for imagesIconsInactiveFavouriteIconNewNavbar
+  /// assets/images/icons/inactive_favourite_icon_new_navbar.svg
+  static const String imagesIconsInactiveFavouriteIconNewNavbar = "assets/images/icons/inactive_favourite_icon_new_navbar.svg";
+
+  /// Assets for imagesIconsInactiveHomeIconNewNavbar
+  /// assets/images/icons/inactive_home_icon_new_navbar.svg
+  static const String imagesIconsInactiveHomeIconNewNavbar = "assets/images/icons/inactive_home_icon_new_navbar.svg";
+
+  /// Assets for imagesIconsInactiveOrderStatusNewNavbarIcon
+  /// assets/images/icons/inactive_order_status_new_navbar_icon.svg
+  static const String imagesIconsInactiveOrderStatusNewNavbarIcon = "assets/images/icons/inactive_order_status_new_navbar_icon.svg";
+
+  /// Assets for imagesIconsInactiveShoppingCartIconNewNavbar
+  /// assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg
+  static const String imagesIconsInactiveShoppingCartIconNewNavbar = "assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg";
+
   /// Assets for imagesImageNakdy
   /// assets/images/image_nakdy.png
   static const String imagesImageNakdy = "assets/images/image_nakdy.png";
