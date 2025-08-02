@@ -14,20 +14,21 @@ class CartSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomSliverAppBar(
+      appBarHeight: 70.h,
       title: Text(
         title,
         style: AppStyle.styleRegular18(
           context,
         ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
       ),
-      leading: GestureDetector(
-        onTap: () {
-          GoRouter.of(context).pop();
-        },
-        child: Icon(Icons.arrow_back, color: AppColors.black, size: 25.sp),
-      ),
-      cartImage: Assets.imagesActiveShoppingCart,
-      isShoppingCartShown: isShoppingCart,
+      // leading: GestureDetector(
+      //   onTap: () {
+      //     GoRouter.of(context).pop();
+      //   },
+      //   child: Icon(Icons.arrow_back, color: AppColors.black, size: 25.sp),
+      // ),
+      // cartImage: Assets.imagesActiveShoppingCart,
+      isShoppingCartShown: false,
       isShownDivider: true,
     );
   }

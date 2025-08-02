@@ -158,6 +158,10 @@ class Assets {
   /// assets/images/icons/active_Shopping_Cart_new_icon_navbar.svg
   static const String imagesIconsActiveShoppingCartNewIconNavbar = "assets/images/icons/active_Shopping_Cart_new_icon_navbar.svg";
 
+  /// Assets for imagesIconsBlackfridayNotPixel
+  /// assets/images/icons/blackfriday_not_pixel.png
+  static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
+
   /// Assets for imagesIconsInactiveFavouriteIconNewNavbar
   /// assets/images/icons/inactive_favourite_icon_new_navbar.svg
   static const String imagesIconsInactiveFavouriteIconNewNavbar = "assets/images/icons/inactive_favourite_icon_new_navbar.svg";
@@ -173,6 +177,14 @@ class Assets {
   /// Assets for imagesIconsInactiveShoppingCartIconNewNavbar
   /// assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg
   static const String imagesIconsInactiveShoppingCartIconNewNavbar = "assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg";
+
+  /// Assets for imagesIconsSavedCompleteNewIcon
+  /// assets/images/icons/saved_complete_new_icon.svg
+  static const String imagesIconsSavedCompleteNewIcon = "assets/images/icons/saved_complete_new_icon.svg";
+
+  /// Assets for imagesIconsStoriesWatch
+  /// assets/images/icons/stories_watch.png
+  static const String imagesIconsStoriesWatch = "assets/images/icons/stories_watch.png";
 
   /// Assets for imagesImageNakdy
   /// assets/images/image_nakdy.png

@@ -9,10 +9,14 @@ import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class SliverGridViewBuilding extends StatelessWidget {
-  const SliverGridViewBuilding({super.key, required this.screenWidth});
+  const SliverGridViewBuilding({
+    super.key,
+    required this.screenWidth,
+    required this.screenHeight,
+  });
 
   final double screenWidth;
-
+  final double screenHeight;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
@@ -21,13 +25,18 @@ class SliverGridViewBuilding extends StatelessWidget {
           return SliverGrid.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: screenWidth > 800 ? 3 : 2,
-              childAspectRatio: screenWidth > 400 && screenWidth < 800
-                  ? 0.51.r
-                  : screenWidth > 800
-                  ? 0.82.r
-                  : 0.48.r,
-              crossAxisSpacing: 10.w,
-              mainAxisSpacing: 20.h,
+              childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+              // mainAxisExtent: screenWidth >= 410 && screenWidth < 480
+              //     ? 380.h
+              //     : screenWidth >= 480 && screenWidth < 800
+              //     ? 430.h
+              //     : screenWidth >= 800 && screenWidth < 1000
+              //     ? 620.h
+              //     : screenWidth >= 1000
+              //     ? 680.h
+              //     : 350.h,
+              crossAxisSpacing: 20.w,
+              mainAxisSpacing: 10.h,
             ),
             itemBuilder: (context, index) {
               return const Skeletonizer(
@@ -43,18 +52,20 @@ class SliverGridViewBuilding extends StatelessWidget {
           return SliverGrid.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: screenWidth > 800 ? 3 : 2,
-              // childAspectRatio: screenWidth > 400 && screenWidth < 800
-              //     ? 0.51.r
-              //     : screenWidth >= 800
-              //     ? 0.58.r
-              //     : 0.48.r,
-              crossAxisSpacing: 10.w,
-              mainAxisSpacing: 20.h,
-              mainAxisExtent: screenWidth > 470 && screenWidth < 800
-                  ? 500.h
-                  : screenWidth >= 800
-                  ? 570.h
-                  : 460.h,
+              childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+              crossAxisSpacing: 20.w,
+              mainAxisSpacing: 10.h,
+              // mainAxisExtent: screenWidth >= 376 && screenWidth < 410
+              //     ? 320.h
+              //     : screenWidth >= 410 && screenWidth < 480
+              //     ? 350.h
+              //     : screenWidth >= 480 && screenWidth < 800
+              //     ? 400.h
+              //     : screenWidth >= 800 && screenWidth < 1000
+              //     ? 600.h
+              //     : screenWidth >= 1000
+              //     ? 660.h
+              //     : 300.h,
             ),
             itemBuilder: (context, index) {
               final product = state.products[index];

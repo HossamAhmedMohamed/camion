@@ -16,7 +16,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
-          image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+          image: DecorationImage(image: imageProvider, fit: fit ?? BoxFit.cover),
         ),
       ),
       placeholder: (context, url) => Skeletonizer(

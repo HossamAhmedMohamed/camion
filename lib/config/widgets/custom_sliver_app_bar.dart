@@ -56,25 +56,25 @@ class CustomSliverAppBar extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  isShoppingCartShown ?? true
-                      ? GestureDetector(
-                          onTap: () {
-                            final currentRoute = GoRouterState.of(
-                              context,
-                            ).uri.toString();
-                            if (currentRoute != AppRouter.myCart) {
-                              GoRouter.of(context).push(AppRouter.myCart);
-                            }
-                          },
-                          child: SvgPicture.asset(
-                            cartImage ?? Assets.imagesShoppingCart,
-                            width: 30.w,
-                            height: 30.h,
-                          ),
-                        )
-                      : Container(),
+                  // isShoppingCartShown ?? true
+                  //     ? GestureDetector(
+                  //         onTap: () {
+                  //           final currentRoute = GoRouterState.of(
+                  //             context,
+                  //           ).uri.toString();
+                  //           if (currentRoute != AppRouter.myCart) {
+                  //             GoRouter.of(context).push(AppRouter.myCart);
+                  //           }
+                  //         },
+                  //         child: SvgPicture.asset(
+                  //           cartImage ?? Assets.imagesShoppingCart,
+                  //           width: 30.w,
+                  //           height: 30.h,
+                  //         ),
+                  //       )
+                  //     : Container(),
 
-                  SizedBox(width: 16.w),
+                  // SizedBox(width: 16.w),
 
                   GestureDetector(
                     onTap: () {

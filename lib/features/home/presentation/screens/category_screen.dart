@@ -36,6 +36,7 @@ class _CategoryScreenState extends State<CategoryScreen>
   Widget build(BuildContext context) {
     super.build(context);
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -79,7 +80,7 @@ class _CategoryScreenState extends State<CategoryScreen>
 
           SliverToBoxAdapter(child: SizedBox(height: 45.h)),
 
-          SliverGridViewBuilding(screenWidth: screenWidth),
+          SliverGridViewBuilding(screenWidth: screenWidth , screenHeight: screenHeight ,),
 
           SliverToBoxAdapter(
             child: SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
