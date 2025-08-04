@@ -59,6 +59,8 @@ dependencies:
   firebase_messaging: ^15.2.9
   barcode_scan2: ^4.5.1
   shimmer: ^3.0.0
+  video_player: ^2.10.0
+  fluttertoast: ^8.2.12
   flutter_localizations:
         sdk: flutter
 

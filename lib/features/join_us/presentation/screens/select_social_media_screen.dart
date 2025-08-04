@@ -143,11 +143,12 @@ class SelectSocialMediaScreen extends StatelessWidget {
             bottom: 16.h,
             left: 16.w,
             right: 16.w,
-            child: CustomElevatedButton(text: "التالي", onPressed: () {
-              GoRouter.of(context).push(
-                AppRouter.selectCoutriesOfSupplier,
-              );
-            }),
+            child: CustomElevatedButton(
+              child: Text("التالي", style: AppStyle.styleRegular15(context).copyWith(color: Colors.white)),
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.selectCoutriesOfSupplier);
+              },
+            ),
           ),
         ],
       ),

@@ -20,7 +20,7 @@ class ConfirmAddress extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const CartSliverAppBar(title: "تغيير العنوان", isShoppingCart: false),
+          const CartSliverAppBar(title: "تغيير العنوان"),
 
           SliverToBoxAdapter(
             child: Padding(
@@ -118,9 +118,16 @@ class ConfirmAddress extends StatelessWidget {
                 child: CustomElevatedButton(
                   padding: 4.h,
                   height: 60.h,
-                  text: "حفظ", onPressed: () {
-                  GoRouter.of(context).pop();
-                }),
+                  child: Text(
+                    "حفظ",
+                    style: AppStyle.styleRegular15(
+                      context,
+                    ).copyWith(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                  },
+                ),
               ),
             ),
           ),

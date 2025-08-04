@@ -1,9 +1,6 @@
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/features/home/data/models/categories_model.dart';
-
 import 'package:camion/features/home/presentation/widgets/categories_nav_bar.dart';
-import 'package:camion/features/home/presentation/widgets/search_bar.dart';
-import 'package:camion/features/home/presentation/widgets/sliver_grid_view_building.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,17 +33,24 @@ class _CategoryScreenState extends State<CategoryScreen>
   Widget build(BuildContext context) {
     super.build(context);
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    // final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          CustomSliverAppBar(title: widget.title, leading: widget.leading),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 25.h,
+            ),
+          ),
+          CustomSliverAppBar(
+            appBarHeight: 70.h,
+            title: widget.title, leading: widget.leading),
 
-          const SearchBarHome(),
+          // const SearchBarHome(),
 
-          SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
           SliverToBoxAdapter(
             child: SizedBox(
@@ -80,7 +84,7 @@ class _CategoryScreenState extends State<CategoryScreen>
 
           SliverToBoxAdapter(child: SizedBox(height: 45.h)),
 
-          SliverGridViewBuilding(screenWidth: screenWidth , screenHeight: screenHeight ,),
+          // SliverGridViewBuilding(screenWidth: screenWidth , screenHeight: screenHeight ,),
 
           SliverToBoxAdapter(
             child: SizedBox(height: MediaQuery.of(context).viewInsets.bottom),

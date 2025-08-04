@@ -51,9 +51,14 @@ class MyWalletScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: CustomElevatedButton(
-                text: "اضافة المال",
                 onPressed: () {},
                 widget: Image.asset(Assets.imagesRefresh),
+                child: Text(
+                  "اضافة المال",
+                  style: AppStyle.styleRegular15(
+                    context,
+                  ).copyWith(color: Colors.white),
+                ),
               ),
             ),
           ),

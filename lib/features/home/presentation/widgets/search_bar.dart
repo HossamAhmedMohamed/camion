@@ -44,6 +44,13 @@ class SearchBarHome extends StatelessWidget {
                     height: 24.h,
                   ),
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.r),
+                  borderSide: BorderSide(
+                    color: Colors.grey.shade300,
+                    width: 1.w,
+                  ),
+                ),
                 suffixIcon: SizedBox(
                   width: 60.w,
                   child: Row(
@@ -69,16 +76,16 @@ class SearchBarHome extends StatelessWidget {
                           height: 24.h,
                         ),
                       ),
-        
+
                       SizedBox(width: 8.w),
                     ],
                   ),
                 ),
               ),
             ),
-        
+
             SizedBox(width: 7.w),
-        
+
             Expanded(
               flex: 1,
               child: GestureDetector(
@@ -87,8 +94,8 @@ class SearchBarHome extends StatelessWidget {
                 },
                 child: SvgPicture.asset(
                   Assets.imagesSettings,
-                  width: 52.w,
-                  height: 52.h,
+                  width: 56.w,
+                  height: 56.h,
                 ),
               ),
             ),

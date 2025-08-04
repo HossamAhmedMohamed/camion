@@ -21,6 +21,7 @@ class AppRouter {
   static const String createCode = '/createCode';
   static const String searchScreenWithProducts = '/searchScreenWithProducts';
   static const String storiesView = '/storiesView';
+  static const String allCategoriesScreen = '/allCategoriesScreen';
  
  
   

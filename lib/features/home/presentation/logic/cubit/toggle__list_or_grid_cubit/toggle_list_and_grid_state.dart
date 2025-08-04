@@ -6,7 +6,7 @@ sealed class ToggleListAndGridState {
 }
 
 final class ToggleListAndGridInitial extends ToggleListAndGridState {
-  ToggleListAndGridInitial() : super(isListView: false);
+  ToggleListAndGridInitial() : super(isListView: true);
 }
 
 final class ToggleListAndGridChanged extends ToggleListAndGridState {

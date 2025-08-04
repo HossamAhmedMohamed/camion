@@ -27,7 +27,7 @@ class ConfirmPaymentScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const CartSliverAppBar(title: "اتمام الدفع", isShoppingCart: false),
+          const CartSliverAppBar(title: "اتمام الدفع"),
 
           SliverToBoxAdapter(child: SizedBox(height: 10.h)),
           SliverToBoxAdapter(
@@ -233,7 +233,12 @@ class ConfirmPaymentScreen extends StatelessWidget {
                 child: CustomElevatedButton(
                   padding: 4.h,
                   height: 60.h,
-                  text: "تأكيد الدفع",
+                  child: Text(
+                    "تأكيد الدفع",
+                    style: AppStyle.styleRegular15(
+                      context,
+                    ).copyWith(color: Colors.white),
+                  ),
                   onPressed: () {
                     customizeModalBottomSheet(
                       title: "لقد تم تأكيد طلبك بنجاح",
@@ -244,7 +249,12 @@ class ConfirmPaymentScreen extends StatelessWidget {
                           Expanded(
                             child: CustomElevatedButton(
                               backgroundColor: AppColors.primaryColor,
-                              text: "مشاهده الطلب",
+                              child: Text(
+                                "مشاهدة الطلب",
+                                style: AppStyle.styleRegular15(
+                                  context,
+                                ).copyWith(color: Colors.white),
+                              ),
                               onPressed: () {},
                             ),
                           ),
@@ -254,7 +264,12 @@ class ConfirmPaymentScreen extends StatelessWidget {
                               borderColor: AppColors.primaryColor,
                               backgroundColor: AppColors.white,
                               textColor: AppColors.primaryColor,
-                              text: "متابعة التسوق",
+                              child: Text(
+                                "متابعة التسوق",
+                                style: AppStyle.styleRegular15(
+                                  context,
+                                ).copyWith(color: Colors.white),
+                              ),
                               onPressed: () {},
                             ),
                           ),

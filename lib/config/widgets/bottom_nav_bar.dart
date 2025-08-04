@@ -157,29 +157,57 @@ class CustomBottomNavBar extends StatelessWidget {
                 GestureDetector(
                   onTap: () => onTap(3),
 
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Stack(
+                    clipBehavior: Clip.none,
                     children: [
-                      SvgPicture.asset(
-                        currentIndex == 3
-                            ? Assets.imagesIconsActiveShoppingCartNewIconNavbar
-                            : Assets
-                                  .imagesIconsInactiveShoppingCartIconNewNavbar,
+                      
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            currentIndex == 3
+                                ? Assets
+                                      .imagesIconsActiveShoppingCartNewIconNavbar
+                                : Assets
+                                      .imagesIconsInactiveShoppingCartIconNewNavbar,
 
-                        width: 26.w,
-                        height: 26.h,
+                            width: 26.w,
+                            height: 26.h,
+                          ),
+
+                          SizedBox(height: 8.h),
+
+                          Text(
+                            "العربة",
+                            style: AppStyle.styleRegular14(context).copyWith(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: currentIndex == 3
+                                  ? AppColors.primaryColor
+                                  : Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
 
-                      SizedBox(height: 8.h),
-
-                      Text(
-                        "العربة",
-                        style: AppStyle.styleRegular14(context).copyWith(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: currentIndex == 3
-                              ? AppColors.primaryColor
-                              : Colors.black,
+                      Positioned(
+                        top: 1.h,
+                        right: 1.w,
+                        child: Container(
+                          // width: 10,
+                          // height: 10,
+                          padding: EdgeInsets.all(4.r),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.primaryColor,
+                          ),
+                          child: Text(
+                            "1",
+                            style: AppStyle.styleRegular12(context).copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
                       ),
                     ],

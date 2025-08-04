@@ -1,11 +1,16 @@
 import 'dart:async';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/auth/presentation/logic/verify_cubit/verify_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RepeatingTimer extends StatefulWidget {
-  const RepeatingTimer({super.key});
+  const RepeatingTimer({super.key, required this.email, required this.phoneNumber, required this.code});
 
+  final String email;
+  final String phoneNumber;
+  final String code;
   @override
   State<RepeatingTimer> createState() => _RepeatingTimerState();
 }
@@ -30,6 +35,11 @@ class _RepeatingTimerState extends State<RepeatingTimer> {
         } else {
           // Reset and restart
           remainingSeconds = initialTimeInSeconds;
+          context.read<VerifyCubit>().verify(
+            email: widget.email,
+            phoneNumber: widget.phoneNumber,
+            code: widget.code,
+          );
         }
       });
     });
@@ -52,7 +62,9 @@ class _RepeatingTimerState extends State<RepeatingTimer> {
     return Center(
       child: Text(
         formatTime(remainingSeconds),
-        style:  AppStyle.styleRegular14(context).copyWith(color: AppColors.primaryColor),
+        style: AppStyle.styleRegular14(
+          context,
+        ).copyWith(color: AppColors.primaryColor),
       ),
     );
   }

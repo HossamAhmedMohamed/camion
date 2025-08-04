@@ -15,8 +15,8 @@ class ApiErrorModel {
 
   static String _parseErrorMessage(Map<String, dynamic> json) {
     try {
-      if (json['errors'] != null && json['errors'] is List) {
-        final errors = json['errors'];
+      if (json['message'] != null && json['message'] is List) {
+        final errors = json['message'];
         return errors.map((e) => e.toString()).join('\n');
       } else if (json['message'] != null) {
         return json['message'];
