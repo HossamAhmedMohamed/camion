@@ -162,6 +162,10 @@ class Assets {
   /// assets/images/icons/blackfriday_not_pixel.png
   static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
 
+  /// Assets for imagesIconsIconamoonDeliveryLight
+  /// assets/images/icons/iconamoon_delivery-light.svg
+  static const String imagesIconsIconamoonDeliveryLight = "assets/images/icons/iconamoon_delivery-light.svg";
+
   /// Assets for imagesIconsInactiveFavouriteIconNewNavbar
   /// assets/images/icons/inactive_favourite_icon_new_navbar.svg
   static const String imagesIconsInactiveFavouriteIconNewNavbar = "assets/images/icons/inactive_favourite_icon_new_navbar.svg";
@@ -185,6 +189,10 @@ class Assets {
   /// Assets for imagesIconsStoriesWatch
   /// assets/images/icons/stories_watch.png
   static const String imagesIconsStoriesWatch = "assets/images/icons/stories_watch.png";
+
+  /// Assets for imagesIconsTrashNewIcon
+  /// assets/images/icons/trash_new_icon.svg
+  static const String imagesIconsTrashNewIcon = "assets/images/icons/trash_new_icon.svg";
 
   /// Assets for imagesImageNakdy
   /// assets/images/image_nakdy.png

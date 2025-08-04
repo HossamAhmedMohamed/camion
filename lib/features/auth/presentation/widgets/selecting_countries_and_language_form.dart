@@ -1,4 +1,5 @@
 import 'package:camion/config/widgets/custom_elevated_button.dart';
+import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/widgets/selecting_country.dart';
 import 'package:camion/features/auth/presentation/widgets/selecting_language.dart';
 import 'package:camion/routing/app_router.dart';
@@ -43,7 +44,12 @@ class _SelectingCountryAndLanguageFormState
           SizedBox(height: 20.h),
 
           CustomElevatedButton(
-            text: "متابعة",
+            child: Text(
+              "متابعة",
+              style: AppStyle.styleRegular15(
+                context,
+              ).copyWith(color: Colors.white),
+            ),
             onPressed: () {
               // if (!_formKey.currentState!.validate()) {
               //   return;

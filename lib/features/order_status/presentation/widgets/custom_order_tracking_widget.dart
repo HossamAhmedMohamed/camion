@@ -163,11 +163,11 @@ class OrderSuccessPage extends StatelessWidget {
                     Expanded(
                       child: CustomElevatedButton(
                         backgroundColor: AppColors.primaryColor,
-                        text: "حالة الطلب",
                         onPressed: () {
                           showOrderTrackingModal(context);
                         },
                         padding: 5.h,
+                      child:Text("حالة الطلب", style: AppStyle.styleRegular15(context).copyWith(color: Colors.white))  ,
                       ),
                     ),
                     SizedBox(width: 10.w),
@@ -175,10 +175,10 @@ class OrderSuccessPage extends StatelessWidget {
                       child: CustomElevatedButton(
                         borderColor: AppColors.primaryColor,
                         backgroundColor: AppColors.white,
-                        textColor: AppColors.primaryColor,
-                        text: "الغاء الطلب",
                         onPressed: () {},
                         padding: 5.h,
+                         
+                        child: Text("الغاء الطلب", style: AppStyle.styleRegular15(context).copyWith(color: AppColors.primaryColor)),
                       ),
                     ),
                   ],

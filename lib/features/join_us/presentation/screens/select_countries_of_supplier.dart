@@ -176,7 +176,12 @@ class SelectCountriesOfSupplier extends StatelessWidget {
             left: 16.w,
             right: 16.w,
             child: CustomElevatedButton(
-              text: "ارسال طلب الانضمام",
+              child: Text(
+                "ارسل طلب الانضمام",
+                style: AppStyle.styleRegular15(
+                  context,
+                ).copyWith(color: Colors.white),
+              ),
               onPressed: () {
                 customizeModalBottomSheet(
                   title: "لقد تم ارسال طلب الانضمام بنجاح",
@@ -184,7 +189,12 @@ class SelectCountriesOfSupplier extends StatelessWidget {
                     backgroundColor: AppColors.white,
                     textColor: AppColors.primaryColor,
                     borderColor: AppColors.primaryColor,
-                    text: "الذهاب للرئيسية",
+                    child: Text(
+                      "الذهاب للرئيسية",
+                      style: AppStyle.styleRegular15(
+                        context,
+                      ).copyWith(color: AppColors.primaryColor),
+                    ),
                     onPressed: () {
                       GoRouter.of(
                         context,

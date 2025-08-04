@@ -40,8 +40,8 @@ class StoriesModel {
     'mediaUrl': mediaUrl,
     'mediaType': mediaType,
     'duration': duration,
-    'expiresAt': expiresAt?.toIso8601String(),
-    'createdAt': createdAt?.toIso8601String(),
+    'expiresAt': expiresAt.toIso8601String(),
+    'createdAt': createdAt.toIso8601String(),
     'isActive': isActive,
   };
 }

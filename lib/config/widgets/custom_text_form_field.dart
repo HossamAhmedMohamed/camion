@@ -17,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
   final VoidCallback? onTap;
   final FocusNode? focusNode;
   final bool? autoFocus;
+  final OutlineInputBorder? focusedBorder;
 
   const CustomTextFormField({
     super.key,
@@ -33,43 +34,47 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines,
     this.onTap,
     this.autoFocus,
+    this.focusedBorder,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 52.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-          color: fieldColor ?? Colors.grey.shade300,
-          width: 1.5,
+    return TextFormField(
+      autofocus: autoFocus ?? false,
+      onChanged: onChanged,
+      style: AppStyle.styleRegular15(context).copyWith(color: AppColors.black),
+      onTap: onTap,
+      readOnly: readOnly ?? false,
+      controller: controller,
+      validator: validator,
+      decoration: InputDecoration(
+        hintText: hintText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        filled: fieldColor != null,
+        fillColor: fieldColor,
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: Colors.grey.shade300, width: 1.w),
         ),
-      ),
-      child: TextFormField(
-        autofocus: autoFocus ?? false,
-        onChanged: onChanged,
-        style: AppStyle.styleRegular14(context).copyWith(color: AppColors.gray),
-        onTap: onTap,
-        readOnly: readOnly ?? false,
-        controller: controller,
-        validator: validator,
-        decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: AppStyle.styleRegular14(
-            context,
-          ).copyWith(color: AppColors.gray),
-          border: InputBorder.none,
-
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 20.w,
-            vertical: 10.h,
-          ),
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: Colors.grey.shade300, width: 1.w),
         ),
-        maxLength: maxLength,
-        maxLines: maxLines ?? 1,
+        focusedBorder: focusedBorder ?? OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 2.w),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: Colors.red, width: 1.w),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.r),
+          borderSide: BorderSide(color: Colors.red, width: 2.w),
+        ),
+        prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
       ),
     );
   }

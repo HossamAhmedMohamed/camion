@@ -45,14 +45,14 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
           child: Stack(
             children: [
               CachedNetworkImage(
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 imageUrl: widget.imageUrl,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
                       image: imageProvider,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -87,15 +87,15 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
               //     );
               //   },
               // ),
-              Positioned(
-                top: 16.h,
-                left: 16.w,
-                child: Image.asset(
-                  Assets.imagesDiscount,
-                  width: 60,
-                  height: 60,
-                ),
-              ),
+              // Positioned(
+              //   top: 16.h,
+              //   left: 16.w,
+              //   child: Image.asset(
+              //     Assets.imagesDiscount,
+              //     width: 60,
+              //     height: 60,
+              //   ),
+              // ),
 
               // Positioned(
               //   bottom: 16.h,

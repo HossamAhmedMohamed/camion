@@ -1,9 +1,9 @@
-import 'package:camion/config/widgets/custom_elevated_button.dart';
-import 'package:camion/config/widgets/custom_text_form_field.dart';
+ 
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/widgets/camion_logo.dart';
 import 'package:camion/config/widgets/custom_selecting_method.dart';
+import 'package:camion/features/auth/presentation/widgets/login_form.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -28,59 +28,8 @@ class LoginScreen extends StatelessWidget {
 
             SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-            SliverToBoxAdapter(
-              child: Form(
-                child: Column(
-                  children: [
-                    CustomTextFormField(
-                      hintText: "الاسم هنا",
-                       
-                     
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'الرجاء إدخال الاسم';
-                        }
-                        return null;
-                      },
-                    ),
-
-                    SizedBox(height: 10.h),
-
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: CustomTextFormField(
-                             
-                            hintText: "رقم الهاتف",
-                           
-                         
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'الرجاء إدخال كلمة المرور';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-
-                        Expanded(child: Image.asset(Assets.imagesFlag)),
-                      ],
-                    ),
-
-                    SizedBox(height: 20.h),
-
-                    CustomElevatedButton(
-                      text: "تسجيل الدخول",
-                      onPressed: () {
-                        GoRouter.of(
-                          context,
-                        ).push(AppRouter.confirmPhoneNumberScreen);
-                      },
-                    ),
-                  ],
-                ),
-              ),
+            const SliverToBoxAdapter(
+              child: LoginForm(),
             ),
 
             SliverToBoxAdapter(child: SizedBox(height: 20.h)),
@@ -185,3 +134,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+

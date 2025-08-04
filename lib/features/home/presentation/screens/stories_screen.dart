@@ -6,17 +6,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:video_player/video_player.dart';
 
 class StoryViewerScreen extends StatefulWidget {
   final List<StoriesModel> stories;
   final int initialIndex;
-  final Duration duration;
 
+  final String mediaType;
+  final int durationPeriod;
   const StoryViewerScreen({
     super.key,
     required this.stories,
     this.initialIndex = 0,
-    this.duration = const Duration(seconds: 5),
+
+    required this.mediaType,
+    required this.durationPeriod,
   });
 
   @override
@@ -32,21 +36,29 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   bool _isPressed = false;
   bool _isDragging = false;
   double _dragDistance = 0;
+
+  late Duration duration;
   // bool _isInitialized = false;
+
+  final Map<int, VideoPlayerController> _videoControllers = {};
+  final Map<int, bool> _videoInitialized = {};
 
   @override
   void initState() {
     super.initState();
+    duration = Duration(seconds: widget.durationPeriod);
     _currentIndex = widget.initialIndex;
     _pageController = PageController(initialPage: widget.initialIndex);
     _progressController = AnimationController(
-      duration: widget.duration,
+      duration: duration,
       vsync: this,
     );
     _exitController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
+
+    _initializeVideoControllers();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
@@ -58,16 +70,85 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     });
   }
 
+  void _initializeVideoControllers() {
+    for (int i = 0; i < widget.stories.length; i++) {
+      final story = widget.stories[i];
+      if (_isVideoStory(story)) {
+        _videoControllers[i] = VideoPlayerController.networkUrl(
+          Uri.parse(story.mediaUrl),
+        );
+        _videoInitialized[i] = false;
+
+        _videoControllers[i]!.initialize().then((_) {
+          if (mounted) {
+            setState(() {
+              _videoInitialized[i] = true;
+            });
+
+            // If this is the current story and it's initialized, start playing
+            if (i == _currentIndex) {
+              _videoControllers[i]!.play();
+              // Use video duration for progress if available
+              final videoDuration = _videoControllers[i]!.value.duration;
+              if (videoDuration != Duration.zero) {
+                _progressController.duration = videoDuration;
+                _startProgress();
+              }
+            }
+          }
+        });
+
+        // Listen to video end
+        _videoControllers[i]!.addListener(() {
+          if (_videoControllers[i]!.value.position >=
+              _videoControllers[i]!.value.duration) {
+            if (i == _currentIndex && !_isPressed && !_isDragging && mounted) {
+              _nextStory();
+            }
+          }
+        });
+      }
+    }
+  }
+
+  bool _isVideoStory(StoriesModel story) {
+    // You can check the mediaType from the story model or check file extension
+    return widget.mediaType.toLowerCase() == 'video' ||
+        story.mediaUrl.toLowerCase().contains('.mp4') ||
+        story.mediaUrl.toLowerCase().contains('.mov') ||
+        story.mediaUrl.toLowerCase().contains('.avi');
+  }
+
   @override
   void dispose() {
     _progressController.dispose();
     _exitController.dispose();
     _pageController.dispose();
+
+    for (var controller in _videoControllers.values) {
+      controller.dispose();
+    }
     super.dispose();
   }
 
   void _startProgress() {
     if (!mounted) return;
+
+    final currentStory = widget.stories[_currentIndex];
+
+    if (_isVideoStory(currentStory) &&
+        _videoControllers[_currentIndex] != null) {
+      final videoController = _videoControllers[_currentIndex]!;
+      if (_videoInitialized[_currentIndex] == true) {
+        videoController.play();
+        _progressController.duration =
+            videoController.value.duration != Duration.zero
+            ? videoController.value.duration
+            : duration;
+      }
+    } else {
+      _progressController.duration = duration;
+    }
 
     _progressController.reset();
     _progressController.forward().then((_) {
@@ -81,10 +162,20 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     if (_progressController.isAnimating) {
       _progressController.stop();
     }
+    final currentStory = widget.stories[_currentIndex];
+    if (_isVideoStory(currentStory) &&
+        _videoControllers[_currentIndex] != null) {
+      _videoControllers[_currentIndex]!.pause();
+    }
   }
 
   void _resumeProgress() {
     if (!_isDragging && mounted && !_isPressed) {
+      final currentStory = widget.stories[_currentIndex];
+      if (_isVideoStory(currentStory) &&
+          _videoControllers[_currentIndex] != null) {
+        _videoControllers[_currentIndex]!.play();
+      }
       _progressController.forward().then((_) {
         if (!_isPressed && !_isDragging && mounted) {
           _nextStory();
@@ -94,6 +185,9 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   }
 
   void _nextStory() {
+    if (_videoControllers[_currentIndex] != null) {
+      _videoControllers[_currentIndex]!.pause();
+    }
     if (_currentIndex < widget.stories.length - 1) {
       setState(() {
         _currentIndex++;
@@ -110,6 +204,10 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   }
 
   void _previousStory() {
+    if (_videoControllers[_currentIndex] != null) {
+      _videoControllers[_currentIndex]!.pause();
+    }
+
     if (_currentIndex > 0) {
       setState(() {
         _currentIndex--;
@@ -126,10 +224,18 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   }
 
   void _restartCurrentStory() {
+    final currentStory = widget.stories[_currentIndex];
+    if (_isVideoStory(currentStory) &&
+        _videoControllers[_currentIndex] != null) {
+      _videoControllers[_currentIndex]!.seekTo(Duration.zero);
+    }
     _startProgress();
   }
 
   void _exitStory() {
+    for (var controller in _videoControllers.values) {
+      controller.pause();
+    }
     GoRouter.of(context).pop();
   }
 
@@ -219,6 +325,9 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
                         controller: _pageController,
                         // physics: const NeverScrollableScrollPhysics(),
                         onPageChanged: (index) {
+                          if (_videoControllers[_currentIndex] != null) {
+                            _videoControllers[_currentIndex]!.pause();
+                          }
                           setState(() {
                             _currentIndex = index;
                           });
@@ -226,7 +335,10 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
                         },
                         itemCount: widget.stories.length,
                         itemBuilder: (context, index) {
-                          return _buildStoryContent(widget.stories[index]);
+                          return _buildStoryContent(
+                            widget.stories[index],
+                            index,
+                          );
                         },
                       ),
                       _buildProgressBar(),
@@ -244,34 +356,78 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     );
   }
 
-  Widget _buildStoryContent(StoriesModel story) {
+  Widget _buildStoryContent(StoriesModel story, int index) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       color: Colors.black,
       child: Center(
-        child: CachedNetworkImage(
+        child: _isVideoStory(story)
+            ? _buildVideoPlayer(story, index, screenWidth, screenHeight)
+            : _buildImagePlayer(story, screenWidth, screenHeight),
+      ),
+    );
+  }
+
+  Widget _buildVideoPlayer(
+    StoriesModel story,
+    int index,
+    double screenWidth,
+    double screenHeight,
+  ) {
+    final videoController = _videoControllers[index];
+    final isInitialized = _videoInitialized[index] ?? false;
+
+    if (videoController == null || !isInitialized) {
+      return Skeletonizer(
+        enabled: true,
+        child: Container(
           width: screenWidth,
           height: screenHeight / 2,
-          imageUrl: story.mediaUrl,
-          fit: BoxFit.fill,
-          placeholder: (context, url) => Skeletonizer(
-            enabled: true,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                shape: BoxShape.rectangle,
-              ),
-            ),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            shape: BoxShape.rectangle,
           ),
-          errorWidget: (context, url, error) => Container(
-            color: Colors.grey[900],
-            child: const Center(
-              child: Icon(Icons.error, color: Colors.white, size: 50),
-            ),
+          child: const Center(
+            child: CircularProgressIndicator(color: Colors.white),
           ),
+        ),
+      );
+    }
+
+    return SizedBox(
+      width: screenWidth,
+      height: screenHeight / 2,
+      child: VideoPlayer(videoController),
+    );
+  }
+
+  Widget _buildImagePlayer(
+    StoriesModel story,
+    double screenWidth,
+    double screenHeight,
+  ) {
+    return CachedNetworkImage(
+      width: screenWidth,
+      height: screenHeight / 2,
+      imageUrl: story.mediaUrl,
+      fit: BoxFit.fill,
+      placeholder: (context, url) => Skeletonizer(
+        enabled: true,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            shape: BoxShape.rectangle,
+          ),
+        ),
+      ),
+      errorWidget: (context, url, error) => Container(
+        color: Colors.grey[900],
+        child: const Center(
+          child: Icon(Icons.error, color: Colors.white, size: 50),
         ),
       ),
     );

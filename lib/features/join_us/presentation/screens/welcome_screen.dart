@@ -51,7 +51,12 @@ class WelcomeScreen extends StatelessWidget {
                   SizedBox(height: 30.h),
 
                   CustomElevatedButton(
-                    text: "ابدأ الآن",
+                    child: Text(
+                      "ابدأ الان",
+                      style: AppStyle.styleRegular15(
+                        context,
+                      ).copyWith(color: Colors.white),
+                    ),
                     onPressed: () {
                       GoRouter.of(context).push(AppRouter.joinUs);
                     },

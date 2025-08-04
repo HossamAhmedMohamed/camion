@@ -45,6 +45,9 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
+          SliverToBoxAdapter(
+            child: SizedBox(height: 15.h,),
+          ),
           SliverAppBar(
             pinned: true,
             floating: false,
@@ -91,13 +94,9 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                 return SliverGrid.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: screenWidth > 800 ? 3 : 2,
-                    childAspectRatio: screenWidth > 400 && screenWidth < 800
-                        ? 0.51.r
-                        : screenWidth > 800
-                        ? 0.82.r
-                        : 0.48.r,
-                    crossAxisSpacing: 10.w,
-                    mainAxisSpacing: 20.h,
+                  childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+                    crossAxisSpacing: 20.w,
+                    mainAxisSpacing: 10.h,
                   ),
                   itemBuilder: (context, index) {
                     return const Skeletonizer(
@@ -110,36 +109,35 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
               }
 
               if (state is ProductsLoaded) {
-                return SliverGrid.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: screenWidth > 800 ? 3 : 2,
-                    childAspectRatio: screenWidth > 400 && screenWidth < 800
-                        ? 0.51.r
-                        : screenWidth > 800
-                        ? 0.82.r
-                        : 0.48.r,
-                    crossAxisSpacing: 10.w,
-                    mainAxisSpacing: 20.h,
+                return SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  sliver: SliverGrid.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: screenWidth > 800 ? 3 : 2,
+                    childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+                      crossAxisSpacing: 20.w,
+                      mainAxisSpacing: 10.h,
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = state.products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(
+                            AppRouter.productDetails,
+                            extra: product.spuCode,
+                          );
+                        },
+                        child: ProductCarouselWidget(
+                          imageUrl: product.picUrl,
+                          productName: product.productName,
+                          originalPrice: product.price.price.toInt(),
+                          sellCount: product.sellCount,
+                          isGridView: true,
+                        ),
+                      );
+                    },
+                    itemCount: state.products.length,
                   ),
-                  itemBuilder: (context, index) {
-                    final product = state.products[index];
-                    return GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).push(
-                          AppRouter.productDetails,
-                          extra: product.spuCode,
-                        );
-                      },
-                      child: ProductCarouselWidget(
-                        imageUrl: product.picUrl,
-                        productName: product.productName,
-                        originalPrice: product.price.price.toInt(),
-                        sellCount: product.sellCount,
-                        isGridView: true,
-                      ),
-                    );
-                  },
-                  itemCount: state.products.length,
                 );
               }
 

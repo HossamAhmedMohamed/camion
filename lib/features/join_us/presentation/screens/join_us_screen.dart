@@ -154,7 +154,9 @@ class JoinUsScreen extends StatelessWidget {
             left: 16.w,
             right: 16.w,
             child: CustomElevatedButton(
-              text: "التالي",
+             child: Text("التالي",   style: AppStyle.styleRegular15(
+                          context,
+                        ).copyWith(color: Colors.white),),
               onPressed: () {
                GoRouter.of(context).push(
                   AppRouter.selectSocialMediaOfSupplierScreen,

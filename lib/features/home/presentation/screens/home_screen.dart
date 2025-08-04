@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:camion/config/widgets/custom_cached_network_image.dart';
+
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
@@ -7,8 +7,9 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
-import 'package:camion/features/home/presentation/logic/cubit/toggle_cubit/toggle_list_and_grid_cubit.dart';
-import 'package:camion/features/home/presentation/widgets/categories_text.dart';
+import 'package:camion/features/home/presentation/logic/cubit/toggle_add_cart_cubit/toggle_add_cart_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/toggle__list_or_grid_cubit/toggle_list_and_grid_cubit.dart';
+import 'package:camion/features/home/presentation/widgets/categories_body.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
 import 'package:camion/features/home/presentation/widgets/home_join_us_now.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_grid_view_building.dart';
@@ -30,6 +31,7 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(create: (context) => ProductsCubit(sl<HomeRepository>())),
         BlocProvider(create: (context) => StoriesCubit(sl<HomeRepository>())),
         BlocProvider(create: (context) => ToggleListAndGridCubit()),
+        BlocProvider(create: (context) => ToggleAddCartCubit()),
       ],
       child: const HomeScreenBody(),
     );
@@ -144,16 +146,20 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                               final extra = {
                                 'index': index,
                                 'stories': state.storiesList,
+                                'duration':
+                                    state.storiesList[index].duration == 0
+                                    ? 5
+                                    : state.storiesList[index].duration,
+                                'mediaType': state.storiesList[index].mediaType,
                               };
-                              GoRouter.of(context).push(
-                                AppRouter.storiesView,
-                                extra: extra,
-                              );
+                              GoRouter.of(
+                                context,
+                              ).push(AppRouter.storiesView, extra: extra);
                             },
                             child: Container(
-                              padding: EdgeInsets.all(3.r),
-                              // height: 50.h,
-                              // width: 50.w,
+                              padding: EdgeInsets.all(5.r),
+                              height: 50.h,
+                              width: 52.w,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: BoxBorder.all(
@@ -165,15 +171,15 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                               child: Center(
                                 child: ClipOval(
                                   child: CachedNetworkImage(
-                                    height: 40.h,
-                                    width: 40.w,
+                                    height: 45.h,
+                                    width: 45.w,
                                     imageUrl: state.storiesList[index].mediaUrl,
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => Skeletonizer(
                                       enabled: true,
                                       child: Container(
-                                        height: 44.h,
-                                        width: 44.w,
+                                        height: 45.h,
+                                        width: 45.w,
                                         decoration: BoxDecoration(
                                           color: Colors.grey[300],
                                           shape: BoxShape.circle,
@@ -210,7 +216,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
 
           CategoriesBody(screenWidth: screenWidth),
 
-          SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
           SliverToBoxAdapter(
             child: AspectRatio(

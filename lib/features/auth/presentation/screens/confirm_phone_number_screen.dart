@@ -68,35 +68,37 @@ class ConfirmPhoneNumberScreen extends StatelessWidget {
 
             const SliverToBoxAdapter(child: CustomPinPutField(length: 6)),
 
-            SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+            // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-            SliverToBoxAdapter(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "اعادة الارسال بعد ",
-                    style: AppStyle.styleRegular14(
-                      context,
-                    ).copyWith(color: Colors.grey),
-                  ),
+            // SliverToBoxAdapter(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text(
+            //         "اعادة الارسال بعد ",
+            //         style: AppStyle.styleRegular14(
+            //           context,
+            //         ).copyWith(color: Colors.grey),
+            //       ),
 
-                  SizedBox(width: 10.w),
-                  const RepeatingTimer(),
-                ],
-              ),
-            ),
+            //       SizedBox(width: 10.w),
+            //       const RepeatingTimer(),
+            //     ],
+            //   ),
+            // ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+            // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-            SliverToBoxAdapter(
-              child: CustomElevatedButton(
-                text: "متابعة",
-                onPressed: () {
-                  GoRouter.of(context).go(AppRouter.selectingFromBottomNavBar);
-                },
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: CustomElevatedButton(
+            //    child: Text("المتابعة",  style: AppStyle.styleRegular15(
+            //     context,
+            //   ).copyWith(color:  Colors.white),),
+            //     onPressed: () {
+            //       GoRouter.of(context).go(AppRouter.selectingFromBottomNavBar);
+            //     },
+            //   ),
+            // ),
 
             SliverToBoxAdapter(
               child: SizedBox(height: MediaQuery.of(context).viewInsets.bottom),

@@ -51,7 +51,7 @@ class CustomSliverAppBar extends StatelessWidget {
       title: title,
       centerTitle: true,
 
-      actions: isShownActions ?? true
+      actions: isShownActions == null
           ? [
               Row(
                 mainAxisSize: MainAxisSize.min,

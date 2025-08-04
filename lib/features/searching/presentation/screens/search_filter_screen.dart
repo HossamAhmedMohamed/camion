@@ -1,7 +1,6 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
-import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:camion/features/searching/presentation/widgets/get_filters_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +17,7 @@ class SearchFilterScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           const HomeSliverAppBar(),
-          const SearchBarHome(),
+          // const SearchBarHome(),
 
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverList.builder(
