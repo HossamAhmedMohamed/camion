@@ -3,8 +3,7 @@ import 'dart:developer';
 import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
-import 'package:camion/features/home/data/models/product_id_details_model/product_id_details_model.dart';
-import 'package:camion/features/home/data/models/product_model/product_model.dart';
+import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -13,28 +12,31 @@ class HomeRepository {
 
   HomeRepository({required this.remoteDataSource});
 
-  Future<Either<ApiErrorModel, List<ProductsModel>>> getProducts() async {
+  Future<Either<ApiErrorModel, List<AllProductModel>>> getProducts() async {
     try {
       final response = await remoteDataSource.getProducts();
 
-      List<ProductsModel> products = [];
+      List<AllProductModel> products = [];
 
-      for (var product in response.data["data"]["records"]) {
-        products.add(ProductsModel.fromJson(product));
+      for (var product in response.data["products"]) {
+
+        products.add(AllProductModel.fromJson(product));
       }
+ 
       return Right(products);
     } catch (e) {
+      log(e.toString());
       return left(ApiErrorHandler.handle(e));
     }
   }
 
-  Future<Either<ApiErrorModel, List<ProductsModel>>> searchProducts({
+  Future<Either<ApiErrorModel, List<AllProductModel>>> searchProducts({
     required String query,
   }) async {
     try {
       final response = await remoteDataSource.searchProducts(query: query);
-      final products = (response.data["data"]["records"] as List)
-          .map((product) => ProductsModel.fromJson(product))
+      final products = (response.data["products"] as List)
+          .map((product) => AllProductModel.fromJson(product))
           .toList();
       return Right(products);
     } catch (e) {
@@ -43,13 +45,14 @@ class HomeRepository {
     }
   }
 
-  Future<Either<ApiErrorModel, ProductIdDetailsModel>> getProductById({
+  Future<Either<ApiErrorModel, AllProductModel>> getProductById({
     required String id,
   }) async {
     try {
       final response = await remoteDataSource.getProductById(id: id);
-      return Right(ProductIdDetailsModel.fromJson(response.data["data"]));
+      return Right(AllProductModel.fromJson(response.data));
     } catch (e) {
+      log(e.toString());
       return left(ApiErrorHandler.handle(e));
     }
   }

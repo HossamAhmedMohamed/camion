@@ -9,8 +9,8 @@ class HomeRemoteDataSource {
 
   Future<Response> getProducts() async {
     final response = await apiConsumer.get(
-      "http://54.163.188.142:3000/api/buckydrop/${EndPoints.products}",
-      queryParameters: {"keyword": "k"},
+      "http://buckydrop.camion-app.com:3000/api/${EndPoints.products}",
+      // queryParameters: {"keyword": "k"},
     );
 
     return response;
@@ -18,7 +18,7 @@ class HomeRemoteDataSource {
 
   Future<Response> searchProducts({required String query}) async {
     final response = await apiConsumer.get(
-      "http://54.162.75.209:3000/api/buckydrop/${EndPoints.products}",
+      "http://buckydrop.camion-app.com:3000/api/${EndPoints.products}",
       queryParameters: {"keyword": query},
     );
 
@@ -27,7 +27,7 @@ class HomeRemoteDataSource {
 
   Future<Response> getProductById({required String id}) async {
     final response = await apiConsumer.get(
-      "http://54.162.75.209:3000/api/buckydrop/${EndPoints.products}/$id",
+      "http://buckydrop.camion-app.com:3000/api/${EndPoints.products}/$id",
     );
 
     return response;

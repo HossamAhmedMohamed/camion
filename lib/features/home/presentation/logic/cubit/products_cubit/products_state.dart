@@ -7,7 +7,7 @@ final class ProductsInitial extends ProductsState {}
 final class ProductsLoading extends ProductsState {}
 
 final class ProductsLoaded extends ProductsState {
-  final List<ProductsModel> products;
+  final List<AllProductModel> products;
   final bool isSearching;
 
   ProductsLoaded({ required this.isSearching, required this.products});

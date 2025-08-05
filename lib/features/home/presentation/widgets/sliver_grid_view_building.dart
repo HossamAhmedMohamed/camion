@@ -107,28 +107,26 @@ class SliverGridViewBuilding extends StatelessWidget {
                     onTap: () {
                       GoRouter.of(
                         context,
-                      ).push(AppRouter.productDetails, extra: product.spuCode);
+                      ).push(AppRouter.productDetails, extra: product.id.toString());
                     },
                     child: ProductCarouselWidget(
-                      imageUrl: product.picUrl,
-                      productName: product.productName,
-                      originalPrice: product.price.price.toInt(),
-                      sellCount: product.sellCount,
+                      imageUrl: product.images[0].thumbnail,
+                      productName: product.name,
+                      originalPrice: product.prices.price.toString(),
+
                       isGridView: true,
                       onAddToCartTap: () {
                         context.read<AddCartCubit>().addToCart(
                           token: token!,
                           userId: userId!,
-                          productId: product.spuCode,
-                          title: product.productName,
-                          price: product.price.price.toInt(),
-                          image: product.picUrl,
+                          productId: product.id.toString(),
+                          title: product.name,
+                          price: product.prices.price.toInt(),
+                          image: product.images[0].thumbnail,
                           quantity: 1,
                         );
                       },
-                      onAddToWishListTap: () {
-                        
-                      },
+                      onAddToWishListTap: () {},
                     ),
                   );
                 },

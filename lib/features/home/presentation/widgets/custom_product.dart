@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class ProductCarouselWidget extends StatelessWidget {
   final String imageUrl;
   final String productName;
-  final int originalPrice;
-  final int sellCount;
+  final String originalPrice;
+   
   final bool isGridView;
   final VoidCallback onAddToCartTap;
   final VoidCallback onAddToWishListTap;
@@ -16,7 +16,7 @@ class ProductCarouselWidget extends StatelessWidget {
     required this.imageUrl,
     required this.productName,
     required this.originalPrice,
-    required this.sellCount,
+   
     this.isGridView = true,
     required this.onAddToCartTap,
     required this.onAddToWishListTap,
@@ -29,14 +29,14 @@ class ProductCarouselWidget extends StatelessWidget {
             imageUrl: imageUrl,
             productName: productName,
             originalPrice: originalPrice,
-            sellCount: sellCount,
+           
             onTap: onAddToCartTap,
           )
         : ListViewItemBuilding(
             imageUrl: imageUrl,
             productName: productName,
             originalPrice: originalPrice,
-            sellCount: sellCount,
+           
             onAddToCartTap: onAddToCartTap,
             onAddToWishListTap: onAddToWishListTap,
           );

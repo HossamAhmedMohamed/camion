@@ -4,6 +4,7 @@ import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
@@ -33,10 +34,7 @@ class MyCartScreenBody extends StatefulWidget {
   State<MyCartScreenBody> createState() => _MyCartScreenBodyState();
 }
 
-class _MyCartScreenBodyState extends State<MyCartScreenBody>
-        {
- 
-
+class _MyCartScreenBodyState extends State<MyCartScreenBody> {
   @override
   void initState() {
     super.initState();
@@ -71,9 +69,10 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody>
     return {'token': token, 'userId': userId};
   }
 
+  List<GetCartModel> cartList = [];
+
   @override
   Widget build(BuildContext context) {
-     
     return Column(
       children: [
         Expanded(
@@ -94,6 +93,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody>
                   }
 
                   if (state is GetCartSuccess) {
+                    cartList = state.cartList;
                     return SliverList.builder(
                       itemCount: state.cartList.length,
                       itemBuilder: (context, index) {
@@ -262,7 +262,9 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody>
                       ).copyWith(color: Colors.white),
                     ),
                     onPressed: () {
-                      GoRouter.of(context).push(AppRouter.confirmPayment);
+                      GoRouter.of(
+                        context,
+                      ).push(AppRouter.confirmPayment, extra: cartList);
                     },
                   ),
                 ),

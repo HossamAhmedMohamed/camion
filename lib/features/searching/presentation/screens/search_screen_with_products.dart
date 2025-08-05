@@ -45,9 +45,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(height: 15.h,),
-          ),
+          SliverToBoxAdapter(child: SizedBox(height: 15.h)),
           SliverAppBar(
             pinned: true,
             floating: false,
@@ -94,7 +92,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                 return SliverGrid.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: screenWidth > 800 ? 3 : 2,
-                  childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+                    childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
                     crossAxisSpacing: 20.w,
                     mainAxisSpacing: 10.h,
                   ),
@@ -114,7 +112,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                   sliver: SliverGrid.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: screenWidth > 800 ? 3 : 2,
-                    childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+                      childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
                       crossAxisSpacing: 20.w,
                       mainAxisSpacing: 10.h,
                     ),
@@ -124,21 +122,17 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                         onTap: () {
                           GoRouter.of(context).push(
                             AppRouter.productDetails,
-                            extra: product.spuCode,
+                            extra: product.id.toString(),
                           );
                         },
                         child: ProductCarouselWidget(
-                          imageUrl: product.picUrl,
-                          productName: product.productName,
-                          originalPrice: product.price.price.toInt(),
-                          sellCount: product.sellCount,
+                          imageUrl: product.images[0].thumbnail,
+                          productName: product.name,
+                          originalPrice: product.prices.price.toString(),
+
                           isGridView: true,
-                          onAddToCartTap: () {
-                            
-                          },
-                          onAddToWishListTap: () {
-                            
-                          },
+                          onAddToCartTap: () {},
+                          onAddToWishListTap: () {},
                         ),
                       );
                     },

@@ -1,9 +1,13 @@
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/config/widgets/custom_expansion_tile.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
+import 'package:camion/core/cache/secure_cache_storage.dart';
+import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/product_id_image_skeletonizer.dart';
@@ -28,11 +32,27 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   void initState() {
-    
     BlocProvider.of<ProductIdDetailsCubit>(
       context,
-    ).getProductDetails(widget.productId );
+    ).getProductDetails(widget.productId);
     super.initState();
+  }
+
+  getUserId() async {
+    final userId = await sl<SecureCacheHelper>().getData(key: 'id');
+
+    return userId;
+  }
+
+  getToken() async {
+    final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    return token;
+  }
+
+  Future<Map<String, String>> getUserData() async {
+    final token = await getToken();
+    final userId = await getUserId();
+    return {'token': token!, 'userId': userId!};
   }
 
   @override
@@ -40,6 +60,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     pageController.dispose();
     super.dispose();
   }
+
+  late AllProductModel prodcut;
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +94,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                   size: 25.sp,
                 ),
               ),
-        
+
               isShownDivider: true,
             ),
-        
+
             SliverToBoxAdapter(child: SizedBox(height: 15.h)),
-        
+
             SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,91 +111,100 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: const Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: BlocBuilder<ProductIdDetailsCubit, ProductIdDetailsState>(
-                      builder: (context, state) {
-                        if (state is ProductIdDetailsLoading) {
-                          return const Skeletonizer(
-                            enabled: true,
-                            child: ProductImageSkeleton(),
-                          );
-                        }
-        
-                        if (state is ProductIdDetailsLoaded) {
-                          return PageView.builder(
-                            controller: pageController,
-                            onPageChanged: (index) {
-                              context
-                                  .read<ToggleProductIdImagesCubit>()
-                                  .toggle(index);
-                            },
-                            itemCount: state
-                                .productIdDetailsModel
-                                .productImageList
-                                .length,
-                            itemBuilder: (context, index) {
-                              return CustomCachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: state
-                                    .productIdDetailsModel
-                                    .productImageList[index],
+                    child:
+                        BlocBuilder<
+                          ProductIdDetailsCubit,
+                          ProductIdDetailsState
+                        >(
+                          builder: (context, state) {
+                            if (state is ProductIdDetailsLoading) {
+                              return const Skeletonizer(
+                                enabled: true,
+                                child: ProductImageSkeleton(),
                               );
-                            },
-                          );
-                        }
-        
-                        if (state is ProductIdDetailsError) {
-                          return Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  state.error.icon,
-                                  color: Colors.red,
-                                  size: 50,
+                            }
+
+                            if (state is ProductIdDetailsLoaded) {
+                              prodcut = state.productIdDetailsModel;
+                              return PageView.builder(
+                                controller: pageController,
+                                onPageChanged: (index) {
+                                  context
+                                      .read<ToggleProductIdImagesCubit>()
+                                      .toggle(index);
+                                },
+                                itemCount:
+                                    state.productIdDetailsModel.images.length,
+                                itemBuilder: (context, index) {
+                                  return CustomCachedNetworkImage(
+                                    fit: BoxFit.fill,
+                                    imageUrl: state
+                                        .productIdDetailsModel
+                                        .images[index]
+                                        .thumbnail,
+                                  );
+                                },
+                              );
+                            }
+
+                            if (state is ProductIdDetailsError) {
+                              return Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      state.error.icon,
+                                      color: Colors.red,
+                                      size: 50,
+                                    ),
+
+                                    SizedBox(height: 20.h),
+                                    Text(
+                                      state.error.message,
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        color: Colors.red,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+
+                                    SizedBox(height: 10.h),
+
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        context
+                                            .read<ProductIdDetailsCubit>()
+                                            .getProductDetails(
+                                              widget.productId,
+                                            );
+                                        ();
+                                      },
+                                      child: Text(
+                                        'Retry',
+                                        style: TextStyle(fontSize: 16.sp),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-        
-                                SizedBox(height: 20.h),
-                                Text(
-                                  state.error.message,
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.red,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-        
-                                SizedBox(height: 10.h),
-        
-                                ElevatedButton(
-                                  onPressed: () {
-                                    context
-                                        .read<ProductIdDetailsCubit>()
-                                        .getProductDetails(widget.productId);
-                                    ();
-                                  },
-                                  child: Text(
-                                    'Retry',
-                                    style: TextStyle(fontSize: 16.sp),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-        
-                        return Container();
-                      },
-                    ),
+                              );
+                            }
+
+                            return Container();
+                          },
+                        ),
                   ),
-        
+
                   const SizedBox(height: 20),
-        
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Column(
                       children: [
-                        BlocBuilder<ProductIdDetailsCubit, ProductIdDetailsState>(
+                        BlocBuilder<
+                          ProductIdDetailsCubit,
+                          ProductIdDetailsState
+                        >(
                           builder: (context, state) {
                             if (state is ProductIdDetailsLoading) {
                               return const Skeletonizer(
@@ -186,11 +217,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 children: [
                                   Center(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: List.generate(
                                         state
                                             .productIdDetailsModel
-                                            .productImageList
+                                            .images
                                             .length,
                                         (index) =>
                                             BlocBuilder<
@@ -208,7 +240,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                   height: 8.h,
                                                   decoration: BoxDecoration(
                                                     color: state.index == index
-                                                        ? const Color(0xFFD32F2F)
+                                                        ? const Color(
+                                                            0xFFD32F2F,
+                                                          )
                                                         : Colors.grey.shade400,
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -221,17 +255,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
                                     ),
                                   ),
-        
-                                  SizedBox(
-                                    height: 15.h,
-                                  ),
+
+                                  SizedBox(height: 15.h),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          state.productIdDetailsModel.productName,
+                                          state.productIdDetailsModel.name,
                                           style: AppStyle.styleBold18(context),
                                           textDirection: TextDirection.ltr,
                                         ),
@@ -244,16 +276,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
                                     ],
                                   ),
-        
+
                                   SizedBox(height: 8.h),
-        
+
                                   Row(
                                     children: [
                                       Text(
-                                        '${state.productIdDetailsModel.price.price}',
-                                        style: AppStyle.styleBold20(
-                                          context,
-                                        ).copyWith(color: AppColors.primaryColor),
+                                        '${state.productIdDetailsModel.prices.price}',
+                                        style: AppStyle.styleBold20(context)
+                                            .copyWith(
+                                              color: AppColors.primaryColor,
+                                            ),
                                       ),
                                       // SizedBox(width: 8.w),
                                       // Text(
@@ -270,7 +303,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 ],
                               );
                             }
-        
+
                             if (state is ProductIdDetailsError) {
                               return Center(
                                 child: Column(
@@ -282,7 +315,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       color: Colors.red,
                                       size: 50,
                                     ),
-        
+
                                     SizedBox(height: 20.h),
                                     Text(
                                       state.error.message,
@@ -292,14 +325,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-        
+
                                     SizedBox(height: 10.h),
-        
+
                                     ElevatedButton(
                                       onPressed: () {
                                         context
                                             .read<ProductIdDetailsCubit>()
-                                            .getProductDetails(widget.productId);
+                                            .getProductDetails(
+                                              widget.productId,
+                                            );
                                         ();
                                       },
                                       child: Text(
@@ -311,13 +346,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 ),
                               );
                             }
-        
+
                             return Container();
                           },
                         ),
-        
+
                         SizedBox(height: 5.h),
-        
+
                         Row(
                           children: [
                             Text(
@@ -326,7 +361,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 context,
                               ).copyWith(color: Colors.grey.shade600),
                             ),
-        
+
                             SizedBox(width: 5.w),
                             ...List.generate(5, (index) {
                               return Icon(
@@ -339,9 +374,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                             }),
                           ],
                         ),
-        
+
                         SizedBox(height: 5.h),
-        
+
                         Row(
                           children: [
                             Icon(
@@ -356,9 +391,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 context,
                               ).copyWith(color: AppColors.gray),
                             ),
-        
+
                             SizedBox(width: 10.w),
-        
+
                             Text(
                               '10 منذ ساعات',
                               style: AppStyle.styleRegular10(
@@ -367,42 +402,55 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ),
                           ],
                         ),
-        
+
                         const SizedBox(height: 20),
-        
+
                         const ProductsSelectionOptions(),
-        
+
                         SizedBox(height: 20.h),
-        
+
                         const CustomExpansionTile(
                           title: "الوصف",
                           content:
                               "هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة",
                         ),
-        
+
                         SizedBox(height: 20.h),
-        
+
                         const CustomExpansionTile(
                           title: "طريقة الاستعمال",
                           content:
                               "هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة",
                         ),
-        
+
                         SizedBox(height: 20.h),
-        
+
                         Image.asset(
                           Assets.imagesProductRate,
-        
+
                           // width: double.infinity,
                           // height: 120.h,
                         ),
-        
+
                         SizedBox(height: 30.h),
-        
+
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              final userData = await getUserData();
+                              final token = userData['token'];
+                              final userId = userData['userId'];
+                              context.read<AddCartCubit>().addToCart(
+                                token: token!,
+                                userId: userId!,
+                                productId: prodcut.id.toString(),
+                                title: prodcut.name ,
+                                price: prodcut.prices.price.toInt() ,
+                                image: prodcut.images[0].thumbnail ,
+                                quantity: 1,
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.symmetric(vertical: 16.h),
                               backgroundColor: AppColors.primaryColor,
@@ -419,9 +467,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     context,
                                   ).copyWith(color: Colors.white),
                                 ),
-        
+
                                 SizedBox(width: 6.w),
-        
+
                                 SvgPicture.asset(
                                   Assets.imagesShoppingCartWhite,
                                   width: 22.w,
@@ -434,12 +482,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ],
                     ),
                   ),
-        
+
                   SizedBox(height: 20.h),
                 ],
               ),
             ),
-        
+
             SliverToBoxAdapter(
               child: SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
             ),

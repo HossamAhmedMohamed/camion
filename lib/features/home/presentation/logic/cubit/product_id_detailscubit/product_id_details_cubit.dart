@@ -1,6 +1,6 @@
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/core/services/cached_services/product_id_cache_service.dart';
-import 'package:camion/features/home/data/models/product_id_details_model/product_id_details_model.dart';
+import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'product_id_details_state.dart';
