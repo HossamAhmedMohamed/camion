@@ -124,14 +124,14 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                         onTap: () {
                           GoRouter.of(context).push(
                             AppRouter.productDetails,
-                            extra: product.spuCode,
+                            extra: product.id.toString(),
                           );
                         },
                         child: ProductCarouselWidget(
-                          imageUrl: product.picUrl,
-                          productName: product.productName,
-                          originalPrice: product.price.price.toInt(),
-                          sellCount: product.sellCount,
+                          imageUrl: product.images[0].thumbnail,
+                          productName: product.name,
+                          originalPrice: product.prices.price.toString(),
+                         
                           isGridView: true,
                           onAddToCartTap: () {
                             

@@ -9,8 +9,8 @@ import 'package:skeletonizer/skeletonizer.dart';
 class GridItemBuilding extends StatelessWidget {
   final String imageUrl;
   final String productName;
-  final int originalPrice;
-  final int sellCount;
+  final String originalPrice;
+   
   final VoidCallback onTap;
 
   const GridItemBuilding({
@@ -18,7 +18,7 @@ class GridItemBuilding extends StatelessWidget {
     required this.imageUrl,
     required this.productName,
     required this.originalPrice,
-    required this.sellCount,
+ 
     required this.onTap,
   });
 
@@ -217,7 +217,7 @@ class GridItemBuilding extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              '${originalPrice.toInt()}',
+                              originalPrice,
                               style: AppStyle.styleBold16(
                                 context,
                               ).copyWith(color: AppColors.primaryColor),

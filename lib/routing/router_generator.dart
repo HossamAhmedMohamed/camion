@@ -9,7 +9,9 @@ import 'package:camion/features/auth/presentation/screens/confirm_phone_number_s
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
 import 'package:camion/features/auth/presentation/screens/login_screen.dart';
 import 'package:camion/features/auth/presentation/screens/register_screen.dart';
+import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
@@ -36,6 +38,8 @@ import 'package:camion/features/join_us/presentation/screens/select_social_media
 import 'package:camion/features/join_us/presentation/screens/supplier_account.dart';
 import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart';
 import 'package:camion/features/notifications/presentation/notifications_screen.dart';
+import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
@@ -91,9 +95,7 @@ class RouterGenerator {
         name: AppRouter.selectingFromBottomNavBar,
         path: AppRouter.selectingFromBottomNavBar,
         builder: (context, state) => BlocProvider(
-          create: (context) => GetCartCubit(
-            sl<CartRepository>()
-          ),
+          create: (context) => GetCartCubit(sl<CartRepository>()),
           child: const SelectingFromBottomNavBar(),
         ),
       ),
@@ -125,6 +127,8 @@ class RouterGenerator {
                 ),
               ),
               BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
+
+              BlocProvider(create: (context) => AddCartCubit(sl<CartRepository>())),
             ],
             child: ProductDetails(productId: extra),
           );
@@ -142,10 +146,19 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.confirmPayment,
         path: AppRouter.confirmPayment,
-        builder: (context, state) => BlocProvider(
-          create: (context) => PaymentMethodCubit(),
-          child: const ConfirmPaymentScreen(),
-        ),
+        builder: (context, state) {
+          final extra = state.extra as List<GetCartModel>;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => PaymentMethodCubit()),
+              BlocProvider(
+                create: (context) =>
+                    CreateOrderCubit(sl<OrderStatusRepository>()),
+              ),
+            ],
+            child: ConfirmPaymentScreen(cartList: extra),
+          );
+        },
       ),
 
       GoRoute(

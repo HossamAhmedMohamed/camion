@@ -5,11 +5,13 @@ import 'package:camion/config/widgets/expanded_row_for_user.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/models/payment_method_model.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
 import 'package:camion/features/cart/presentation/widgets/confirmation_products.dart';
 import 'package:camion/features/cart/presentation/widgets/custom_selecting_payment_method.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +19,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class ConfirmPaymentScreen extends StatelessWidget {
-  const ConfirmPaymentScreen({super.key});
+  const ConfirmPaymentScreen({super.key, required this.cartList});
 
+  final List<GetCartModel> cartList;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -240,6 +243,13 @@ class ConfirmPaymentScreen extends StatelessWidget {
                     ).copyWith(color: Colors.white),
                   ),
                   onPressed: () {
+                    context.read<CreateOrderCubit>().createOrder(
+                      cartList: cartList,
+                      taxPrice: 80,
+                      shippingPrice: 100,
+                      totalOrderPrice: 200,
+                      shippingAddress: "shbeen el kom st",
+                    );
                     customizeModalBottomSheet(
                       title: "لقد تم تأكيد طلبك بنجاح",
                       screenWidth: screenWidth,
@@ -268,9 +278,13 @@ class ConfirmPaymentScreen extends StatelessWidget {
                                 "متابعة التسوق",
                                 style: AppStyle.styleRegular15(
                                   context,
-                                ).copyWith(color: Colors.white),
+                                ).copyWith(color: AppColors.primaryColor),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                GoRouter.of(context).pushReplacement(
+                                  AppRouter.selectingFromBottomNavBar,
+                                );
+                              },
                             ),
                           ),
                         ],

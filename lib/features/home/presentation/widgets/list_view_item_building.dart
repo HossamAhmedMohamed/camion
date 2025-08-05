@@ -15,15 +15,15 @@ class ListViewItemBuilding extends StatefulWidget {
     required this.productName,
     required this.originalPrice,
 
-    required this.sellCount,
+ 
     required this.onAddToCartTap,
     required this.onAddToWishListTap,
   });
 
   final String imageUrl;
   final String productName;
-  final int originalPrice;
-  final int sellCount;
+  final String originalPrice;
+   
   final VoidCallback onAddToCartTap;
   final VoidCallback onAddToWishListTap;
 
@@ -190,7 +190,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   ),
                   SizedBox(width: 8.w),
                   Text(
-                    '${widget.originalPrice.toInt()}',
+                    widget.originalPrice,
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,
                       decoration: TextDecoration.lineThrough,
