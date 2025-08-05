@@ -9,7 +9,9 @@ import 'package:camion/features/auth/presentation/screens/confirm_phone_number_s
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
 import 'package:camion/features/auth/presentation/screens/login_screen.dart';
 import 'package:camion/features/auth/presentation/screens/register_screen.dart';
-import 'package:camion/features/cart/presentation/logic/cubit/payment_method_cubit.dart';
+import 'package:camion/features/cart/data/repository/cart_repo.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
@@ -88,7 +90,12 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.selectingFromBottomNavBar,
         path: AppRouter.selectingFromBottomNavBar,
-        builder: (context, state) => const SelectingFromBottomNavBar(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => GetCartCubit(
+            sl<CartRepository>()
+          ),
+          child: const SelectingFromBottomNavBar(),
+        ),
       ),
 
       GoRoute(
@@ -126,7 +133,10 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.myCart,
         path: AppRouter.myCart,
-        builder: (context, state) => const MyCartScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => GetCartCubit(sl<CartRepository>()),
+          child: const MyCartScreenBody(),
+        ),
       ),
 
       GoRoute(

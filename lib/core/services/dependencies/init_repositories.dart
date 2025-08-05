@@ -1,8 +1,12 @@
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:camion/features/auth/data/repository/auth_repository.dart';
+import 'package:camion/features/cart/data/data_source/remote_data_source.dart';
+import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
+import 'package:camion/features/wish_list/data/data_source/remote_data_source.dart';
+import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 
 Future<void> initRepositories() async {
   sl.registerLazySingleton<HomeRemoteDataSource>(
@@ -17,5 +21,21 @@ Future<void> initRepositories() async {
   );
   sl.registerLazySingleton<AuthRepository>(
     () => AuthRepository(authRemoteDataSource: sl()),
+  );
+
+  sl.registerLazySingleton<CartRemoteDataSource>(
+    () => CartRemoteDataSource(apiConsumer: sl()),
+  );
+
+  sl.registerLazySingleton<CartRepository>(
+    () => CartRepository(cartRemoteDataSource: sl()),
+  );
+
+  sl.registerLazySingleton<WishListRemoteDataSource>(
+    () => WishListRemoteDataSource(apiConsumer: sl()),
+  );
+
+  sl.registerLazySingleton<WishListRepository>(
+    () => WishListRepository(wishListRemoteDataSource: sl()),
   );
 }

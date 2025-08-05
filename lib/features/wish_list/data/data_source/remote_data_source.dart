@@ -1,41 +1,39 @@
 import 'package:camion/core/api/api_consumer.dart';
 import 'package:dio/dio.dart';
 
-class CartRemoteDataSource {
+class WishListRemoteDataSource {
   final ApiConsumer apiConsumer;
 
-  CartRemoteDataSource({required this.apiConsumer});
+  WishListRemoteDataSource({required this.apiConsumer});
 
-  Future<Response> addToCart({
+  Future<Response> addToWishList({
     required String token,
     required String userId,
     required String productId,
     required String title,
     required int price,
     required String image,
-    required int quantity,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/cart/add",
+      "http://api-gateway.camion-app.com/wishlist/add",
       headers: {"Authorization": "Bearer $token"},
       data: {
         "userId": userId,
         "productId": productId,
-        "title": title,
+        "productName": title,
+        "productImage": image,
         "price": price,
-        "image": image,
-        "quantity": quantity,
       },
     );
     return response;
   }
 
-  Future<Response> getCart({
+  Future<Response> getWishList({
     required String token,
     required String userId,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/cart/get",
+      "http://api-gateway.camion-app.com/wishlist/get",
       headers: {"Authorization": "Bearer $token"},
       data: {"userId": userId},
     );

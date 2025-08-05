@@ -2,7 +2,9 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -160,7 +162,6 @@ class CustomBottomNavBar extends StatelessWidget {
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -190,25 +191,35 @@ class CustomBottomNavBar extends StatelessWidget {
                         ],
                       ),
 
-                      Positioned(
-                        top: 1.h,
-                        right: 1.w,
-                        child: Container(
-                          // width: 10,
-                          // height: 10,
-                          padding: EdgeInsets.all(4.r),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.primaryColor,
-                          ),
-                          child: Text(
-                            "1",
-                            style: AppStyle.styleRegular12(context).copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
+                      BlocBuilder<GetCartCubit, GetCartState>(
+                        builder: (context, state) {
+                          if (state is GetCartSuccess) {
+                            return state.cartList.isEmpty
+                                ? Container()
+                                : Positioned(
+                                    top: 1.h,
+                                    right: 1.w,
+                                    child: Container(
+                                      // width: 10,
+                                      // height: 10,
+                                      padding: EdgeInsets.all(4.r),
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: AppColors.primaryColor,
+                                      ),
+                                      child: Text(
+                                        state.cartList.length.toString(),
+                                        style: AppStyle.styleRegular12(context)
+                                            .copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ),
+                                  );
+                          }
+                          return Container();
+                        },
                       ),
                     ],
                   ),

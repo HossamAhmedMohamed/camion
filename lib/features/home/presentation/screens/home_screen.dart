@@ -4,6 +4,8 @@ import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/data/repository/cart_repo.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
@@ -14,6 +16,8 @@ import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dar
 import 'package:camion/features/home/presentation/widgets/home_join_us_now.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_grid_view_building.dart';
 import 'package:camion/features/home/presentation/widgets/sliver_list_view_building.dart';
+import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +34,10 @@ class HomeScreen extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ProductsCubit(sl<HomeRepository>())),
         BlocProvider(create: (context) => StoriesCubit(sl<HomeRepository>())),
+        BlocProvider(create: (context) => AddCartCubit(sl<CartRepository>())),
+        BlocProvider(
+          create: (context) => AddToWishListCubit(sl<WishListRepository>()),
+        ),
         BlocProvider(create: (context) => ToggleListAndGridCubit()),
         BlocProvider(create: (context) => ToggleAddCartCubit()),
       ],

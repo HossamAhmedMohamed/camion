@@ -16,13 +16,16 @@ class ListViewItemBuilding extends StatefulWidget {
     required this.originalPrice,
 
     required this.sellCount,
+    required this.onAddToCartTap,
+    required this.onAddToWishListTap,
   });
 
   final String imageUrl;
   final String productName;
   final int originalPrice;
-
   final int sellCount;
+  final VoidCallback onAddToCartTap;
+  final VoidCallback onAddToWishListTap;
 
   @override
   State<ListViewItemBuilding> createState() => _ListViewItemBuildingState();
@@ -169,7 +172,9 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     ),
                   ),
                   SizedBox(width: 20.w),
-                  Image.asset(Assets.imagesSave, width: 25.w, height: 25.h),
+                  InkWell(
+                    onTap: widget.onAddToWishListTap,
+                    child: Image.asset(Assets.imagesSave, width: 25.w, height: 25.h)),
                 ],
               ),
 
@@ -245,7 +250,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: widget.onAddToCartTap,
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     backgroundColor: AppColors.primaryColor,

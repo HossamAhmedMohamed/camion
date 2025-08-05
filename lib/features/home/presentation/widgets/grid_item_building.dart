@@ -2,11 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/home/presentation/logic/cubit/toggle_add_cart_cubit/toggle_add_cart_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:skeletonizer/skeletonizer.dart';
 
 class GridItemBuilding extends StatelessWidget {
@@ -14,6 +11,7 @@ class GridItemBuilding extends StatelessWidget {
   final String productName;
   final int originalPrice;
   final int sellCount;
+  final VoidCallback onTap;
 
   const GridItemBuilding({
     super.key,
@@ -21,6 +19,7 @@ class GridItemBuilding extends StatelessWidget {
     required this.productName,
     required this.originalPrice,
     required this.sellCount,
+    required this.onTap,
   });
 
   @override
@@ -268,53 +267,45 @@ class GridItemBuilding extends StatelessWidget {
                       ],
                     ),
 
-                    BlocBuilder<ToggleAddCartCubit, ToggleAddCartState>(
-                      builder: (context, state) {
-                        return state.index == 0
-                            ? GestureDetector(
-                                onTap: () {
-                                  context
-                                      .read<ToggleAddCartCubit>()
-                                      .toggleAddCart(1);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 6.w,
-                                    vertical: 6.h,
-                                  ),
-                                  decoration: ShapeDecoration(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50.r),
-                                    ),
-                                    color: AppColors.primaryColor,
-                                  ),
+                    GestureDetector(
+                      onTap: onTap,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 6.w,
+                          vertical: 6.h,
+                        ),
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.r),
+                          ),
+                          color: AppColors.primaryColor,
+                        ),
 
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                    size: 22.sp,
-                                  ),
-                                ),
-                              )
-                            : GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  padding: EdgeInsets.all(10.r),
-                                  decoration: const ShapeDecoration(
-                                    shape: CircleBorder(),
-                                    color: AppColors.primaryColor,
-                                  ),
-
-                                  child: Text(
-                                    "1",
-                                    style: AppStyle.styleRegular14(
-                                      context,
-                                    ).copyWith(color: Colors.white),
-                                  ),
-                                ),
-                              );
-                      },
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 22.sp,
+                        ),
+                      ),
                     ),
+
+                    // : GestureDetector(
+                    //     onTap: () {},
+                    //     child: Container(
+                    //       padding: EdgeInsets.all(10.r),
+                    //       decoration: const ShapeDecoration(
+                    //         shape: CircleBorder(),
+                    //         color: AppColors.primaryColor,
+                    //       ),
+
+                    //       child: Text(
+                    //         "1",
+                    //         style: AppStyle.styleRegular14(
+                    //           context,
+                    //         ).copyWith(color: Colors.white),
+                    //       ),
+                    //     ),
+                    //   );
                   ],
                 ),
 

@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 
@@ -10,8 +11,8 @@ import 'package:flutter_svg/svg.dart';
 class ProductCartItem extends StatefulWidget {
   final String imageUrl;
   final String title;
-  final String description;
-  final double price;
+
+  final int price;
   final int initialQuantity;
   final VoidCallback? onDelete;
   final Function(int)? onQuantityChanged;
@@ -21,7 +22,7 @@ class ProductCartItem extends StatefulWidget {
     required this.imageUrl,
     required this.title,
     required this.price,
-    required this.description,
+
     this.initialQuantity = 1,
     this.onDelete,
     this.onQuantityChanged,
@@ -82,12 +83,9 @@ class _ProductCartItemState extends State<ProductCartItem> {
                   ),
                   color: AppColors.paleGray,
                 ),
-                child: Image.asset(
-                  widget.imageUrl,
-                  // width: screenWidth > 600 ? 120.w : 80.w,
-                  // height: screenWidth > 600 ? 120.h : 80.h,
-                  // fit: BoxFit.cover,
-                ),
+                child: CustomCachedNetworkImage(
+                  fit: BoxFit.fill,
+                  imageUrl: widget.imageUrl),
               ),
               SizedBox(width: 10.w),
 
@@ -107,27 +105,27 @@ class _ProductCartItemState extends State<ProductCartItem> {
 
                     SizedBox(height: 10.h),
 
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          width: 21.w,
-                          height: 21.h,
-                          Assets.imagesIconsIconamoonDeliveryLight,
-                        ),
-                        SizedBox(width: 5.w),
-                        Expanded(
-                          child: Text(
-                            widget.description,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: AppStyle.styleRegular14(context).copyWith(
-                              color: const Color(0xFF008000),
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     SvgPicture.asset(
+                    //       width: 21.w,
+                    //       height: 21.h,
+                    //       Assets.imagesIconsIconamoonDeliveryLight,
+                    //     ),
+                    //     SizedBox(width: 5.w),
+                    //     // Expanded(
+                    //     //   child: Text(
+                    //     //     widget.description,
+                    //     //     overflow: TextOverflow.ellipsis,
+                    //     //     maxLines: 2,
+                    //     //     style: AppStyle.styleRegular14(context).copyWith(
+                    //     //       color: const Color(0xFF008000),
+                    //     //       fontWeight: FontWeight.w400,
+                    //     //     ),
+                    //     //   ),
+                    //     // ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
