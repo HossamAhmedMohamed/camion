@@ -1,6 +1,10 @@
+import 'package:camion/core/cache/secure_cache_storage.dart';
+import 'package:camion/core/services/service_locator.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/list_view_item_skeletonizer.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +14,23 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class SliverListViewBuilding extends StatelessWidget {
   const SliverListViewBuilding({super.key});
+
+  getUserId() async {
+    final userId = await sl<SecureCacheHelper>().getData(key: 'id');
+
+    return userId;
+  }
+
+  getToken() async {
+    final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    return token;
+  }
+
+  Future<Map<String, String>> getUserData() async {
+    final token = await getToken();
+    final userId = await getUserId();
+    return {'token': token!, 'userId': userId!};
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +69,31 @@ class SliverListViewBuilding extends StatelessWidget {
                     originalPrice: product.price.price.toInt(),
                     sellCount: product.sellCount,
                     isGridView: false,
+                    onAddToCartTap: () async {
+                      final userData = await getUserData();
+                      context.read<AddCartCubit>().addToCart(
+                        token: userData['token']!,
+                        userId: userData['userId']!,
+                        productId: product.spuCode,
+                        title: product.productName,
+                        price: product.price.price.toInt(),
+                        image: product.picUrl,
+                        quantity: 1,
+                      );
+                    },
+                    onAddToWishListTap: () async {
+                      final userData = await getUserData();
+                      final token = userData['token'];
+                      final userId = userData['userId'];
+                      context.read<AddToWishListCubit>().addtoWishList(
+                        token: token!,
+                        userId: userId!,
+                        productId: product.spuCode,
+                        title: product.productName,
+                        price: product.price.price.toInt(),
+                        image: product.picUrl,
+                      );
+                    },
                   ),
                 ),
               );

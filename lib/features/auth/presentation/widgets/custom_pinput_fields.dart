@@ -1,4 +1,4 @@
-import 'dart:developer';
+ 
 
 import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
@@ -92,7 +92,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
         future: getUserData(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return Container();
           }
 
           final userData = snapshot.data!;

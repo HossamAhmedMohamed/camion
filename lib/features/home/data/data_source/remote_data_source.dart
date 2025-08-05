@@ -35,7 +35,7 @@ class HomeRemoteDataSource {
 
   Future<Response> getStories() async {
     final response = await apiConsumer.get(
-      "http://3.82.160.41:6000/${EndPoints.stories}",
+      "http://stories.camion-app.com:3001/${EndPoints.stories}",
       headers: {
         "Authorization":
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNDYzN2NhYS1iMTcxLTRiZWUtYWZiMC01ZDM2M2ZhYTFiOTQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicGhvbmUiOiIrMjAxMTE2MDY0MjkxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTM5NzUxMjQsImV4cCI6MTc1NDU3OTkyNH0.KfH4PmaNYk4H-G7HiNe9tZFV_bEwLxKDOQb3zaxSmoA",
@@ -46,7 +46,7 @@ class HomeRemoteDataSource {
 
   Future<Response> getStoryById({required String id}) async {
     final response = await apiConsumer.get(
-      "http://3.82.160.41:6000/${EndPoints.stories}/$id",
+      "http://stories.camion-app.com:3001/${EndPoints.stories}/$id",
       headers: {
         "Authorization":
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNDYzN2NhYS1iMTcxLTRiZWUtYWZiMC01ZDM2M2ZhYTFiOTQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwicGhvbmUiOiIrMjAxMTE2MDY0MjkxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NTM5NzUxMjQsImV4cCI6MTc1NDU3OTkyNH0.KfH4PmaNYk4H-G7HiNe9tZFV_bEwLxKDOQb3zaxSmoA",

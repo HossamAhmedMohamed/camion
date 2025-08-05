@@ -2,12 +2,14 @@ import 'package:camion/features/home/presentation/widgets/grid_item_building.dar
 import 'package:camion/features/home/presentation/widgets/list_view_item_building.dart';
 import 'package:flutter/material.dart';
 
-class ProductCarouselWidget extends StatefulWidget {
+class ProductCarouselWidget extends StatelessWidget {
   final String imageUrl;
   final String productName;
   final int originalPrice;
   final int sellCount;
   final bool isGridView;
+  final VoidCallback onAddToCartTap;
+  final VoidCallback onAddToWishListTap;
 
   const ProductCarouselWidget({
     super.key,
@@ -16,27 +18,27 @@ class ProductCarouselWidget extends StatefulWidget {
     required this.originalPrice,
     required this.sellCount,
     this.isGridView = true,
+    required this.onAddToCartTap,
+    required this.onAddToWishListTap,
   });
 
   @override
-  State<ProductCarouselWidget> createState() => _ProductCarouselWidgetState();
-}
-
-class _ProductCarouselWidgetState extends State<ProductCarouselWidget> {
-  @override
   Widget build(BuildContext context) {
-    return widget.isGridView
+    return isGridView
         ? GridItemBuilding(
-            imageUrl: widget.imageUrl ,
-            productName: widget.productName,
-            originalPrice: widget.originalPrice,
-            sellCount: widget.sellCount,
+            imageUrl: imageUrl,
+            productName: productName,
+            originalPrice: originalPrice,
+            sellCount: sellCount,
+            onTap: onAddToCartTap,
           )
         : ListViewItemBuilding(
-            imageUrl: widget.imageUrl,
-            productName: widget.productName,
-            originalPrice: widget.originalPrice,
-            sellCount: widget.sellCount,
+            imageUrl: imageUrl,
+            productName: productName,
+            originalPrice: originalPrice,
+            sellCount: sellCount,
+            onAddToCartTap: onAddToCartTap,
+            onAddToWishListTap: onAddToWishListTap,
           );
   }
 }
