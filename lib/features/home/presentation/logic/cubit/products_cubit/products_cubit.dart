@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
-import 'package:camion/features/home/data/models/product_model/product_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -254,7 +254,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
 
                   child: CustomElevatedButton(
                     height: 50.h,
-                    padding: 0,
+                    verticalPadding: 0,
                     child: Text(
                       "المتابعة للدفع",
                       style: AppStyle.styleRegular15(

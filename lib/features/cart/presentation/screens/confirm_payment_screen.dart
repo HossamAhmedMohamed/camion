@@ -234,7 +234,7 @@ class ConfirmPaymentScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 20.h),
                 child: CustomElevatedButton(
-                  padding: 4.h,
+                  verticalPadding: 4.h,
                   height: 60.h,
                   child: Text(
                     "تأكيد الدفع",

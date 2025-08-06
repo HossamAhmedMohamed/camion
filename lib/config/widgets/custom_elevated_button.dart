@@ -1,4 +1,3 @@
- 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,7 +7,8 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final Color? borderColor;
-  final double? padding;
+  final double? verticalPadding;
+  final double? horizontalPadding;
   final Widget? widget;
   final double? elevation;
   final double? height;
@@ -19,7 +19,8 @@ class CustomElevatedButton extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.borderColor,
-    this.padding,
+    this.verticalPadding,
+    this.horizontalPadding,
     this.widget,
     this.elevation,
     this.height,
@@ -34,7 +35,10 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor ?? const Color(0xFFB92123),
-          padding: EdgeInsets.symmetric(vertical: padding ?? 16.h),
+          padding: EdgeInsets.symmetric(
+            vertical: verticalPadding ?? 16.h,
+            horizontal: horizontalPadding ?? 0,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
           ),

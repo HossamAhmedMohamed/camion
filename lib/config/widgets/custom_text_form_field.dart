@@ -18,6 +18,8 @@ class CustomTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final bool? autoFocus;
   final OutlineInputBorder? focusedBorder;
+  final bool? enabled;
+  final String? initialValue;
 
   const CustomTextFormField({
     super.key,
@@ -35,11 +37,17 @@ class CustomTextFormField extends StatelessWidget {
     this.onTap,
     this.autoFocus,
     this.focusedBorder,
+    this.enabled,
+    this.initialValue,
+  
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
+      
+      enabled: enabled,
       autofocus: autoFocus ?? false,
       onChanged: onChanged,
       style: AppStyle.styleRegular15(context).copyWith(color: AppColors.black),
@@ -62,10 +70,12 @@ class CustomTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
           borderSide: BorderSide(color: Colors.grey.shade300, width: 1.w),
         ),
-        focusedBorder: focusedBorder ?? OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.r),
-          borderSide: BorderSide(color: AppColors.primaryColor, width: 2.w),
-        ),
+        focusedBorder:
+            focusedBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(color: AppColors.primaryColor, width: 2.w),
+            ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.r),
           borderSide: BorderSide(color: Colors.red, width: 1.w),

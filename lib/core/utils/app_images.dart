@@ -142,6 +142,10 @@ class Assets {
   /// assets/images/home_category.png
   static const String imagesHomeCategory = "assets/images/home_category.png";
 
+  /// Assets for imagesIconsActiveEditInfo
+  /// assets/images/icons/active_edit_info.svg
+  static const String imagesIconsActiveEditInfo = "assets/images/icons/active_edit_info.svg";
+
   /// Assets for imagesIconsActiveFavouriteNewIconNavbar
   /// assets/images/icons/active_favourite_new_icon_navbar.svg
   static const String imagesIconsActiveFavouriteNewIconNavbar = "assets/images/icons/active_favourite_new_icon_navbar.svg";
@@ -161,6 +165,14 @@ class Assets {
   /// Assets for imagesIconsBlackfridayNotPixel
   /// assets/images/icons/blackfriday_not_pixel.png
   static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
+
+  /// Assets for imagesIconsEditInfo
+  /// assets/images/icons/edit_info.svg
+  static const String imagesIconsEditInfo = "assets/images/icons/edit_info.svg";
+
+  /// Assets for imagesIconsHelp
+  /// assets/images/icons/help.svg
+  static const String imagesIconsHelp = "assets/images/icons/help.svg";
 
   /// Assets for imagesIconsIconamoonDeliveryLight
   /// assets/images/icons/iconamoon_delivery-light.svg
@@ -182,9 +194,17 @@ class Assets {
   /// assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg
   static const String imagesIconsInactiveShoppingCartIconNewNavbar = "assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg";
 
+  /// Assets for imagesIconsLogosMastercard
+  /// assets/images/icons/logos_mastercard.svg
+  static const String imagesIconsLogosMastercard = "assets/images/icons/logos_mastercard.svg";
+
   /// Assets for imagesIconsSavedCompleteNewIcon
   /// assets/images/icons/saved_complete_new_icon.svg
   static const String imagesIconsSavedCompleteNewIcon = "assets/images/icons/saved_complete_new_icon.svg";
+
+  /// Assets for imagesIconsStarProfile
+  /// assets/images/icons/star_profile.svg
+  static const String imagesIconsStarProfile = "assets/images/icons/star_profile.svg";
 
   /// Assets for imagesIconsStoriesWatch
   /// assets/images/icons/stories_watch.png
@@ -241,6 +261,10 @@ class Assets {
   /// Assets for imagesJoinUs
   /// assets/images/join_us.png
   static const String imagesJoinUs = "assets/images/join_us.png";
+
+  /// Assets for imagesJoinUsPhoto
+  /// assets/images/join_us_photo.png
+  static const String imagesJoinUsPhoto = "assets/images/join_us_photo.png";
 
   /// Assets for imagesKithcen
   /// assets/images/kithcen.png

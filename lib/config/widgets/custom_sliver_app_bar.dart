@@ -19,6 +19,7 @@ class CustomSliverAppBar extends StatelessWidget {
     this.onSearchTap,
     this.flexibleSpace,
     this.appBarHeight,
+    this.actions,
   });
 
   final Widget title;
@@ -32,6 +33,7 @@ class CustomSliverAppBar extends StatelessWidget {
   final VoidCallback? onSearchTap;
   final Widget? flexibleSpace;
   final double? appBarHeight;
+  final List<Widget>? actions;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -51,8 +53,8 @@ class CustomSliverAppBar extends StatelessWidget {
       title: title,
       centerTitle: true,
 
-      actions: isShownActions == null
-          ? [
+      actions: actions ??
+           [
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -75,7 +77,6 @@ class CustomSliverAppBar extends StatelessWidget {
                   //     : Container(),
 
                   // SizedBox(width: 16.w),
-
                   GestureDetector(
                     onTap: () {
                       final currentRoute = GoRouterState.of(
@@ -93,8 +94,8 @@ class CustomSliverAppBar extends StatelessWidget {
                   ),
                 ],
               ),
-            ]
-          : [],
+            ],
+         
 
       flexibleSpace: flexibleSpace,
 

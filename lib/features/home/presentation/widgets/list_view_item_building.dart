@@ -35,11 +35,12 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 400.h,
+          height: screenWidth > 800 ? 500.h : 400.h,
           width: double.infinity,
           decoration: BoxDecoration(
             color: const Color(0xFFF5F5F5),
@@ -55,19 +56,16 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
                       image: imageProvider,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 placeholder: (context, url) => Skeletonizer(
                   enabled: true,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Image.asset(Assets.imagesShoes, fit: BoxFit.cover),
-                  ),
+                  child: SizedBox(
+                    height: 400,
+                    width: double.infinity,
+                    child: Image.asset(Assets.imagesShoes, fit: BoxFit.fill)),
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),

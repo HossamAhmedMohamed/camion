@@ -47,9 +47,10 @@ class HomeRepository {
 
   Future<Either<ApiErrorModel, AllProductModel>> getProductById({
     required String id,
+    required String token,
   }) async {
     try {
-      final response = await remoteDataSource.getProductById(id: id);
+      final response = await remoteDataSource.getProductById(id: id , token: token);
       return Right(AllProductModel.fromJson(response.data));
     } catch (e) {
       log(e.toString());

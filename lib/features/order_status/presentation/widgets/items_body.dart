@@ -44,21 +44,21 @@ class ItemsBody extends StatelessWidget {
           Row(
             children: [
               Text(
-                "اجمالي:",
+                "تم الطلب في 15/3/2023",
                 style: AppStyle.styleRegular14(context).copyWith(
                   color: AppColors.black,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(width: 5.w),
+              // SizedBox(width: 5.w),
     
-              Text(
-                "$totalPrice",
-                style: AppStyle.styleRegular18(context).copyWith(
-                  color: AppColors.primaryColor,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              // Text(
+              //   "$totalPrice",
+              //   style: AppStyle.styleRegular18(context).copyWith(
+              //     color: AppColors.primaryColor,
+              //     fontWeight: FontWeight.w600,
+              //   ),
+              // ),
             ],
           ),
         ],

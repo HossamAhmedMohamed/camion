@@ -1,4 +1,5 @@
 import 'package:camion/config/widgets/custom_elevated_button.dart';
+import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
 import 'package:camion/routing/app_router.dart';
@@ -20,25 +21,30 @@ class WelcomeScreen extends StatelessWidget {
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 30.w,
-                vertical: MediaQuery.sizeOf(context).width * 0.3,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    width: 230.w,
+                    height: 250.h,
+                    Assets.imagesJoinUsPhoto,
+                  ),
+
+                  SizedBox(
+                    height: 40.h,
+                  ),
                   FittedBox(
                     child: Text(
                       "يشرفنا انضمامك لفريق مسوقينا",
-                      style: AppStyle.styleRegular14(context).copyWith(
+                      style: AppStyle.styleRegular16(context).copyWith(
                         color: Colors.black,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 26.h),
 
                   Text(
                     "نقدم نظام تسويق بالعمولة بسيط وفعّال، يعتمد على أكواد خاصة يحصل عليها كل مسوّق، بحيث يقدر يشاركها مع جمهوره ويكسب عمولة على كل عملية بيع تتم باستخدام الكود. العمولة بيتم تحويلها مباشرة إلى المحفظة بدون أي وسيط أو تأخير، لضمان سرعة وسهولة التحصيل. بنوفر مجموعة متنوعة من المنتجات في مجالات مختلفة، علشان كل مسوّق يلاقي اللي يناسب جمهوره ويحقق أعلى نسبة مبيعات. هدفنا إننا نساعدك تكسب دخل مستمر من خلال مجهود بسيط وتسويق ذكي.",

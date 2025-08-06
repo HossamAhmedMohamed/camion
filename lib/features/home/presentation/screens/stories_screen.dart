@@ -412,9 +412,9 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   ) {
     return CachedNetworkImage(
       width: screenWidth,
-      height: screenHeight / 2,
+      height: screenHeight*0.7,
       imageUrl: story.mediaUrl,
-      fit: BoxFit.fill,
+      // fit: BoxFit.fill,
       placeholder: (context, url) => Skeletonizer(
         enabled: true,
         child: Container(
