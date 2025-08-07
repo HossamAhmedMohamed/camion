@@ -13,7 +13,8 @@ class AppRouter {
   static const String notificationScreen = '/notificationScreen';
   static const String searchFilter = '/searchFilter';
   static const String joinUs = '/joinUs';
-  static const String selectSocialMediaOfSupplierScreen = '/selectSocialMediaOfSupplierScreen';
+  static const String selectSocialMediaOfSupplierScreen =
+      '/selectSocialMediaOfSupplierScreen';
   static const String selectCoutriesOfSupplier = '/selectCoutriesOfSupplier';
   static const String supplierWelcome = '/supplierWelcome';
   static const String supplierAccount = '/supplierAccount';
@@ -27,8 +28,8 @@ class AppRouter {
   static const String orderDetails = '/orderDetails';
   static const String myInfo = '/myInfo';
   static const String editInfo = '/editInfo';
-
- 
- 
-  
+  static const String settings = '/settings';
+  static const String changeLanuage = '/changeLanuage';
+  static const String accountSettings = '/accountSettings';
+  static const String help = '/help';
 }

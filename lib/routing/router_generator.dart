@@ -47,6 +47,7 @@ import 'package:camion/features/profile/presentation/screens/edit_profile_screen
 import 'package:camion/features/profile/presentation/screens/my_info.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
+import 'package:camion/features/profile/presentation/screens/settings_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
 import 'package:camion/main_production.dart';
@@ -57,8 +58,8 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: isLoggedInUser ? AppRouter.selectingFromBottomNavBar : AppRouter.login,
-    // initialLocation: AppRouter.selectingFromBottomNavBar,
+    // initialLocation: isLoggedInUser ? AppRouter.selectingFromBottomNavBar : AppRouter.login,
+    initialLocation: AppRouter.settings,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -317,6 +318,12 @@ class RouterGenerator {
         name: AppRouter.editInfo,
         path: AppRouter.editInfo,
         builder: (context, state) => const EditInfoScreen(),
+      ),
+
+        GoRoute(
+        name: AppRouter.settings,
+        path: AppRouter.settings,
+        builder: (context, state) => const SettingsScreen(),
       ),
     ],
   );
