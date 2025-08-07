@@ -7,6 +7,8 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
+import 'package:camion/features/home/presentation/logic/cubit/get_categories_cubit/get_categories_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/product_by_category_cubit/product_by_category_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_add_cart_cubit/toggle_add_cart_cubit.dart';
@@ -38,6 +40,11 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => AddToWishListCubit(sl<WishListRepository>()),
         ),
+
+        BlocProvider(
+          create: (context) => GetCategoriesCubit(sl<HomeRepository>()),
+        ),
+
         BlocProvider(create: (context) => ToggleListAndGridCubit()),
         BlocProvider(create: (context) => ToggleAddCartCubit()),
       ],
@@ -62,6 +69,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
   void initState() {
     context.read<ProductsCubit>().getProducts();
     context.read<StoriesCubit>().getStories();
+    context.read<GetCategoriesCubit>().getCategories();
     super.initState();
   }
 
@@ -74,6 +82,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
       onRefresh: () async {
         context.read<ProductsCubit>().getProducts();
         context.read<StoriesCubit>().getStories();
+        context.read<GetCategoriesCubit>().getCategories();
       },
       child: CustomScrollView(
         slivers: [

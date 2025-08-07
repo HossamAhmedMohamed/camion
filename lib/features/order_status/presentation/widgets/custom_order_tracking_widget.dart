@@ -21,7 +21,7 @@ class OrderSuccessPage extends StatelessWidget {
 
   final String image;
   final String title;
-  final int totalPrice;
+  final String totalPrice;
   final int quantity;
   final DateTime date;
   @override

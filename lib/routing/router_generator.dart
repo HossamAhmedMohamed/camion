@@ -18,6 +18,7 @@ import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/data/models/categories_model.dart';
+import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
@@ -26,6 +27,7 @@ import 'package:camion/features/home/presentation/logic/cubit/toggle_add_cart_cu
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/screens/all_categories_screen.dart';
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
+import 'package:camion/features/home/presentation/screens/products_by_category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/features/home/presentation/screens/stories_screen.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_cubit.dart';
@@ -43,7 +45,11 @@ import 'package:camion/features/order_status/presentation/logic/cubit/create_ord
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/screens/my_orders.dart';
 import 'package:camion/features/order_status/presentation/screens/order_details.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit.dart';
+import 'package:camion/features/profile/presentation/screens/account_settings_screen.dart';
+import 'package:camion/features/profile/presentation/screens/change_language_screen.dart';
 import 'package:camion/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:camion/features/profile/presentation/screens/help_screen.dart';
 import 'package:camion/features/profile/presentation/screens/my_info.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
@@ -59,7 +65,7 @@ import 'package:go_router/go_router.dart';
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
     // initialLocation: isLoggedInUser ? AppRouter.selectingFromBottomNavBar : AppRouter.login,
-    initialLocation: AppRouter.settings,
+    initialLocation: AppRouter.selectingFromBottomNavBar,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -285,7 +291,7 @@ class RouterGenerator {
         name: AppRouter.allCategoriesScreen,
         path: AppRouter.allCategoriesScreen,
         builder: (context, state) {
-          final extra = state.extra as List<CategoriesModel>;
+          final extra = state.extra as List<GeTCategoriesModel>;
           return AllCategoriesScreen(categories: extra);
         },
       ),
@@ -297,8 +303,6 @@ class RouterGenerator {
           create: (context) => ToggleNavBarCubit(),
           child: const MyOrdersScreen(),
         ),
-
-        
       ),
 
       GoRoute(
@@ -313,17 +317,47 @@ class RouterGenerator {
         builder: (context, state) => const MyInfoScreen(),
       ),
 
-      
       GoRoute(
         name: AppRouter.editInfo,
         path: AppRouter.editInfo,
         builder: (context, state) => const EditInfoScreen(),
       ),
 
-        GoRoute(
+      GoRoute(
         name: AppRouter.settings,
         path: AppRouter.settings,
         builder: (context, state) => const SettingsScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.changeLanuage,
+        path: AppRouter.changeLanuage,
+        builder: (context, state) => const ChangeLanguageScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.accountSettings,
+        path: AppRouter.accountSettings,
+        builder: (context, state) => BlocProvider(
+          create: (context) => LogOutCubit(),
+          child: const AccountSettingsScreen(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.help,
+        path: AppRouter.help,
+        builder: (context, state) => const HelpScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.productByCategory,
+        path: AppRouter.productByCategory,
+        builder: (context, state) {
+          final extra = state.extra as String;
+           return ProductsByCategoryScreen(
+          slug: extra ,
+        );},
       ),
     ],
   );

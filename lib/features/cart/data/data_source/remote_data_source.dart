@@ -8,10 +8,10 @@ class CartRemoteDataSource {
 
   Future<Response> addToCart({
     required String token,
-    required String userId,
+
     required String productId,
     required String title,
-    required int price,
+    required String price,
     required String image,
     required int quantity,
   }) async {
@@ -19,7 +19,6 @@ class CartRemoteDataSource {
       "http://api-gateway.camion-app.com/cart/add",
       headers: {"Authorization": "Bearer $token"},
       data: {
-        "userId": userId,
         "productId": productId,
         "title": title,
         "price": price,
@@ -30,14 +29,10 @@ class CartRemoteDataSource {
     return response;
   }
 
-  Future<Response> getCart({
-    required String token,
-    required String userId,
-  }) async {
-    final response = await apiConsumer.post(
+  Future<Response> getCart({required String token}) async {
+    final response = await apiConsumer.get(
       "http://api-gateway.camion-app.com/cart/get",
       headers: {"Authorization": "Bearer $token"},
-      data: {"userId": userId},
     );
     return response;
   }

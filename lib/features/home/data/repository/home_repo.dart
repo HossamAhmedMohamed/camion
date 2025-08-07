@@ -4,6 +4,7 @@ import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
 import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
+import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -19,10 +20,9 @@ class HomeRepository {
       List<AllProductModel> products = [];
 
       for (var product in response.data["products"]) {
-
         products.add(AllProductModel.fromJson(product));
       }
- 
+
       return Right(products);
     } catch (e) {
       log(e.toString());
@@ -50,7 +50,10 @@ class HomeRepository {
     required String token,
   }) async {
     try {
-      final response = await remoteDataSource.getProductById(id: id , token: token);
+      final response = await remoteDataSource.getProductById(
+        id: id,
+        token: token,
+      );
       return Right(AllProductModel.fromJson(response.data));
     } catch (e) {
       log(e.toString());
@@ -77,6 +80,38 @@ class HomeRepository {
       final response = await remoteDataSource.getStoryById(id: id);
       return Right(StoriesModel.fromJson(response.data));
     } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, List<GeTCategoriesModel>>>
+  getCategories() async {
+    try {
+      final response = await remoteDataSource.getCategories();
+      final categories = (response.data as List)
+          .map((category) => GeTCategoriesModel.fromJson(category))
+          .toList();
+      return Right(categories);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, List<AllProductModel>>> getProductsByCategory({
+    required String slug,
+  }) async {
+    try {
+      final response = await remoteDataSource.getProductsByCategory(slug: slug);
+
+      List<AllProductModel> products = [];
+
+      for (var product in response.data["products"]) {
+        products.add(AllProductModel.fromJson(product));
+      }
+
+      return Right(products);
+    } catch (e) {
+      log(e.toString());
       return left(ApiErrorHandler.handle(e));
     }
   }

@@ -12,17 +12,17 @@ class CartRepository {
 
   Future<Either<ApiErrorModel, dynamic>> addToCart({
     required String token,
-    required String userId,
+
     required String productId,
     required String title,
-    required int price,
+    required String price,
     required String image,
     required int quantity,
   }) async {
     try {
       final response = await cartRemoteDataSource.addToCart(
         token: token,
-        userId: userId,
+
         productId: productId,
         title: title,
         price: price,
@@ -37,17 +37,13 @@ class CartRepository {
 
   Future<Either<ApiErrorModel, List<GetCartModel>>> getCart({
     required String token,
-    required String userId,
   }) async {
     try {
-      final response = await cartRemoteDataSource.getCart(
-        token: token,
-        userId: userId,
-      );
+      final response = await cartRemoteDataSource.getCart(token: token);
       final List<GetCartModel> cart = (response.data as List)
           .map((cart) => GetCartModel.fromJson(cart))
           .toList();
-          log(cart.toString());
+      log(cart.toString());
       return Right(cart);
     } catch (e) {
       log(e.toString());

@@ -1,7 +1,7 @@
 
 
 class Prices {
-  final double price;
+  final String price;
   final String regularPrice;
   final String salePrice;
 
@@ -29,7 +29,7 @@ class Prices {
 
   factory Prices.fromJson(Map<String, dynamic> json) {
     return Prices(
-      price: double.parse(json['price'].toString()),
+      price:  json['price'],
       regularPrice: json['regular_price'],
       salePrice: json['sale_price'],
 

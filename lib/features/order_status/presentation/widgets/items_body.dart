@@ -13,7 +13,7 @@ class ItemsBody extends StatelessWidget {
 
   final String title;
   final int quantity;
-  final int totalPrice;
+  final String totalPrice;
 
   @override
   Widget build(BuildContext context) {

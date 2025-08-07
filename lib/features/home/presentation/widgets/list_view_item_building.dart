@@ -181,14 +181,14 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
               Row(
                 children: [
                   Text(
-                    '${1500}',
+                    widget.originalPrice,
                     style: AppStyle.styleBold20(
                       context,
                     ).copyWith(color: AppColors.primaryColor),
                   ),
                   SizedBox(width: 8.w),
                   Text(
-                    widget.originalPrice,
+                   '\$1500',
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,
                       decoration: TextDecoration.lineThrough,

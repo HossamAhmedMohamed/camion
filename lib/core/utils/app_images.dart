@@ -166,6 +166,10 @@ class Assets {
   /// assets/images/icons/blackfriday_not_pixel.png
   static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
 
+  /// Assets for imagesIconsCustomerService
+  /// assets/images/icons/customer_service.svg
+  static const String imagesIconsCustomerService = "assets/images/icons/customer_service.svg";
+
   /// Assets for imagesIconsEditInfo
   /// assets/images/icons/edit_info.svg
   static const String imagesIconsEditInfo = "assets/images/icons/edit_info.svg";
@@ -197,6 +201,10 @@ class Assets {
   /// Assets for imagesIconsLogosMastercard
   /// assets/images/icons/logos_mastercard.svg
   static const String imagesIconsLogosMastercard = "assets/images/icons/logos_mastercard.svg";
+
+  /// Assets for imagesIconsPrivacyReturn
+  /// assets/images/icons/privacy_return.svg
+  static const String imagesIconsPrivacyReturn = "assets/images/icons/privacy_return.svg";
 
   /// Assets for imagesIconsSavedCompleteNewIcon
   /// assets/images/icons/saved_complete_new_icon.svg

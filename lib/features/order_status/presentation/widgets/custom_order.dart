@@ -75,7 +75,7 @@ class CustomOrder extends StatelessWidget {
               const ItemsBody(
                 title: "رقم الطلب :548964132",
                 quantity: 4,
-                totalPrice: 120,
+                totalPrice: "120",
               ),
 
               Row(

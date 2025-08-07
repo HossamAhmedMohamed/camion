@@ -1,10 +1,10 @@
- 
-
+import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/home/data/models/categories_model.dart';
+import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/presentation/widgets/search_bar.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 class AllCategoriesScreen extends StatelessWidget {
   const AllCategoriesScreen({super.key, required this.categories});
 
-  final List<CategoriesModel> categories;
+  final List<GeTCategoriesModel> categories;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -78,34 +78,35 @@ class AllCategoriesScreen extends StatelessWidget {
                 //     (availableWidth - (spacing * (itemsPerRow - 1))) /
                 //     itemsPerRow;
 
-                return Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: spacing,
-                  runSpacing: 25.h,
-                  children: List.generate(categories.length, (index) {
-                    return GestureDetector(
-                      onTap: categories[index].onTap,
-                      child: Container(
-                        height: screenWidth > 800 ? 120.h : 80.h,
-                        width: screenWidth > 800 ? 120.w : 80.w,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(categories[index].image!),
-
-                            fit: BoxFit.fill,
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Wrap(
+                    alignment: WrapAlignment.start,
+                    spacing: spacing,
+                    runSpacing: 25.h,
+                    children: List.generate(categories.length, (index) {
+                      return GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(
+                            AppRouter.productByCategory,
+                            extra: categories[index].slug,
+                          );
+                        },
+                        // onTap: categories[index].,
+                        child: Container(
+                          margin: EdgeInsets.only(right: index == 0 ? 0 : 10.w),
+                          child: SizedBox(
+                            height: screenWidth > 800 ? 120.h : 60.h,
+                            width: screenWidth > 800 ? 120.w : 60.w,
+                            child: CustomCachedNetworkImage(
+                              fit: BoxFit.contain,
+                              imageUrl: categories[index].image!.thumbnail,
+                            ),
                           ),
                         ),
-                        child: Center(
-                          child: Text(
-                            categories[index].title,
-                            style: AppStyle.styleRegular14(
-                              context,
-                            ).copyWith(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+                  ),
                 );
               },
             ),

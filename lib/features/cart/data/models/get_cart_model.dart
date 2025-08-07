@@ -5,7 +5,7 @@ class GetCartModel {
 	int? quantity;
 	String? title;
 	String? image;
-	int? price;
+	String? price;
 	dynamic couponCode;
 	int? discountPercentage;
 	DateTime? createdAt;
@@ -32,7 +32,7 @@ class GetCartModel {
 				quantity: json['quantity'] as int?,
 				title: json['title'] as String?,
 				image: json['image'] as String?,
-				price: json['price'] as int?,
+				price: json['price'] ,
 				couponCode: json['couponCode'] as dynamic,
 				discountPercentage: json['discountPercentage'] as int?,
 				createdAt: json['createdAt'] == null

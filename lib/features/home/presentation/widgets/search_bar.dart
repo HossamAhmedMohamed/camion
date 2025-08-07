@@ -12,7 +12,6 @@ class SearchBarHome extends StatelessWidget {
     super.key,
     this.searchController,
     this.onChanged,
-
     this.readOnly,
     this.onTap,
   });

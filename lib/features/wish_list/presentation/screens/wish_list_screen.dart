@@ -78,6 +78,7 @@ class _WishListScreenBodyState extends State<WishListScreenBody> {
           isShownDivider: true,
           isShoppingCartShown: false,
           isShownActions: false,
+          actions: const [],
         ),
 
         SliverToBoxAdapter(child: SizedBox(height: 25.h)),
