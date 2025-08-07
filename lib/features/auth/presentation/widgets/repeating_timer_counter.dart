@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RepeatingTimer extends StatefulWidget {
-  const RepeatingTimer({super.key, required this.email, required this.phoneNumber, required this.code});
+  const RepeatingTimer({super.key, required this.code});
 
-  final String email;
-  final String phoneNumber;
   final String code;
   @override
   State<RepeatingTimer> createState() => _RepeatingTimerState();
@@ -35,11 +33,7 @@ class _RepeatingTimerState extends State<RepeatingTimer> {
         } else {
           // Reset and restart
           remainingSeconds = initialTimeInSeconds;
-          context.read<VerifyCubit>().verify(
-            email: widget.email,
-            phoneNumber: widget.phoneNumber,
-            code: widget.code,
-          );
+          context.read<VerifyCubit>().verify(code: widget.code);
         }
       });
     });

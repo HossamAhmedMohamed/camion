@@ -165,14 +165,14 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                               ).push(AppRouter.storiesView, extra: extra);
                             },
                             child: Container(
-                              padding: EdgeInsets.all(5.r),
+                              padding: EdgeInsets.all(4.r),
                               height: 50.h,
                               width: 52.w,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: BoxBorder.all(
                                   color: AppColors.primaryColor,
-                                  width: 2.w,
+                                  width: 2.5.w,
                                 ),
                               ),
 
@@ -182,7 +182,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                                     height: 45.h,
                                     width: 45.w,
                                     imageUrl: state.storiesList[index].mediaUrl,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.fill,
                                     placeholder: (context, url) => Skeletonizer(
                                       enabled: true,
                                       child: Container(

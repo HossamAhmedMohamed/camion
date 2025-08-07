@@ -18,6 +18,8 @@ class ProfileSliverAppBar extends StatelessWidget {
       leading: leading,
       isShoppingCartShown: isShoppingCartShown,
       isShownDivider: true,
+      isShownActions: false,
+      actions: [],
     );
   }
 }

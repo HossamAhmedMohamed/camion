@@ -23,7 +23,7 @@ class ListViewItemBuildingSkeleton extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              // صورة ثابتة مؤقتة من الأصول
+               
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.r),
                 child: Image.asset(

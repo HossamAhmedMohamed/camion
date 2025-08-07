@@ -50,6 +50,10 @@ class SliverGridViewBuilding extends StatelessWidget {
           return SliverToBoxAdapter(child: Container());
         }
 
+        if (!asyncSnapshot.hasData) {
+          return SliverToBoxAdapter(child: Container());
+        }
+
         final userData = asyncSnapshot.data!;
         final token = userData['token'];
         final userId = userData['userId'];

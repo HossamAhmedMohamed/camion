@@ -11,15 +11,15 @@ class VerifyCubit extends Cubit<VerifyState> {
   VerifyCubit(this.authRepository) : super(VerifyInitial());
   final AuthRepository authRepository;
 
-  Future<void> verify({
-    required String email,
-    required String phoneNumber,
-    required String code,
-  }) async {
+  Future<void> verify({required String code}) async {
+    final email = await sl<SecureCacheHelper>().getData(key: 'email');
+    final phoneNumber = await sl<SecureCacheHelper>().getData(
+      key: 'phoneNumber',
+    );
     emit(VerifyLoading());
     final result = await authRepository.verify(
-      email: email,
-      phoneNumber: phoneNumber,
+      email: email!,
+      phoneNumber: phoneNumber!,
       code: code,
     );
     result.fold((l) => emit(VerifyError(error: l)), (r) async {

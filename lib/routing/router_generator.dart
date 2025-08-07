@@ -40,7 +40,13 @@ import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart
 import 'package:camion/features/notifications/presentation/notifications_screen.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
+import 'package:camion/features/order_status/presentation/screens/my_orders.dart';
+import 'package:camion/features/order_status/presentation/screens/order_details.dart';
+import 'package:camion/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:camion/features/profile/presentation/screens/my_info.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
+import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
 import 'package:camion/main_production.dart';
@@ -51,9 +57,8 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    initialLocation: isLoggedInUser
-        ? AppRouter.selectingFromBottomNavBar
-        : AppRouter.login,
+    initialLocation: isLoggedInUser ? AppRouter.selectingFromBottomNavBar : AppRouter.login,
+    // initialLocation: AppRouter.selectingFromBottomNavBar,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -89,6 +94,12 @@ class RouterGenerator {
           create: (context) => VerifyCubit(sl<AuthRepository>()),
           child: const ConfirmPhoneNumberScreen(),
         ),
+      ),
+
+      GoRoute(
+        name: AppRouter.profileScreen,
+        path: AppRouter.profileScreen,
+        builder: (context, state) => const ProfileScreen(),
       ),
 
       GoRoute(
@@ -128,7 +139,9 @@ class RouterGenerator {
               ),
               BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
 
-              BlocProvider(create: (context) => AddCartCubit(sl<CartRepository>())),
+              BlocProvider(
+                create: (context) => AddCartCubit(sl<CartRepository>()),
+              ),
             ],
             child: ProductDetails(productId: extra),
           );
@@ -274,6 +287,36 @@ class RouterGenerator {
           final extra = state.extra as List<CategoriesModel>;
           return AllCategoriesScreen(categories: extra);
         },
+      ),
+
+      GoRoute(
+        name: AppRouter.myOrders,
+        path: AppRouter.myOrders,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ToggleNavBarCubit(),
+          child: const MyOrdersScreen(),
+        ),
+
+        
+      ),
+
+      GoRoute(
+        name: AppRouter.orderDetails,
+        path: AppRouter.orderDetails,
+        builder: (context, state) => const OrderDetailsScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.myInfo,
+        path: AppRouter.myInfo,
+        builder: (context, state) => const MyInfoScreen(),
+      ),
+
+      
+      GoRoute(
+        name: AppRouter.editInfo,
+        path: AppRouter.editInfo,
+        builder: (context, state) => const EditInfoScreen(),
       ),
     ],
   );
