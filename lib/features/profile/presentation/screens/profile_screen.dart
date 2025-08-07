@@ -1,10 +1,5 @@
-import 'dart:developer';
-
-import 'package:camion/config/widgets/custom_text_form_field.dart';
-import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/auth/presentation/widgets/all_contries_and_language_list.dart';
 import 'package:camion/features/profile/data/models/profile_model.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_sliver_app_bar.dart';
 import 'package:camion/routing/app_router.dart';
@@ -21,111 +16,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final TextEditingController _languageController = TextEditingController();
-  void _showCountryPicker() async {
-    final selectedLanguage = await showModalBottomSheet<String>(
-      useSafeArea: true,
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-      ),
-      builder: (context) {
-        TextEditingController localSearchController = TextEditingController();
-
-        List<String> localFilteredLanguages = List.from(popularLanguages);
-
-        return StatefulBuilder(
-          builder: (context, setModalState) {
-            void filterLocal(String query) {
-              setModalState(() {
-                if (query.isEmpty) {
-                  localFilteredLanguages = List.from(popularLanguages);
-                } else {
-                  final searchQuery = query.trim();
-                  localFilteredLanguages = popularLanguages.where((language) {
-                    final cleanLanguage = language.trim();
-                    final cleanQuery = searchQuery;
-
-                    return cleanLanguage.contains(cleanQuery) ||
-                        cleanLanguage.toLowerCase().contains(
-                          cleanQuery.toLowerCase(),
-                        );
-                  }).toList();
-                }
-              });
-            }
-
-            localSearchController.addListener(() {
-              final value = localSearchController.text;
-
-              filterLocal(value);
-            });
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // SizedBox(height: 200.h),
-                Padding(
-                  padding: EdgeInsets.all(12.r),
-                  child: CustomTextFormField(
-                    fieldColor: AppColors.primaryColor,
-                    hintText: "ما هي لغتك",
-                    controller: localSearchController,
-
-                    prefixIcon: Icon(Icons.search, size: 24.sp),
-                  ),
-                ),
-                Expanded(
-                  child: localFilteredLanguages.isEmpty
-                      ? Center(
-                          child: Text(
-                            'لا توجد نتائج',
-                            style: AppStyle.styleSemiBold18(context),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: localFilteredLanguages.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(
-                                localFilteredLanguages[index],
-                                textAlign: TextAlign.left,
-                              ),
-                              onTap: () {
-                                GoRouter.of(
-                                  context,
-                                ).pop(localFilteredLanguages[index]);
-                              },
-                            );
-                          },
-                        ),
-                ),
-              ],
-            );
-          },
-        );
-      },
-    );
-
-    if (selectedLanguage != null) {
-      setState(() {
-        _languageController.text = selectedLanguage;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    log("ProfileScreen build");
     List<ProfileModel> profileList = [
-      // ProfileModel(
-      //   onTap: () {
-      //     _showCountryPicker();
-      //   },
-      //   title: 'تغيير اللغة',
-      //   image: Assets.imagesGlobal,
-      // ),
       ProfileModel(
         onTap: () {
           GoRouter.of(context).push(AppRouter.myInfo);
@@ -135,7 +28,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
 
       ProfileModel(
-        onTap: () {},
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.myWallet);
+        },
         title: 'محفوظاتي',
         image: Assets.imagesArchiveProfile,
       ),
@@ -157,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // ),
       ProfileModel(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.myWallet);
+          GoRouter.of(context).push(AppRouter.settings);
         },
         title: 'الاعدادات',
         image: Assets.imagesProfileSettings,
@@ -170,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // ),
       ProfileModel(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.myWallet);
+           
         },
         title: 'قيمنا',
         image: Assets.imagesIconsStarProfile,
@@ -178,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       ProfileModel(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.myWallet);
+          GoRouter.of(context).push(AppRouter.help);
         },
         title: 'المساعدة',
         image: Assets.imagesIconsHelp,

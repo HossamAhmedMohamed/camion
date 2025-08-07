@@ -46,7 +46,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
     if (mounted) {
       context.read<GetCartCubit>().getCart(
         token: userData['token']!,
-        userId: userData['userId']!,
+         
       );
     }
   }
@@ -134,7 +134,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
                                 if (mounted) {
                                   context.read<GetCartCubit>().getCart(
                                     token: userData['token']!,
-                                    userId: userData['userId']!,
+                                   
                                   );
                                 }
                               },

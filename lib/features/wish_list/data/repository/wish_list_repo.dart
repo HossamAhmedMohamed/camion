@@ -11,16 +11,16 @@ class WishListRepository {
 
   Future<Either<ApiErrorModel, dynamic>> addToWishList({
     required String token,
-    required String userId,
+     
     required String productId,
     required String title,
-    required int price,
+    required String price,
     required String image,
   }) async {
     try {
       final response = await wishListRemoteDataSource.addToWishList(
         token: token,
-        userId: userId,
+       
         productId: productId,
         title: title,
         price: price,
@@ -40,7 +40,7 @@ class WishListRepository {
     try {
       final response = await wishListRemoteDataSource.getWishList(
         token: token,
-        userId: userId,
+         
       );
 
       final List<GetWishListModel> wishList = (response.data as List)

@@ -12,7 +12,7 @@ class ProductCartItem extends StatefulWidget {
   final String imageUrl;
   final String title;
 
-  final int price;
+  final String price;
   final int initialQuantity;
   final VoidCallback? onDelete;
   final Function(int)? onQuantityChanged;
@@ -193,7 +193,7 @@ class _ProductCartItemState extends State<ProductCartItem> {
                   SizedBox(width: 5.w),
 
                   Text(
-                    '${widget.price.toStringAsFixed(0)}\$',
+                    '${widget.price}\$',
                     style: AppStyle.styleBold18(
                       context,
                     ).copyWith(color: AppColors.primaryColor),

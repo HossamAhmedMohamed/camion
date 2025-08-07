@@ -1,4 +1,6 @@
 import 'package:camion/core/api/api_error_model.dart';
+import 'package:camion/core/cache/secure_cache_storage.dart';
+import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,17 +11,17 @@ class AddToWishListCubit extends Cubit<WishListState> {
   final WishListRepository wishListRepository;
 
   addtoWishList({
-    required String token,
-    required String userId,
+   
     required String productId,
     required String title,
-    required int price,
+    required String price,
     required String image,
   }) async {
+    final token = await sl<SecureCacheHelper>().getData(key: 'token');
     emit(WishListLoading());
     final result = await wishListRepository.addToWishList(
-      token: token,
-      userId: userId,
+      token: token!,
+     
       productId: productId,
       title: title,
       price: price,

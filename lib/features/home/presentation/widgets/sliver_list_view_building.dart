@@ -59,9 +59,10 @@ class SliverListViewBuilding extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 20.h),
                 child: GestureDetector(
                   onTap: () {
-                    GoRouter.of(
-                      context,
-                    ).push(AppRouter.productDetails, extra: product.id.toString());
+                    GoRouter.of(context).push(
+                      AppRouter.productDetails,
+                      extra: product.id.toString(),
+                    );
                   },
                   child: ProductCarouselWidget(
                     imageUrl: product.images[0].thumbnail,
@@ -69,28 +70,20 @@ class SliverListViewBuilding extends StatelessWidget {
                     originalPrice: product.prices.price.toString(),
 
                     isGridView: false,
-                    onAddToCartTap: () async {
-                      final userData = await getUserData();
+                    onAddToCartTap: () {
                       context.read<AddCartCubit>().addToCart(
-                        token: userData['token']!,
-                        userId: userData['userId']!,
                         productId: product.id.toString(),
                         title: product.name,
-                        price:  product.prices.price.toInt() ,
+                        price: product.prices.price,
                         image: product.images[0].thumbnail,
                         quantity: 1,
                       );
                     },
                     onAddToWishListTap: () async {
-                      final userData = await getUserData();
-                      final token = userData['token'];
-                      final userId = userData['userId'];
                       context.read<AddToWishListCubit>().addtoWishList(
-                        token: token!,
-                        userId: userId!,
                         productId: product.id.toString(),
                         title: product.name,
-                        price:  product.prices.price.toInt() ,
+                        price: product.prices.price,
                         image: product.images[0].thumbnail,
                       );
                     },

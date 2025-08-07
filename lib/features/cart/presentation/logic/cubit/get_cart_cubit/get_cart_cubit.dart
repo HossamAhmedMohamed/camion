@@ -7,9 +7,9 @@ part 'get_cart_state.dart';
 class GetCartCubit extends Cubit<GetCartState> {
   GetCartCubit(this.cartRepository) : super(GetCartInitial());
   final CartRepository cartRepository;
-  Future<void> getCart({required String token, required String userId}) async {
+  Future<void> getCart({required String token}) async {
     emit(GetCartLoading());
-    final result = await cartRepository.getCart(token: token, userId: userId);
+    final result = await cartRepository.getCart(token: token,);
     result.fold((l) => emit(GetCartError(l)), (r) => emit(GetCartSuccess(r)));
   }
 }

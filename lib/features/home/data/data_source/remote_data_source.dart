@@ -58,4 +58,20 @@ class HomeRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> getCategories() async {
+    final response = await apiConsumer.get(
+      "http://buckydrop.camion-app.com:3000/api/categories",
+    );
+
+    return response;
+  }
+
+  Future<Response> getProductsByCategory({required String slug}) async {
+    final response = await apiConsumer.get(
+      "http://buckydrop.camion-app.com:3000/api/${EndPoints.products}",
+      queryParameters: {"slug": slug},
+    );
+    return response;
+  }
 }

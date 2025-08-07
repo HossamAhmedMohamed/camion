@@ -437,17 +437,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () async {
-                              final userData = await getUserData();
-                              final token = userData['token'];
-                              final userId = userData['userId'];
+                            onPressed: () {
                               context.read<AddCartCubit>().addToCart(
-                                token: token!,
-                                userId: userId!,
                                 productId: prodcut.id.toString(),
-                                title: prodcut.name ,
-                                price: prodcut.prices.price.toInt() ,
-                                image: prodcut.images[0].thumbnail ,
+                                title: prodcut.name,
+                                price: prodcut.prices.price,
+                                image: prodcut.images[0].thumbnail,
                                 quantity: 1,
                               );
                             },

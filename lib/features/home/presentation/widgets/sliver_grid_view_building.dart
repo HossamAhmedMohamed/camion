@@ -109,9 +109,10 @@ class SliverGridViewBuilding extends StatelessWidget {
                   final product = state.products[index];
                   return GestureDetector(
                     onTap: () {
-                      GoRouter.of(
-                        context,
-                      ).push(AppRouter.productDetails, extra: product.id.toString());
+                      GoRouter.of(context).push(
+                        AppRouter.productDetails,
+                        extra: product.id.toString(),
+                      );
                     },
                     child: ProductCarouselWidget(
                       imageUrl: product.images[0].thumbnail,
@@ -121,11 +122,9 @@ class SliverGridViewBuilding extends StatelessWidget {
                       isGridView: true,
                       onAddToCartTap: () {
                         context.read<AddCartCubit>().addToCart(
-                          token: token!,
-                          userId: userId!,
                           productId: product.id.toString(),
                           title: product.name,
-                          price: product.prices.price.toInt(),
+                          price: product.prices.price,
                           image: product.images[0].thumbnail,
                           quantity: 1,
                         );

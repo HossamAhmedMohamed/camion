@@ -32,4 +32,5 @@ class AppRouter {
   static const String changeLanuage = '/changeLanuage';
   static const String accountSettings = '/accountSettings';
   static const String help = '/help';
+  static const String productByCategory = '/productByCategory';
 }

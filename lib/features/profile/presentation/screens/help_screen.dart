@@ -3,43 +3,36 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/profile/data/models/profile_model.dart';
-import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class HelpScreen extends StatelessWidget {
+  const HelpScreen({super.key});
 
+  static List<ProfileModel> profileList = [
+    ProfileModel(
+      onTap: () {},
+      title: 'خدمة العملاء',
+      image: Assets.imagesIconsCustomerService,
+    ),
+
+    ProfileModel(
+      onTap: () {},
+      title: 'سياسة الرجوع',
+      image: Assets.imagesIconsPrivacyReturn,
+    ),
+
+    ProfileModel(
+      onTap: () {},
+      title: 'تقديم شكوي',
+      image: Assets.imagesIconsHelp,
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    List<ProfileModel> profileList = [
-      ProfileModel(
-        onTap: () {
-          GoRouter.of(context).push(AppRouter.changeLanuage);
-        },
-        title: 'تغيير اللغة',
-        image: Assets.imagesGlobal,
-      ),
-
-      ProfileModel(
-        onTap: () {
-          GoRouter.of(context).push(AppRouter.help);
-        },
-        title: 'المساعدة',
-        image: Assets.imagesIconsHelp,
-      ),
-
-      ProfileModel(
-        onTap: () {
-          GoRouter.of(context).push(AppRouter.accountSettings);
-        },
-        title: 'اعدادات الحساب',
-        image: Assets.imagesProfileEdit,
-      ),
-    ];
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -50,14 +43,11 @@ class SettingsScreen extends StatelessWidget {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "الاعدادات",
+              "المساعدة",
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
             ),
-
-            actions: const [],
-
             leading: GestureDetector(
               onTap: () {
                 GoRouter.of(context).pop();
@@ -68,6 +58,8 @@ class SettingsScreen extends StatelessWidget {
                 size: 24.sp,
               ),
             ),
+
+            actions: const [],
           ),
 
           SliverToBoxAdapter(child: SizedBox(height: 15.h)),
@@ -98,17 +90,19 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   child: ListTile(
                     onTap: profileList[index].onTap,
-                    trailing: index == 0
-                        ? GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              "اختر اللغة",
-                              style: AppStyle.styleRegular12(
-                                context,
-                              ).copyWith(color: Colors.black),
-                            ),
-                          )
-                        : null,
+                    // trailing: index == 0
+                    //     ? GestureDetector(
+                    //         onTap: () {},
+                    //         child: Text(
+                    //           _languageController.text.isNotEmpty
+                    //               ? _languageController.text
+                    //               : "اختر اللغة",
+                    //           style: AppStyle.styleRegular12(
+                    //             context,
+                    //           ).copyWith(color: Colors.black),
+                    //         ),
+                    //       )
+                    //     : null,
                     contentPadding: EdgeInsets.zero,
                     leading: SvgPicture.asset(
                       profileList[index].image,
