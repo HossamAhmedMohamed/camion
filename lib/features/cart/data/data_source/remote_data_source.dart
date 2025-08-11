@@ -36,4 +36,29 @@ class CartRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> updateCart({
+    required String token,
+    required String productId,
+    required int quantity,
+  }) async {
+    final response = await apiConsumer.patch(
+      "http://api-gateway.camion-app.com/cart/update",
+      headers: {"Authorization": "Bearer $token"},
+      data: {"productId": productId, "quantity": quantity},
+    );
+    return response;
+  }
+
+  Future<Response> deleteFromCart({
+    required String token,
+    required String productId,
+  }) async {
+    final response = await apiConsumer.delete(
+      "http://api-gateway.camion-app.com/cart/remove",
+      headers: {"Authorization": "Bearer $token"},
+      data: {"productId": productId},
+    );
+    return response;
+  }
 }

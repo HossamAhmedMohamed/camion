@@ -13,7 +13,7 @@ class AllProductModel {
   final String sku;
   final bool onSale;
   final Prices prices;
-   
+
   final String averageRating;
   final int reviewCount;
   final List<ProductImage> images;
@@ -25,6 +25,7 @@ class AllProductModel {
   final StockAvailability stockAvailability;
   final bool soldIndividually;
   final AddToCart addToCart;
+  final bool? isINcart;
 
   AllProductModel({
     required this.id,
@@ -35,7 +36,7 @@ class AllProductModel {
     required this.sku,
     required this.onSale,
     required this.prices,
-     
+
     required this.averageRating,
     required this.reviewCount,
     required this.images,
@@ -47,6 +48,7 @@ class AllProductModel {
     required this.stockAvailability,
     required this.soldIndividually,
     required this.addToCart,
+    required this.isINcart,
   });
 
   factory AllProductModel.fromJson(Map<String, dynamic> json) {
@@ -59,8 +61,8 @@ class AllProductModel {
       sku: json['sku'],
       onSale: json['on_sale'],
       prices: Prices.fromJson(json['prices']),
-     
-      averageRating:  json['average_rating'], 
+
+      averageRating: json['average_rating'],
       reviewCount: json['review_count'],
       images: (json['images'] as List)
           .map((img) => ProductImage.fromJson(img))
@@ -75,18 +77,7 @@ class AllProductModel {
       stockAvailability: StockAvailability.fromJson(json['stock_availability']),
       soldIndividually: json['sold_individually'],
       addToCart: AddToCart.fromJson(json['add_to_cart']),
+      isINcart: json['cart'] ,
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

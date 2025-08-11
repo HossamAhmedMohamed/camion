@@ -10,15 +10,14 @@ class OrderStatusRemoteDataSource {
     required String token,
     required String userId,
     required List<GetCartModel> cartList,
-    required int taxPrice,
-    required int shippingPrice,
-    required int totalOrderPrice,
+    required String taxPrice,
+    required String shippingPrice,
+    required String totalOrderPrice,
     required String shippingAddress,
   }) async {
     final response = await apiConsumer.post(
       "http://api-gateway.camion-app.com/orders/create",
       data: {
-        "userId": userId,
         "cartItems": cartList,
         "taxPrice": taxPrice,
         "shippingPrice": shippingPrice,

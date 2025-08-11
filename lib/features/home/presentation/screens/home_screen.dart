@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
@@ -8,11 +7,12 @@ import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/get_categories_cubit/get_categories_cubit.dart';
-import 'package:camion/features/home/presentation/logic/cubit/product_by_category_cubit/product_by_category_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_add_cart_cubit/toggle_add_cart_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle__list_or_grid_cubit/toggle_list_and_grid_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
+import 'package:camion/features/home/presentation/widgets/camion_offers.dart';
 import 'package:camion/features/home/presentation/widgets/categories_body.dart';
 import 'package:camion/features/home/presentation/widgets/home_sliver_appbar.dart';
 import 'package:camion/features/home/presentation/widgets/home_join_us_now.dart';
@@ -47,6 +47,7 @@ class HomeScreen extends StatelessWidget {
 
         BlocProvider(create: (context) => ToggleListAndGridCubit()),
         BlocProvider(create: (context) => ToggleAddCartCubit()),
+        BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
       ],
       child: const HomeScreenBody(),
     );
@@ -64,13 +65,32 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
+  final ScrollController _scrollController = ScrollController();
+  final pageController = PageController();
 
   @override
   void initState() {
     context.read<ProductsCubit>().getProducts();
     context.read<StoriesCubit>().getStories();
     context.read<GetCategoriesCubit>().getCategories();
+    _scrollController.addListener(_onScroll);
     super.initState();
+  }
+
+  void _onScroll() {
+    final cubit = context.read<ProductsCubit>();
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent) {
+      if (cubit.hasMore && !cubit.isLoadingMore && !cubit.hasLoadMoreError) {
+        cubit.getProducts(isLoadMore: true);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -85,6 +105,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
         context.read<GetCategoriesCubit>().getCategories();
       },
       child: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           HomeSliverAppBar(
@@ -174,7 +195,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                               ).push(AppRouter.storiesView, extra: extra);
                             },
                             child: Container(
-                              padding: EdgeInsets.all(4.r),
+                              padding: EdgeInsets.all(3.r),
                               height: 50.h,
                               width: 52.w,
                               decoration: BoxDecoration(
@@ -187,31 +208,40 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
 
                               child: Center(
                                 child: ClipOval(
-                                  child: CachedNetworkImage(
-                                    height: 45.h,
-                                    width: 45.w,
-                                    imageUrl: state.storiesList[index].mediaUrl,
-                                    fit: BoxFit.fill,
-                                    placeholder: (context, url) => Skeletonizer(
-                                      enabled: true,
-                                      child: Container(
-                                        height: 45.h,
-                                        width: 45.w,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey[300],
-                                          shape: BoxShape.circle,
+                                  child:
+                                      state.storiesList[index].mediaType ==
+                                          'video'
+                                      ? const Icon(
+                                          Icons.play_arrow,
+                                          color: Colors.red,
+                                        )
+                                      : CachedNetworkImage(
+                                          height: 40.h,
+                                          width: 45.w,
+                                          imageUrl:
+                                              state.storiesList[index].mediaUrl,
+                                          fit: BoxFit.fill,
+                                          placeholder: (context, url) =>
+                                              Skeletonizer(
+                                                enabled: true,
+                                                child: Container(
+                                                  height: 45.h,
+                                                  width: 45.w,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey[300],
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                ),
+                                              ),
+                                          errorWidget: (context, url, error) =>
+                                              Container(
+                                                color: Colors.grey[300],
+                                                child: Icon(
+                                                  Icons.error,
+                                                  color: Colors.grey[600],
+                                                ),
+                                              ),
                                         ),
-                                      ),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        Container(
-                                          color: Colors.grey[300],
-                                          child: Icon(
-                                            Icons.error,
-                                            color: Colors.grey[600],
-                                          ),
-                                        ),
-                                  ),
                                 ),
                               ),
                             ),
@@ -233,17 +263,20 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
 
           CategoriesBody(screenWidth: screenWidth),
 
-          SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+          SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
+          // SliverToBoxAdapter(
+          //   child: AspectRatio(
+          //     aspectRatio: 371.w / 172.h,
+          //     child: Image.asset(
+          //       Assets.imagesIconsBlackfridayNotPixel,
+
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // ),
           SliverToBoxAdapter(
-            child: AspectRatio(
-              aspectRatio: 371.w / 172.h,
-              child: Image.asset(
-                Assets.imagesIconsBlackfridayNotPixel,
-
-                fit: BoxFit.cover,
-              ),
-            ),
+            child: CamionOffers(pageController: pageController),
           ),
 
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
@@ -348,6 +381,58 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                         screenHeight: screenHeight,
                       ),
                     );
+            },
+          ),
+
+          BlocBuilder<ProductsCubit, ProductsState>(
+            builder: (context, state) {
+              final cubit = context.read<ProductsCubit>();
+              if (cubit.hasLoadMoreError) {
+                return SliverToBoxAdapter(
+                  child: Center(
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 5,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.wifi_off,
+                            size: 50,
+                            color: Colors.red,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'Connection Error',
+                            style: TextStyle(color: Colors.red, fontSize: 16),
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () {
+                              context.read<ProductsCubit>().retryLoadMore();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                            ),
+                            child: const Text('Try Again'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return const SliverToBoxAdapter(child: SizedBox.shrink());
             },
           ),
 

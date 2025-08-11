@@ -9,15 +9,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProductWishList extends StatefulWidget {
+  final VoidCallback removeFromWishList;
   final String imageUrl;
   final String title;
-  final int price;
+  final String price;
 
   const ProductWishList({
     super.key,
     required this.imageUrl,
     required this.title,
     required this.price,
+    required this.removeFromWishList,
   });
 
   @override
@@ -87,11 +89,11 @@ class _ProductWishListState extends State<ProductWishList> {
               SizedBox(width: 25.w),
 
               InkWell(
-                onTap: () {},
+                onTap: widget.removeFromWishList,
                 child: SvgPicture.asset(
-                  Assets.imagesIconsTrashNewIcon,
-                  width: 20.w,
-                  height: 20.h,
+                  Assets.imagesIconsInCartSuccess,
+                  width: 25.w,
+                  height: 25.h,
                 ),
               ),
             ],
@@ -110,7 +112,7 @@ class _ProductWishListState extends State<ProductWishList> {
                   SizedBox(width: 5.w),
 
                   Text(
-                    '${widget.price.toStringAsFixed(0)}\$',
+                    '${widget.price}\$',
                     style: AppStyle.styleBold18(
                       context,
                     ).copyWith(color: AppColors.primaryColor),

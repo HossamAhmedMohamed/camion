@@ -13,9 +13,9 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
 
   Future<void> createOrder({
     required List<GetCartModel> cartList,
-    required int taxPrice,
-    required int shippingPrice,
-    required int totalOrderPrice,
+    required String taxPrice,
+    required String shippingPrice,
+    required String totalOrderPrice,
     required String shippingAddress,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');

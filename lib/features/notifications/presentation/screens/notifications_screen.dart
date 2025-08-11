@@ -18,6 +18,8 @@ class NotificationsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           CustomSliverAppBar(
+            appBarHeight: 70.h,
+            actions: const [],
             isShownDivider: true,
             title: Text(
               "الإشعارات",

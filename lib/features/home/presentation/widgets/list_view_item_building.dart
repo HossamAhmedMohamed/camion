@@ -2,9 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -14,8 +18,7 @@ class ListViewItemBuilding extends StatefulWidget {
     required this.imageUrl,
     required this.productName,
     required this.originalPrice,
-
- 
+    required this.productId,
     required this.onAddToCartTap,
     required this.onAddToWishListTap,
   });
@@ -23,7 +26,7 @@ class ListViewItemBuilding extends StatefulWidget {
   final String imageUrl;
   final String productName;
   final String originalPrice;
-   
+  final String productId;
   final VoidCallback onAddToCartTap;
   final VoidCallback onAddToWishListTap;
 
@@ -65,7 +68,8 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   child: SizedBox(
                     height: 400,
                     width: double.infinity,
-                    child: Image.asset(Assets.imagesShoes, fit: BoxFit.fill)),
+                    child: Image.asset(Assets.imagesShoes, fit: BoxFit.fill),
+                  ),
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
@@ -172,7 +176,12 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   SizedBox(width: 20.w),
                   InkWell(
                     onTap: widget.onAddToWishListTap,
-                    child: Image.asset(Assets.imagesSave, width: 25.w, height: 25.h)),
+                    child: Image.asset(
+                      Assets.imagesSave,
+                      width: 25.w,
+                      height: 25.h,
+                    ),
+                  ),
                 ],
               ),
 
@@ -188,7 +197,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   ),
                   SizedBox(width: 8.w),
                   Text(
-                   '\$1500',
+                    '\$1500',
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,
                       decoration: TextDecoration.lineThrough,
@@ -247,34 +256,87 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
 
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: widget.onAddToCartTap,
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 16.h),
-                    backgroundColor: AppColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.r),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'أضف للعربة',
-                        style: AppStyle.styleRegular15(
-                          context,
-                        ).copyWith(color: Colors.white),
-                      ),
+                child: BlocBuilder<AddCartCubit, AddCartState>(
+                  builder: (context, state) {
+                    final cubit = context.read<AddCartCubit>();
+                    final isInCart = cubit.isProductInCart(widget.productId);
+                    final isLoading =
+                        state is AddCartLoading &&
+                        state.productId == widget.productId;
+                    return isInCart
+                        ? ElevatedButton(
+                            onPressed: () {
+                              GoRouter.of(context).push(AppRouter.myCart);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 16.h),
+                              backgroundColor: AppColors.blueC3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.r),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: isLoading
+                                  ? [
+                                      const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    ]
+                                  : [
+                                      Text(
+                                        'أذهب الي العربة',
+                                        style: AppStyle.styleRegular15(
+                                          context,
+                                        ).copyWith(color: Colors.white),
+                                      ),
 
-                      SizedBox(width: 6.w),
+                                      SizedBox(width: 6.w),
 
-                      SvgPicture.asset(
-                        Assets.imagesShoppingCartWhite,
-                        width: 22.w,
-                        height: 22.h,
-                      ),
-                    ],
-                  ),
+                                      SvgPicture.asset(
+                                        Assets.imagesShoppingCartWhite,
+                                        width: 22.w,
+                                        height: 22.h,
+                                      ),
+                                    ],
+                            ),
+                          )
+                        : ElevatedButton(
+                            onPressed: widget.onAddToCartTap,
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 16.h),
+                              backgroundColor: AppColors.primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.r),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: state is AddCartLoading
+                                  ? [
+                                      const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    ]
+                                  : [
+                                      Text(
+                                        'أضف للعربة',
+                                        style: AppStyle.styleRegular15(
+                                          context,
+                                        ).copyWith(color: Colors.white),
+                                      ),
+
+                                      SizedBox(width: 6.w),
+
+                                      SvgPicture.asset(
+                                        Assets.imagesShoppingCartWhite,
+                                        width: 22.w,
+                                        height: 22.h,
+                                      ),
+                                    ],
+                            ),
+                          );
+                  },
                 ),
               ),
             ],

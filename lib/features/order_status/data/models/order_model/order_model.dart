@@ -4,8 +4,8 @@ class OrderModel {
   final String id;
   final String userId;
   final List<GetCartModel> cartItems;
-  final int shippingPrice;
-  final int totalOrderPrice;
+  final String shippingPrice;
+  final String totalOrderPrice;
   final String paymentMethodType;
   final bool isPaid;
   final DateTime? paidAt;
@@ -38,8 +38,8 @@ class OrderModel {
       cartItems: (json['cartItems'] as List)
           .map((item) => GetCartModel.fromJson(item))
           .toList(),
-      shippingPrice: (json['shippingPrice'] as num).toInt(),
-      totalOrderPrice: (json['totalOrderPrice'] as num).toInt(),
+      shippingPrice: json['shippingPrice'] ,
+      totalOrderPrice: json['totalOrderPrice'] ,
       paymentMethodType: json['paymentMethodType'],
       isPaid: json['isPaid'],
       paidAt: json['paidAt'] != null ? DateTime.parse(json['paidAt']) : null,

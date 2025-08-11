@@ -220,8 +220,17 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                 );
                               },
                               child: Container(
+                                width: 80.w,
+                                height: 80.h,
+                                padding: EdgeInsets.all(15.r),
+                                decoration: ShapeDecoration(shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.r),
+
+                                ),
+                                color: AppColors.fogGray
+                                ),
                                 margin: EdgeInsets.only(
-                                  right: index == 0 ? 0 : 10.w,
+                                  right:   15.w,
                                 ),
                                 child: SizedBox(
                                   height: widget.screenWidth > 800
@@ -230,12 +239,14 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                   width: widget.screenWidth > 800
                                       ? 120.w
                                       : 60.w,
-                                  child: CustomCachedNetworkImage(
-                                    fit: BoxFit.contain,
-                                    imageUrl: state
-                                        .categories[index]
-                                        .image!
-                                        .thumbnail,
+                                  child: Center(
+                                    child: CustomCachedNetworkImage(
+                                      fit: BoxFit.contain,
+                                      imageUrl: state
+                                          .categories[index]
+                                          .image!
+                                          .thumbnail,
+                                    ),
                                   ),
                                 ),
                               ),

@@ -124,6 +124,7 @@ class _ProductsByCategoryScreenBodyState
                           );
                         },
                         child: ProductCarouselWidget(
+                          productId: product.id.toString(),
                           imageUrl: product.images[0].thumbnail,
                           productName: product.name,
                           originalPrice: product.prices.price.toString(),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/wish_list/data/data_source/remote_data_source.dart';
@@ -35,7 +37,7 @@ class WishListRepository {
 
   Future<Either<ApiErrorModel, List<GetWishListModel>>> getWishList({
     required String token,
-    required String userId,
+   
   }) async {
     try {
       final response = await wishListRemoteDataSource.getWishList(
@@ -48,6 +50,22 @@ class WishListRepository {
           .toList();
 
       return Right(wishList);
+    } catch (e) {
+      log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, dynamic>> removeFromWishList({
+    required String token,
+    required String productId,
+  }) async {
+    try {
+      final response = await wishListRemoteDataSource.removeFromWishList(
+        token: token,
+        productId: productId,
+      );
+      return Right(response.data);
     } catch (e) {
       return left(ApiErrorHandler.handle(e));
     }

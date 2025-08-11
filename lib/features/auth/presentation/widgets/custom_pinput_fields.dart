@@ -87,6 +87,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
               ),
               onCompleted: widget.onCompleted,
               onChanged: widget.onChanged,
+
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'الرجاء إدخال الرمز';
@@ -143,7 +144,6 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
 
                     context.read<VerifyCubit>().verify(
                       code: _pinController.text,
-                     
                     );
                   },
                 );

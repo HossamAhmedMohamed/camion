@@ -41,12 +41,12 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
         SizedBox(height: 30.h),
     
         // Sizes Section
-        _buildSizesSection(),
+        // _buildSizesSection(),
     
-        SizedBox(height: 30.h),
+        // SizedBox(height: 30.h),
     
-        // Colors Section
-        _buildColorsSection(),
+        // // Colors Section
+        // _buildColorsSection(),
       ],
     );
   }
@@ -281,102 +281,102 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     );
   }
 
-  Widget _buildSizesSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('المقاس', style: AppStyle.styleBold18(context)),
+  // Widget _buildSizesSection() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text('المقاس', style: AppStyle.styleBold18(context)),
 
-        SizedBox(height: 15.h),
+  //       SizedBox(height: 15.h),
 
-        Row(children: sizes.map((size) => _buildSizeItem(size)).toList()),
-      ],
-    );
-  }
+  //       Row(children: sizes.map((size) => _buildSizeItem(size)).toList()),
+  //     ],
+  //   );
+  // }
 
-  Widget _buildSizeItem(int size) {
-    bool isSelected = selectedSize == size;
+  // Widget _buildSizeItem(int size) {
+  //   bool isSelected = selectedSize == size;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedSize = size;
-        });
-      },
-      child: Container(
-        width: 45.w,
-        height: 45.h,
-        margin: EdgeInsets.only(left: 8.w),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(
-            color: isSelected ? const Color(0xFFFF5252) : Colors.grey.shade300,
-            width: isSelected ? 2 : 1,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            '$size',
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-              color: isSelected ? const Color(0xFFFF5252) : Colors.black87,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  //   return GestureDetector(
+  //     onTap: () {
+  //       setState(() {
+  //         selectedSize = size;
+  //       });
+  //     },
+  //     child: Container(
+  //       width: 45.w,
+  //       height: 45.h,
+  //       margin: EdgeInsets.only(left: 8.w),
+  //       decoration: BoxDecoration(
+  //         color: Colors.white,
+  //         borderRadius: BorderRadius.circular(8.r),
+  //         border: Border.all(
+  //           color: isSelected ? const Color(0xFFFF5252) : Colors.grey.shade300,
+  //           width: isSelected ? 2 : 1,
+  //         ),
+  //       ),
+  //       child: Center(
+  //         child: Text(
+  //           '$size',
+  //           style: TextStyle(
+  //             fontSize: 16.sp,
+  //             fontWeight: FontWeight.bold,
+  //             color: isSelected ? const Color(0xFFFF5252) : Colors.black87,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget _buildColorsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('الألوان المتاحة', style: AppStyle.styleBold18(context)),
+  // Widget _buildColorsSection() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text('الألوان المتاحة', style: AppStyle.styleBold18(context)),
 
-        SizedBox(height: 15.h),
+  //       SizedBox(height: 15.h),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            for (int i = 0; i < colors.length; i++)
-              _buildColorItem(i, colors[i]),
-          ],
-        ),
-      ],
-    );
-  }
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.start,
+  //         children: [
+  //           for (int i = 0; i < colors.length; i++)
+  //             _buildColorItem(i, colors[i]),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 
-  Widget _buildColorItem(int index, Color color) {
-    bool isSelected = selectedColor == index;
+  // Widget _buildColorItem(int index, Color color) {
+  //   bool isSelected = selectedColor == index;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedColor = index;
-        });
-      },
-      child: Container(
-        width: 50.w,
-        height: 50.h,
-        margin: EdgeInsets.only(left: 10.w),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(12.r),
-          // border: isSelected ? Border.all(color: Colors.white, width: 3) : null,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha(30),
-              blurRadius: 5,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: isSelected
-            ? Icon(Icons.check, color: Colors.white, size: 24.sp)
-            : null,
-      ),
-    );
-  }
+  //   return GestureDetector(
+  //     onTap: () {
+  //       setState(() {
+  //         selectedColor = index;
+  //       });
+  //     },
+  //     child: Container(
+  //       width: 50.w,
+  //       height: 50.h,
+  //       margin: EdgeInsets.only(left: 10.w),
+  //       decoration: BoxDecoration(
+  //         color: color,
+  //         borderRadius: BorderRadius.circular(12.r),
+  //         // border: isSelected ? Border.all(color: Colors.white, width: 3) : null,
+  //         boxShadow: [
+  //           BoxShadow(
+  //             color: Colors.black.withAlpha(30),
+  //             blurRadius: 5,
+  //             offset: const Offset(0, 2),
+  //           ),
+  //         ],
+  //       ),
+  //       child: isSelected
+  //           ? Icon(Icons.check, color: Colors.white, size: 24.sp)
+  //           : null,
+  //     ),
+  //   );
+  // }
 }

@@ -182,6 +182,10 @@ class Assets {
   /// assets/images/icons/iconamoon_delivery-light.svg
   static const String imagesIconsIconamoonDeliveryLight = "assets/images/icons/iconamoon_delivery-light.svg";
 
+  /// Assets for imagesIconsInCartSuccess
+  /// assets/images/icons/in_cart_success.svg
+  static const String imagesIconsInCartSuccess = "assets/images/icons/in_cart_success.svg";
+
   /// Assets for imagesIconsInactiveFavouriteIconNewNavbar
   /// assets/images/icons/inactive_favourite_icon_new_navbar.svg
   static const String imagesIconsInactiveFavouriteIconNewNavbar = "assets/images/icons/inactive_favourite_icon_new_navbar.svg";
@@ -201,6 +205,14 @@ class Assets {
   /// Assets for imagesIconsLogosMastercard
   /// assets/images/icons/logos_mastercard.svg
   static const String imagesIconsLogosMastercard = "assets/images/icons/logos_mastercard.svg";
+
+  /// Assets for imagesIconsNewDiscounts
+  /// assets/images/icons/new_discounts.png
+  static const String imagesIconsNewDiscounts = "assets/images/icons/new_discounts.png";
+
+  /// Assets for imagesIconsNewJoinUs
+  /// assets/images/icons/new_join_us.png
+  static const String imagesIconsNewJoinUs = "assets/images/icons/new_join_us.png";
 
   /// Assets for imagesIconsPrivacyReturn
   /// assets/images/icons/privacy_return.svg

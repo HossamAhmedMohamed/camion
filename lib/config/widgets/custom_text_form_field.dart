@@ -46,7 +46,8 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: initialValue,
-      
+      maxLength: maxLength,
+      maxLines: maxLines ,
       enabled: enabled,
       autofocus: autoFocus ?? false,
       onChanged: onChanged,

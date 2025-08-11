@@ -10,7 +10,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomOrder extends StatelessWidget {
-  const CustomOrder({super.key});
+  const CustomOrder({
+    super.key,
+    required this.totalPrice,
+    required this.quantity,
+    required this.date,
+    required this.numberOfRequest,
+  });
+  final String numberOfRequest;
+  final String totalPrice;
+  final int quantity;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -51,30 +61,9 @@ class CustomOrder extends StatelessWidget {
 
           Row(
             children: [
-              // SizedBox(
-              //   width: screenWidth > 600 ? 120.w : 86.w,
-              //   child: AspectRatio(
-              //     aspectRatio: 1.0,
-              //     child: Container(
-              //       decoration: ShapeDecoration(
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(16.r),
-              //         ),
-              //         color: AppColors.paleGray,
-              //       ),
-              //       child: Image.asset(Assets.imagesShoes, fit: BoxFit.cover),
-
-              //       // CustomCachedNetworkImage(
-              //       //   fit: BoxFit.cover,
-              //       //   imageUrl: image,
-              //       // ),
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(width: 15.w),
-              const ItemsBody(
+              ItemsBody(
                 title: "رقم الطلب :548964132",
-                quantity: 4,
+                quantity: quantity,
                 totalPrice: "120",
               ),
 
@@ -90,7 +79,7 @@ class CustomOrder extends StatelessWidget {
                   SizedBox(width: 5.w),
 
                   Text(
-                    "150",
+                    totalPrice,
                     style: AppStyle.styleRegular18(context).copyWith(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600,
@@ -98,62 +87,6 @@ class CustomOrder extends StatelessWidget {
                   ),
                 ],
               ),
-
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.end,
-              //   children: [
-
-              //     Row(
-              //       children: [
-              //         Text("اجمالي",
-              //             style: AppStyle.styleRegular14(context).copyWith(
-              //               color: AppColors.black,
-              //               fontWeight: FontWeight.w500,
-              //         )),
-              //         SizedBox(width: 5.w),
-
-              //         Text(
-              //           "$totalPrice",
-              //           style: AppStyle.styleRegular14(context).copyWith(
-              //             color: AppColors.primaryColor,
-              //             fontWeight: FontWeight.w600,
-              //           ),
-              //         ),
-              //       ],
-              //     )
-              //     // Row(
-              //     //   children: [
-              //     //     Text(
-              //     //       "5.0",
-              //     //       style: AppStyle.styleRegular14(context).copyWith(
-              //     //         color: AppColors.black,
-              //     //         fontWeight: FontWeight.w500,
-              //     //       ),
-              //     //     ),
-              //     //     SizedBox(width: 5.w),
-              //     //     Icon(Icons.star, color: AppColors.orange, size: 20.sp),
-              //     //   ],
-              //     // ),
-              //     // Row(
-              //     //   children: [
-              //     //     Text(
-              //     //       "3 عناصر",
-              //     //       style: AppStyle.styleRegular14(
-              //     //         context,
-              //     //       ).copyWith(color: AppColors.gray),
-              //     //     ),
-
-              //     //     SizedBox(width: 5.w),
-
-              //     //     Icon(
-              //     //       Icons.keyboard_arrow_down,
-              //     //       color: AppColors.gray,
-              //     //       size: 20.sp,
-              //     //     ),
-              //     //   ],
-              //     // ),
-              //   ],
-              // ),
             ],
           ),
 
@@ -166,34 +99,7 @@ class CustomOrder extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Expanded(
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Text(
-              //         "120 ج.م",
-              //         style: AppStyle.styleRegular14(context).copyWith(
-              //           color: AppColors.black,
-              //           fontWeight: FontWeight.w600,
-              //         ),
-              //       ),
-              //       SizedBox(height: 5.h),
-              //       Text(
-              //         "مشاهدة",
-              //         style: AppStyle.styleRegular12(
-              //           context,
-              //         ).copyWith(color: AppColors.gray),
-              //       ),
-              //       Text(
-              //         "التفاصيل",
-              //         style: AppStyle.styleRegular12(
-              //           context,
-              //         ).copyWith(color: AppColors.gray),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-             const Spacer(),
+              const Spacer(),
               Expanded(
                 flex: 2,
                 child: Row(
