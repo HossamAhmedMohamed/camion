@@ -97,7 +97,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.r),
-                  borderSide: BorderSide(color: AppColors.primaryColor),
+                  borderSide: const BorderSide(color: AppColors.primaryColor),
                 ),
               ),
             ),
@@ -140,7 +140,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                     ),
                   ),
                   selected: isSelected,
-                  selectedTileColor: AppColors.primaryColor.withOpacity(0.1),
+                  selectedTileColor: AppColors.primaryColor.withAlpha(15),
                   onTap: () {
                     widget.onCountrySelected(country);
                     Navigator.pop(context);

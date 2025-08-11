@@ -9,6 +9,7 @@ part 'add_cart_state.dart';
 class AddCartCubit extends Cubit<AddCartState> {
   AddCartCubit(this.cartRepository) : super(AddCartInitial());
   final CartRepository cartRepository;
+final Set<String> _addedToCartProducts = {};
 
   Future<void> addToCart({
     required String productId,
@@ -19,9 +20,11 @@ class AddCartCubit extends Cubit<AddCartState> {
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
 
-    emit(AddCartLoading());
+    emit(AddCartLoading(
+      productId
+    ));
     final result = await cartRepository.addToCart(
-      token: token!,
+      token: token ?? '',
 
       productId: productId,
       title: title,
@@ -29,6 +32,13 @@ class AddCartCubit extends Cubit<AddCartState> {
       image: image,
       quantity: quantity,
     );
-    result.fold((l) => emit(AddCartError(l)), (r) => emit(AddCartSuccess()));
+    result.fold((l) => emit(AddCartError(l, productId)), (r) {
+    _addedToCartProducts.add(productId);
+     emit(AddCartSuccess(productId));
+    });
+  }
+
+  bool isProductInCart(String productId) {
+    return _addedToCartProducts.contains(productId);
   }
 }

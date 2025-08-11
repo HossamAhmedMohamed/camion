@@ -15,6 +15,7 @@ class CustomJoinUsSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomSliverAppBar(
       appBarHeight: 70.h,
+      actions: const [],
       title: Text(
         title,
         style: AppStyle.styleRegular18(context).copyWith(

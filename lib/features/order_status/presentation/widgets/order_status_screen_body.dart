@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/home/data/models/categories_model.dart';
@@ -37,50 +38,52 @@ class _OrderStatusScreenBodyState extends State<OrderStatusScreenBody> {
       slivers: [
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
 
-        const HomeSliverAppBar(),
+        // const HomeSliverAppBar(),
+
+         
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 8.w),
-            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.symmetric(horizontal: 8.w),
+        //     padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
 
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.r),
-              ),
-              color: AppColors.lightGray,
-            ),
+        //     decoration: ShapeDecoration(
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(50.r),
+        //       ),
+        //       color: AppColors.lightGray,
+        //     ),
 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                categories.length,
-                (index) =>
-                    BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
-                      selector: (state) {
-                        return state.index == index;
-                      },
-                      builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.read<PaymentMethodCubit>().changeIndex(
-                              index,
-                            );
-                          },
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: List.generate(
+        //         categories.length,
+        //         (index) =>
+        //             BlocSelector<PaymentMethodCubit, PaymentMethodState, bool>(
+        //               selector: (state) {
+        //                 return state.index == index;
+        //               },
+        //               builder: (context, state) {
+        //                 return GestureDetector(
+        //                   onTap: () {
+        //                     context.read<PaymentMethodCubit>().changeIndex(
+        //                       index,
+        //                     );
+        //                   },
 
-                          child: StatusNavBar(
-                            isActive: state,
-                            title: categories[index].title,
-                          ),
-                        );
-                      },
-                    ),
-              ),
-            ),
-          ),
-        ),
+        //                   child: StatusNavBar(
+        //                     isActive: state,
+        //                     title: categories[index].title,
+        //                   ),
+        //                 );
+        //               },
+        //             ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
 
         SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 

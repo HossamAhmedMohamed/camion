@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
@@ -12,8 +11,8 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   final HomeRepository homeRepository;
 
-  int skip = 0;
-  final int limit = 6;
+  int currentPage = 1;
+  final int perPage = 6;
   bool hasMore = true;
   bool isLoading = false;
   bool isLoadingMore = false;
@@ -25,19 +24,59 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   Timer? _debounce;
 
-  Future<void> getProducts() async {
+  Future<void> getProducts({bool isLoadMore = false}) async {
+    if (!hasMore && isLoadMore) return;
+    if (isLoading) return;
     if (isClosed) return;
-    emit(ProductsLoading());
-    final result = await homeRepository.getProducts();
+
+    if (!isLoadMore) {
+      currentPage = 1;
+      allProducts.clear();
+      hasMore = true;
+      isLoadingMore = false;
+      hasLoadMoreError = false;
+      isLoading = true;
+      emit(ProductsLoading());
+    } else {
+      isLoadingMore = true;
+      hasLoadMoreError = false;
+      isLoading = true;
+      emit(ProductsLoaded(products: allProducts, isSearching: false));
+    }
+
+    // emit(ProductsLoading());
+
+    final result = await homeRepository.getProducts(
+      page: currentPage,
+      perPage: perPage,
+    );
     result.fold(
       (error) {
+        isLoading = false;
+
         if (!isClosed) {
-          emit(ProductsError(error: error));
+          if (isLoadMore) {
+            isLoadingMore = false;
+            hasLoadMoreError = true;
+            emit(ProductsLoaded(products: allProducts, isSearching: false));
+          } else {
+            isLoadingMore = false;
+            hasLoadMoreError = false;
+            emit(ProductsError(error: error));
+          }
         }
       },
       (products) {
-        allProducts.addAll(products);
+        if (products.isEmpty) {
+          hasMore = false;
+        } else {
+          allProducts.addAll(products);
+          currentPage++;
+        }
         if (!isClosed) {
+          isLoading = false;
+          isLoadingMore = false;
+          hasLoadMoreError = false;
           emit(ProductsLoaded(products: allProducts, isSearching: false));
         }
       },

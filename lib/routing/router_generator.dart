@@ -17,7 +17,6 @@ import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cub
 import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
-import 'package:camion/features/home/data/models/categories_model.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
@@ -39,7 +38,7 @@ import 'package:camion/features/join_us/presentation/screens/select_countries_of
 import 'package:camion/features/join_us/presentation/screens/select_social_media_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/supplier_account.dart';
 import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart';
-import 'package:camion/features/notifications/presentation/notifications_screen.dart';
+import 'package:camion/features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
@@ -56,7 +55,6 @@ import 'package:camion/features/profile/presentation/screens/profile_screen.dart
 import 'package:camion/features/profile/presentation/screens/settings_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
-import 'package:camion/main_production.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -157,10 +155,7 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.myCart,
         path: AppRouter.myCart,
-        builder: (context, state) => BlocProvider(
-          create: (context) => GetCartCubit(sl<CartRepository>()),
-          child: const MyCartScreenBody(),
-        ),
+        builder: (context, state) => const MyCartScreen(),
       ),
 
       GoRoute(

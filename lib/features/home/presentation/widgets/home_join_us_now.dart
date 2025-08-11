@@ -22,11 +22,11 @@ class HomeJoinUsNow extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(Assets.imagesJoinUs),
+              image: AssetImage(Assets.imagesIconsNewJoinUs),
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
+            padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 25.w),
             child: Align(
               alignment: Alignment.bottomRight,
               child: GestureDetector(

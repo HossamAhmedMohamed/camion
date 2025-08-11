@@ -52,46 +52,63 @@ class SliverListViewBuilding extends StatelessWidget {
         }
 
         if (state is ProductsLoaded) {
+          final bool isLoadingMore = context
+              .watch<ProductsCubit>()
+              .isLoadingMore;
+
+          final products = state.products;
           return SliverList.builder(
             itemBuilder: (context, index) {
-              final product = state.products[index];
-              return Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
-                child: GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(
-                      AppRouter.productDetails,
-                      extra: product.id.toString(),
-                    );
-                  },
-                  child: ProductCarouselWidget(
-                    imageUrl: product.images[0].thumbnail,
-                    productName: product.name,
-                    originalPrice: product.prices.price.toString(),
+              if (index < products.length) {
+                final product = products[index];
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        AppRouter.productDetails,
+                        extra: product.id.toString(),
+                      );
+                    },
+                    child: ProductCarouselWidget(
+                      productId: product.id.toString(),
+                      imageUrl: product.images[0].thumbnail,
+                      productName: product.name,
+                      originalPrice: product.prices.price.toString(),
 
-                    isGridView: false,
-                    onAddToCartTap: () {
-                      context.read<AddCartCubit>().addToCart(
-                        productId: product.id.toString(),
-                        title: product.name,
-                        price: product.prices.price,
-                        image: product.images[0].thumbnail,
-                        quantity: 1,
-                      );
-                    },
-                    onAddToWishListTap: () async {
-                      context.read<AddToWishListCubit>().addtoWishList(
-                        productId: product.id.toString(),
-                        title: product.name,
-                        price: product.prices.price,
-                        image: product.images[0].thumbnail,
-                      );
-                    },
+                      isGridView: false,
+                      onAddToCartTap: () {
+                        context.read<AddCartCubit>().addToCart(
+                          productId: product.id.toString(),
+                          title: product.name,
+                          price: product.prices.price,
+                          image: product.images[0].thumbnail,
+                          quantity: 1,
+                        );
+                      },
+                      onAddToWishListTap: () async {
+                        context.read<AddToWishListCubit>().addtoWishList(
+                          productId: product.id.toString(),
+                          title: product.name,
+                          price: product.prices.price,
+                          image: product.images[0].thumbnail,
+                        );
+                      },
+                    ),
                   ),
-                ),
-              );
+                );
+              } else if (isLoadingMore) {
+                return Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: const Skeletonizer(
+                    enabled: true,
+                    child: ListViewItemBuildingSkeleton(),
+                  ),
+                );
+              }
+              return const SizedBox();
             },
-            itemCount: state.products.length,
+            itemCount: state.products.length + (isLoadingMore ? 2 : 0),
           );
         }
 

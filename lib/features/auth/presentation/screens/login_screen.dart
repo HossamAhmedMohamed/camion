@@ -1,8 +1,6 @@
  
-import 'package:camion/core/utils/app_images.dart';
-import 'package:camion/core/utils/app_style.dart';
+ 
 import 'package:camion/features/auth/presentation/widgets/camion_logo.dart';
-import 'package:camion/config/widgets/custom_selecting_method.dart';
 import 'package:camion/features/auth/presentation/widgets/login_form.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/gestures.dart';
@@ -32,61 +30,61 @@ class LoginScreen extends StatelessWidget {
               child: LoginForm(),
             ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+            // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-            SliverToBoxAdapter(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(height: 1.h, color: Colors.grey),
-                  ),
+            // SliverToBoxAdapter(
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: Container(height: 1.h, color: Colors.grey),
+            //       ),
 
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: Text(
-                      "أو",
-                      style: AppStyle.styleRegular14(
-                        context,
-                      ).copyWith(color: Colors.black),
-                    ),
-                  ),
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(horizontal: 10.w),
+            //         child: Text(
+            //           "أو",
+            //           style: AppStyle.styleRegular14(
+            //             context,
+            //           ).copyWith(color: Colors.black),
+            //         ),
+            //       ),
 
-                  Expanded(
-                    child: Container(height: 1.h, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
+            //       Expanded(
+            //         child: Container(height: 1.h, color: Colors.grey),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+            // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
-            SliverToBoxAdapter(
-              child: CustomSelectingMethods(
-                onTap: () {},
-                logo: Assets.imagesLogosFacebook,
-                text: 'الاستمرار ب Facebook',
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: CustomSelectingMethods(
+            //     onTap: () {},
+            //     logo: Assets.imagesLogosFacebook,
+            //     text: 'الاستمرار ب Facebook',
+            //   ),
+            // ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+            // SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
-            SliverToBoxAdapter(
-              child: CustomSelectingMethods(
-                onTap: () {},
-                logo: Assets.imagesGoogleIcon,
-                text: 'الاستمرار ب Google',
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: CustomSelectingMethods(
+            //     onTap: () {},
+            //     logo: Assets.imagesGoogleIcon,
+            //     text: 'الاستمرار ب Google',
+            //   ),
+            // ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+            // SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
-            SliverToBoxAdapter(
-              child: CustomSelectingMethods(
-                onTap: () {},
-                logo: Assets.imagesAppleIcon,
-                text: 'الاستمرار ب Apple',
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: CustomSelectingMethods(
+            //     onTap: () {},
+            //     logo: Assets.imagesAppleIcon,
+            //     text: 'الاستمرار ب Apple',
+            //   ),
+            // ),
 
             SliverFillRemaining(
               hasScrollBody: false,

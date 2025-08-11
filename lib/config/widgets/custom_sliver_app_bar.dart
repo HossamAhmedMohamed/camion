@@ -53,49 +53,49 @@ class CustomSliverAppBar extends StatelessWidget {
       title: title,
       centerTitle: true,
 
-      actions: actions ??
-           [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // isShoppingCartShown ?? true
-                  //     ? GestureDetector(
-                  //         onTap: () {
-                  //           final currentRoute = GoRouterState.of(
-                  //             context,
-                  //           ).uri.toString();
-                  //           if (currentRoute != AppRouter.myCart) {
-                  //             GoRouter.of(context).push(AppRouter.myCart);
-                  //           }
-                  //         },
-                  //         child: SvgPicture.asset(
-                  //           cartImage ?? Assets.imagesShoppingCart,
-                  //           width: 30.w,
-                  //           height: 30.h,
-                  //         ),
-                  //       )
-                  //     : Container(),
+      actions:
+          actions ??
+          [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isShoppingCartShown ?? true
+                    ? GestureDetector(
+                        onTap: () {
+                          final currentRoute = GoRouterState.of(
+                            context,
+                          ).uri.toString();
+                          if (currentRoute != AppRouter.myCart) {
+                            GoRouter.of(context).push(AppRouter.myCart);
+                          }
+                        },
+                        child: SvgPicture.asset(
+                          cartImage ?? Assets.imagesShoppingCart,
+                          width: 30.w,
+                          height: 30.h,
+                        ),
+                      )
+                    : Container(),
 
-                  // SizedBox(width: 16.w),
-                  GestureDetector(
-                    onTap: () {
-                      final currentRoute = GoRouterState.of(
-                        context,
-                      ).uri.toString();
-                      if (currentRoute != AppRouter.notificationScreen) {
-                        GoRouter.of(context).push(AppRouter.notificationScreen);
-                      }
-                    },
-                    child: SvgPicture.asset(
-                      Assets.imagesNotification,
-                      width: 30.w,
-                      height: 30.h,
-                    ),
+                SizedBox(width: 16.w),
+                GestureDetector(
+                  onTap: () {
+                    final currentRoute = GoRouterState.of(
+                      context,
+                    ).uri.toString();
+                    if (currentRoute != AppRouter.notificationScreen) {
+                      GoRouter.of(context).push(AppRouter.notificationScreen);
+                    }
+                  },
+                  child: SvgPicture.asset(
+                    Assets.imagesNotification,
+                    width: 30.w,
+                    height: 30.h,
                   ),
-                ],
-              ),
-            ],
-         
+                ),
+              ],
+            ),
+          ],
 
       flexibleSpace: flexibleSpace,
 

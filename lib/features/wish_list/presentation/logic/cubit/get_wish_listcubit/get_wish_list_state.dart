@@ -15,3 +15,12 @@ final class GetWishListError extends GetWishListState {
   final ApiErrorModel error;
   GetWishListError(this.error);
 }
+
+final class RemoveWishListLoading extends GetWishListState {}
+
+final class RemoveWishListSuccess extends GetWishListState {}
+
+final class RemoveWishListError extends GetWishListState {
+  final ApiErrorModel error;
+  RemoveWishListError(this.error);
+}

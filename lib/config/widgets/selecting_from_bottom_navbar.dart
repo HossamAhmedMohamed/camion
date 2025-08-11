@@ -1,4 +1,4 @@
-import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
+ 
 import 'package:camion/features/order_status/presentation/screens/order_status_screen.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/config/widgets/bottom_nav_bar.dart';
@@ -14,7 +14,7 @@ class SelectingFromBottomNavBar extends StatefulWidget {
 }
 
 class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   late PageController _pageController;
 
   @override
@@ -24,12 +24,13 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
   }
 
   List<Widget> screens = const [
-    HomeScreen(),
+    
     OrderStatusScreen(),
+    HomeScreen(),
     WishListScreen(),
 
     // ReelsScreen(),
-    MyCartScreen(),
+    // MyCartScreen(),
   ];
 
   @override

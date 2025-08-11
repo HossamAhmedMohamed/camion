@@ -4,7 +4,7 @@ import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
-import 'package:camion/features/join_us/presentation/widgets/join_us_image.dart';
+
 import 'package:camion/features/join_us/presentation/widgets/selecting_male_or_female.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class JoinUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    // final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -57,7 +57,7 @@ class JoinUsScreen extends StatelessWidget {
 
                         SizedBox(height: 15.h),
 
-                        JooinUsImage(screenWidth: screenWidth),
+                        // JooinUsImage(screenWidth: screenWidth),
 
                         SizedBox(height: 15.h),
 
@@ -101,13 +101,10 @@ class JoinUsScreen extends StatelessWidget {
 
                         SizedBox(height: 10.h),
 
-                        const SizedBox(
-                          height: 200,
-                          child: CustomTextFormField(
-                            hintText: "نبذة عنك",
-                            maxLines: 7,
-                            maxLength: 200,
-                          ),
+                        const CustomTextFormField(
+                          hintText: "نبذة عنك",
+                          maxLines: 7,
+                          maxLength: 200,
                         ),
 
                         SizedBox(height: 10.h),

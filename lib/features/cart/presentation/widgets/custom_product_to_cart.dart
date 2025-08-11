@@ -1,31 +1,29 @@
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
-
 import 'package:camion/core/utils/app_style.dart';
-
+import 'package:camion/features/cart/presentation/logic/cubit/update_cubit/update_cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProductCartItem extends StatefulWidget {
+  final String productId;
   final String imageUrl;
   final String title;
-
   final String price;
   final int initialQuantity;
   final VoidCallback? onDelete;
-  final Function(int)? onQuantityChanged;
 
   const ProductCartItem({
     super.key,
     required this.imageUrl,
     required this.title,
     required this.price,
-
+    required this.productId,
     this.initialQuantity = 1,
     this.onDelete,
-    this.onQuantityChanged,
   });
 
   @override
@@ -34,25 +32,43 @@ class ProductCartItem extends StatefulWidget {
 
 class _ProductCartItemState extends State<ProductCartItem> {
   late int quantity;
+  late double unitPrice;
+  bool isUpdating = false;
 
   @override
   void initState() {
     super.initState();
     quantity = widget.initialQuantity;
+    unitPrice = double.tryParse(widget.price) ?? 0.0;
   }
 
-  void _updateQuantity(int newQuantity) {
+  Future<void> _updateQuantity(int newQuantity) async {
+    final oldQuantity = quantity;
     setState(() {
       quantity = newQuantity;
+      isUpdating = true;
     });
-    if (widget.onQuantityChanged != null) {
-      widget.onQuantityChanged!(quantity);
+
+    try {
+      await context.read<UpdateCartCubit>().updateCart(
+        productId: widget.productId,
+        quantity: quantity,
+      );
+    } catch (_) {
+      setState(() {
+        quantity = oldQuantity;
+      });
+    } finally {
+      setState(() {
+        isUpdating = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       margin: EdgeInsets.only(bottom: 14.h, left: 16.w, right: 16.w),
       padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 10.h),
@@ -69,7 +85,6 @@ class _ProductCartItemState extends State<ProductCartItem> {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,48 +100,20 @@ class _ProductCartItemState extends State<ProductCartItem> {
                 ),
                 child: CustomCachedNetworkImage(
                   fit: BoxFit.fill,
-                  imageUrl: widget.imageUrl),
+                  imageUrl: widget.imageUrl,
+                ),
               ),
               SizedBox(width: 10.w),
 
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: AppStyle.styleRegular15(context).copyWith(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-
-                    SizedBox(height: 10.h),
-
-                    // Row(
-                    //   children: [
-                    //     SvgPicture.asset(
-                    //       width: 21.w,
-                    //       height: 21.h,
-                    //       Assets.imagesIconsIconamoonDeliveryLight,
-                    //     ),
-                    //     SizedBox(width: 5.w),
-                    //     // Expanded(
-                    //     //   child: Text(
-                    //     //     widget.description,
-                    //     //     overflow: TextOverflow.ellipsis,
-                    //     //     maxLines: 2,
-                    //     //     style: AppStyle.styleRegular14(context).copyWith(
-                    //     //       color: const Color(0xFF008000),
-                    //     //       fontWeight: FontWeight.w400,
-                    //     //     ),
-                    //     //   ),
-                    //     // ),
-                    //   ],
-                    // ),
-                  ],
+                child: Text(
+                  widget.title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: AppStyle.styleRegular15(context).copyWith(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
 
@@ -142,40 +129,8 @@ class _ProductCartItemState extends State<ProductCartItem> {
               ),
             ],
           ),
-          SizedBox(height: 8.h),
 
-          // SizedBox(height: 16.h),
-
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     Text(
-          //       'احصل على 52% توفير على التوصيل بدلاً',
-          //       style: AppStyle.styleRegular12(
-          //         context,
-          //       ).copyWith(color: AppColors.black),
-          //     ),
-
-          //     InkWell(
-          //       onTap: () {},
-          //       child: Text(
-          //         'اضف عنصر',
-          //         style: AppStyle.styleBold12(context).copyWith(
-          //           color: AppColors.primaryColor,
-          //           decoration: TextDecoration.underline,
-          //           decorationColor: AppColors.primaryColor,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-
-          // SizedBox(height: 6.h),
-          // Image.asset(Assets.imagesDelivery),
-
-          // SizedBox(height: 16.h),
           SizedBox(height: 6.h),
-
           Divider(thickness: 1, color: Colors.grey.shade300),
 
           Row(
@@ -185,19 +140,16 @@ class _ProductCartItemState extends State<ProductCartItem> {
                 children: [
                   Text(
                     'اجمالي:',
-                    style: AppStyle.styleRegular15(context)
-                        .copyWith(color: Colors.black)
-                        .copyWith(fontWeight: FontWeight.w600),
+                    style: AppStyle.styleRegular15(context).copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-
                   SizedBox(width: 5.w),
-
                   Text(
-                    '${widget.price}\$',
-                    style: AppStyle.styleBold18(
-                      context,
-                    ).copyWith(color: AppColors.primaryColor),
-                  ),
+                    '${(unitPrice * quantity).toStringAsFixed(2)}\$',
+                    style: AppStyle.styleBold18(context).copyWith(color: AppColors.primaryColor),
+                  )
                 ],
               ),
 
@@ -216,31 +168,27 @@ class _ProductCartItemState extends State<ProductCartItem> {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        _updateQuantity(quantity + 1);
-                      },
-                      child: Container(
-                        width: 25.w,
-                        height: 25.h,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF8E9E9),
-                          borderRadius: BorderRadius.circular(50.r),
-                          border: Border.all(color: Colors.grey.shade300),
-                        ),
-                        child: Icon(Icons.add, size: 20.sp),
-                      ),
+                      onTap: () => _updateQuantity(quantity + 1),
+                      child: _buildQuantityButton(Icons.add),
                     ),
 
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.w),
-                      child: Center(
-                        child: Text(
-                          '$quantity',
-                          style: AppStyle.styleBold18(
-                            context,
-                          ).copyWith(color: Colors.black),
-                        ),
-                      ),
+                      child: isUpdating
+                          ? SizedBox(
+                              height: 18.sp,
+                              width: 18.sp,
+                              child: const CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.black,
+                              ),
+                            )
+                          : Text(
+                              quantity.toString(),
+                              style: AppStyle.styleBold18(
+                                context,
+                              ).copyWith(color: Colors.black),
+                            ),
                     ),
 
                     GestureDetector(
@@ -249,32 +197,28 @@ class _ProductCartItemState extends State<ProductCartItem> {
                           _updateQuantity(quantity - 1);
                         }
                       },
-                      child: Container(
-                        width: 25.w,
-                        height: 25.h,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF8E9E9),
-                          borderRadius: BorderRadius.circular(50.r),
-                        ),
-                        child: Icon(Icons.remove, size: 20.sp),
-                      ),
+                      child: _buildQuantityButton(Icons.remove),
                     ),
                   ],
                 ),
               ),
             ],
           ),
-
-          // SizedBox(height: 16.h),
-
-          // CustomElevatedButton(
-          //   text: "المتابعة للدفع",
-          //   onPressed: () {
-          //     GoRouter.of(context).push(AppRouter.confirmPayment);
-          //   },
-          // ),
         ],
       ),
+    );
+  }
+
+  Widget _buildQuantityButton(IconData icon) {
+    return Container(
+      width: 25.w,
+      height: 25.h,
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8E9E9),
+        borderRadius: BorderRadius.circular(50.r),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: Icon(icon, size: 20.sp),
     );
   }
 }

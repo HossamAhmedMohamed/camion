@@ -245,9 +245,9 @@ class ConfirmPaymentScreen extends StatelessWidget {
                   onPressed: () {
                     context.read<CreateOrderCubit>().createOrder(
                       cartList: cartList,
-                      taxPrice: 80,
-                      shippingPrice: 100,
-                      totalOrderPrice: 200,
+                      taxPrice: "80",
+                      shippingPrice: "100",
+                      totalOrderPrice: "200",
                       shippingAddress: "shbeen el kom st",
                     );
                     customizeModalBottomSheet(

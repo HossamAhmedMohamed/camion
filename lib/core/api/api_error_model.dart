@@ -8,9 +8,7 @@ class ApiErrorModel {
   ApiErrorModel({required this.message, this.icon, this.statusCode});
 
   factory ApiErrorModel.fromJson(Map<String, dynamic> json) {
-    return ApiErrorModel(
-      message: _parseErrorMessage(json),
-    );
+    return ApiErrorModel(message: _parseErrorMessage(json));
   }
 
   static String _parseErrorMessage(Map<String, dynamic> json) {

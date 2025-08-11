@@ -13,16 +13,21 @@ class HomeRepository {
 
   HomeRepository({required this.remoteDataSource});
 
-  Future<Either<ApiErrorModel, List<AllProductModel>>> getProducts() async {
+  Future<Either<ApiErrorModel, List<AllProductModel>>> getProducts({
+    required int page,
+    required int perPage,
+  }) async {
     try {
-      final response = await remoteDataSource.getProducts();
+      final response = await remoteDataSource.getProducts(
+        page: page,
+        perPage: perPage,
+      );
 
       List<AllProductModel> products = [];
 
       for (var product in response.data["products"]) {
         products.add(AllProductModel.fromJson(product));
       }
-
       return Right(products);
     } catch (e) {
       log(e.toString());
@@ -61,9 +66,11 @@ class HomeRepository {
     }
   }
 
-  Future<Either<ApiErrorModel, List<StoriesModel>>> getStories() async {
+  Future<Either<ApiErrorModel, List<StoriesModel>>> getStories(
+      {required String token}
+  ) async {
     try {
-      final response = await remoteDataSource.getStories();
+      final response = await remoteDataSource.getStories(token: token);
       final stories = (response.data as List)
           .map((story) => StoriesModel.fromJson(story))
           .toList();
@@ -75,9 +82,10 @@ class HomeRepository {
 
   Future<Either<ApiErrorModel, StoriesModel>> getStoryById({
     required String id,
+    required String token
   }) async {
     try {
-      final response = await remoteDataSource.getStoryById(id: id);
+      final response = await remoteDataSource.getStoryById(id: id , token: token);
       return Right(StoriesModel.fromJson(response.data));
     } catch (e) {
       return left(ApiErrorHandler.handle(e));

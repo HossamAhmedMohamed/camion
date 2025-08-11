@@ -6,7 +6,7 @@ class ProductCarouselWidget extends StatelessWidget {
   final String imageUrl;
   final String productName;
   final String originalPrice;
-   
+  final String productId;
   final bool isGridView;
   final VoidCallback onAddToCartTap;
   final VoidCallback onAddToWishListTap;
@@ -16,7 +16,7 @@ class ProductCarouselWidget extends StatelessWidget {
     required this.imageUrl,
     required this.productName,
     required this.originalPrice,
-   
+    required this.productId,
     this.isGridView = true,
     required this.onAddToCartTap,
     required this.onAddToWishListTap,
@@ -29,14 +29,14 @@ class ProductCarouselWidget extends StatelessWidget {
             imageUrl: imageUrl,
             productName: productName,
             originalPrice: originalPrice,
-           
+
             onTap: onAddToCartTap,
           )
         : ListViewItemBuilding(
             imageUrl: imageUrl,
             productName: productName,
             originalPrice: originalPrice,
-           
+            productId: productId,
             onAddToCartTap: onAddToCartTap,
             onAddToWishListTap: onAddToWishListTap,
           );

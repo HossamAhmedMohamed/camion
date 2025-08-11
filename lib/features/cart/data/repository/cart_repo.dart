@@ -50,4 +50,37 @@ class CartRepository {
       return left(ApiErrorHandler.handle(e));
     }
   }
+
+  Future<Either<ApiErrorModel, GetCartModel>> updateCart({
+    required String token,
+    required String productId,
+    required int quantity,
+  }) async {
+    try {
+      final response = await cartRemoteDataSource.updateCart(
+        token: token,
+        productId: productId,
+        quantity: quantity,
+      );
+       
+      return Right(GetCartModel.fromJson(response.data));
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, GetCartModel>> deleteFromCart({
+    required String token,
+    required String productId,
+  }) async {
+    try {
+      final response = await cartRemoteDataSource.deleteFromCart(
+        token: token,
+        productId: productId,
+      );
+      return Right(GetCartModel.fromJson(response.data));
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
 }

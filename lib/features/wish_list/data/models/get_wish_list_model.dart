@@ -4,7 +4,7 @@ class GetWishListModel {
 	String? productId;
 	String? productName;
 	String? productImage;
-	int? price;
+	String? price;
 
 	GetWishListModel({
 		this.id, 
@@ -22,7 +22,7 @@ class GetWishListModel {
 			productId: json['productId'] as String?,
 			productName: json['productName'] as String?,
 			productImage: json['productImage'] as String?,
-			price: json['price'] as int?,
+			price: json['price'] ,
 		);
 	}
 

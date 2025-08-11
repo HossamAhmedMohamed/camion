@@ -42,6 +42,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
 
   final Map<int, VideoPlayerController> _videoControllers = {};
   final Map<int, bool> _videoInitialized = {};
+  final Map<int, bool> _videoEnded = {};
 
   @override
   void initState() {
@@ -49,10 +50,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     duration = Duration(seconds: widget.durationPeriod);
     _currentIndex = widget.initialIndex;
     _pageController = PageController(initialPage: widget.initialIndex);
-    _progressController = AnimationController(
-      duration: duration,
-      vsync: this,
-    );
+    _progressController = AnimationController(duration: duration, vsync: this);
     _exitController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -73,7 +71,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   void _initializeVideoControllers() {
     for (int i = 0; i < widget.stories.length; i++) {
       final story = widget.stories[i];
-      if (_isVideoStory(story)) {
+      if (story.mediaType == "video") {
         _videoControllers[i] = VideoPlayerController.networkUrl(
           Uri.parse(story.mediaUrl),
         );
@@ -83,25 +81,30 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
           if (mounted) {
             setState(() {
               _videoInitialized[i] = true;
+              _videoEnded[i] = false; // لسه الفيديو ما خلصش
             });
 
-            // If this is the current story and it's initialized, start playing
+            // لو هو الاستوري الحالية
             if (i == _currentIndex) {
-              _videoControllers[i]!.play();
-              // Use video duration for progress if available
               final videoDuration = _videoControllers[i]!.value.duration;
-              if (videoDuration != Duration.zero) {
-                _progressController.duration = videoDuration;
-                _startProgress();
-              }
+              _progressController.duration = videoDuration != Duration.zero
+                  ? videoDuration
+                  : duration;
+
+              _videoControllers[i]!.play().then((_) {
+                _startProgress(); // يبدأ يعد بعد التشغيل
+              });
             }
           }
         });
 
         // Listen to video end
         _videoControllers[i]!.addListener(() {
-          if (_videoControllers[i]!.value.position >=
-              _videoControllers[i]!.value.duration) {
+          final controller = _videoControllers[i]!;
+          if (controller.value.isInitialized &&
+              controller.value.position >= controller.value.duration &&
+              _videoEnded[i] != true) {
+            _videoEnded[i] = true; // علّم إنه خلص
             if (i == _currentIndex && !_isPressed && !_isDragging && mounted) {
               _nextStory();
             }
@@ -111,13 +114,13 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     }
   }
 
-  bool _isVideoStory(StoriesModel story) {
-    // You can check the mediaType from the story model or check file extension
-    return widget.mediaType.toLowerCase() == 'video' ||
-        story.mediaUrl.toLowerCase().contains('.mp4') ||
-        story.mediaUrl.toLowerCase().contains('.mov') ||
-        story.mediaUrl.toLowerCase().contains('.avi');
-  }
+  // bool _isVideoStory(StoriesModel story) {
+  //   // You can check the mediaType from the story model or check file extension
+  //   return widget.mediaType.toLowerCase() == 'video' ||
+  //       story.mediaUrl.toLowerCase().contains('.mp4') ||
+  //       story.mediaUrl.toLowerCase().contains('.mov') ||
+  //       story.mediaUrl.toLowerCase().contains('.avi');
+  // }
 
   @override
   void dispose() {
@@ -135,19 +138,12 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     if (!mounted) return;
 
     final currentStory = widget.stories[_currentIndex];
+    _videoEnded[_currentIndex] = false; // نبدأ القصة من الأول
 
-    if (_isVideoStory(currentStory) &&
-        _videoControllers[_currentIndex] != null) {
-      final videoController = _videoControllers[_currentIndex]!;
-      if (_videoInitialized[_currentIndex] == true) {
-        videoController.play();
-        _progressController.duration =
-            videoController.value.duration != Duration.zero
-            ? videoController.value.duration
-            : duration;
+    if (currentStory.mediaType == "video") {
+      if (_videoInitialized[_currentIndex] != true) {
+        return; // استنى لحد ما يجهز الفيديو
       }
-    } else {
-      _progressController.duration = duration;
     }
 
     _progressController.reset();
@@ -163,7 +159,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
       _progressController.stop();
     }
     final currentStory = widget.stories[_currentIndex];
-    if (_isVideoStory(currentStory) &&
+    if (currentStory.mediaType == "video" &&
         _videoControllers[_currentIndex] != null) {
       _videoControllers[_currentIndex]!.pause();
     }
@@ -172,7 +168,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   void _resumeProgress() {
     if (!_isDragging && mounted && !_isPressed) {
       final currentStory = widget.stories[_currentIndex];
-      if (_isVideoStory(currentStory) &&
+      if ( currentStory.mediaType == "video" &&
           _videoControllers[_currentIndex] != null) {
         _videoControllers[_currentIndex]!.play();
       }
@@ -225,7 +221,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
 
   void _restartCurrentStory() {
     final currentStory = widget.stories[_currentIndex];
-    if (_isVideoStory(currentStory) &&
+    if (currentStory.mediaType == "video" &&
         _videoControllers[_currentIndex] != null) {
       _videoControllers[_currentIndex]!.seekTo(Duration.zero);
     }
@@ -336,8 +332,8 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
                         itemCount: widget.stories.length,
                         itemBuilder: (context, index) {
                           return _buildStoryContent(
-                            widget.stories[index],
-                            index,
+                            widget.stories[_currentIndex],
+                            _currentIndex,
                           );
                         },
                       ),
@@ -365,7 +361,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
       height: double.infinity,
       color: Colors.black,
       child: Center(
-        child: _isVideoStory(story)
+        child: story.mediaType == "video"
             ? _buildVideoPlayer(story, index, screenWidth, screenHeight)
             : _buildImagePlayer(story, screenWidth, screenHeight),
       ),
@@ -412,7 +408,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
   ) {
     return CachedNetworkImage(
       width: screenWidth,
-      height: screenHeight*0.7,
+      height: screenHeight * 0.7,
       imageUrl: story.mediaUrl,
       // fit: BoxFit.fill,
       placeholder: (context, url) => Skeletonizer(
