@@ -1,10 +1,13 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/home/data/models/all_products_model/sub_models/attribute.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsSelectionOptions extends StatefulWidget {
-  const ProductsSelectionOptions({super.key});
+  const ProductsSelectionOptions({super.key, required this.attributes, this.onSelectionChanged});
+  final List<Attribute> attributes;
+  final Function(Map<String, String> attributes, int quantity)? onSelectionChanged;
 
   @override
   State<ProductsSelectionOptions> createState() =>
@@ -13,41 +16,199 @@ class ProductsSelectionOptions extends StatefulWidget {
 
 class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
   int counter = 1;
-  List<bool> pieceSelections = List.filled(6, false);
-  int selectedSize = 0;
-  int selectedColor = -1;
+  Map<String, String> selectedAttributes = {};
 
-  bool isSelectedPiece = false;
-  List<int> sizes = [45, 44, 43, 42, 41, 40];
-  List<Color> colors = [
-    const Color(0xFF3F51B5),
-    const Color(0xFF616161),
-    const Color(0xFF212121),
-  ];
+  void _updateSelection(String attrName, String termName) {
+    setState(() {
+      selectedAttributes[attrName] = termName;
+    });
+    _notifyParent();
+  }
+
+  void _updateCounter(int value) {
+    setState(() {
+      counter = value;
+    });
+    _notifyParent();
+  }
+
+  void _notifyParent() {
+    widget.onSelectionChanged?.call(selectedAttributes, counter);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Counter Section
         _buildCounterSection(),
-    
         SizedBox(height: 30.h),
-    
-        // Pieces Section
-        _buildPiecesSection(),
-    
-        SizedBox(height: 30.h),
-    
-        // Sizes Section
-        // _buildSizesSection(),
-    
-        // SizedBox(height: 30.h),
-    
-        // // Colors Section
-        // _buildColorsSection(),
+        buildAttributesSections(),
       ],
+    );
+  }
+
+  Widget buildAttributesSections() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widget.attributes.map((attr) {
+        final String attrName = attr.name;
+        final List<AttributeTerm> terms = attr.terms;
+
+        // عرض الألوان الفعلية فقط
+        if (attrName.toLowerCase() == 'color' || attrName == 'اللون' || attrName.toLowerCase().contains('color')) {
+          final List<AttributeTerm> colorTerms =
+              terms.where((t) => getColorFromNameOrHex(t.name) != null).toList();
+
+          if (colorTerms.isEmpty) {
+            return const SizedBox.shrink(); // مفيش ألوان فعلية
+          }
+
+          return _buildAttributeSection(attrName, colorTerms, isColor: true);
+        }
+
+        // عرض المقاسات فقط بدون وصف
+        if (attrName.toLowerCase() == 'size' || attrName == 'المقاس') {
+          final cleanedTerms = terms.map((t) {
+            String cleanName = t.name;
+            if (cleanName.contains('[')) {
+              cleanName = cleanName.split('[').first.trim();
+            } else {
+              cleanName = cleanName.split(' ').first.trim();
+            }
+            return AttributeTerm(
+              id: t.id,
+              name: cleanName,
+              slug: t.slug,
+            );
+          }).toList();
+
+          return _buildAttributeSection(attrName, cleanedTerms);
+        }
+
+        // أي Attribute تاني
+        return _buildAttributeSection(attrName, terms);
+      }).toList(),
+    );
+  }
+
+  Widget _buildAttributeSection(
+    String attrName,
+    List<AttributeTerm> terms, {
+    bool isColor = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(attrName,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 15.h),
+        Wrap(
+          spacing: 8.w,
+          children: terms.map((term) {
+            final String termName = term.name;
+            final bool isSelected = selectedAttributes[attrName] == termName;
+
+            final color = isColor ? getColorFromNameOrHex(termName) : null;
+
+            return GestureDetector(
+              onTap: () => _updateSelection(attrName, termName),
+              child: color != null
+                  ? buildColorBox(color, isSelected)
+                  : buildTextBox(termName, isSelected),
+            );
+          }).toList(),
+        ),
+        SizedBox(height: 20.h),
+      ],
+    );
+  }
+
+  final Map<String, Color> colorMap = {
+    "black": Colors.black,
+    "white": Colors.white,
+    "red": Colors.red,
+    "blue": Colors.blue,
+    "green": Colors.green,
+    "pink": Colors.pink,
+    "yellow": Colors.yellow,
+    "purple": Colors.purple,
+    "orange": Colors.orange,
+    "grey": Colors.grey,
+    "gray": Colors.grey,
+    "brown": Color(0xFFA52A2A),
+    "navy": Color(0xFF000080),
+  };
+
+  Color? getColorFromNameOrHex(String colorName) {
+    final lower = colorName.toLowerCase().trim();
+
+    // نحاول نقطع النص لجزء اللون فقط
+    String firstPart = lower;
+    if (firstPart.contains('+')) {
+      firstPart = firstPart.split('+').first.trim();
+    }
+    if (firstPart.contains('[')) {
+      firstPart = firstPart.split('[').first.trim();
+    }
+    if (firstPart.contains(' ')) {
+      // ناخد أول كلمة بس لو فيه وصف طويل
+      firstPart = firstPart.split(' ').first.trim();
+    }
+
+    // لو موجودة في الماب
+    if (colorMap.containsKey(firstPart)) {
+      return colorMap[firstPart];
+    }
+
+    // لو Hex
+    if (firstPart.startsWith('#') &&
+        (firstPart.length == 7 || firstPart.length == 9)) {
+      try {
+        return Color(int.parse(firstPart.substring(1), radix: 16) + 0xFF000000);
+      } catch (_) {}
+    }
+
+    return null;
+  }
+
+  Widget buildColorBox(Color color, bool isSelected) {
+    return Container(
+      width: 45.w,
+      height: 45.h,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(
+          color: isSelected ? Colors.black : Colors.grey.shade300,
+          width: isSelected ? 2 : 1,
+        ),
+      ),
+      child: isSelected
+          ? Icon(Icons.check,
+              color: color == Colors.white ? Colors.black : Colors.white)
+          : null,
+    );
+  }
+
+  Widget buildTextBox(String text, bool isSelected) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      decoration: BoxDecoration(
+        color: isSelected ? const Color(0xFFFF5252) : Colors.white,
+        borderRadius: BorderRadius.circular(8.r),
+        border: Border.all(
+          color: isSelected ? const Color(0xFFFF5252) : Colors.grey.shade300,
+          width: 1,
+        ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: isSelected ? Colors.white : Colors.black,
+          fontSize: 14.sp,
+        ),
+      ),
     );
   }
 
@@ -57,9 +218,10 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       children: [
         Text(
           'الكمية',
-          style: AppStyle.styleRegular18(
-            context,
-          ).copyWith(color: Colors.black, fontWeight: FontWeight.w700),
+          style: AppStyle.styleRegular18(context).copyWith(
+            color: Colors.black,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -76,55 +238,28 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
           child: Row(
             children: [
               GestureDetector(
-                onTap: () {
-                  setState(() {
-                    counter++;
-                  });
-                },
-                child: Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF8E9E9),
-                    borderRadius: BorderRadius.circular(50.r),
-                    border: Border.all(color: Colors.grey.shade300),
-                  ),
-                  child: Icon(Icons.add, size: 20.sp),
-                ),
+                onTap: () => _updateCounter(counter + 1),
+                child: _buildCounterButton(Icons.add),
               ),
-
               Container(
                 width: 60.w,
                 height: 40.h,
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
-
                 child: Center(
                   child: Text(
                     '$counter',
-                    style: AppStyle.styleBold18(
-                      context,
-                    ).copyWith(color: Colors.black),
+                    style: AppStyle.styleBold18(context)
+                        .copyWith(color: Colors.black),
                   ),
                 ),
               ),
-
               GestureDetector(
                 onTap: () {
                   if (counter > 1) {
-                    setState(() {
-                      counter--;
-                    });
+                    _updateCounter(counter - 1);
                   }
                 },
-                child: Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF8E9E9),
-                    borderRadius: BorderRadius.circular(50.r),
-                  ),
-                  child: Icon(Icons.remove, size: 20.sp),
-                ),
+                child: _buildCounterButton(Icons.remove),
               ),
             ],
           ),
@@ -133,250 +268,16 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     );
   }
 
-  Widget _buildPiecesSection() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double availableWidth = constraints.maxWidth;
-
-        double itemMinWidth = 100;
-        double spacing = 10.w;
-
-        int itemsPerRow =
-            ((availableWidth + spacing) / (itemMinWidth + spacing)).floor();
-        itemsPerRow = itemsPerRow.clamp(2, 6);
-
-        double itemWidth =
-            (availableWidth - (spacing * (itemsPerRow - 1))) / itemsPerRow;
-
-        return Wrap(
-          spacing: spacing,
-          runSpacing: 15.h,
-          children: [
-            _buildPieceItem(0, '2-6', 'قطعة', false, itemWidth),
-            _buildPieceItem(1, '2-6', 'قطعة', false, itemWidth),
-            _buildPieceItem(2, '2-6', 'قطعة', false, itemWidth),
-            _buildPieceItem(3, '1', 'قطعة', false, itemWidth),
-            _buildPieceItem(4, '2-6', 'قطعة', false, itemWidth),
-            _buildPieceItem(5, '2-6', 'قطعة', false, itemWidth),
-            _buildPieceItem(6, '2-6', 'قطعة', false, itemWidth),
-          ],
-        );
-      },
-    );
-  }
-
-  Widget _buildPieceItem(
-    int index,
-    String number,
-    String text,
-    bool isSelected,
-    double itemWidth,
-  ) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
-      },
-      child: Container(
-        width: itemWidth,
-
-        padding: EdgeInsets.symmetric(horizontal: 3.w),
-        decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFFFE5E5) : Colors.white,
-          borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(
-            color: isSelected ? const Color(0xFFFF5252) : Colors.grey.shade300,
-            width: isSelected ? 2 : 1,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  number,
-                  style: AppStyle.styleBold12(
-                    context,
-                  ).copyWith(color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-
-                SizedBox(width: 3.w),
-
-                Text(
-                  text,
-                  style: AppStyle.styleRegular10(
-                    context,
-                  ).copyWith(color: AppColors.black),
-                ),
-
-                const Spacer(),
-                Container(
-                  width: 15.w,
-                  height: 15.h,
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? const Color(0xFFFF5252)
-                        : Colors.transparent,
-                    border: Border.all(
-                      color: isSelected ? const Color(0xFFFF5252) : Colors.grey,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(3.r),
-                  ),
-                  child: isSelected
-                      ? Icon(Icons.check, size: 10.sp, color: Colors.white)
-                      : null,
-                ),
-
-                // : Container(
-                //     width: 15.w,
-                //     height: 15.h,
-                //     decoration: BoxDecoration(
-                //       color: const Color(0xFFFF5252),
-                //       borderRadius: BorderRadius.circular(3.r),
-                //     ),
-                //     child: Icon(
-                //       Icons.check,
-                //       size: 10.sp,
-                //       color: Colors.white,
-                //     ),
-                //   ),
-                SizedBox(width: 5.w),
-              ],
-            ),
-
-            SizedBox(height: 3.h),
-
-            Row(
-              children: [
-                Text(
-                  '25',
-                  style: AppStyle.styleRegular14(
-                    context,
-                  ).copyWith(color: AppColors.black),
-                ),
-                Text(
-                  ' ريال ',
-                  style: AppStyle.styleRegular10(
-                    context,
-                  ).copyWith(color: AppColors.black),
-                ),
-
-                SizedBox(width: 3.w),
-                Text(
-                  '35 ريال',
-                  style: AppStyle.styleRegular10(context).copyWith(
-                    color: AppColors.alertRed,
-                    decoration: TextDecoration.lineThrough,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+  Widget _buildCounterButton(IconData icon) {
+    return Container(
+      width: 40.w,
+      height: 40.h,
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8E9E9),
+        borderRadius: BorderRadius.circular(50.r),
+        border: Border.all(color: Colors.grey.shade300),
       ),
+      child: Icon(icon, size: 20.sp),
     );
   }
-
-  // Widget _buildSizesSection() {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Text('المقاس', style: AppStyle.styleBold18(context)),
-
-  //       SizedBox(height: 15.h),
-
-  //       Row(children: sizes.map((size) => _buildSizeItem(size)).toList()),
-  //     ],
-  //   );
-  // }
-
-  // Widget _buildSizeItem(int size) {
-  //   bool isSelected = selectedSize == size;
-
-  //   return GestureDetector(
-  //     onTap: () {
-  //       setState(() {
-  //         selectedSize = size;
-  //       });
-  //     },
-  //     child: Container(
-  //       width: 45.w,
-  //       height: 45.h,
-  //       margin: EdgeInsets.only(left: 8.w),
-  //       decoration: BoxDecoration(
-  //         color: Colors.white,
-  //         borderRadius: BorderRadius.circular(8.r),
-  //         border: Border.all(
-  //           color: isSelected ? const Color(0xFFFF5252) : Colors.grey.shade300,
-  //           width: isSelected ? 2 : 1,
-  //         ),
-  //       ),
-  //       child: Center(
-  //         child: Text(
-  //           '$size',
-  //           style: TextStyle(
-  //             fontSize: 16.sp,
-  //             fontWeight: FontWeight.bold,
-  //             color: isSelected ? const Color(0xFFFF5252) : Colors.black87,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // Widget _buildColorsSection() {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: [
-  //       Text('الألوان المتاحة', style: AppStyle.styleBold18(context)),
-
-  //       SizedBox(height: 15.h),
-
-  //       Row(
-  //         mainAxisAlignment: MainAxisAlignment.start,
-  //         children: [
-  //           for (int i = 0; i < colors.length; i++)
-  //             _buildColorItem(i, colors[i]),
-  //         ],
-  //       ),
-  //     ],
-  //   );
-  // }
-
-  // Widget _buildColorItem(int index, Color color) {
-  //   bool isSelected = selectedColor == index;
-
-  //   return GestureDetector(
-  //     onTap: () {
-  //       setState(() {
-  //         selectedColor = index;
-  //       });
-  //     },
-  //     child: Container(
-  //       width: 50.w,
-  //       height: 50.h,
-  //       margin: EdgeInsets.only(left: 10.w),
-  //       decoration: BoxDecoration(
-  //         color: color,
-  //         borderRadius: BorderRadius.circular(12.r),
-  //         // border: isSelected ? Border.all(color: Colors.white, width: 3) : null,
-  //         boxShadow: [
-  //           BoxShadow(
-  //             color: Colors.black.withAlpha(30),
-  //             blurRadius: 5,
-  //             offset: const Offset(0, 2),
-  //           ),
-  //         ],
-  //       ),
-  //       child: isSelected
-  //           ? Icon(Icons.check, color: Colors.white, size: 24.sp)
-  //           : null,
-  //     ),
-  //   );
-  // }
 }

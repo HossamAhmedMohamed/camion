@@ -10,11 +10,14 @@ import 'package:camion/features/home/presentation/logic/cubit/product_id_details
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/product_id_image_skeletonizer.dart';
 import 'package:camion/features/home/presentation/widgets/products_options.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -44,6 +47,9 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   // late AllProductModel prodcut;
+
+  Map<String, String> chosenAttributes = {};
+  int chosenQuantity = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +113,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                             }
 
                             if (state is ProductIdDetailsLoaded) {
-                           
                               return PageView.builder(
                                 controller: pageController,
                                 onPageChanged: (index) {
@@ -252,10 +257,64 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         ),
                                       ),
                                       SizedBox(width: 8.w),
-                                      Image.asset(
-                                        Assets.imagesSave,
-                                        width: 25.w,
-                                        height: 25.h,
+                                      BlocBuilder<
+                                        GetWishListCubit,
+                                        GetWishListState
+                                      >(
+                                        builder: (context, state) {
+                                          bool isInWishList = false;
+
+                                          if (state is GetWishListSuccess) {
+                                            if (state.wishLists.isEmpty) {
+                                              isInWishList = false;
+                                            } else {
+                                              isInWishList = state.wishLists
+                                                  .any(
+                                                    (item) =>
+                                                        item.productId ==
+                                                        widget.productId,
+                                                  );
+                                            }
+                                          }
+
+                                          return InkWell(
+                                            onTap: () async {
+                                              if (isInWishList) {
+                                                context
+                                                    .read<GetWishListCubit>()
+                                                    .removeFromWishList(
+                                                      productId:
+                                                          widget.productId,
+                                                    );
+                                              } else {
+                                                await context
+                                                    .read<AddToWishListCubit>()
+                                                    .addtoWishList(
+                                                      productId: product.id
+                                                          .toString(),
+                                                      title: product.name,
+                                                      price:
+                                                          product.prices.price,
+                                                      image: product
+                                                          .images[0]
+                                                          .thumbnail,
+                                                    );
+                                                context
+                                                    .read<GetWishListCubit>()
+                                                    .getWishList();
+                                              }
+                                            },
+                                            child: SvgPicture.asset(
+                                              isInWishList
+                                                  ? Assets
+                                                        .imagesIconsNewwwwwActiveFavourites
+                                                  : Assets
+                                                        .imagesIconsInactiveFavouriteIconNewNavbar,
+                                              width: 25.w,
+                                              height: 25.h,
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ],
                                   ),
@@ -268,10 +327,21 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         state
                                             .productIdDetailsModel
                                             .prices
-                                            .price,
+                                            .salePrice,
                                         style: AppStyle.styleBold20(context)
                                             .copyWith(
                                               color: AppColors.primaryColor,
+                                            ),
+                                      ),
+
+                                      SizedBox(width: 8.w),
+                                      Text(
+                                        product.prices.regularPrice,
+                                        style: AppStyle.styleRegular15(context)
+                                            .copyWith(
+                                              color: AppColors.gray,
+                                              decoration:
+                                                  TextDecoration.lineThrough,
                                             ),
                                       ),
                                       // SizedBox(width: 8.w),
@@ -292,16 +362,25 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Row(
                                     children: [
                                       Text(
-                                        '4.5',
+                                        product.averageRating,
                                         style: AppStyle.styleRegular14(
                                           context,
                                         ).copyWith(color: Colors.grey.shade600),
                                       ),
 
                                       SizedBox(width: 5.w),
+                                      SizedBox(width: 5.w),
                                       ...List.generate(5, (index) {
+                                        int rating = 0;
+                                        try {
+                                          rating = double.parse(
+                                            product.averageRating,
+                                          ).toInt();
+                                        } catch (e) {
+                                          rating = 0;
+                                        }
                                         return Icon(
-                                          index < 4.5.floor()
+                                          index < rating
                                               ? Icons.star
                                               : Icons.star_border,
                                           color: Colors.amber,
@@ -322,60 +401,119 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
                                       SizedBox(width: 5.w),
                                       Text(
-                                        '32 مشاهده',
+                                        product.reviewCount.toString(),
                                         style: AppStyle.styleRegular10(
                                           context,
                                         ).copyWith(color: AppColors.gray),
                                       ),
 
-                                      SizedBox(width: 10.w),
+                                      // SizedBox(width: 10.w),
 
-                                      Text(
-                                        '10 منذ ساعات',
-                                        style: AppStyle.styleRegular10(
-                                          context,
-                                        ).copyWith(color: AppColors.gray),
-                                      ),
+                                      // Text(
+                                      //   '10 منذ ساعات',
+                                      //   style: AppStyle.styleRegular10(
+                                      //     context,
+                                      //   ).copyWith(color: AppColors.gray),
+                                      // ),
                                     ],
                                   ),
 
                                   const SizedBox(height: 20),
 
-                                  const ProductsSelectionOptions(),
-
-                                  SizedBox(height: 20.h),
-
-                                  const CustomExpansionTile(
-                                    title: "الوصف",
-                                    content:
-                                        "هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة",
+                                  ProductsSelectionOptions(
+                                    attributes: product.attributes,
+                                    onSelectionChanged: (attributes, quantity) {
+                                      chosenAttributes = attributes;
+                                      chosenQuantity = quantity;
+                                    },
                                   ),
 
                                   SizedBox(height: 20.h),
 
-                                  const CustomExpansionTile(
-                                    title: "طريقة الاستعمال",
-                                    content:
-                                        "هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة",
-                                  ),
+                                  // const CustomExpansionTile(
+                                  //   title: "الوصف",
+                                  //   content:
+                                  //       "هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة",
+                                  // ),
 
-                                  SizedBox(height: 20.h),
+                                  // SizedBox(height: 20.h),
 
-                                  Image.asset(
-                                    Assets.imagesProductRate,
+                                  // const CustomExpansionTile(
+                                  //   title: "طريقة الاستعمال",
+                                  //   content:
+                                  //       "هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة لا يمكن تغييرها هذه حقيقة مثبتة",
+                                  // ),
 
-                                    // width: double.infinity,
-                                    // height: 120.h,
-                                  ),
+                                  // SizedBox(height: 20.h),
 
-                                  SizedBox(height: 30.h),
+                                  // Image.asset(
+                                  //   Assets.imagesProductRate,
 
+                                  //   // width: double.infinity,
+                                  //   // height: 120.h,
+                                  // ),
+
+                                  // SizedBox(height: 30.h),
                                   SizedBox(
                                     width: double.infinity,
-                                    child: BlocBuilder<AddCartCubit, AddCartState>(
+                                    child: BlocConsumer<AddCartCubit, AddCartState>(
+                                      listener: (context, state) {
+                                        if (state is AddCartError) {
+                                          Fluttertoast.showToast(
+                                            gravity: ToastGravity.TOP,
+                                            backgroundColor:
+                                                AppColors.primaryColor,
+                                            msg: state.error.message,
+                                          );
+                                        }
+                                      },
                                       builder: (context, state) {
-                                        return state is AddCartSuccess ||
-                                                product.isINcart!
+                                        return product.isInCart!
+                                            ? ElevatedButton(
+                                                onPressed: () {
+                                                  GoRouter.of(
+                                                    context,
+                                                  ).push(AppRouter.myCart);
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                  padding: EdgeInsets.symmetric(
+                                                    vertical: 16.h,
+                                                  ),
+                                                  backgroundColor:
+                                                      AppColors.blueC3,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                          16.r,
+                                                        ),
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      'أذهب الي العربة',
+                                                      style:
+                                                          AppStyle.styleRegular15(
+                                                            context,
+                                                          ).copyWith(
+                                                            color: Colors.white,
+                                                          ),
+                                                    ),
+
+                                                    SizedBox(width: 6.w),
+
+                                                    SvgPicture.asset(
+                                                      Assets
+                                                          .imagesShoppingCartWhite,
+                                                      width: 22.w,
+                                                      height: 22.h,
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            : state is AddCartSuccess
                                             ? ElevatedButton(
                                                 onPressed: () {
                                                   GoRouter.of(
@@ -422,19 +560,27 @@ class _ProductDetailsState extends State<ProductDetails> {
                                               )
                                             : ElevatedButton(
                                                 onPressed: () {
+                                                  final variations =
+                                                      chosenAttributes.entries
+                                                          .map((entry) {
+                                                            return {
+                                                              "attribute": entry
+                                                                  .key
+                                                                  .toLowerCase(),
+                                                              "value":
+                                                                  entry.value,
+                                                            };
+                                                          })
+                                                          .toList();
+
                                                   context
                                                       .read<AddCartCubit>()
                                                       .addToCart(
                                                         productId: product.id
                                                             .toString(),
-                                                        title: product.name,
-                                                        price: product
-                                                            .prices
-                                                            .price,
-                                                        image: product
-                                                            .images[0]
-                                                            .thumbnail,
-                                                        quantity: 1,
+                                                        variations: variations,
+                                                        quantity:
+                                                            chosenQuantity,
                                                       );
                                                 },
                                                 style: ElevatedButton.styleFrom(
@@ -471,9 +617,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                       .white,
                                                                 ),
                                                           ),
-
                                                           SizedBox(width: 6.w),
-
                                                           SvgPicture.asset(
                                                             Assets
                                                                 .imagesShoppingCartWhite,

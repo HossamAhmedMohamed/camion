@@ -1,4 +1,3 @@
- 
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
@@ -19,8 +18,6 @@ class SliverGridViewBuilding extends StatelessWidget {
 
   final double screenWidth;
   final double screenHeight;
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -52,17 +49,17 @@ class SliverGridViewBuilding extends StatelessWidget {
             itemCount: 20,
           );
         }
-    
+
         if (state is ProductsLoaded) {
           final bool isLoadingMore = context
               .watch<ProductsCubit>()
               .isLoadingMore;
-    
+
           final products = state.products;
           return SliverGrid.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: screenWidth > 800 ? 3 : 2,
-              childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+              childAspectRatio: (0.23.w / 0.42.h).clamp(0.5, 1),
               crossAxisSpacing: 20.w,
               mainAxisSpacing: 10.h,
               // mainAxisExtent: screenWidth >= 376 && screenWidth < 410
@@ -88,20 +85,22 @@ class SliverGridViewBuilding extends StatelessWidget {
                     );
                   },
                   child: ProductCarouselWidget(
+                    reviewCount: product.reviewCount.toString(),
+                    averageRating: product.averageRating,
                     productId: product.id.toString(),
                     imageUrl: product.images[0].thumbnail,
                     productName: product.name,
                     originalPrice: product.prices.price.toString(),
-    
+                    outPrice: product.prices.regularPrice,
                     isGridView: true,
                     onAddToCartTap: () {
-                      context.read<AddCartCubit>().addToCart(
-                        productId: product.id.toString(),
-                        title: product.name,
-                        price: product.prices.price,
-                        image: product.images[0].thumbnail,
-                        quantity: 1,
-                      );
+                      // context.read<AddCartCubit>().addToCart(
+                      //   productId: product.id.toString(),
+                      //   title: product.name,
+                      //   price: product.prices.price,
+                      //   image: product.images[0].thumbnail,
+                      //   quantity: 1,
+                      // );
                     },
                     onAddToWishListTap: () {},
                   ),
@@ -117,7 +116,7 @@ class SliverGridViewBuilding extends StatelessWidget {
             itemCount: state.products.length + (isLoadingMore ? 2 : 0),
           );
         }
-    
+
         if (state is ProductsError) {
           return SliverToBoxAdapter(
             child: Center(
@@ -126,16 +125,16 @@ class SliverGridViewBuilding extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Icon(state.error.icon, color: Colors.red, size: 50),
-    
+
                   SizedBox(height: 20.h),
                   Text(
                     state.error.message,
                     style: TextStyle(fontSize: 16.sp, color: Colors.red),
                     textAlign: TextAlign.center,
                   ),
-    
+
                   SizedBox(height: 10.h),
-    
+
                   ElevatedButton(
                     onPressed: () {
                       context.read<ProductsCubit>().retryLoadMore();

@@ -32,13 +32,13 @@ class SettingsScreen extends StatelessWidget {
         image: Assets.imagesIconsHelp,
       ),
 
-      ProfileModel(
-        onTap: () {
-          GoRouter.of(context).push(AppRouter.accountSettings);
-        },
-        title: 'اعدادات الحساب',
-        image: Assets.imagesProfileEdit,
-      ),
+      // ProfileModel(
+      //   onTap: () {
+      //     GoRouter.of(context).push(AppRouter.accountSettings);
+      //   },
+      //   title: 'اعدادات الحساب',
+      //   image: Assets.imagesProfileEdit,
+      // ),
     ];
     return Scaffold(
       backgroundColor: Colors.white,

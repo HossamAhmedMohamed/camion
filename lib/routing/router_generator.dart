@@ -12,6 +12,7 @@ import 'package:camion/features/auth/presentation/screens/register_screen.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/cubit/address_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
@@ -29,8 +30,14 @@ import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/products_by_category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/features/home/presentation/screens/stories_screen.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_cubit.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_selecting_cubit.dart';
+import 'package:camion/features/join_us/data/repository/supplier_repo.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/create_coupon_cubit/create_coupon_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/cubit/get_affiliate_status_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/supplier_sign_cubit/supplier_sign_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_gender/toggle_join_us_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_cubit/toggle_social_media_selecting_cubit.dart';
+import 'package:camion/features/join_us/presentation/screens/affiliate_pending.dart';
+import 'package:camion/features/join_us/presentation/screens/check_affiliate_or_not.dart';
 import 'package:camion/features/join_us/presentation/screens/create_code_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/join_us_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/my_codings_screen.dart';
@@ -55,6 +62,10 @@ import 'package:camion/features/profile/presentation/screens/profile_screen.dart
 import 'package:camion/features/profile/presentation/screens/settings_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
+import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
+import 'package:camion/main_production.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,8 +73,10 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerator {
   static GoRouter mainRouting = GoRouter(
-    // initialLocation: isLoggedInUser ? AppRouter.selectingFromBottomNavBar : AppRouter.login,
-    initialLocation: AppRouter.selectingFromBottomNavBar,
+    initialLocation: isLoggedInUser
+        ? AppRouter.selectingFromBottomNavBar
+        : AppRouter.login,
+    // initialLocation: AppRouter.selectingFromBottomNavBar,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -104,7 +117,10 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.profileScreen,
         path: AppRouter.profileScreen,
-        builder: (context, state) => const ProfileScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => LogOutCubit(),
+          child: const ProfileScreenBody(),
+        ),
       ),
 
       GoRoute(
@@ -147,6 +163,16 @@ class RouterGenerator {
               BlocProvider(
                 create: (context) => AddCartCubit(sl<CartRepository>()),
               ),
+
+              BlocProvider(
+                create: (context) =>
+                    AddToWishListCubit(sl<WishListRepository>()),
+              ),
+
+              BlocProvider(
+                create: (context) =>
+                    GetWishListCubit(sl<WishListRepository>()),
+              ),
             ],
             child: ProductDetails(productId: extra),
           );
@@ -170,6 +196,10 @@ class RouterGenerator {
                 create: (context) =>
                     CreateOrderCubit(sl<OrderStatusRepository>()),
               ),
+              BlocProvider(
+                create: (context) =>
+                    CreateOrderCubit(sl<OrderStatusRepository>()),
+              ),
             ],
             child: ConfirmPaymentScreen(cartList: extra),
           );
@@ -179,10 +209,44 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.confirmAddress,
         path: AppRouter.confirmAddress,
-        builder: (context, state) => BlocProvider(
-          create: (context) => PaymentMethodCubit(),
-          child: const ConfirmAddress(),
-        ),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, TextEditingController>;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => PaymentMethodCubit()),
+            ],
+            child: ConfirmAddress(
+              firstNameController: extra['firstName'] as TextEditingController,
+              lastNameController: extra['lastName'] as TextEditingController,
+              emailController: extra['email'] as TextEditingController,
+              phoneController: extra['phone'] as TextEditingController,
+              address1Controller: extra['address1'] as TextEditingController,
+              address2Controller: extra['address2'] as TextEditingController,
+              cityController: extra['city'] as TextEditingController,
+              stateController: extra['state'] as TextEditingController,
+              postcodeController: extra['postcode'] as TextEditingController,
+              countryController: extra['country'] as TextEditingController,
+              shippingFirstNameController:
+                  extra['shippingFirstName'] as TextEditingController,
+              shippingLastNameController:
+                  extra['shippingLastName'] as TextEditingController,
+              shippingAddress1Controller:
+                  extra['shippingAddress1'] as TextEditingController,
+              shippingAddress2Controller:
+                  extra['shippingAddress2'] as TextEditingController,
+              shippingCityController:
+                  extra['shippingCity'] as TextEditingController,
+              shippingStateController:
+                  extra['shippingState'] as TextEditingController,
+              shippingPostcodeController:
+                  extra['shippingPostcode'] as TextEditingController,
+              shippingCountryController:
+                  extra['shippingCountry'] as TextEditingController,
+              creditCardController:
+                  extra['creditCard'] as TextEditingController,
+            ),
+          );
+        },
       ),
 
       GoRoute(
@@ -206,8 +270,13 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.joinUs,
         path: AppRouter.joinUs,
-        builder: (context, state) => BlocProvider(
-          create: (context) => ToggleJoinUsCubit(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => ToggleJoinUsCubit()),
+            BlocProvider(
+              create: (context) => SupplierSignCubit(sl<SupplierRepository>()),
+            ),
+          ],
           child: const JoinUsScreen(),
         ),
       ),
@@ -251,7 +320,10 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.createCode,
         path: AppRouter.createCode,
-        builder: (context, state) => const CreateCodeScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => CreateCouponCubit(sl<SupplierRepository>()),
+          child: const CreateCodeScreen(),
+        ),
       ),
 
       GoRoute(
@@ -350,9 +422,24 @@ class RouterGenerator {
         path: AppRouter.productByCategory,
         builder: (context, state) {
           final extra = state.extra as String;
-           return ProductsByCategoryScreen(
-          slug: extra ,
-        );},
+          return ProductsByCategoryScreen(slug: extra);
+        },
+      ),
+
+      GoRoute(
+        name: AppRouter.affiliateStatus,
+        path: AppRouter.affiliateStatus,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              GetAffiliateStatusCubit(sl<SupplierRepository>()),
+          child: const AffiliatePending(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.affiliateCheckScreen,
+        path: AppRouter.affiliateCheckScreen,
+        builder: (context, state) => const AffiliateCheckScreen(),
       ),
     ],
   );

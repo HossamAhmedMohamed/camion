@@ -124,20 +124,20 @@ class _ProductsByCategoryScreenBodyState
                           );
                         },
                         child: ProductCarouselWidget(
+                          reviewCount: product.reviewCount.toString(),
+                          averageRating: product.averageRating,
                           productId: product.id.toString(),
                           imageUrl: product.images[0].thumbnail,
                           productName: product.name,
                           originalPrice: product.prices.price.toString(),
-
+                          outPrice: product.prices.regularPrice,
                           isGridView: false,
                           onAddToCartTap: () {
-                            context.read<AddCartCubit>().addToCart(
-                              productId: product.id.toString(),
-                              title: product.name,
-                              price: product.prices.price,
-                              image: product.images[0].thumbnail,
-                              quantity: 1,
-                            );
+                            // context.read<AddCartCubit>().addToCart(
+                            //   productId: product.id.toString(),
+                             
+                            //   quantity: 1,
+                            // );
                           },
                           onAddToWishListTap: () {
                             context.read<AddToWishListCubit>().addtoWishList(

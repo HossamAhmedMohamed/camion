@@ -52,7 +52,7 @@ class SearchBarHome extends StatelessWidget {
                 ),
                 suffixIcon: SizedBox(
                   width: 60.w,
-                  child: Row(
+                  child: const Row(
                     children: [
                       // // SvgPicture.asset(
                       // //   Assets.imagesFluentScanCamera,
@@ -64,40 +64,40 @@ class SearchBarHome extends StatelessWidget {
                       //   height: 24.h,
                       // ),
                       // SizedBox(width: 8.w),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () async {
-                          await BarcodeScanner.scan();
-                        },
-                        child: SvgPicture.asset(
-                          Assets.imagesMdiBarcodeScan,
-                          width: 24.w,
-                          height: 24.h,
-                        ),
-                      ),
+                      // const Spacer(),
+                      // GestureDetector(
+                      //   onTap: () async {
+                      //     await BarcodeScanner.scan();
+                      //   },
+                      //   child: SvgPicture.asset(
+                      //     Assets.imagesMdiBarcodeScan,
+                      //     width: 24.w,
+                      //     height: 24.h,
+                      //   ),
+                      // ),
 
-                      SizedBox(width: 8.w),
+                      // SizedBox(width: 8.w),
                     ],
                   ),
                 ),
               ),
             ),
 
-            SizedBox(width: 7.w),
+            // SizedBox(width: 7.w),
 
-            Expanded(
-              flex: 1,
-              child: GestureDetector(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouter.searchFilter);
-                },
-                child: SvgPicture.asset(
-                  Assets.imagesSettings,
-                  width: 56.w,
-                  height: 56.h,
-                ),
-              ),
-            ),
+            // Expanded(
+            //   flex: 1,
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       GoRouter.of(context).push(AppRouter.searchFilter);
+            //     },
+            //     child: SvgPicture.asset(
+            //       Assets.imagesSettings,
+            //       width: 56.w,
+            //       height: 56.h,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
 

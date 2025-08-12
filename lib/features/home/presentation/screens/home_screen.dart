@@ -20,6 +20,7 @@ import 'package:camion/features/home/presentation/widgets/sliver_grid_view_build
 import 'package:camion/features/home/presentation/widgets/sliver_list_view_building.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,8 @@ import 'package:skeletonizer/skeletonizer.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static final GlobalKey<HomeScreenBodyState> homeKey =
+      GlobalKey<HomeScreenBodyState>();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -42,6 +45,10 @@ class HomeScreen extends StatelessWidget {
         ),
 
         BlocProvider(
+          create: (context) => GetWishListCubit(sl<WishListRepository>()),
+        ),
+
+        BlocProvider(
           create: (context) => GetCategoriesCubit(sl<HomeRepository>()),
         ),
 
@@ -49,7 +56,7 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(create: (context) => ToggleAddCartCubit()),
         BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
       ],
-      child: const HomeScreenBody(),
+      child: HomeScreenBody(key: homeKey),
     );
   }
 }
@@ -58,10 +65,10 @@ class HomeScreenBody extends StatefulWidget {
   const HomeScreenBody({super.key});
 
   @override
-  State<HomeScreenBody> createState() => _HomeScreenBodyState();
+  State<HomeScreenBody> createState() => HomeScreenBodyState();
 }
 
-class _HomeScreenBodyState extends State<HomeScreenBody>
+class HomeScreenBodyState extends State<HomeScreenBody>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
@@ -73,8 +80,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
     context.read<ProductsCubit>().getProducts();
     context.read<StoriesCubit>().getStories();
     context.read<GetCategoriesCubit>().getCategories();
+    context.read<GetWishListCubit>().getWishList();
     _scrollController.addListener(_onScroll);
     super.initState();
+  }
+
+  void refreshWishList() {
+    context.read<GetWishListCubit>().getWishList();
   }
 
   void _onScroll() {
@@ -103,6 +115,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
         context.read<ProductsCubit>().getProducts();
         context.read<StoriesCubit>().getStories();
         context.read<GetCategoriesCubit>().getCategories();
+        context.read<GetWishListCubit>().getWishList();
       },
       child: CustomScrollView(
         controller: _scrollController,

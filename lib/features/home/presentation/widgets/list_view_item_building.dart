@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ListViewItemBuilding extends StatefulWidget {
@@ -21,14 +20,20 @@ class ListViewItemBuilding extends StatefulWidget {
     required this.productId,
     required this.onAddToCartTap,
     required this.onAddToWishListTap,
+    required this.outPrice,
+    required this.averageRating,
+    required this.reviewCount,
   });
 
   final String imageUrl;
   final String productName;
   final String originalPrice;
+  final String outPrice;
   final String productId;
   final VoidCallback onAddToCartTap;
   final VoidCallback onAddToWishListTap;
+  final String averageRating;
+  final String reviewCount;
 
   @override
   State<ListViewItemBuilding> createState() => _ListViewItemBuildingState();
@@ -52,7 +57,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
           child: Stack(
             children: [
               CachedNetworkImage(
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 imageUrl: widget.imageUrl,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
@@ -174,13 +179,40 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     ),
                   ),
                   SizedBox(width: 20.w),
-                  InkWell(
-                    onTap: widget.onAddToWishListTap,
-                    child: Image.asset(
-                      Assets.imagesSave,
-                      width: 25.w,
-                      height: 25.h,
-                    ),
+                  BlocBuilder<GetWishListCubit, GetWishListState>(
+                    builder: (context, state) {
+                      bool isInWishList = false;
+
+                      if (state is GetWishListSuccess) {
+                        if (state.wishLists.isEmpty) {
+                          isInWishList = false;
+                        } else {
+                          isInWishList = state.wishLists.any(
+                            (item) => item.productId == widget.productId,
+                          );
+                        }
+                      }
+
+                      return InkWell(
+                        onTap: () {
+                          if (isInWishList) {
+                            context.read<GetWishListCubit>().removeFromWishList(
+                              productId: widget.productId,
+                            );
+                          } else {
+                            widget.onAddToWishListTap();
+                          }
+                        },
+                        child: SvgPicture.asset(
+                          isInWishList
+                              ? Assets.imagesIconsNewwwwwActiveFavourites
+                              : Assets
+                                    .imagesIconsInactiveFavouriteIconNewNavbar,
+                          width: 25.w,
+                          height: 25.h,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -197,7 +229,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   ),
                   SizedBox(width: 8.w),
                   Text(
-                    '\$1500',
+                    widget.outPrice,
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,
                       decoration: TextDecoration.lineThrough,
@@ -211,7 +243,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
               Row(
                 children: [
                   Text(
-                    '${4.5}',
+                    widget.averageRating,
                     style: AppStyle.styleRegular14(
                       context,
                     ).copyWith(color: Colors.grey.shade600),
@@ -219,8 +251,14 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
 
                   SizedBox(width: 5.w),
                   ...List.generate(5, (index) {
+                    int rating = 0;
+                    try {
+                      rating = double.parse(widget.averageRating).toInt();
+                    } catch (e) {
+                      rating = 0;
+                    }
                     return Icon(
-                      index < 4.5.floor() ? Icons.star : Icons.star_border,
+                      index < rating ? Icons.star : Icons.star_border,
                       color: Colors.amber,
                       size: 20.r,
                     );
@@ -235,20 +273,20 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   Icon(Icons.visibility, color: AppColors.gray, size: 15.r),
                   SizedBox(width: 5.w),
                   Text(
-                    '32 مشاهده',
+                    widget.reviewCount,
                     style: AppStyle.styleRegular10(
                       context,
                     ).copyWith(color: AppColors.gray),
                   ),
 
-                  SizedBox(width: 10.w),
+                  // SizedBox(width: 10.w),
 
-                  Text(
-                    '10 منذ ساعات',
-                    style: AppStyle.styleRegular10(
-                      context,
-                    ).copyWith(color: AppColors.gray),
-                  ),
+                  // Text(
+                  //   '10 منذ ساعات',
+                  //   style: AppStyle.styleRegular10(
+                  //     context,
+                  //   ).copyWith(color: AppColors.gray),
+                  // ),
                 ],
               ),
 
@@ -256,88 +294,123 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
 
               SizedBox(
                 width: double.infinity,
-                child: BlocBuilder<AddCartCubit, AddCartState>(
-                  builder: (context, state) {
-                    final cubit = context.read<AddCartCubit>();
-                    final isInCart = cubit.isProductInCart(widget.productId);
-                    final isLoading =
-                        state is AddCartLoading &&
-                        state.productId == widget.productId;
-                    return isInCart
-                        ? ElevatedButton(
-                            onPressed: () {
-                              GoRouter.of(context).push(AppRouter.myCart);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 16.h),
-                              backgroundColor: AppColors.blueC3,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16.r),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: isLoading
-                                  ? [
-                                      const CircularProgressIndicator(
-                                        color: Colors.white,
-                                      ),
-                                    ]
-                                  : [
-                                      Text(
-                                        'أذهب الي العربة',
-                                        style: AppStyle.styleRegular15(
-                                          context,
-                                        ).copyWith(color: Colors.white),
-                                      ),
-
-                                      SizedBox(width: 6.w),
-
-                                      SvgPicture.asset(
-                                        Assets.imagesShoppingCartWhite,
-                                        width: 22.w,
-                                        height: 22.h,
-                                      ),
-                                    ],
-                            ),
-                          )
-                        : ElevatedButton(
-                            onPressed: widget.onAddToCartTap,
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(vertical: 16.h),
-                              backgroundColor: AppColors.primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16.r),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: state is AddCartLoading
-                                  ? [
-                                      const CircularProgressIndicator(
-                                        color: Colors.white,
-                                      ),
-                                    ]
-                                  : [
-                                      Text(
-                                        'أضف للعربة',
-                                        style: AppStyle.styleRegular15(
-                                          context,
-                                        ).copyWith(color: Colors.white),
-                                      ),
-
-                                      SizedBox(width: 6.w),
-
-                                      SvgPicture.asset(
-                                        Assets.imagesShoppingCartWhite,
-                                        width: 22.w,
-                                        height: 22.h,
-                                      ),
-                                    ],
-                            ),
-                          );
+                child: ElevatedButton(
+                  onPressed: () {
+                    GoRouter.of(context).push(AppRouter.productDetails ,
+                    extra: widget.productId
+                    );
                   },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 16.h),
+                    backgroundColor: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'اختر منتج',
+                        style: AppStyle.styleRegular15(
+                          context,
+                        ).copyWith(color: Colors.white),
+                      ),
+
+                      // SizedBox(width: 6.w),
+
+                      // SvgPicture.asset(
+                      //   Assets.imagesShoppingCartWhite,
+                      //   width: 22.w,
+                      //   height: 22.h,
+                      // ),
+                    ],
+                  ),
                 ),
+                // child: BlocBuilder<AddCartCubit, AddCartState>(
+                //   builder: (context, state) {
+                //     final cubit = context.read<AddCartCubit>();
+                //     final isInCart = cubit.isProductInCart(widget.productId);
+                //     final isLoading =
+                //         state is AddCartLoading &&
+                //         state.productId == widget.productId;
+                //     return isInCart
+                //         ? ElevatedButton(
+                //             onPressed: () {
+                //               GoRouter.of(context).push(AppRouter.myCart);
+                //             },
+                //             style: ElevatedButton.styleFrom(
+                //               padding: EdgeInsets.symmetric(vertical: 16.h),
+                //               backgroundColor: AppColors.blueC3,
+                //               shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(16.r),
+                //               ),
+                //             ),
+                //             child: Row(
+                //               mainAxisAlignment: MainAxisAlignment.center,
+                //               children: isLoading
+                //                   ? [
+                //                       const CircularProgressIndicator(
+                //                         color: Colors.white,
+                //                       ),
+                //                     ]
+                //                   : [
+                //                       Text(
+                //                         'أذهب الي العربة',
+                //                         style: AppStyle.styleRegular15(
+                //                           context,
+                //                         ).copyWith(color: Colors.white),
+                //                       ),
+
+                //                       SizedBox(width: 6.w),
+
+                //                       SvgPicture.asset(
+                //                         Assets.imagesShoppingCartWhite,
+                //                         width: 22.w,
+                //                         height: 22.h,
+                //                       ),
+                //                     ],
+                //             ),
+                //           )
+                //         : ElevatedButton(
+                //             onPressed: state is! AddCartLoading
+                //                 ? () {}
+                //                 : widget.onAddToCartTap,
+                //             style: ElevatedButton.styleFrom(
+                //               padding: EdgeInsets.symmetric(vertical: 16.h),
+                //               backgroundColor: AppColors.primaryColor,
+                //               shape: RoundedRectangleBorder(
+                //                 borderRadius: BorderRadius.circular(16.r),
+                //               ),
+                //             ),
+                //             child: Row(
+                //               mainAxisAlignment: MainAxisAlignment.center,
+                //               children: state is AddCartLoading
+                //                   ? [
+                //                       const CircularProgressIndicator(
+                //                         color: Colors.white,
+                //                       ),
+                //                     ]
+                //                   : [
+                //                       Text(
+                //                         'أضف للعربة',
+                //                         style: AppStyle.styleRegular15(
+                //                           context,
+                //                         ).copyWith(color: Colors.white),
+                //                       ),
+
+                //                       SizedBox(width: 6.w),
+
+                //                       SvgPicture.asset(
+                //                         Assets.imagesShoppingCartWhite,
+                //                         width: 22.w,
+                //                         height: 22.h,
+                //                       ),
+                //                     ],
+                //             ),
+                //           );
+                //   },
+                // ),
               ),
             ],
           ),

@@ -73,11 +73,18 @@ class _LoginFormState extends State<LoginForm> {
           BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginLoaded) {
+                Fluttertoast.showToast(
+                  gravity: ToastGravity.TOP,
+                  backgroundColor: Colors.green,
+                  msg: state.message);
                 GoRouter.of(context).push(AppRouter.confirmPhoneNumberScreen);
               }
 
               if (state is LoginError) {
-                Fluttertoast.showToast(msg: state.error.message);
+                Fluttertoast.showToast(
+                  gravity: ToastGravity.TOP,
+                  backgroundColor: Colors.red,
+                  msg: state.error.message);
               }
             },
             builder: (context, state) {

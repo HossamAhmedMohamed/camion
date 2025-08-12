@@ -20,7 +20,7 @@ class CustomTextFormField extends StatelessWidget {
   final OutlineInputBorder? focusedBorder;
   final bool? enabled;
   final String? initialValue;
-
+  final TextInputType? keyboardType;
   const CustomTextFormField({
     super.key,
     this.fieldColor,
@@ -39,12 +39,14 @@ class CustomTextFormField extends StatelessWidget {
     this.focusedBorder,
     this.enabled,
     this.initialValue,
+    this.keyboardType,
   
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       initialValue: initialValue,
       maxLength: maxLength,
       maxLines: maxLines ,

@@ -77,22 +77,22 @@ class CustomSliverAppBar extends StatelessWidget {
                       )
                     : Container(),
 
-                SizedBox(width: 16.w),
-                GestureDetector(
-                  onTap: () {
-                    final currentRoute = GoRouterState.of(
-                      context,
-                    ).uri.toString();
-                    if (currentRoute != AppRouter.notificationScreen) {
-                      GoRouter.of(context).push(AppRouter.notificationScreen);
-                    }
-                  },
-                  child: SvgPicture.asset(
-                    Assets.imagesNotification,
-                    width: 30.w,
-                    height: 30.h,
-                  ),
-                ),
+                // SizedBox(width: 16.w),
+                // GestureDetector(
+                //   onTap: () {
+                //     final currentRoute = GoRouterState.of(
+                //       context,
+                //     ).uri.toString();
+                //     if (currentRoute != AppRouter.notificationScreen) {
+                //       GoRouter.of(context).push(AppRouter.notificationScreen);
+                //     }
+                //   },
+                //   child: SvgPicture.asset(
+                //     Assets.imagesNotification,
+                //     width: 30.w,
+                //     height: 30.h,
+                //   ),
+                // ),
               ],
             ),
           ],

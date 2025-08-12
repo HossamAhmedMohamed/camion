@@ -15,11 +15,11 @@ class CamionOffers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w),
-      child: Column(
-        children: [
-          Row(
+    return Column(
+      children: [
+        Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.w),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -38,12 +38,15 @@ class CamionOffers extends StatelessWidget {
               ),
             ],
           ),
-
-          SizedBox(height: 15.h),
-
-          CarouselSlider(
-            items: List.generate(3, (index) {
-              return ClipRRect(
+        ),
+    
+        SizedBox(height: 15.h),
+    
+        CarouselSlider(
+          items: List.generate(3, (index) {
+            return Padding(
+              padding:   EdgeInsets.only(right: 15.w , left: index == 2 ? 15.w : 0),
+              child: ClipRRect(
                 borderRadius: BorderRadius.circular(12.r),
                 child: Container(
                   decoration: const BoxDecoration(
@@ -69,7 +72,7 @@ class CamionOffers extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.r),
                           color: Colors.white,
                         ),
-
+                  
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                             vertical: 8.h,
@@ -89,60 +92,60 @@ class CamionOffers extends StatelessWidget {
                     ),
                   ),
                 ),
-              );
-            }),
-            options: CarouselOptions(
-              // height: 200.h,
-              padEnds: false,
-              aspectRatio: 350.w / 162.h,
-              viewportFraction: 0.9,
-              initialPage: 0,
-              enableInfiniteScroll: false,
-              reverse: false,
-              autoPlay: false,
-              enlargeCenterPage: true,
-              enlargeFactor: 0.2,
-              onPageChanged: (int index, CarouselPageChangedReason reason) =>
-                  context.read<ToggleProductIdImagesCubit>().toggle(index),
-              scrollDirection: Axis.horizontal,
-            ),
+              ),
+            );
+          }),
+          options: CarouselOptions(
+            // height: 200.h,
+            padEnds: false,
+            aspectRatio: 350.w / 162.h,
+            viewportFraction: 0.9,
+            initialPage: 0,
+            enableInfiniteScroll: false,
+            reverse: false,
+            autoPlay: true,
+            enlargeCenterPage: true,
+            enlargeFactor: 0.1,
+            onPageChanged: (int index, CarouselPageChangedReason reason) =>
+                context.read<ToggleProductIdImagesCubit>().toggle(index),
+            scrollDirection: Axis.horizontal,
           ),
-
-          SizedBox(height: 12.h),
-
-          BlocBuilder<ToggleProductIdImagesCubit, ToggleProductIdImagesState>(
-            builder: (context, state) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(3, (index) {
-                  bool isActive = state.index == index;
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    width: isActive ? 38.w : 8.w,
-                    height: 8.h,
-                    margin: EdgeInsets.symmetric(horizontal: 4.w),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4.r),
-                      color: isActive
-                          ? AppColors.primaryColor
-                          : AppColors.paleGray,
-                      boxShadow: isActive
-                          ? [
-                              BoxShadow(
-                                color: AppColors.primaryColor.withAlpha(100),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ]
-                          : null,
-                    ),
-                  );
-                }),
-              );
-            },
-          ),
-        ],
-      ),
+        ),
+    
+        SizedBox(height: 12.h),
+    
+        BlocBuilder<ToggleProductIdImagesCubit, ToggleProductIdImagesState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(3, (index) {
+                bool isActive = state.index == index;
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: isActive ? 38.w : 8.w,
+                  height: 8.h,
+                  margin: EdgeInsets.symmetric(horizontal: 4.w),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4.r),
+                    color: isActive
+                        ? AppColors.primaryColor
+                        : AppColors.paleGray,
+                    boxShadow: isActive
+                        ? [
+                            BoxShadow(
+                              color: AppColors.primaryColor.withAlpha(100),
+                              blurRadius: 4,
+                              offset: const Offset(0, 2),
+                            ),
+                          ]
+                        : null,
+                  ),
+                );
+              }),
+            );
+          },
+        ),
+      ],
     );
   }
 }

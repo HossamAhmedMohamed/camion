@@ -58,7 +58,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         currentIndex == 0
-                            ? Assets.imagesIconsActiveOrderStatusNewIconNavbar
+                            ? Assets.imagesIconsNewwwwwactivetalabaty
                             : Assets
                                   .imagesIconsInactiveOrderStatusNewNavbarIcon,
 
@@ -90,7 +90,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         currentIndex == 1
-                            ? Assets.imagesIconsActiveHomeIconNewNavbar
+                            ? Assets.imagesIconsNewwwwActiveHome
                             : Assets.imagesIconsInactiveHomeIconNewNavbar,
 
                         width: 24.w,
@@ -133,7 +133,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         currentIndex == 2
-                            ? Assets.imagesIconsActiveFavouriteNewIconNavbar
+                            ? Assets.imagesIconsNewwwwwActiveFavourites
                             : Assets.imagesIconsInactiveFavouriteIconNewNavbar,
 
                         width: 24.w,
@@ -224,6 +224,37 @@ class CustomBottomNavBar extends StatelessWidget {
                 //     ],
                 //   ),
                 // ),
+
+                  GestureDetector(
+                  onTap: () => onTap(3),
+
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        currentIndex == 3
+                            ? Assets.imagesActiveProfile
+                            : Assets.imagesInActiveProfile,
+
+                        width: 24.w,
+                        height: 24.h,
+                      ),
+
+                      SizedBox(height: 8.h),
+
+                      Text(
+                        "حسابي",
+                        style: AppStyle.styleRegular14(context).copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: currentIndex == 3
+                              ? AppColors.primaryColor
+                              : Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

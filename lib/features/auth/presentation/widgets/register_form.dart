@@ -104,10 +104,17 @@ class _RegisterFormState extends State<RegisterForm> {
           BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
               if (state is RegisterLoaded) {
+                Fluttertoast.showToast(
+                  gravity: ToastGravity.TOP,
+                  backgroundColor: Colors.green,
+                  msg: "Account created successfully");
                 GoRouter.of(context).push(AppRouter.login);
               }
               if (state is RegisterError) {
-                Fluttertoast.showToast(msg: state.error.message);
+                  Fluttertoast.showToast(
+                  gravity: ToastGravity.TOP,
+                  backgroundColor: Colors.red,
+                  msg: state.error.message);
               }
             },
             builder: (context, state) {

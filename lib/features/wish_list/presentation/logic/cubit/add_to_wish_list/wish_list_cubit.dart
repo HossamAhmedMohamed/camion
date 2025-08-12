@@ -6,30 +6,42 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'wish_list_state.dart';
 
-class AddToWishListCubit extends Cubit<WishListState> {
+class AddToWishListCubit extends Cubit<AddToWishListState> {
   AddToWishListCubit(this.wishListRepository) : super(WishListInitial());
   final WishListRepository wishListRepository;
 
+  final Set<String> _addedToWishListProducts = {};
   addtoWishList({
-   
     required String productId,
     required String title,
     required String price,
     required String image,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
-    emit(WishListLoading());
+    emit(WishListLoading(productId: productId));
     final result = await wishListRepository.addToWishList(
       token: token!,
-     
+
       productId: productId,
       title: title,
       price: price,
       image: image,
     );
-    result.fold(
-      (l) => emit(WishListError(error: l)),
-      (r) => emit(WishListSuccess()),
-    );
+    result.fold((l) => emit(WishListError(error: l, productId: productId)), (
+      r,
+    ) {
+      if (_addedToWishListProducts.contains(productId)) {
+        _addedToWishListProducts.remove(productId);
+        return;
+      } else {
+        _addedToWishListProducts.add(productId);
+      }
+
+      emit(WishListSuccess(productId: productId));
+    });
+  }
+
+  bool isProductInWishList(String productId) {
+    return _addedToWishListProducts.contains(productId);
   }
 }
