@@ -37,4 +37,6 @@ class GetWishListCubit extends Cubit<GetWishListState> {
       (r) => emit(RemoveWishListSuccess()),
     );
   }
+
+  
 }

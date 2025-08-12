@@ -4,6 +4,7 @@ import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/cart/data/data_source/remote_data_source.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
+import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:dartz/dartz.dart';
 
 class CartRepository {
@@ -12,22 +13,16 @@ class CartRepository {
 
   Future<Either<ApiErrorModel, dynamic>> addToCart({
     required String token,
-
     required String productId,
-    required String title,
-    required String price,
-    required String image,
     required int quantity,
+    required List<dynamic> variations
   }) async {
     try {
       final response = await cartRemoteDataSource.addToCart(
         token: token,
-
         productId: productId,
-        title: title,
-        price: price,
-        image: image,
         quantity: quantity,
+        variations: variations
       );
       return Right(response.data);
     } catch (e) {

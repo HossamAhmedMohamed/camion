@@ -5,6 +5,8 @@ import 'package:camion/features/cart/data/data_source/remote_data_source.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
+import 'package:camion/features/join_us/data/data_source/remote_data_source.dart';
+import 'package:camion/features/join_us/data/repository/supplier_repo.dart';
 import 'package:camion/features/order_status/data/data_source/remote_data_source.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/wish_list/data/data_source/remote_data_source.dart';
@@ -47,5 +49,13 @@ Future<void> initRepositories() async {
 
   sl.registerLazySingleton<OrderStatusRepository>(
     () => OrderStatusRepository(orderStatusRemoteDataSource: sl()),
+  );
+
+  sl.registerLazySingleton<SupplierRemoteDataSource>(
+    () => SupplierRemoteDataSource(apiConsumer: sl()),
+  );
+
+  sl.registerLazySingleton<SupplierRepository>(
+    () => SupplierRepository(supplierRemoteDataSource: sl()),
   );
 }

@@ -69,7 +69,7 @@ class MyWalletScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: ExpandedRowForUserImplementation(
-                firstTitle: 'العمليات',
+                // firstTitle: 'العمليات',
                 secondTitle: 'الكل',
                 onTapOnSecondTitle: () {},
               ),

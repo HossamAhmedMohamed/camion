@@ -112,7 +112,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                   sliver: SliverGrid.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: screenWidth > 800 ? 3 : 2,
-                      childAspectRatio: (0.23.w / 0.45.h).clamp(0.5, 1),
+                      childAspectRatio: (0.23.w / 0.42.h).clamp(0.5, 1),
                       crossAxisSpacing: 20.w,
                       mainAxisSpacing: 10.h,
                     ),
@@ -126,11 +126,13 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                           );
                         },
                         child: ProductCarouselWidget(
+                          reviewCount: product.reviewCount.toString(),
+                          averageRating: product.averageRating,
                           productId: product.id.toString(),
                           imageUrl: product.images[0].thumbnail,
                           productName: product.name,
                           originalPrice: product.prices.price.toString(),
-
+                          outPrice: product.prices.regularPrice.toString(),
                           isGridView: true,
                           onAddToCartTap: () {},
                           onAddToWishListTap: () {},

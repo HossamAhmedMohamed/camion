@@ -2,6 +2,7 @@
 import 'package:camion/features/order_status/presentation/screens/order_status_screen.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/config/widgets/bottom_nav_bar.dart';
+import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/wish_list/presentation/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
     OrderStatusScreen(),
     HomeScreen(),
     WishListScreen(),
-
+    ProfileScreen()
     // ReelsScreen(),
     // MyCartScreen(),
   ];
@@ -75,6 +76,9 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
               child: CustomBottomNavBar(
                 currentIndex: currentIndex,
                 onTap: (index) {
+                  if (index == 1) {
+                    HomeScreen.homeKey.currentState?.refreshWishList();
+                  }
                   _pageController.jumpToPage(index);
                 },
               ),

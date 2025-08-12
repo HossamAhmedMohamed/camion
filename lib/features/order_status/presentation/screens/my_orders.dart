@@ -54,45 +54,45 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
 
         SliverToBoxAdapter(child: SizedBox(height: 25.h)),
 
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 8.w),
-            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.symmetric(horizontal: 8.w),
+        //     padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
 
-            decoration: ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.r),
-              ),
-              color: AppColors.lightGray,
-            ),
+        //     decoration: ShapeDecoration(
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(50.r),
+        //       ),
+        //       color: AppColors.lightGray,
+        //     ),
 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                MyOrdersScreen.categories.length,
-                (index) =>
-                    BlocSelector<ToggleNavBarCubit, ToggleNavBarState, bool>(
-                      selector: (state) {
-                        return state.index == index;
-                      },
-                      builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.read<ToggleNavBarCubit>().toggle(index);
-                          },
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: List.generate(
+        //         MyOrdersScreen.categories.length,
+        //         (index) =>
+        //             BlocSelector<ToggleNavBarCubit, ToggleNavBarState, bool>(
+        //               selector: (state) {
+        //                 return state.index == index;
+        //               },
+        //               builder: (context, state) {
+        //                 return GestureDetector(
+        //                   onTap: () {
+        //                     context.read<ToggleNavBarCubit>().toggle(index);
+        //                   },
 
-                          child: StatusNavBar(
-                            isActive: state,
-                            title: MyOrdersScreen.categories[index].title,
-                          ),
-                        );
-                      },
-                    ),
-              ),
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(child: SizedBox(height: 15.h)),
+        //                   child: StatusNavBar(
+        //                     isActive: state,
+        //                     title: MyOrdersScreen.categories[index].title,
+        //                   ),
+        //                 );
+        //               },
+        //             ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // SliverToBoxAdapter(child: SizedBox(height: 15.h)),
         BlocBuilder<GetOrdersCubit, GetOrdersState>(
           builder: (context, state) {
             if (state is GetOrdersLoading) {

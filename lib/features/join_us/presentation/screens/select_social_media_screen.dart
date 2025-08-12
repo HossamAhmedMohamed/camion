@@ -3,7 +3,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/data/models/social_media_selecting_model.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_selecting_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_cubit/toggle_social_media_selecting_cubit.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';

@@ -1,10 +1,9 @@
-import 'package:camion/core/cache/secure_cache_storage.dart';
-import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/list_view_item_skeletonizer.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,23 +13,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class SliverListViewBuilding extends StatelessWidget {
   const SliverListViewBuilding({super.key});
-
-  getUserId() async {
-    final userId = await sl<SecureCacheHelper>().getData(key: 'id');
-
-    return userId;
-  }
-
-  getToken() async {
-    final token = await sl<SecureCacheHelper>().getData(key: 'token');
-    return token;
-  }
-
-  Future<Map<String, String>> getUserData() async {
-    final token = await getToken();
-    final userId = await getUserId();
-    return {'token': token!, 'userId': userId!};
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,28 +53,32 @@ class SliverListViewBuilding extends StatelessWidget {
                       );
                     },
                     child: ProductCarouselWidget(
+                      reviewCount: product.reviewCount.toString(),
+                      averageRating: product.averageRating,
+                      outPrice: product.prices.regularPrice.toString() ,
                       productId: product.id.toString(),
-                      imageUrl: product.images[0].thumbnail,
+                      imageUrl: product.images[0].thumbnail ,
                       productName: product.name,
                       originalPrice: product.prices.price.toString(),
 
                       isGridView: false,
                       onAddToCartTap: () {
-                        context.read<AddCartCubit>().addToCart(
-                          productId: product.id.toString(),
-                          title: product.name,
-                          price: product.prices.price,
-                          image: product.images[0].thumbnail,
-                          quantity: 1,
-                        );
+                        // context.read<AddCartCubit>().addToCart(
+                        //   productId: product.id.toString(),
+                        //   title: product.name,
+                        //   price: product.prices.price,
+                        //   image: product.images[0].thumbnail,
+                        //   quantity: 1,
+                        // );
                       },
                       onAddToWishListTap: () async {
-                        context.read<AddToWishListCubit>().addtoWishList(
+                        await context.read<AddToWishListCubit>().addtoWishList(
                           productId: product.id.toString(),
                           title: product.name,
                           price: product.prices.price,
                           image: product.images[0].thumbnail,
                         );
+                        context.read<GetWishListCubit>().getWishList();
                       },
                     ),
                   ),

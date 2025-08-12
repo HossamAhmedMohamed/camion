@@ -2,15 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class GridItemBuilding extends StatelessWidget {
   final String imageUrl;
   final String productName;
   final String originalPrice;
-   
+  final String averageRating;
+  final String reviewCount;
+  final String outPrice;
+  final String productId;
   final VoidCallback onTap;
 
   const GridItemBuilding({
@@ -18,8 +23,11 @@ class GridItemBuilding extends StatelessWidget {
     required this.imageUrl,
     required this.productName,
     required this.originalPrice,
- 
     required this.onTap,
+    required this.averageRating,
+    required this.reviewCount,
+    required this.outPrice,
+    required this.productId,
   });
 
   @override
@@ -59,129 +67,6 @@ class GridItemBuilding extends StatelessWidget {
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                // PageView للصور
-                // PageView.builder(
-                //   controller: _imagePageController,
-                //   itemCount: widget.productImages.length,
-                //   onPageChanged: (index) {
-                //     setState(() {
-                //       currentIndex = index;
-                //     });
-                //   },
-                //   itemBuilder: (context, index) {
-                //     return Padding(
-                //       padding: EdgeInsets.all(10.r),
-                //       child: Center(
-                //         child: Image.asset(
-                //           widget.productImages[index],
-                //           fit: BoxFit.contain,
-                //         ),
-                //       ),
-                //     );
-                //   },
-                // ),
-
-                // Discount badge
-                // Positioned(
-                //   top: 8.h,
-                //   left: 8.w,
-                //   child: Image.asset(
-                //     Assets.imagesDiscount,
-                //     width: 40.w,
-                //     height: 40.h,
-                //   ),
-                // ),
-
-                // Save button
-                // Positioned(
-                //   top: 8.h,
-                //   right: 8.w,
-                //   child: Container(
-                //     padding: EdgeInsets.all(5.r),
-                //     decoration: BoxDecoration(
-                //       color: Colors.white.withValues(
-                //         red: 255,
-                //         green: 255,
-                //         blue: 255,
-                //         alpha: 204,
-                //       ),
-                //       shape: BoxShape.circle,
-                //     ),
-                //     child: Image.asset(
-                //       Assets.imagesSave,
-                //       width: 18.w,
-                //       height: 18.h,
-                //     ),
-                //   ),
-                // ),
-
-                // Page indicators
-                // if (widget.productImages.length > 1)
-                //   Positioned(
-                //     bottom: 16.h,
-                //     left: 0,
-                //     right: 0,
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: List.generate(
-                //         widget.productImages.length,
-                //         (index) => GestureDetector(
-                //           onTap: () {
-                //             _imagePageController.animateToPage(
-                //               index,
-                //               duration: const Duration(milliseconds: 300),
-                //               curve: Curves.easeInOut,
-                //             );
-                //           },,
-                //         child: Container(
-                //           margin: EdgeInsets.symmetric(horizontal: 4.w),
-                //           width: currentIndex == index ? 20.w : 8.w,
-                //           height: 8.h,
-                //           decoration: BoxDecoration(
-                //             color: currentIndex == index
-                //                 ? const Color(0xFFD32F2F)
-                //                 : Colors.grey.shade400,
-                //             borderRadius: BorderRadius.circular(4.r),
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-
-                // Sold count badge
-                // Positioned(
-                //   left: 8.w,
-                //   bottom: 16.h,
-                //   child: Container(
-                //     padding: EdgeInsets.symmetric(
-                //       horizontal: 6.w,
-                //       vertical: 3.h,
-                //     ),
-                //     decoration: ShapeDecoration(
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(20.r),
-                //       ),
-                //       color: const Color(0xFFF0F0F0),
-                //     ),
-                //     child: Row(
-                //       children: [
-                //         Image.asset(
-                //           Assets.imagesBagCheck,
-                //           width: 14.w,
-                //           height: 14.h,
-                //         ),
-                //         SizedBox(width: 3.w),
-                //         Text(
-                //           '${widget.sellCount} منتجًا مباعًا',
-                //           style: AppStyle.styleRegular14(
-                //             context,
-                //           ).copyWith(color: AppColors.gray),
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -205,7 +90,7 @@ class GridItemBuilding extends StatelessWidget {
                   textDirection: TextDirection.ltr,
                 ),
 
-                SizedBox(height: 14.h),
+                SizedBox(height: 6.h),
 
                 // Price information
                 Row(
@@ -222,23 +107,23 @@ class GridItemBuilding extends StatelessWidget {
                                 context,
                               ).copyWith(color: AppColors.primaryColor),
                             ),
-                            // SizedBox(width: 5.w),
-                            // Text(
-                            //   '${originalPrice.toInt()}',
-                            //   style: AppStyle.styleRegular12(context).copyWith(
-                            //     color: AppColors.gray,
-                            //     decoration: TextDecoration.lineThrough,
-                            //   ),
-                            // ),
+                            SizedBox(width: 5.w),
+                            Text(
+                              outPrice,
+                              style: AppStyle.styleRegular12(context).copyWith(
+                                color: AppColors.gray,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
                           ],
                         ),
 
-                        SizedBox(height: 10.h),
+                        SizedBox(height: 6.h),
 
                         Row(
                           children: [
                             Text(
-                              '${4.5}',
+                              averageRating,
                               style: AppStyle.styleRegular12(
                                 context,
                               ).copyWith(color: Colors.black),
@@ -247,12 +132,12 @@ class GridItemBuilding extends StatelessWidget {
                             Icon(Icons.star, color: Colors.amber, size: 14.sp),
 
                             SizedBox(width: 4.w),
-                            Text(
-                              "( 50  تقييم )",
-                              style: AppStyle.styleRegular12(
-                                context,
-                              ).copyWith(color: const Color(0xFFF9B023)),
-                            ),
+                            // Text(
+                            //   "( 50  تقييم )",
+                            //   style: AppStyle.styleRegular12(
+                            //     context,
+                            //   ).copyWith(color: const Color(0xFFF9B023)),
+                            // ),
 
                             // ...List.generate(
                             //   5,
@@ -268,7 +153,11 @@ class GridItemBuilding extends StatelessWidget {
                     ),
 
                     GestureDetector(
-                      onTap: onTap,
+                      onTap: () {
+                        GoRouter.of(
+                          context,
+                        ).push(AppRouter.productDetails, extra: productId);
+                      },
                       child: Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 6.w,

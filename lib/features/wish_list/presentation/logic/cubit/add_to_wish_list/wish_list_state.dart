@@ -1,15 +1,21 @@
 part of 'wish_list_cubit.dart';
 
- 
-sealed class WishListState {}
+sealed class AddToWishListState {}
 
-final class WishListInitial extends WishListState {}
+final class WishListInitial extends AddToWishListState {}
 
-final class WishListLoading extends WishListState {}
+final class WishListLoading extends AddToWishListState {
+  final String productId;
+  WishListLoading({required this.productId});
+}
 
-final class WishListSuccess extends WishListState {}
+final class WishListSuccess extends AddToWishListState {
+  final String productId;
+  WishListSuccess({required this.productId});
+}
 
-final class WishListError extends WishListState {
+final class WishListError extends AddToWishListState {
   final ApiErrorModel error;
-  WishListError({required this.error});
+  final String productId;
+  WishListError({required this.error , required this.productId});
 }

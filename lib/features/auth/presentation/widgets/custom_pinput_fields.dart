@@ -118,7 +118,10 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
             BlocConsumer<VerifyCubit, VerifyState>(
               listener: (context, state) {
                 if (state is VerifyError) {
-                  Fluttertoast.showToast(msg: state.error.message);
+                  Fluttertoast.showToast(
+                    gravity: ToastGravity.TOP,
+                    backgroundColor: Colors.red,
+                    msg: state.error.message);
                 }
 
                 if (state is VerifyLoaded) {
@@ -138,9 +141,9 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
                           ).copyWith(color: Colors.white),
                         ),
                   onPressed: () async {
-                    if (!formKey.currentState!.validate()) {
-                      return;
-                    }
+                    // if (!formKey.currentState!.validate()) {
+                    //   return;
+                    // }
 
                     context.read<VerifyCubit>().verify(
                       code: _pinController.text,

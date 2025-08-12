@@ -64,6 +64,8 @@ class _WishListScreenBodyState extends State<WishListScreenBody> {
         productId: removedItem.productId!,
       );
 
+      context.read<GetWishListCubit>().getWishList();
+
       // Show success feedback
     } catch (error) {
       // 4. Rollback on error - re-add the item

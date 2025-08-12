@@ -12,31 +12,70 @@ class CreateOrderCubit extends Cubit<CreateOrderState> {
   final OrderStatusRepository orderStatusRepo;
 
   Future<void> createOrder({
-    required List<GetCartModel> cartList,
-    required String taxPrice,
-    required String shippingPrice,
-    required String totalOrderPrice,
-    required String shippingAddress,
+     
+    // Customer data parameters
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String phone,
+    required String address1,
+    required String address2,
+    required String city,
+    required String state,
+    required String postcode,
+    required String country,
+    // Shipping address parameters
+    required String shippingFirstName,
+    required String shippingLastName,
+    required String shippingAddress1,
+    required String shippingAddress2,
+    required String shippingCity,
+    required String shippingState,
+    required String shippingPostcode,
+    required String shippingCountry,
+    // Payment parameters
+    required String paymentMethod,
+    required String paymentMethodId,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
-    final userId = await sl<SecureCacheHelper>().getData(key: 'id');
+    // final userId = await sl<SecureCacheHelper>().getData(key: 'id');
+
     if (isClosed) {
       return;
     }
+
     emit(CreateOrderLoading());
+
     final result = await orderStatusRepo.createOrder(
       token: token!,
-      userId: userId!,
-      cartList: cartList,
-      taxPrice: taxPrice,
-      shippingPrice: shippingPrice,
-      totalOrderPrice: totalOrderPrice,
-      shippingAddress: shippingAddress,
+      // userId: userId!,
+
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      address1: address1,
+      address2: address2,
+      city: city,
+      state: state,
+      postcode: postcode,
+      country: country,
+      shippingFirstName: shippingFirstName,
+      shippingLastName: shippingLastName,
+      shippingAddress1: shippingAddress1,
+      shippingAddress2: shippingAddress2,
+      shippingCity: shippingCity,
+      shippingState: shippingState,
+      shippingPostcode: shippingPostcode,
+      shippingCountry: shippingCountry,
+      paymentMethod: paymentMethod,
+      paymentMethodId: paymentMethodId,
     );
 
     if (isClosed) {
       return;
     }
+
     result.fold(
       (l) => emit(CreateOrderError(error: l)),
       (r) => emit(CreateOrderSuccess()),

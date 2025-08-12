@@ -214,6 +214,18 @@ class Assets {
   /// assets/images/icons/new_join_us.png
   static const String imagesIconsNewJoinUs = "assets/images/icons/new_join_us.png";
 
+  /// Assets for imagesIconsNewwwwActiveHome
+  /// assets/images/icons/newwwwActiveHome.svg
+  static const String imagesIconsNewwwwActiveHome = "assets/images/icons/newwwwActiveHome.svg";
+
+  /// Assets for imagesIconsNewwwwwActiveFavourites
+  /// assets/images/icons/newwwwwActiveFavourites.svg
+  static const String imagesIconsNewwwwwActiveFavourites = "assets/images/icons/newwwwwActiveFavourites.svg";
+
+  /// Assets for imagesIconsNewwwwwactivetalabaty
+  /// assets/images/icons/newwwwwactivetalabaty.svg
+  static const String imagesIconsNewwwwwactivetalabaty = "assets/images/icons/newwwwwactivetalabaty.svg";
+
   /// Assets for imagesIconsPrivacyReturn
   /// assets/images/icons/privacy_return.svg
   static const String imagesIconsPrivacyReturn = "assets/images/icons/privacy_return.svg";

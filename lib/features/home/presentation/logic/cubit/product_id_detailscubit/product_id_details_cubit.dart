@@ -13,7 +13,7 @@ class ProductIdDetailsCubit extends Cubit<ProductIdDetailsState> {
 
   final HomeRepository homeRepo;
   final ProductCacheService cacheService;
-  final Map<String, bool> _loadingStates = {};
+  // final Map<String, bool> _loadingStates = {};
 
   Future<void> getProductDetails(
     String productId, {
@@ -21,29 +21,29 @@ class ProductIdDetailsCubit extends Cubit<ProductIdDetailsState> {
   }) async {
     if (isClosed) return;
 
-    if (!forceRefresh) {
-      final cachedProduct = cacheService.getCachedProduct(productId);
-      if (cachedProduct != null) {
-        emit(ProductIdDetailsLoaded(productIdDetailsModel: cachedProduct));
-        return;
-      }
-    }
+    // if (!forceRefresh) {
+    //   final cachedProduct = cacheService.getCachedProduct(productId);
+    //   if (cachedProduct != null) {
+    //     emit(ProductIdDetailsLoaded(productIdDetailsModel: cachedProduct));
+    //     return;
+    //   }
+    // }
 
-    if (_loadingStates[productId] == true) return;
+    // if (_loadingStates[productId] == true) return;
 
-    _loadingStates[productId] = true;
+    // _loadingStates[productId] = true;
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
     emit(ProductIdDetailsLoading());
 
     final result = await homeRepo.getProductById(id: productId, token: token!);
-    _loadingStates[productId] = false;
+    // _loadingStates[productId] = false;
 
     if (isClosed) return;
 
     result.fold((error) => emit(ProductIdDetailsError(error: error)), (
       product,
     ) {
-      cacheService.cacheProduct(productId, product);
+      // cacheService.cacheProduct(productId, product);
       emit(ProductIdDetailsLoaded(productIdDetailsModel: product));
     });
   }

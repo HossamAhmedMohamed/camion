@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
@@ -6,15 +7,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ConfirmationsProductsItem extends StatelessWidget {
   final String imageUrl;
   final String productName;
-  final int quantity;
-  final double price;
+  // final int quantity;
+  final String price;
   final VoidCallback? onTap;
 
   const ConfirmationsProductsItem({
     super.key,
     required this.imageUrl,
     required this.productName,
-    required this.quantity,
+    // required this.quantity,
     required this.price,
     this.onTap,
   });
@@ -38,7 +39,10 @@ class ConfirmationsProductsItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(imageUrl, fit: BoxFit.cover, width: 80.w, height: 80.h),
+          SizedBox(
+            width: 60.w,
+            height: 60.h,
+            child: CustomCachedNetworkImage(imageUrl: imageUrl, fit: BoxFit.cover)),
 
           SizedBox(width: 16.w),
           Column(
@@ -55,21 +59,21 @@ class ConfirmationsProductsItem extends StatelessWidget {
               SizedBox(height: 3.h),
 
               // Quantity
-              Text(
-                'الكمية: $quantity',
-                style: AppStyle.styleRegular12(
-                  context,
-                ).copyWith(color: AppColors.gray),
-              ),
-              SizedBox(height: 3.h),
+              // Text(
+              //   'الكمية: $quantity',
+              //   style: AppStyle.styleRegular12(
+              //     context,
+              //   ).copyWith(color: AppColors.gray),
+              // ),
+              // SizedBox(height: 3.h),
 
               // Price
-              Text(
-                '\$${price.toStringAsFixed(2)}',
-                style: AppStyle.styleBold16(
-                  context,
-                ).copyWith(color: AppColors.primaryColor),
-              ),
+              // Text(
+              //   '\$$price',
+              //   style: AppStyle.styleBold16(
+              //     context,
+              //   ).copyWith(color: AppColors.primaryColor),
+              // ),
             ],
           ),
 

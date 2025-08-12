@@ -203,35 +203,46 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                     );
                   }
                   if (state is GetCategoriesSuccess) {
-                    categories = state.categories;
+                    final categoriesWithImages = state.categories
+                        .where(
+                          (category) =>
+                              category.image != null &&
+                              category.image!.thumbnail.isNotEmpty,
+                        )
+                        .toList();
+
+                    if (categoriesWithImages.isEmpty) {
+                      return Container();
+                    }
+
+                    categories = categoriesWithImages;
+
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          children: List.generate(state.categories.length, (
+                          children: List.generate(categoriesWithImages.length, (
                             index,
                           ) {
                             return GestureDetector(
                               onTap: () {
-                                final extra = state.categories[index].slug;
+                                final extra = categoriesWithImages[index].slug;
                                 GoRouter.of(context).push(
                                   AppRouter.productByCategory,
                                   extra: extra,
                                 );
                               },
                               child: Container(
-                                width: 80.w,
-                                height: 80.h,
+                                width: widget.screenWidth > 800 ? 140.w : 80.w,
+                                height: widget.screenWidth > 800 ? 140.h : 80.h,
                                 padding: EdgeInsets.all(15.r),
-                                decoration: ShapeDecoration(shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.r),
-
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.r),
+                                  ),
+                                  color: Colors.white,
                                 ),
-                                color: AppColors.fogGray
-                                ),
-                                margin: EdgeInsets.only(
-                                  right:   15.w,
-                                ),
+                                margin: EdgeInsets.only(right: 15.w),
                                 child: SizedBox(
                                   height: widget.screenWidth > 800
                                       ? 120.h
@@ -242,8 +253,7 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                   child: Center(
                                     child: CustomCachedNetworkImage(
                                       fit: BoxFit.contain,
-                                      imageUrl: state
-                                          .categories[index]
+                                      imageUrl: categoriesWithImages[index]
                                           .image!
                                           .thumbnail,
                                     ),
@@ -253,7 +263,6 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                             );
                           }),
                         ),
-
                         SizedBox(height: 15.h),
                       ],
                     );

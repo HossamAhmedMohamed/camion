@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
  
 
 class ExpandedRowForUserImplementation extends StatelessWidget {
-  const ExpandedRowForUserImplementation({super.key, required this.firstTitle, required this.secondTitle, required this.onTapOnSecondTitle});
+  const ExpandedRowForUserImplementation({super.key,   required this.secondTitle, required this.onTapOnSecondTitle});
 
-  final String firstTitle;
+  // final String firstTitle;
   final String secondTitle;
   final VoidCallback onTapOnSecondTitle;
   @override
@@ -15,16 +15,16 @@ class ExpandedRowForUserImplementation extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          firstTitle,
-          style: AppStyle.styleSemiBold16(context).copyWith(color: AppColors.black),
-        ),
+        // Text(
+        //   firstTitle,
+        //   style: AppStyle.styleSemiBold16(context).copyWith(color: AppColors.black),
+        // ),
 
         GestureDetector(
           onTap: onTapOnSecondTitle,
           child: Text(
              secondTitle,
-            style: AppStyle.styleRegular12(context).copyWith(
+            style: AppStyle.styleRegular16(context).copyWith(
               color: AppColors.primaryColor,
               decoration: TextDecoration.underline,
               decorationColor: AppColors.primaryColor,

@@ -140,13 +140,13 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
           },
         ),
 
-        BlocListener<UpdateCartCubit, UpdateCartState>(
-          listener: (context, state) {
-            if (state is UpdateCartSuccess) {
-              context.read<GetCartCubit>().getCart();
-            }
-          },
-        ),
+        // BlocListener<UpdateCartCubit, UpdateCartState>(
+        //   listener: (context, state) {
+        //     if (state is UpdateCartSuccess) {
+        //       context.read<GetCartCubit>().getCart();
+        //     }
+        //   },
+        // ),
       ],
       child: BlocBuilder<GetCartCubit, GetCartState>(
         builder: (context, state) {
@@ -274,7 +274,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
   Widget _buildCheckoutSection(BuildContext context) {
     if (cartList.isEmpty) return Container();
 
-    final totalAmount = _calculateTotal();
+    // final totalAmount = _calculateTotal();
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 30.h),
@@ -284,19 +284,22 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // _buildPriceRow("اجمالي", "${totalAmount - 10}"),
-                  // SizedBox(height: 10.h),
-                  // _buildPriceRow("التوصيل", "10"),
-                  SizedBox(height: 10.h),
-                  _buildPriceRow("اجمالي الكل", "$totalAmount"),
-                  SizedBox(height: 10.h),
-                ],
-              ),
-            ),
+            // Expanded(
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       // _buildPriceRow("اجمالي", "${totalAmount - 10}"),
+            //       // SizedBox(height: 10.h),
+            //       // _buildPriceRow("التوصيل", "10"),
+            //       SizedBox(height: 10.h),
+            //       _buildPriceRow(
+            //         "اجمالي الكل",
+            //         totalAmount.toStringAsFixed(2),
+            //       ),
+            //       SizedBox(height: 10.h),
+            //     ],
+            //   ),
+            // ),
             Expanded(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 10.w),
@@ -334,11 +337,15 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
           ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
         ),
         SizedBox(width: 20.w),
-        Text(
-          value,
-          style: AppStyle.styleRegular16(context).copyWith(
-            color: AppColors.primaryColor,
-            fontWeight: FontWeight.w500,
+        Expanded(
+          child: Text(
+            overflow: TextOverflow.ellipsis,
+            maxLines: 5,
+            value,
+            style: AppStyle.styleRegular16(context).copyWith(
+              color: AppColors.primaryColor,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ],
@@ -354,3 +361,53 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
     return total; // Adding delivery fee
   }
 }
+
+
+// context.read<CreateOrderCubit>().createOrder(
+                    //   cartList: widget.cartList,
+                    //   taxPrice: "80",
+                    //   shippingPrice: "100",
+                    //   totalOrderPrice: "200",
+                    //   shippingAddress: selectedAddress ?? "لم يتم تحديد عنوانك",
+                    // );
+
+                    // customizeModalBottomSheet(
+                    //   title: "لقد تم تأكيد طلبك بنجاح",
+                    //   screenWidth: screenWidth,
+                    //   context: context,
+                    //   content: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         child: CustomElevatedButton(
+                    //           backgroundColor: AppColors.primaryColor,
+                    //           child: Text(
+                    //             "مشاهدة الطلب",
+                    //             style: AppStyle.styleRegular15(
+                    //               context,
+                    //             ).copyWith(color: Colors.white),
+                    //           ),
+                    //           onPressed: () {},
+                    //         ),
+                    //       ),
+                    //       SizedBox(width: 10.w),
+                    //       Expanded(
+                    //         child: CustomElevatedButton(
+                    //           borderColor: AppColors.primaryColor,
+                    //           backgroundColor: AppColors.white,
+                    //           textColor: AppColors.primaryColor,
+                    //           child: Text(
+                    //             "متابعة التسوق",
+                    //             style: AppStyle.styleRegular15(
+                    //               context,
+                    //             ).copyWith(color: AppColors.primaryColor),
+                    //           ),
+                    //           onPressed: () {
+                    //             GoRouter.of(context).pushReplacement(
+                    //               AppRouter.selectingFromBottomNavBar,
+                    //             );
+                    //           },
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // );

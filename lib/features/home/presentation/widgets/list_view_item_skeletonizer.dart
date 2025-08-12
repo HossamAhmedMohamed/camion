@@ -13,7 +13,7 @@ class ListViewItemBuildingSkeleton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // صورة المنتج
+         
         Container(
           height: 400.h,
           width: double.infinity,
@@ -49,12 +49,12 @@ class ListViewItemBuildingSkeleton extends StatelessWidget {
 
         const SizedBox(height: 20),
 
-        // باقي التفاصيل
+       
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             children: [
-              // اسم المنتج و الأيقونة
+               
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

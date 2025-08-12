@@ -10,6 +10,9 @@ class ProductCarouselWidget extends StatelessWidget {
   final bool isGridView;
   final VoidCallback onAddToCartTap;
   final VoidCallback onAddToWishListTap;
+  final String outPrice;
+  final String averageRating;
+  final String reviewCount;
 
   const ProductCarouselWidget({
     super.key,
@@ -20,6 +23,9 @@ class ProductCarouselWidget extends StatelessWidget {
     this.isGridView = true,
     required this.onAddToCartTap,
     required this.onAddToWishListTap,
+    required this.outPrice,
+    required this.averageRating,
+    required this.reviewCount,
   });
 
   @override
@@ -29,16 +35,22 @@ class ProductCarouselWidget extends StatelessWidget {
             imageUrl: imageUrl,
             productName: productName,
             originalPrice: originalPrice,
-
+            productId: productId,
+            averageRating: averageRating,
+            reviewCount: reviewCount,
+            outPrice: outPrice,
             onTap: onAddToCartTap,
           )
         : ListViewItemBuilding(
+          reviewCount: reviewCount,
+          outPrice: outPrice,
             imageUrl: imageUrl,
             productName: productName,
             originalPrice: originalPrice,
             productId: productId,
             onAddToCartTap: onAddToCartTap,
             onAddToWishListTap: onAddToWishListTap,
+            averageRating: averageRating,
           );
   }
 }

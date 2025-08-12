@@ -1,4 +1,5 @@
 import 'package:camion/core/api/api_consumer.dart';
+import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:dio/dio.dart';
 
 class CartRemoteDataSource {
@@ -8,22 +9,18 @@ class CartRemoteDataSource {
 
   Future<Response> addToCart({
     required String token,
-
     required String productId,
-    required String title,
-    required String price,
-    required String image,
     required int quantity,
+    required List<dynamic> variations
   }) async {
     final response = await apiConsumer.post(
       "http://api-gateway.camion-app.com/cart/add",
       headers: {"Authorization": "Bearer $token"},
       data: {
         "productId": productId,
-        "title": title,
-        "price": price,
-        "image": image,
-        "quantity": quantity,
+       "quantity": quantity,
+        "variation": variations,
+        
       },
     );
     return response;
