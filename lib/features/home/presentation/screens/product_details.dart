@@ -37,6 +37,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     BlocProvider.of<ProductIdDetailsCubit>(
       context,
     ).getProductDetails(widget.productId);
+    BlocProvider.of<GetWishListCubit>(context).getWishList();
     super.initState();
   }
 
@@ -261,58 +262,92 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         GetWishListCubit,
                                         GetWishListState
                                       >(
-                                        builder: (context, state) {
-                                          bool isInWishList = false;
+                                        builder: (context, wishListState) {
+                                          return BlocBuilder<
+                                            ProductIdDetailsCubit,
+                                            ProductIdDetailsState
+                                          >(
+                                            builder: (context, productState) {
+                                              if (productState
+                                                  is! ProductIdDetailsLoaded) {
+                                                return Container(); // أو skeleton
+                                              }
 
-                                          if (state is GetWishListSuccess) {
-                                            if (state.wishLists.isEmpty) {
-                                              isInWishList = false;
-                                            } else {
-                                              isInWishList = state.wishLists
-                                                  .any(
-                                                    (item) =>
-                                                        item.productId ==
-                                                        widget.productId,
-                                                  );
-                                            }
-                                          }
+                                              final product = productState
+                                                  .productIdDetailsModel;
+                                              bool isInWishList = false;
 
-                                          return InkWell(
-                                            onTap: () async {
-                                              if (isInWishList) {
-                                                context
-                                                    .read<GetWishListCubit>()
-                                                    .removeFromWishList(
-                                                      productId:
+                                              // أعطي الأولوية لـ GetWishListCubit state
+                                              if (wishListState
+                                                  is GetWishListSuccess) {
+                                                isInWishList = wishListState
+                                                    .wishLists
+                                                    .any(
+                                                      (item) =>
+                                                          item.productId ==
                                                           widget.productId,
                                                     );
                                               } else {
-                                                await context
-                                                    .read<AddToWishListCubit>()
-                                                    .addtoWishList(
-                                                      productId: product.id
-                                                          .toString(),
-                                                      title: product.name,
-                                                      price:
-                                                          product.prices.price,
-                                                      image: product
-                                                          .images[0]
-                                                          .thumbnail,
-                                                    );
-                                                context
-                                                    .read<GetWishListCubit>()
-                                                    .getWishList();
+                                                // إذا لم نحصل على بيانات من wishlist cubit، استخدم بيانات المنتج
+                                                isInWishList =
+                                                    product.isInwishList ??
+                                                    false;
                                               }
+
+                                              return InkWell(
+                                                onTap: () async {
+                                                  if (isInWishList) {
+                                                    // إزالة من wishlist
+                                                    await context
+                                                        .read<
+                                                          GetWishListCubit
+                                                        >()
+                                                        .removeFromWishList(
+                                                          productId:
+                                                              widget.productId,
+                                                        );
+                                                    // تحديث بيانات wishlist
+                                                    context
+                                                        .read<
+                                                          GetWishListCubit
+                                                        >()
+                                                        .getWishList();
+                                                  } else {
+                                                    // إضافة إلى wishlist
+                                                    await context
+                                                        .read<
+                                                          AddToWishListCubit
+                                                        >()
+                                                        .addtoWishList(
+                                                          productId: product.id
+                                                              .toString(),
+                                                          title: product.name,
+                                                          price: product
+                                                              .prices
+                                                              .price,
+                                                          image: product
+                                                              .images[0]
+                                                              .thumbnail,
+                                                        );
+                                                    // تحديث بيانات wishlist
+                                                    context
+                                                        .read<
+                                                          GetWishListCubit
+                                                        >()
+                                                        .getWishList();
+                                                  }
+                                                },
+                                                child: SvgPicture.asset(
+                                                  isInWishList
+                                                      ? Assets
+                                                            .imagesIconsNewwwwwActiveFavourites
+                                                      : Assets
+                                                            .imagesIconsInactiveFavouriteIconNewNavbar,
+                                                  width: 25.w,
+                                                  height: 25.h,
+                                                ),
+                                              );
                                             },
-                                            child: SvgPicture.asset(
-                                              isInWishList
-                                                  ? Assets
-                                                        .imagesIconsNewwwwwActiveFavourites
-                                                  : Assets
-                                                        .imagesIconsInactiveFavouriteIconNewNavbar,
-                                              width: 25.w,
-                                              height: 25.h,
-                                            ),
                                           );
                                         },
                                       ),
