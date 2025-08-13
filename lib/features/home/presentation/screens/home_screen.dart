@@ -5,7 +5,9 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
+import 'package:camion/features/home/presentation/logic/cubit/cubit/sliders_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/get_categories_cubit/get_categories_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
@@ -40,6 +42,7 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(create: (context) => ProductsCubit(sl<HomeRepository>())),
         BlocProvider(create: (context) => StoriesCubit(sl<HomeRepository>())),
         BlocProvider(create: (context) => AddCartCubit(sl<CartRepository>())),
+        BlocProvider(create: (context) => GetCartCubit(sl<CartRepository>())),
         BlocProvider(
           create: (context) => AddToWishListCubit(sl<WishListRepository>()),
         ),
@@ -55,6 +58,7 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(create: (context) => ToggleListAndGridCubit()),
         BlocProvider(create: (context) => ToggleAddCartCubit()),
         BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
+        BlocProvider(create: (context) => SlidersCubit(sl<HomeRepository>())),
       ],
       child: HomeScreenBody(key: homeKey),
     );
@@ -81,12 +85,19 @@ class HomeScreenBodyState extends State<HomeScreenBody>
     context.read<StoriesCubit>().getStories();
     context.read<GetCategoriesCubit>().getCategories();
     context.read<GetWishListCubit>().getWishList();
+    context.read<GetCartCubit>().getCart();
+    context.read<SlidersCubit>().getSliders();
     _scrollController.addListener(_onScroll);
     super.initState();
   }
 
-  void refreshWishList() {
+  /// refreshWishList is a function that will call getWishList
+  /// on GetWishListCubit to refresh the wishlist. It is used
+  /// in the home screen when the user navigates to it with
+  /// extra parameter of true to refresh the wishlist.
+  void refreshWishListAndCartList() {
     context.read<GetWishListCubit>().getWishList();
+    context.read<GetCartCubit>().getCart();
   }
 
   void _onScroll() {
@@ -102,6 +113,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
   @override
   void dispose() {
     _scrollController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -113,9 +125,11 @@ class HomeScreenBodyState extends State<HomeScreenBody>
     return RefreshIndicator(
       onRefresh: () async {
         context.read<ProductsCubit>().getProducts();
+        context.read<GetCartCubit>().getCart();
         context.read<StoriesCubit>().getStories();
         context.read<GetCategoriesCubit>().getCategories();
         context.read<GetWishListCubit>().getWishList();
+        context.read<SlidersCubit>().getSliders();
       },
       child: CustomScrollView(
         controller: _scrollController,
@@ -150,7 +164,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
 
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 80.h,
+              height: 100.h,
               child: BlocBuilder<StoriesCubit, StoriesState>(
                 builder: (context, state) {
                   if (state is StoriesLoading) {
@@ -208,42 +222,40 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                               ).push(AppRouter.storiesView, extra: extra);
                             },
                             child: Container(
-                              padding: EdgeInsets.all(3.r),
-                              height: 50.h,
-                              width: 52.w,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: BoxBorder.all(
-                                  color: AppColors.primaryColor,
-                                  width: 2.5.w,
+                              width: 70.w,
+                              height: 70.w,
+                              padding: EdgeInsets.all(2.r),
+                              decoration: ShapeDecoration(
+                                shape: CircleBorder(
+                                  side: BorderSide(
+                                    color: AppColors.primaryColor,
+                                    width: 3.w,
+                                  ),
                                 ),
                               ),
-
-                              child: Center(
-                                child: ClipOval(
-                                  child:
-                                      state.storiesList[index].mediaType ==
-                                          'video'
-                                      ? const Icon(
+                              child:
+                                  state.storiesList[index].mediaType == 'video'
+                                  ? const Center(
+                                      child: ClipOval(
+                                        child: Icon(
                                           Icons.play_arrow,
                                           color: Colors.red,
-                                        )
-                                      : CachedNetworkImage(
-                                          height: 40.h,
-                                          width: 45.w,
+                                        ),
+                                      ),
+                                    )
+                                  : Center(
+                                      child: ClipOval(
+                                        child: CachedNetworkImage(
+                                          height: 60.h,
+
                                           imageUrl:
                                               state.storiesList[index].mediaUrl,
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                           placeholder: (context, url) =>
                                               Skeletonizer(
                                                 enabled: true,
                                                 child: Container(
-                                                  height: 45.h,
-                                                  width: 45.w,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey[300],
-                                                    shape: BoxShape.circle,
-                                                  ),
+                                                  color: Colors.grey[300],
                                                 ),
                                               ),
                                           errorWidget: (context, url, error) =>
@@ -255,8 +267,8 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                                                 ),
                                               ),
                                         ),
-                                ),
-                              ),
+                                      ),
+                                    ),
                             ),
                           ),
                         );

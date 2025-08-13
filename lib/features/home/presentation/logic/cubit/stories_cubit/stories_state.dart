@@ -27,3 +27,4 @@ final class StoriesIdError extends StoriesState {
   final ApiErrorModel error;
   StoriesIdError({required this.error});
 }
+

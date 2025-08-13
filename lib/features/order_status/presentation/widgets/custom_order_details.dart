@@ -41,11 +41,11 @@ class CustomOrderDetails extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 15.w),
-              const ItemsBody(
-                title: "رقم الطلب :548964132",
-                quantity: 4,
-                totalPrice: "120",
-              ),
+              // const ItemsBody(
+              //   title: "رقم الطلب :548964132",
+              //   quantity: 4,
+              //   totalPrice: "120",
+              // ),
 
               
 

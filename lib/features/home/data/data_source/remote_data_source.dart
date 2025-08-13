@@ -83,4 +83,11 @@ class HomeRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> getSliders() async {
+    final response = await apiConsumer.get(
+      "https://stories.camion-app.com/sliders",
+    );
+    return response;
+  }
 }

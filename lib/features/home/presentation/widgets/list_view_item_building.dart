@@ -78,108 +78,11 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-              // PageView.builder(
-              //   controller: widget.pageController,
-              //   onPageChanged: (index) {
-              //     setState(() {
-              //        currentIndex = index;
-              //     });
-              //   },
-              //   itemCount: widget.productImages.length,
-              //   itemBuilder: (context, index) {
-              //     return Padding(
-              //       padding: EdgeInsets.all(20.0.r),
-              //       child: Image.asset(
-              //         widget.productImages[index],
-              //         height: 215.h,
-              //         fit: BoxFit.contain,
-              //       ),
-              //     );
-              //   },
-              // ),
-              // Positioned(
-              //   top: 16.h,
-              //   left: 16.w,
-              //   child: Image.asset(
-              //     Assets.imagesDiscount,
-              //     width: 60,
-              //     height: 60,
-              //   ),
-              // ),
-
-              // Positioned(
-              //   bottom: 16.h,
-              //   left: 0,
-              //   right: 0,
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: List.generate(
-              //       widget.productImages.length,
-              //       (index) => Container(
-              //         margin: EdgeInsets.symmetric(horizontal: 4.w),
-              //         width: currentIndex == index ? 20.w : 8.w,
-              //         height: 8.h,
-              //         decoration: BoxDecoration(
-              //           color: currentIndex == index
-              //               ? const Color(0xFFD32F2F)
-              //               : Colors.grey.shade400,
-              //           borderRadius: BorderRadius.circular(4.r),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // Positioned(
-              //   left: 16.w,
-              //   bottom: 16.h,
-              //   child: Container(
-              //     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-              //     decoration: ShapeDecoration(
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(30.r),
-              //       ),
-              //       color: const Color(0xFFF0F0F0),
-              //     ),
-              //     child: Row(
-              //       children: [
-              //         Image.asset(
-              //           Assets.imagesBagCheck,
-              //           width: 20.w,
-              //           height: 20.h,
-              //         ),
-              //         SizedBox(width: 5.h),
-              //         Text(
-              //           '${widget.sellCount} منتجًا مباعًا',
-              //           style: AppStyle.styleRegular14(
-              //             context,
-              //           ).copyWith(color: AppColors.gray),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-            ],
-          ),
-        ),
-
-        const SizedBox(height: 20),
-
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      widget.productName,
-                      style: AppStyle.styleBold18(context),
-                      textDirection: TextDirection.ltr,
-                    ),
-                  ),
-                  SizedBox(width: 20.w),
-                  BlocBuilder<GetWishListCubit, GetWishListState>(
+               
+               Positioned(
+                top: 16.h,
+                left: 16.w,
+                child:   BlocBuilder<GetWishListCubit, GetWishListState>(
                     builder: (context, state) {
                       bool isInWishList = false;
 
@@ -203,17 +106,60 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                             widget.onAddToWishListTap();
                           }
                         },
-                        child: SvgPicture.asset(
-                          isInWishList
-                              ? Assets.imagesIconsNewwwwwActiveFavourites
-                              : Assets
-                                    .imagesIconsInactiveFavouriteIconNewNavbar,
-                          width: 25.w,
-                          height: 25.h,
-                        ),
+                        child: Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black.withAlpha(
+                                                    15,
+                                                  ),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 4,
+                                                  offset: Offset(0, 2.h),
+                                                ),
+                                              ],
+                                            ),
+                                            child: Center(
+                                              child: SvgPicture.asset(
+                                                isInWishList
+                                                    ? Assets
+                                                          .imagesIconsNewwwActiveHeart
+                                                    : Assets
+                                                          .imagesIconsNewwwInactiveHeart,
+                                                width: 25.w,
+                                                height: 25.h,
+                                              ),
+                                            ),
+                                          ),
                       );
                     },
+                  ), )
+            ],
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      widget.productName,
+                      style: AppStyle.styleBold18(context),
+                      textDirection: TextDirection.ltr,
+                    ),
                   ),
+                  // SizedBox(width: 20.w),
+                
                 ],
               ),
 

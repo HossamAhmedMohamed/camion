@@ -14,8 +14,10 @@ class GetWishListCubit extends Cubit<GetWishListState> {
 
   Future<void> getWishList() async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if (isClosed) return;
     emit(GetWishListLoading());
     final result = await wishListRepository.getWishList(token: token!);
+    if (isClosed) return;
     result.fold(
       (l) => emit(GetWishListError(l)),
       (r) => emit(GetWishListSuccess(r)),

@@ -107,11 +107,11 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
               List<Map<String, dynamic>> allCartItems = [];
 
               for (var order in state.orders) {
-                for (var cartItem in order.cartItems) {
+                for (var cartItem in order.items) {
                   allCartItems.add({
                     'orderId': order.id,
                     'cartItem': cartItem,
-                    'orderDate': order.createdAt,
+                    'orderDate': cartItem.createdAt,
                   });
                 }
               }

@@ -16,14 +16,14 @@ class OrderSuccessPage extends StatelessWidget {
     required this.title,
     required this.totalPrice,
     required this.quantity,
-    required this.date,
+    // required this.date,
   });
 
   final String image;
   final String title;
   final String totalPrice;
   final int quantity;
-  final DateTime date;
+  // final DateTime date;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -37,12 +37,12 @@ class OrderSuccessPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "تم الطلب في ${DateFormat('d MMMM h:mm a', 'ar').format(date).replaceAll('ص', 'صباحاً').replaceAll('م', 'مساءً')}",
-                style: AppStyle.styleRegular14(
-                  context,
-                ).copyWith(color: AppColors.gray),
-              ),
+              // Text(
+              //   "تم الطلب في ${DateFormat('d MMMM h:mm a', 'ar').format(date).replaceAll('ص', 'صباحاً').replaceAll('م', 'مساءً')}",
+              //   style: AppStyle.styleRegular14(
+              //     context,
+              //   ).copyWith(color: AppColors.gray),
+              // ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(
@@ -85,11 +85,11 @@ class OrderSuccessPage extends StatelessWidget {
 
               SizedBox(width: 15.w),
 
-              ItemsBody(
-                title: title,
-                quantity: quantity,
-                totalPrice: totalPrice,
-              ),
+              // ItemsBody(
+              //   title: title,
+              //   quantity: quantity,
+              //   totalPrice: totalPrice,
+              // ),
 
               // Column(
               //   crossAxisAlignment: CrossAxisAlignment.end,

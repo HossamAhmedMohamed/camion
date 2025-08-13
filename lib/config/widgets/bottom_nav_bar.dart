@@ -48,8 +48,6 @@ class CustomBottomNavBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-              
-
                 GestureDetector(
                   onTap: () => onTap(0),
 
@@ -58,18 +56,17 @@ class CustomBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         currentIndex == 0
-                            ? Assets.imagesIconsNewwwwwactivetalabaty
-                            : Assets
-                                  .imagesIconsInactiveOrderStatusNewNavbarIcon,
+                            ? Assets.imagesIconsNewwwwActiveHome
+                            : Assets.imagesIconsInactiveHomeIconNewNavbar,
 
-                        width: 30.w,
+                        width: 24.w,
                         height: 24.h,
                       ),
 
                       SizedBox(height: 8.h),
 
                       Text(
-                        "طلباتي",
+                        "الرئيسية",
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -82,7 +79,7 @@ class CustomBottomNavBar extends StatelessWidget {
                   ),
                 ),
 
-                  GestureDetector(
+                GestureDetector(
                   onTap: () => onTap(1),
 
                   child: Column(
@@ -90,17 +87,18 @@ class CustomBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         currentIndex == 1
-                            ? Assets.imagesIconsNewwwwActiveHome
-                            : Assets.imagesIconsInactiveHomeIconNewNavbar,
+                            ? Assets.imagesIconsNewwwwwactivetalabaty
+                            : Assets
+                                  .imagesIconsInactiveOrderStatusNewNavbarIcon,
 
-                        width: 24.w,
+                        width: 30.w,
                         height: 24.h,
                       ),
 
                       SizedBox(height: 8.h),
 
                       Text(
-                        "الرئيسية",
+                        "طلباتي",
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -133,8 +131,8 @@ class CustomBottomNavBar extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         currentIndex == 2
-                            ? Assets.imagesIconsNewwwwwActiveFavourites
-                            : Assets.imagesIconsInactiveFavouriteIconNewNavbar,
+                            ? Assets.imagesIconsNewwwActiveHeart
+                            : Assets.imagesIconsNewwwInactiveHeart,
 
                         width: 24.w,
                         height: 24.h,
@@ -224,8 +222,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 //     ],
                 //   ),
                 // ),
-
-                  GestureDetector(
+                GestureDetector(
                   onTap: () => onTap(3),
 
                   child: Column(

@@ -1,13 +1,14 @@
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
-import 'package:camion/config/widgets/custom_expansion_tile.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
+import 'package:camion/core/api/end_points.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
-
+import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
+import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/features/home/presentation/widgets/product_id_image_skeletonizer.dart';
 import 'package:camion/features/home/presentation/widgets/products_options.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -38,6 +40,8 @@ class _ProductDetailsState extends State<ProductDetails> {
       context,
     ).getProductDetails(widget.productId);
     BlocProvider.of<GetWishListCubit>(context).getWishList();
+    super.initState();
+    BlocProvider.of<GetCartCubit>(context).getCart();
     super.initState();
   }
 
@@ -100,21 +104,19 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: const Color(0xFFF5F5F5),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child:
-                        BlocBuilder<
-                          ProductIdDetailsCubit,
-                          ProductIdDetailsState
-                        >(
-                          builder: (context, state) {
-                            if (state is ProductIdDetailsLoading) {
-                              return const Skeletonizer(
-                                enabled: true,
-                                child: ProductImageSkeleton(),
-                              );
-                            }
+                    child: BlocBuilder<ProductIdDetailsCubit, ProductIdDetailsState>(
+                      builder: (context, state) {
+                        if (state is ProductIdDetailsLoading) {
+                          return const Skeletonizer(
+                            enabled: true,
+                            child: ProductImageSkeleton(),
+                          );
+                        }
 
-                            if (state is ProductIdDetailsLoaded) {
-                              return PageView.builder(
+                        if (state is ProductIdDetailsLoaded) {
+                          return Stack(
+                            children: [
+                              PageView.builder(
                                 controller: pageController,
                                 onPageChanged: (index) {
                                   context
@@ -125,62 +127,184 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     state.productIdDetailsModel.images.length,
                                 itemBuilder: (context, index) {
                                   return CustomCachedNetworkImage(
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.cover,
                                     imageUrl: state
                                         .productIdDetailsModel
                                         .images[index]
                                         .thumbnail,
                                   );
                                 },
-                              );
-                            }
+                              ),
 
-                            if (state is ProductIdDetailsError) {
-                              return Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      state.error.icon,
-                                      color: Colors.red,
-                                      size: 50,
-                                    ),
+                              Positioned(
+                                left: 16.w,
+                                top: 16.h,
+                                child: BlocBuilder<GetWishListCubit, GetWishListState>(
+                                  builder: (context, wishListState) {
+                                    return BlocBuilder<
+                                      ProductIdDetailsCubit,
+                                      ProductIdDetailsState
+                                    >(
+                                      builder: (context, productState) {
+                                        if (productState
+                                            is! ProductIdDetailsLoaded) {
+                                          return Container();
+                                        }
 
-                                    SizedBox(height: 20.h),
-                                    Text(
-                                      state.error.message,
-                                      style: TextStyle(
-                                        fontSize: 16.sp,
-                                        color: Colors.red,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
+                                        final product =
+                                            productState.productIdDetailsModel;
+                                        bool isInWishList = false;
 
-                                    SizedBox(height: 10.h),
+                                        if (wishListState
+                                            is GetWishListSuccess) {
+                                          isInWishList = wishListState.wishLists
+                                              .any(
+                                                (item) =>
+                                                    item.productId ==
+                                                    widget.productId,
+                                              );
+                                        } else {
+                                          isInWishList =
+                                              product.isInwishList ?? false;
+                                        }
 
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        context
-                                            .read<ProductIdDetailsCubit>()
-                                            .getProductDetails(
-                                              widget.productId,
-                                            );
-                                        ();
+                                        return InkWell(
+                                          onTap: () async {
+                                            if (isInWishList) {
+                                              await context
+                                                  .read<GetWishListCubit>()
+                                                  .removeFromWishList(
+                                                    productId: widget.productId,
+                                                  );
+
+                                              context
+                                                  .read<GetWishListCubit>()
+                                                  .getWishList();
+
+                                              HomeScreen.homeKey.currentState
+                                                  ?.refreshWishListAndCartList();
+                                            } else {
+                                              await context
+                                                  .read<AddToWishListCubit>()
+                                                  .addtoWishList(
+                                                    productId: product.id
+                                                        .toString(),
+                                                    title: product.name,
+                                                    price: product.prices.price,
+                                                    image: product
+                                                        .images[0]
+                                                        .thumbnail,
+                                                  );
+
+                                              context
+                                                  .read<GetWishListCubit>()
+                                                  .getWishList();
+                                              HomeScreen.homeKey.currentState
+                                                  ?.refreshWishListAndCartList();
+                                            }
+                                          },
+                                          child: Container(
+                                            width: 35,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black.withAlpha(
+                                                    15,
+                                                  ),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 4,
+                                                  offset: Offset(0, 2.h),
+                                                ),
+                                              ],
+                                            ),
+                                            child: Center(
+                                              child: SvgPicture.asset(
+                                                isInWishList
+                                                    ? Assets
+                                                          .imagesIconsNewwwActiveHeart
+                                                    : Assets
+                                                          .imagesIconsNewwwInactiveHeart,
+                                                width: 25.w,
+                                                height: 25.h,
+                                              ),
+                                            ),
+                                          ),
+                                        );
                                       },
-                                      child: Text(
-                                        'Retry',
-                                        style: TextStyle(fontSize: 16.sp),
-                                      ),
-                                    ),
-                                  ],
+                                    );
+                                  },
                                 ),
-                              );
-                            }
+                              ),
 
-                            return Container();
-                          },
-                        ),
+                              Positioned(
+                                right: 6.w,
+                                bottom: 6.h,
+                                child: InkWell(
+                                  onTap: () {
+                                    final productLink =
+                                        "https://buckydrop.camion-app.com/api/${EndPoints.products}/${state.productIdDetailsModel.id}";
+                                    Share.share(
+                                      productLink,
+                                      subject: state.productIdDetailsModel.name,
+                                    );
+                                  },
+                                  child: SvgPicture.asset(
+                                    Assets.imagesShareProduct,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
+                        }
+
+                        if (state is ProductIdDetailsError) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  state.error.icon,
+                                  color: Colors.red,
+                                  size: 50,
+                                ),
+
+                                SizedBox(height: 20.h),
+                                Text(
+                                  state.error.message,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    color: Colors.red,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+
+                                SizedBox(height: 10.h),
+
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context
+                                        .read<ProductIdDetailsCubit>()
+                                        .getProductDetails(widget.productId);
+                                    ();
+                                  },
+                                  child: Text(
+                                    'Retry',
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+
+                        return Container();
+                      },
+                    ),
                   ),
 
                   const SizedBox(height: 20),
@@ -257,100 +381,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           textDirection: TextDirection.ltr,
                                         ),
                                       ),
-                                      SizedBox(width: 8.w),
-                                      BlocBuilder<
-                                        GetWishListCubit,
-                                        GetWishListState
-                                      >(
-                                        builder: (context, wishListState) {
-                                          return BlocBuilder<
-                                            ProductIdDetailsCubit,
-                                            ProductIdDetailsState
-                                          >(
-                                            builder: (context, productState) {
-                                              if (productState
-                                                  is! ProductIdDetailsLoaded) {
-                                                return Container(); // أو skeleton
-                                              }
 
-                                              final product = productState
-                                                  .productIdDetailsModel;
-                                              bool isInWishList = false;
-
-                                              // أعطي الأولوية لـ GetWishListCubit state
-                                              if (wishListState
-                                                  is GetWishListSuccess) {
-                                                isInWishList = wishListState
-                                                    .wishLists
-                                                    .any(
-                                                      (item) =>
-                                                          item.productId ==
-                                                          widget.productId,
-                                                    );
-                                              } else {
-                                                // إذا لم نحصل على بيانات من wishlist cubit، استخدم بيانات المنتج
-                                                isInWishList =
-                                                    product.isInwishList ??
-                                                    false;
-                                              }
-
-                                              return InkWell(
-                                                onTap: () async {
-                                                  if (isInWishList) {
-                                                    // إزالة من wishlist
-                                                    await context
-                                                        .read<
-                                                          GetWishListCubit
-                                                        >()
-                                                        .removeFromWishList(
-                                                          productId:
-                                                              widget.productId,
-                                                        );
-                                                    // تحديث بيانات wishlist
-                                                    context
-                                                        .read<
-                                                          GetWishListCubit
-                                                        >()
-                                                        .getWishList();
-                                                  } else {
-                                                    // إضافة إلى wishlist
-                                                    await context
-                                                        .read<
-                                                          AddToWishListCubit
-                                                        >()
-                                                        .addtoWishList(
-                                                          productId: product.id
-                                                              .toString(),
-                                                          title: product.name,
-                                                          price: product
-                                                              .prices
-                                                              .price,
-                                                          image: product
-                                                              .images[0]
-                                                              .thumbnail,
-                                                        );
-                                                    // تحديث بيانات wishlist
-                                                    context
-                                                        .read<
-                                                          GetWishListCubit
-                                                        >()
-                                                        .getWishList();
-                                                  }
-                                                },
-                                                child: SvgPicture.asset(
-                                                  isInWishList
-                                                      ? Assets
-                                                            .imagesIconsNewwwwwActiveFavourites
-                                                      : Assets
-                                                            .imagesIconsInactiveFavouriteIconNewNavbar,
-                                                  width: 25.w,
-                                                  height: 25.h,
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
+                                      // SizedBox(width: 8.w),
                                     ],
                                   ),
 
@@ -594,7 +626,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 ),
                                               )
                                             : ElevatedButton(
-                                                onPressed: () {
+                                                onPressed: () async {
                                                   final variations =
                                                       chosenAttributes.entries
                                                           .map((entry) {
@@ -608,7 +640,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           })
                                                           .toList();
 
-                                                  context
+                                                  await context
                                                       .read<AddCartCubit>()
                                                       .addToCart(
                                                         productId: product.id
@@ -617,6 +649,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                         quantity:
                                                             chosenQuantity,
                                                       );
+
+                                                  if (mounted) {
+                                                    context
+                                                        .read<GetCartCubit>()
+                                                        .getCart();
+                                                  }
+                                                  HomeScreen
+                                                      .homeKey
+                                                      .currentState
+                                                      ?.refreshWishListAndCartList();
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   padding: EdgeInsets.symmetric(

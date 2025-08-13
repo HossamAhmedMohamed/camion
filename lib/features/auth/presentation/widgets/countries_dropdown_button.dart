@@ -90,6 +90,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
               onChanged: _filterCountries,
               decoration: InputDecoration(
                 hintText: 'البحث عن دولة...',
+                hintStyle: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.r),

@@ -214,6 +214,14 @@ class Assets {
   /// assets/images/icons/new_join_us.png
   static const String imagesIconsNewJoinUs = "assets/images/icons/new_join_us.png";
 
+  /// Assets for imagesIconsNewwwActiveHeart
+  /// assets/images/icons/newww_active_heart.svg
+  static const String imagesIconsNewwwActiveHeart = "assets/images/icons/newww_active_heart.svg";
+
+  /// Assets for imagesIconsNewwwInactiveHeart
+  /// assets/images/icons/newww_inactive_heart.svg
+  static const String imagesIconsNewwwInactiveHeart = "assets/images/icons/newww_inactive_heart.svg";
+
   /// Assets for imagesIconsNewwwwActiveHome
   /// assets/images/icons/newwwwActiveHome.svg
   static const String imagesIconsNewwwwActiveHome = "assets/images/icons/newwwwActiveHome.svg";

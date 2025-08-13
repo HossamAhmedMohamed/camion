@@ -48,4 +48,5 @@ class StoriesCubit extends Cubit<StoriesState> {
       },
     );
   }
+
 }

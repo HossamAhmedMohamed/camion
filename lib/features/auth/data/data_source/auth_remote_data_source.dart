@@ -11,7 +11,7 @@ class AuthRemoteDataSource {
     required String phoneNumber,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/users/auth/register",
+      "https://api-gateway.camion-app.com/users/auth/register",
       data: {"fullName": fullName, "email": email, "phone": phoneNumber},
     );
     return response;
@@ -22,7 +22,7 @@ class AuthRemoteDataSource {
     required String phoneNumber,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/users/auth/login",
+      "https://api-gateway.camion-app.com/users/auth/login",
       data: {"email": email, "phone": phoneNumber},
     );
     return response;
@@ -34,7 +34,7 @@ class AuthRemoteDataSource {
     required String code,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/users/auth/verify",
+      "https://api-gateway.camion-app.com/users/auth/verify",
       data: {"email": email, "phone": phoneNumber, "code": code},
     );
     return response;

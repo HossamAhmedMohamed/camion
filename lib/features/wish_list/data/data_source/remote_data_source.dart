@@ -15,7 +15,7 @@ class WishListRemoteDataSource {
     required String image,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/wishlist/add",
+      "https://api-gateway.camion-app.com/wishlist/add",
       headers: {"Authorization": "Bearer $token"},
       data: {
         "productId": productId,
@@ -29,7 +29,7 @@ class WishListRemoteDataSource {
 
   Future<Response> getWishList({required String token}) async {
     final response = await apiConsumer.get(
-      "http://api-gateway.camion-app.com/wishlist/get",
+      "https://api-gateway.camion-app.com/wishlist/get",
       headers: {"Authorization": "Bearer $token"},
     );
     return response;
@@ -40,7 +40,7 @@ class WishListRemoteDataSource {
     required String productId,
   }) async {
     final response = await apiConsumer.delete(
-      "http://api-gateway.camion-app.com/wishlist/remove",
+      "https://api-gateway.camion-app.com/wishlist/remove",
       headers: {"Authorization": "Bearer $token"},
       data: {"productId": productId},
     );

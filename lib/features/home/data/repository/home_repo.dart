@@ -5,6 +5,7 @@ import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
 import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
+import 'package:camion/features/home/data/models/slider_items/slider_item_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -66,9 +67,9 @@ class HomeRepository {
     }
   }
 
-  Future<Either<ApiErrorModel, List<StoriesModel>>> getStories(
-      {required String token}
-  ) async {
+  Future<Either<ApiErrorModel, List<StoriesModel>>> getStories({
+    required String token,
+  }) async {
     try {
       final response = await remoteDataSource.getStories(token: token);
       final stories = (response.data as List)
@@ -82,10 +83,13 @@ class HomeRepository {
 
   Future<Either<ApiErrorModel, StoriesModel>> getStoryById({
     required String id,
-    required String token
+    required String token,
   }) async {
     try {
-      final response = await remoteDataSource.getStoryById(id: id , token: token);
+      final response = await remoteDataSource.getStoryById(
+        id: id,
+        token: token,
+      );
       return Right(StoriesModel.fromJson(response.data));
     } catch (e) {
       return left(ApiErrorHandler.handle(e));
@@ -120,6 +124,30 @@ class HomeRepository {
       return Right(products);
     } catch (e) {
       log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  // Future<Either<ApiErrorModel, StoriesModel>> getStoryById({
+  //   required String id,
+  //   required String token
+  // }) async {
+  //   try {
+  //     final response = await remoteDataSource.getStoryById(id: id , token: token);
+  //     return Right(StoriesModel.fromJson(response.data));
+  //   } catch (e) {
+  //     return left(ApiErrorHandler.handle(e));
+  //   }
+  // }
+
+  Future<Either<ApiErrorModel, List<SliderItemModel>>> getSliders() async {
+    try {
+      final response = await remoteDataSource.getSliders();
+      final sliders = (response.data as List)
+          .map((slider) => SliderItemModel.fromJson(slider))
+          .toList();
+      return Right(sliders);
+    } catch (e) {
       return left(ApiErrorHandler.handle(e));
     }
   }

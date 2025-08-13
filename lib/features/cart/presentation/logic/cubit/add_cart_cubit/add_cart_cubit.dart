@@ -2,7 +2,6 @@ import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
-import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'add_cart_state.dart';

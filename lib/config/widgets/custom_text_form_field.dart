@@ -21,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool? enabled;
   final String? initialValue;
   final TextInputType? keyboardType;
+  final Function(String)? onFieldSubmitted;
   const CustomTextFormField({
     super.key,
     this.fieldColor,
@@ -40,12 +41,14 @@ class CustomTextFormField extends StatelessWidget {
     this.enabled,
     this.initialValue,
     this.keyboardType,
+    this.onFieldSubmitted,
   
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: onFieldSubmitted,
       keyboardType: keyboardType,
       initialValue: initialValue,
       maxLength: maxLength,

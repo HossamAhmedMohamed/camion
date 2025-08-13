@@ -11,8 +11,10 @@ class GetCartCubit extends Cubit<GetCartState> {
   final CartRepository cartRepository;
   Future<void> getCart() async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if (isClosed) return;
     emit(GetCartLoading());
     final result = await cartRepository.getCart(token: token!);
+    if (isClosed) return;
     result.fold((l) => emit(GetCartError(l)), (r) => emit(GetCartSuccess(r)));
   }
 }

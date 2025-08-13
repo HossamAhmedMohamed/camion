@@ -12,12 +12,12 @@ import 'package:camion/features/auth/presentation/screens/register_screen.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
-import 'package:camion/features/cart/presentation/logic/cubit/cubit/address_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
+import 'package:camion/features/cart/presentation/screens/payment_web_page.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
@@ -76,7 +76,7 @@ class RouterGenerator {
     initialLocation: isLoggedInUser
         ? AppRouter.selectingFromBottomNavBar
         : AppRouter.login,
-    // initialLocation: AppRouter.selectingFromBottomNavBar,
+    // initialLocation: AppRouter.login,
     errorBuilder: (context, state) {
       return Scaffold(body: Center(child: Text(state.error.toString())));
     },
@@ -165,13 +165,16 @@ class RouterGenerator {
               ),
 
               BlocProvider(
+                create: (context) => GetCartCubit(sl<CartRepository>()),
+              ),
+
+              BlocProvider(
                 create: (context) =>
                     AddToWishListCubit(sl<WishListRepository>()),
               ),
 
               BlocProvider(
-                create: (context) =>
-                    GetWishListCubit(sl<WishListRepository>()),
+                create: (context) => GetWishListCubit(sl<WishListRepository>()),
               ),
             ],
             child: ProductDetails(productId: extra),
@@ -210,12 +213,17 @@ class RouterGenerator {
         name: AppRouter.confirmAddress,
         path: AppRouter.confirmAddress,
         builder: (context, state) {
-          final extra = state.extra as Map<String, TextEditingController>;
+          final extra = state.extra as Map<String, dynamic>;
           return MultiBlocProvider(
             providers: [
               BlocProvider(create: (context) => PaymentMethodCubit()),
+              BlocProvider(
+                create: (context) =>
+                    CreateOrderCubit(sl<OrderStatusRepository>()),
+              ),
             ],
             child: ConfirmAddress(
+              // items: extra['items'] as List<GetCartModel>,
               firstNameController: extra['firstName'] as TextEditingController,
               lastNameController: extra['lastName'] as TextEditingController,
               emailController: extra['email'] as TextEditingController,
@@ -242,8 +250,8 @@ class RouterGenerator {
                   extra['shippingPostcode'] as TextEditingController,
               shippingCountryController:
                   extra['shippingCountry'] as TextEditingController,
-              creditCardController:
-                  extra['creditCard'] as TextEditingController,
+              // creditCardController:
+              //     extra['creditCard'] as TextEditingController,
             ),
           );
         },
@@ -440,6 +448,18 @@ class RouterGenerator {
         name: AppRouter.affiliateCheckScreen,
         path: AppRouter.affiliateCheckScreen,
         builder: (context, state) => const AffiliateCheckScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.paymentWebPage,
+        path: AppRouter.paymentWebPage,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return PaymentWebViewPage(
+            checkoutUrl: extra['checkoutUrl'] as String,
+            // orderId: extra['orderId'] as String,
+          );
+        },
       ),
     ],
   );

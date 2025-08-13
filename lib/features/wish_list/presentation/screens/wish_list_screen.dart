@@ -3,6 +3,7 @@ import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/features/wish_list/data/models/get_wish_list_model.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
@@ -64,7 +65,7 @@ class _WishListScreenBodyState extends State<WishListScreenBody> {
         productId: removedItem.productId!,
       );
 
-      context.read<GetWishListCubit>().getWishList();
+      HomeScreen.homeKey.currentState?.refreshWishListAndCartList();
 
       // Show success feedback
     } catch (error) {

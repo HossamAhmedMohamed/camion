@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:camion/config/widgets/custom_elevated_button.dart';
-import 'package:camion/config/widgets/custom_modal_bottom_sheet.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/config/widgets/expanded_row_for_user.dart';
 import 'package:camion/core/utils/app_colors.dart';
@@ -15,6 +16,49 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
+// إضافة الـ model اللي عملناه في الصفحة التانية
+class AddressData {
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String phone;
+  final String address1;
+  final String address2;
+  final String city;
+  final String state;
+  final String postcode;
+  final String country;
+  final String shippingFirstName;
+  final String shippingLastName;
+  final String shippingAddress1;
+  final String shippingAddress2;
+  final String shippingCity;
+  final String shippingState;
+  final String shippingPostcode;
+  final String shippingCountry;
+
+  AddressData({
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.phone,
+    required this.address1,
+    required this.address2,
+    required this.city,
+    required this.state,
+    required this.postcode,
+    required this.country,
+    required this.shippingFirstName,
+    required this.shippingLastName,
+    required this.shippingAddress1,
+    required this.shippingAddress2,
+    required this.shippingCity,
+    required this.shippingState,
+    required this.shippingPostcode,
+    required this.shippingCountry,
+  });
+}
+
 class ConfirmPaymentScreen extends StatefulWidget {
   const ConfirmPaymentScreen({super.key, required this.cartList});
 
@@ -26,7 +70,7 @@ class ConfirmPaymentScreen extends StatefulWidget {
 
 class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
   String? selectedAddress;
-  // null يعني لسه مفيش عنوان
+
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -52,8 +96,6 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
   final TextEditingController shippingCountryController =
       TextEditingController();
 
-  final TextEditingController creditCardController = TextEditingController();
-
   @override
   void dispose() {
     firstNameController.dispose();
@@ -74,7 +116,6 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
     shippingStateController.dispose();
     shippingPostcodeController.dispose();
     shippingCountryController.dispose();
-    creditCardController.dispose();
     super.dispose();
   }
 
@@ -152,16 +193,15 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
 
           SliverToBoxAdapter(child: SizedBox(height: 30.h)),
 
-          // 🔹 تفاصيل العنوان
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
                 children: [
                   ExpandedRowForUserImplementation(
-                    // firstTitle: "تفاصيل العنوان",
                     secondTitle: "أضف بياناتك",
                     onTapOnSecondTitle: () async {
+                      // تمرير الـ Controllers للصفحة التانية
                       final result = await GoRouter.of(context).push(
                         AppRouter.confirmAddress,
                         extra: {
@@ -183,24 +223,66 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                           "shippingState": shippingStateController,
                           "shippingPostcode": shippingPostcodeController,
                           "shippingCountry": shippingCountryController,
-                          "creditCard": creditCardController,
                         },
                       );
 
-                      if (result != null && result is String) {
+                      if (result != null && result is AddressData) {
                         setState(() {
-                          selectedAddress = result;
+                          firstNameController.text = result.firstName;
+                          lastNameController.text = result.lastName;
+                          emailController.text = result.email;
+                          phoneController.text = result.phone;
+                          address1Controller.text = result.address1;
+                          address2Controller.text = result.address2;
+                          cityController.text = result.city;
+                          stateController.text = result.state;
+                          postcodeController.text = result.postcode;
+                          countryController.text = result.country;
+                          shippingFirstNameController.text =
+                              result.shippingFirstName;
+                          shippingLastNameController.text =
+                              result.shippingLastName;
+                          shippingAddress1Controller.text =
+                              result.shippingAddress1;
+                          shippingAddress2Controller.text =
+                              result.shippingAddress2;
+                          shippingCityController.text = result.shippingCity;
+                          shippingStateController.text = result.shippingState;
+                          shippingPostcodeController.text =
+                              result.shippingPostcode;
+                          shippingCountryController.text =
+                              result.shippingCountry;
+
+                          selectedAddress = "تم حفظ البيانات بنجاح";
                         });
+
+                        log(
+                          "الاسم المحفوظ: ${result.firstName} ${result.lastName}",
+                        );
+                        log("الإيميل المحفوظ: ${result.email}");
                       }
                     },
                   ),
-                  // SizedBox(height: 25.h),
-                  // Text(
-                  //   selectedAddress ?? "لم يتم تحديد عنوانك بعد",
-                  //   style: AppStyle.styleRegular15(
-                  //     context,
-                  //   ).copyWith(color: AppColors.gray),
-                  // ),
+
+                  // عرض حالة البيانات
+                  if (selectedAddress != null) ...[
+                    SizedBox(height: 15.h),
+                    Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(12.w),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor.withAlpha(15),
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Text(
+                        selectedAddress!,
+                        style: AppStyle.styleRegular14(
+                          context,
+                        ).copyWith(color: AppColors.primaryColor),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -208,6 +290,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
 
           SliverToBoxAdapter(child: SizedBox(height: 30.h)),
 
+          // باقي الكود زي ما هو...
           // 🔹 كود الخصم
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -265,7 +348,6 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
           SliverToBoxAdapter(child: SizedBox(height: 30.h)),
 
           SliverToBoxAdapter(
-            // hasScrollBody: false,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -274,11 +356,19 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                   listener: (context, state) {
                     if (state is CreateOrderSuccess) {
                       Fluttertoast.showToast(
-                        msg: "تم تاكيد الدفع بنجاح",
+                        msg: state.order.message,
                         gravity: ToastGravity.TOP,
                         backgroundColor: Colors.green,
                         textColor: Colors.white,
                         fontSize: 16.sp,
+                      );
+
+                      GoRouter.of(context).push(
+                        AppRouter.paymentWebPage,
+                        extra: {
+                          "checkoutUrl": state.order.data.stripeCheckoutUrl,
+                          // "orderId": state.order.data.orderId,
+                        },
                       );
                     }
                     if (state is CreateOrderError) {
@@ -290,41 +380,97 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                         fontSize: 16.sp,
                       );
                     }
+                    // 🔥 هنا بنستمع لما الـ calculate ينتهي
+                    if (state is CalculateShippingAddressSuccess) {
+                      // بعد ما الـ calculate ينتهي، نعمل createOrder مباشرة
+                      context.read<CreateOrderCubit>().createOrder(
+                        shippingMethodModel: state.shippingMethods[0],
+                        firstName: firstNameController.text,
+                        lastName: lastNameController.text,
+                        email: emailController.text,
+                        phone: phoneController.text,
+                        address1: address1Controller.text,
+                        address2: address2Controller.text,
+                        city: cityController.text,
+                        state: stateController.text,
+                        postcode: postcodeController.text,
+                        country: countryController.text,
+                        shippingFirstName: shippingFirstNameController.text,
+                        shippingLastName: shippingLastNameController.text,
+                        shippingAddress1: shippingAddress1Controller.text,
+                        shippingAddress2: shippingAddress2Controller.text,
+                        shippingCity: shippingCityController.text,
+                        shippingState: shippingStateController.text,
+                        shippingPostcode: shippingPostcodeController.text,
+                        shippingCountry: shippingCountryController.text,
+                        paymentMethod: "stripe",
+                      );
+                    }
+                    if (state is CalculateShippingAddressError) {
+                      Fluttertoast.showToast(
+                        msg:
+                            ".. الرجاء التحقق من البيانات، حدث خطأ في حساب الشحن",
+                        gravity: ToastGravity.TOP,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.sp,
+                      );
+                    }
                   },
                   builder: (context, state) {
+                    double total = widget.cartList.fold(
+                      0,
+                      (sum, item) => sum + (item.totalPrice ?? 0),
+                    );
                     return CustomElevatedButton(
                       verticalPadding: 4.h,
                       height: 60.h,
-                      onPressed: state is CreateOrderLoading ? (){} : () {
-                        context.read<CreateOrderCubit>().createOrder(
-                          firstName: firstNameController.text,
-                          lastName: lastNameController.text,
-                          email: emailController.text,
-                          phone: phoneController.text,
-                          address1: address1Controller.text,
-                          address2: address2Controller.text,
-                          city: cityController.text,
-                          state: stateController.text,
-                          postcode: postcodeController.text,
-                          country: countryController.text,
-                          shippingFirstName: shippingFirstNameController.text,
-                          shippingLastName: shippingLastNameController.text,
-                          shippingAddress1: shippingAddress1Controller.text,
-                          shippingAddress2: shippingAddress2Controller.text,
-                          shippingCity: shippingCityController.text,
-                          shippingState: shippingStateController.text,
-                          shippingPostcode: shippingPostcodeController.text,
-                          shippingCountry: shippingCountryController.text,
-                          paymentMethod: "stripe",
-                          paymentMethodId: creditCardController.text,
-                        );
-                      },
-                      child: state is CreateOrderLoading ? const CircularProgressIndicator(color: Colors.white) : Text(
-                        "تأكيد الدفع",
-                        style: AppStyle.styleRegular15(
-                          context,
-                        ).copyWith(color: Colors.white),
-                      ),
+                      onPressed:
+                          (state is CreateOrderLoading ||
+                              state is CalculateShippingAddressLoading)
+                          ? () {}
+                          : () {
+                              context
+                                  .read<CreateOrderCubit>()
+                                  .calculateShippingAddress(
+                                    items: widget.cartList,
+                                    shippingFirstName:
+                                        shippingFirstNameController.text,
+                                    shippingLastName:
+                                        shippingLastNameController.text,
+                                    shippingAddress1:
+                                        shippingAddress1Controller.text,
+                                    shippingAddress2:
+                                        shippingAddress2Controller.text,
+                                    shippingCity: shippingCityController.text,
+                                    shippingState: shippingStateController.text,
+                                    shippingPostcode:
+                                        shippingPostcodeController.text,
+                                    shippingCountry:
+                                        shippingCountryController.text,
+                                  );
+                            },
+                      child:
+                          (state is CreateOrderLoading ||
+                              state is CalculateShippingAddressLoading)
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Row(
+                              children: [
+                                Text(
+                                  "تأكيد الدفع",
+                                  style: AppStyle.styleRegular15(
+                                    context,
+                                  ).copyWith(color: Colors.white),
+                                ),
+                                SizedBox(width: 10.w),
+                                Text(
+                                  "${total.toStringAsFixed(2)} ",
+                                  style: AppStyle.styleRegular15(
+                                    context,
+                                  ).copyWith(color: Colors.white),
+                                ),
+                              ],
+                            ),
                     );
                   },
                 ),

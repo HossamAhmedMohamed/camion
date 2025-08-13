@@ -1,5 +1,4 @@
 import 'package:camion/core/api/api_consumer.dart';
-import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:dio/dio.dart';
 
 class CartRemoteDataSource {
@@ -11,16 +10,15 @@ class CartRemoteDataSource {
     required String token,
     required String productId,
     required int quantity,
-    required List<dynamic> variations
+    required List<dynamic> variations,
   }) async {
     final response = await apiConsumer.post(
-      "http://api-gateway.camion-app.com/cart/add",
+      "https://api-gateway.camion-app.com/cart/add",
       headers: {"Authorization": "Bearer $token"},
       data: {
         "productId": productId,
-       "quantity": quantity,
+        "quantity": quantity,
         "variation": variations,
-        
       },
     );
     return response;
@@ -28,7 +26,7 @@ class CartRemoteDataSource {
 
   Future<Response> getCart({required String token}) async {
     final response = await apiConsumer.get(
-      "http://api-gateway.camion-app.com/cart/get",
+      "https://api-gateway.camion-app.com/cart/get",
       headers: {"Authorization": "Bearer $token"},
     );
     return response;
@@ -40,7 +38,7 @@ class CartRemoteDataSource {
     required int quantity,
   }) async {
     final response = await apiConsumer.patch(
-      "http://api-gateway.camion-app.com/cart/update",
+      "https://api-gateway.camion-app.com/cart/update",
       headers: {"Authorization": "Bearer $token"},
       data: {"productId": productId, "quantity": quantity},
     );
@@ -52,7 +50,7 @@ class CartRemoteDataSource {
     required String productId,
   }) async {
     final response = await apiConsumer.delete(
-      "http://api-gateway.camion-app.com/cart/remove",
+      "https://api-gateway.camion-app.com/cart/remove",
       headers: {"Authorization": "Bearer $token"},
       data: {"productId": productId},
     );

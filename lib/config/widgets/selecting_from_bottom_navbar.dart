@@ -1,4 +1,3 @@
- 
 import 'package:camion/features/order_status/presentation/screens/order_status_screen.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/config/widgets/bottom_nav_bar.dart';
@@ -15,7 +14,7 @@ class SelectingFromBottomNavBar extends StatefulWidget {
 }
 
 class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
-  int currentIndex = 1;
+  int currentIndex = 0;
   late PageController _pageController;
 
   @override
@@ -25,11 +24,10 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
   }
 
   List<Widget> screens = const [
-    
-    OrderStatusScreen(),
     HomeScreen(),
+    OrderStatusScreen(),
     WishListScreen(),
-    ProfileScreen()
+    ProfileScreen(),
     // ReelsScreen(),
     // MyCartScreen(),
   ];
@@ -76,9 +74,7 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
               child: CustomBottomNavBar(
                 currentIndex: currentIndex,
                 onTap: (index) {
-                  if (index == 1) {
-                    HomeScreen.homeKey.currentState?.refreshWishList();
-                  }
+                   
                   _pageController.jumpToPage(index);
                 },
               ),

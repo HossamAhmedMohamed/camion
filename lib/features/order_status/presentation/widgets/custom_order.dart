@@ -62,9 +62,9 @@ class CustomOrder extends StatelessWidget {
           Row(
             children: [
               ItemsBody(
-                title: "رقم الطلب :548964132",
+                title: date,
                 quantity: quantity,
-                totalPrice: "120",
+                // totalPrice: "120",
               ),
 
               Row(
@@ -95,52 +95,52 @@ class CustomOrder extends StatelessWidget {
           const Row(
             children: [Expanded(child: Divider(color: AppColors.fogGray))],
           ),
-          SizedBox(height: 20.h),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Spacer(),
-              Expanded(
-                flex: 2,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: CustomElevatedButton(
-                        backgroundColor: AppColors.primaryColor,
-                        onPressed: () {
-                          showOrderTrackingModal(context);
-                        },
-                        verticalPadding: 5.h,
-                        child: Text(
-                          "تتبع الطلب",
-                          style: AppStyle.styleRegular15(
-                            context,
-                          ).copyWith(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10.w),
-                    Expanded(
-                      child: CustomElevatedButton(
-                        borderColor: AppColors.primaryColor,
-                        backgroundColor: AppColors.white,
-                        onPressed: () {
-                          GoRouter.of(context).push(AppRouter.orderDetails);
-                        },
-                        verticalPadding: 5.h,
-                        child: Text(
-                          "تفاصيل الطلب",
-                          style: AppStyle.styleRegular15(
-                            context,
-                          ).copyWith(color: AppColors.primaryColor),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          // SizedBox(height: 20.h),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   children: [
+          //     const Spacer(),
+          //     Expanded(
+          //       flex: 2,
+          //       child: Row(
+          //         children: [
+          //           Expanded(
+          //             child: CustomElevatedButton(
+          //               backgroundColor: AppColors.primaryColor,
+          //               onPressed: () {
+          //                 showOrderTrackingModal(context);
+          //               },
+          //               verticalPadding: 5.h,
+          //               child: Text(
+          //                 "تتبع الطلب",
+          //                 style: AppStyle.styleRegular15(
+          //                   context,
+          //                 ).copyWith(color: Colors.white),
+          //               ),
+          //             ),
+          //           ),
+          //           SizedBox(width: 10.w),
+          //           Expanded(
+          //             child: CustomElevatedButton(
+          //               borderColor: AppColors.primaryColor,
+          //               backgroundColor: AppColors.white,
+          //               onPressed: () {
+          //                 GoRouter.of(context).push(AppRouter.orderDetails);
+          //               },
+          //               verticalPadding: 5.h,
+          //               child: Text(
+          //                 "تفاصيل الطلب",
+          //                 style: AppStyle.styleRegular15(
+          //                   context,
+          //                 ).copyWith(color: AppColors.primaryColor),
+          //               ),
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

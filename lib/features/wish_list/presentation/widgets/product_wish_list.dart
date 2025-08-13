@@ -91,7 +91,7 @@ class _ProductWishListState extends State<ProductWishList> {
               InkWell(
                 onTap: widget.removeFromWishList,
                 child: SvgPicture.asset(
-                  Assets.imagesIconsInCartSuccess,
+                  Assets.imagesIconsNewwwActiveHeart,
                   width: 25.w,
                   height: 25.h,
                 ),

@@ -100,15 +100,15 @@ class _OrderStatusScreenBodyState extends State<OrderStatusScreenBody> {
               return SliverList.builder(
                 itemCount: state.orders.length,
                 itemBuilder: (context, index) {
-                  state.orders[index].cartItems[0].image!;
+                  state.orders[index].items[0].image;
                   return Padding(
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: OrderSuccessPage(
-                      image: state.orders[index].cartItems[0].image!,
-                      title: state.orders[index].cartItems[0].title!,
-                      totalPrice: state.orders[index].cartItems[0].price!,
-                      quantity: state.orders[index].cartItems[0].quantity!,
-                      date: state.orders[index].createdAt,
+                      image: state.orders[index].items[0].image,
+                      title: state.orders[index].items[0].title,
+                      totalPrice: state.orders[index].items[0].price,
+                      quantity: state.orders[index].items[0].quantity,
+                      // date: state.orders[index].createdAt,
                     ),
                   );
                 },

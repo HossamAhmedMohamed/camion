@@ -5,7 +5,8 @@ platform :android do
   desc "Distribute app to firebase app distribution"
   lane :distribute do
     sh "flutter clean"
-    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons --target-platform android-arm,android-arm64,android-x64
+"
      firebase_app_distribution(
     app: "1:577587095942:android:09346bc915a8c82078a407",
     firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
