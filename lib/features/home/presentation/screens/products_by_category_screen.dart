@@ -58,6 +58,7 @@ class _ProductsByCategoryScreenBodyState
     context.read<ProductByCategoryCubit>().getProductsByCategory(
       slug: widget.slug,
     );
+    context.read<GetWishListCubit>().getWishList();
     super.initState();
   }
 
