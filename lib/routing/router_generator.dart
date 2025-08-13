@@ -367,7 +367,10 @@ class RouterGenerator {
         path: AppRouter.allCategoriesScreen,
         builder: (context, state) {
           final extra = state.extra as List<GeTCategoriesModel>;
-          return AllCategoriesScreen(categories: extra);
+          return BlocProvider(
+            create: (context) => GetCartCubit(sl<CartRepository>()),
+            child: AllCategoriesScreen(categories: extra),
+          );
         },
       ),
 

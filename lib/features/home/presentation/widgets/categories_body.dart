@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
@@ -117,7 +118,7 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                           ) {
                             return GestureDetector(
                               onTap: () {
-                                final extra = categoriesWithImages[index].slug;
+                                final extra = categoriesWithImages[index].name;
                                 GoRouter.of(context).push(
                                   AppRouter.productByCategory,
                                   extra: extra,
@@ -126,14 +127,20 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                               child: Container(
                                 width: widget.screenWidth > 800 ? 140.w : 80.w,
                                 height: widget.screenWidth > 800 ? 140.h : 80.h,
-                                padding: EdgeInsets.all(15.r),
-                                decoration: ShapeDecoration(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50.r),
-                                  ),
+                                padding: EdgeInsets.all(0.r),
+                                decoration: BoxDecoration(
                                   color: Colors.white,
+                                  borderRadius: BorderRadius.circular(100.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withAlpha(15),
+                                      spreadRadius: 2,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 2.h),
+                                    ),
+                                  ],
                                 ),
-                                margin: EdgeInsets.only(right: 15.w),
+                                margin: EdgeInsets.only(left: 15.w),
                                 child: SizedBox(
                                   height: widget.screenWidth > 800
                                       ? 120.h
@@ -141,13 +148,35 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                   width: widget.screenWidth > 800
                                       ? 120.w
                                       : 60.w,
-                                  child: Center(
-                                    child: CustomCachedNetworkImage(
-                                      fit: BoxFit.contain,
-                                      imageUrl: categoriesWithImages[index]
-                                          .image!
-                                          .thumbnail,
-                                    ),
+                                  child: Stack(
+                                    children: [
+                                      Center(
+                                        child: ClipOval(
+                                          child: CustomCachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            imageUrl:
+                                                categoriesWithImages[index]
+                                                    .image!
+                                                    .thumbnail,
+                                          ),
+                                        ),
+                                      ),
+
+                                      Positioned(
+                                        top: 10.h,
+                                        bottom: 10.h,
+                                        left: 20.w,
+                                        right: 20.w,
+                                        child: Center(
+                                          child: Text(
+                                            categoriesWithImages[index].name,
+                                            style: AppStyle.styleRegular18(
+                                              context,
+                                            ).copyWith(color: Colors.black),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
