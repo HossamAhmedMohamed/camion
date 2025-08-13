@@ -44,7 +44,7 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
         children: [
           CustomScrollView(
             slivers: [
-              const CustomJoinUsSliverAppBar(title: "انضم الينا كمسوق"),
+              const CustomJoinUsSliverAppBar(title: "Join Us As Affiliate"),
               SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
               SliverToBoxAdapter(
@@ -117,7 +117,7 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
                                 if (selectedGender == null ||
                                     selectedGender!.isEmpty) {
                                   Fluttertoast.showToast(
-                                    msg: "الرجاء اختيار الجنس",
+                                    msg: "Please select a gender",
                                     backgroundColor: Colors.red,
                                   );
                                   return;
@@ -131,7 +131,7 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
                                 );
                               },
                         child: Text(
-                          "التالي",
+                          "Next",
                           style: AppStyle.styleRegular15(
                             context,
                           ).copyWith(color: Colors.white),

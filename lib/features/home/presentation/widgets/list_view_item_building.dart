@@ -78,66 +78,63 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-               
-               Positioned(
+
+              Positioned(
                 top: 16.h,
                 left: 16.w,
-                child:   BlocBuilder<GetWishListCubit, GetWishListState>(
-                    builder: (context, state) {
-                      bool isInWishList = false;
+                child: BlocBuilder<GetWishListCubit, GetWishListState>(
+                  builder: (context, state) {
+                    bool isInWishList = false;
 
-                      if (state is GetWishListSuccess) {
-                        if (state.wishLists.isEmpty) {
-                          isInWishList = false;
-                        } else {
-                          isInWishList = state.wishLists.any(
-                            (item) => item.productId == widget.productId,
-                          );
-                        }
+                    if (state is GetWishListSuccess) {
+                      if (state.wishLists.isEmpty) {
+                        isInWishList = false;
+                      } else {
+                        isInWishList = state.wishLists.any(
+                          (item) => item.productId == widget.productId,
+                        );
                       }
+                    }
 
-                      return InkWell(
-                        onTap: () {
-                          if (isInWishList) {
-                            context.read<GetWishListCubit>().removeFromWishList(
-                              productId: widget.productId,
-                            );
-                          } else {
-                            widget.onAddToWishListTap();
-                          }
-                        },
-                        child: Container(
-                                            width: 35,
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.black.withAlpha(
-                                                    15,
-                                                  ),
-                                                  spreadRadius: 2,
-                                                  blurRadius: 4,
-                                                  offset: Offset(0, 2.h),
-                                                ),
-                                              ],
-                                            ),
-                                            child: Center(
-                                              child: SvgPicture.asset(
-                                                isInWishList
-                                                    ? Assets
-                                                          .imagesIconsNewwwActiveHeart
-                                                    : Assets
-                                                          .imagesIconsNewwwInactiveHeart,
-                                                width: 25.w,
-                                                height: 25.h,
-                                              ),
-                                            ),
-                                          ),
-                      );
-                    },
-                  ), )
+                    return InkWell(
+                      onTap: () {
+                        if (isInWishList) {
+                          context.read<GetWishListCubit>().removeFromWishList(
+                            productId: widget.productId,
+                          );
+                        } else {
+                          widget.onAddToWishListTap();
+                        }
+                      },
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withAlpha(15),
+                              spreadRadius: 2,
+                              blurRadius: 4,
+                              offset: Offset(0, 2.h),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            isInWishList
+                                ? Assets.imagesIconsNewwwActiveHeart
+                                : Assets.imagesIconsNewwwInactiveHeart,
+                            width: 25.w,
+                            height: 25.h,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -158,8 +155,8 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                       textDirection: TextDirection.ltr,
                     ),
                   ),
+
                   // SizedBox(width: 20.w),
-                
                 ],
               ),
 
@@ -192,7 +189,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     widget.averageRating,
                     style: AppStyle.styleRegular14(
                       context,
-                    ).copyWith(color: Colors.grey.shade600),
+                    ).copyWith(color: AppColors.gray),
                   ),
 
                   SizedBox(width: 5.w),
@@ -216,14 +213,16 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
 
               Row(
                 children: [
-                  Icon(Icons.visibility, color: AppColors.gray, size: 15.r),
-                  SizedBox(width: 5.w),
                   Text(
                     widget.reviewCount,
-                    style: AppStyle.styleRegular10(
+                    style: AppStyle.styleRegular14(
                       context,
                     ).copyWith(color: AppColors.gray),
                   ),
+
+                  SizedBox(width: 5.w),
+
+                  Icon(Icons.visibility, color: AppColors.gray, size: 15.r),
 
                   // SizedBox(width: 10.w),
 
@@ -242,9 +241,9 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    GoRouter.of(context).push(AppRouter.productDetails ,
-                    extra: widget.productId
-                    );
+                    GoRouter.of(
+                      context,
+                    ).push(AppRouter.productDetails, extra: widget.productId);
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(vertical: 16.h),
@@ -257,7 +256,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'اختر منتج',
+                        'Choose Product',
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: Colors.white),

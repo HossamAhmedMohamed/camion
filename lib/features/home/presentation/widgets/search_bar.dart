@@ -33,7 +33,7 @@ class SearchBarHome extends StatelessWidget {
                 onTap: onTap,
                 onChanged: onChanged,
                 controller: searchController,
-                hintText: "ابحث عن ما تريد",
+                hintText: "Search...",
                 readOnly: readOnly,
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(12.r),

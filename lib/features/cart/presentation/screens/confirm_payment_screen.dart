@@ -128,7 +128,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const CartSliverAppBar(title: "اتمام الدفع"),
+          const CartSliverAppBar(title: "Checkout"),
 
           SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
@@ -140,7 +140,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "المنتجات ",
+                    "Products",
                     style: AppStyle.styleBold16(
                       context,
                     ).copyWith(color: AppColors.black),
@@ -150,7 +150,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                       GoRouter.of(context).push(AppRouter.myCart);
                     },
                     child: Text(
-                      "تعديل الطلب ",
+                      "View Cart",
                       style: AppStyle.styleRegular12(context).copyWith(
                         color: AppColors.primaryColor,
                         decoration: TextDecoration.underline,
@@ -199,7 +199,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
               child: Column(
                 children: [
                   ExpandedRowForUserImplementation(
-                    secondTitle: "أضف بياناتك",
+                    secondTitle: "Add your personal information",
                     onTapOnSecondTitle: () async {
                       // تمرير الـ Controllers للصفحة التانية
                       final result = await GoRouter.of(context).push(
@@ -264,7 +264,6 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                     },
                   ),
 
-                  // عرض حالة البيانات
                   if (selectedAddress != null) ...[
                     SizedBox(height: 15.h),
                     Container(
@@ -299,7 +298,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "كود الخصم",
+                    "Coupon code",
                     style: AppStyle.styleBold16(
                       context,
                     ).copyWith(color: AppColors.black),
@@ -309,7 +308,9 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                     children: [
                       const Expanded(
                         flex: 2,
-                        child: CustomTextFormField(hintText: "كود الخصم"),
+                        child: CustomTextFormField(
+                          hintText: "Enter Coupon Code",
+                        ),
                       ),
                       SizedBox(width: 10.w),
                       Expanded(
@@ -329,7 +330,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                             ),
                             child: FittedBox(
                               child: Text(
-                                "تأكيد",
+                                "Confirm",
                                 style: AppStyle.styleBold16(
                                   context,
                                 ).copyWith(color: AppColors.primaryColor),
@@ -408,8 +409,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                     }
                     if (state is CalculateShippingAddressError) {
                       Fluttertoast.showToast(
-                        msg:
-                            ".. الرجاء التحقق من البيانات، حدث خطأ في حساب الشحن",
+                        msg: "Please review the data",
                         gravity: ToastGravity.TOP,
                         backgroundColor: Colors.red,
                         textColor: Colors.white,
@@ -457,7 +457,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                           : Row(
                               children: [
                                 Text(
-                                  "تأكيد الدفع",
+                                  "Checkout",
                                   style: AppStyle.styleRegular15(
                                     context,
                                   ).copyWith(color: Colors.white),

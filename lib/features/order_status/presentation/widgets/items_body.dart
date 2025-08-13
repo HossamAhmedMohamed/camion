@@ -9,61 +9,63 @@ class ItemsBody extends StatelessWidget {
     super.key,
     required this.title,
     required this.quantity,
-    // required this.totalPrice,
+    required this.totalPrice,
   });
 
+  final String? totalPrice;
   final DateTime title;
   final int quantity;
   // final String totalPrice;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Text(
-          //   title,
-          //   overflow: TextOverflow.ellipsis,
-          //   maxLines: 2,
-          //   style: AppStyle.styleRegular14(context).copyWith(
-          //     color: AppColors.black,
-          //     fontWeight: FontWeight.w700,
-          //   ),
-          //    textDirection: TextDirection.ltr,
-          // ),
-          // SizedBox(height: 8.h),
-          Text(
-            "الكمية : $quantity ",
-            style: AppStyle.styleRegular14(
-              context,
-            ).copyWith(color: AppColors.gray),
-          ),
-    
-          SizedBox(height: 8.h),
-    
-          Row(
-            children: [
-              Text(
-                "تم الطلب في ${DateFormat('d MMMM h:mm a', 'ar').format(title).replaceAll('ص', 'صباحاً').replaceAll('م', 'مساءً')}",
-                style: AppStyle.styleRegular14(context).copyWith(
-                  color: AppColors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              // SizedBox(width: 5.w),
-    
-              // Text(
-              //   "$totalPrice",
-              //   style: AppStyle.styleRegular18(context).copyWith(
-              //     color: AppColors.primaryColor,
-              //     fontWeight: FontWeight.w600,
-              //   ),
-              // ),
-            ],
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Text(
+        //   title,
+        //   overflow: TextOverflow.ellipsis,
+        //   maxLines: 2,
+        //   style: AppStyle.styleRegular14(context).copyWith(
+        //     color: AppColors.black,
+        //     fontWeight: FontWeight.w700,
+        //   ),
+        //    textDirection: TextDirection.ltr,
+        // ),
+        // SizedBox(height: 8.h),
+        Text(
+          "Quantity : $quantity ",
+          style: AppStyle.styleRegular14(
+            context,
+          ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
+        ),
+
+        SizedBox(height: 8.h),
+
+        Row(
+          children: [
+            Text(
+              "Ordered in ${DateFormat('d MMMM h:mm a', 'en').format(title).replaceAll('ص', 'صباحاً').replaceAll('م', 'مساءً')}",
+              style: AppStyle.styleRegular14(
+                context,
+              ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
+            ),
+            // SizedBox(width: 5.w),
+
+            // Text(
+            //   "$totalPrice",
+            //   style: AppStyle.styleRegular18(context).copyWith(
+            //     color: AppColors.primaryColor,
+            //     fontWeight: FontWeight.w600,
+            //   ),
+            // ),
+          ],
+        ),
+
+        // SizedBox(height: 10.h),
+
+        
+      ],
     );
   }
 }

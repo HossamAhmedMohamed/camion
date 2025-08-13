@@ -217,7 +217,7 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'الكمية',
+          'Quantity',
           style: AppStyle.styleRegular18(context).copyWith(
             color: Colors.black,
             fontWeight: FontWeight.w700,

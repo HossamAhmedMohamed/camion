@@ -300,40 +300,40 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        actions: [
-          // زر لمسح كل الاقتراحات
-          PopupMenuButton<String>(
-            onSelected: (value) async {
-              if (value == 'clear') {
-                await AutoCompleteService.clearAllSuggestions();
-              } else if (value == 'copy') {
-                _copyBillingToShipping();
-              }
-            },
-            itemBuilder: (BuildContext context) => [
-              const PopupMenuItem<String>(
-                value: 'copy',
-                child: Row(
-                  children: [
-                    Icon(Icons.copy, size: 20),
-                    SizedBox(width: 8),
-                    Text('نسخ بيانات الفوترة للشحن'),
-                  ],
-                ),
-              ),
-              const PopupMenuItem<String>(
-                value: 'clear',
-                child: Row(
-                  children: [
-                    Icon(Icons.clear_all, size: 20),
-                    SizedBox(width: 8),
-                    Text('مسح كل الاقتراحات'),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+        // actions: [
+        //   // زر لمسح كل الاقتراحات
+        //   PopupMenuButton<String>(
+        //     onSelected: (value) async {
+        //       if (value == 'clear') {
+        //         await AutoCompleteService.clearAllSuggestions();
+        //       } else if (value == 'copy') {
+        //         _copyBillingToShipping();
+        //       }
+        //     },
+        //     itemBuilder: (BuildContext context) => [
+        //       const PopupMenuItem<String>(
+        //         value: 'copy',
+        //         child: Row(
+        //           children: [
+        //             Icon(Icons.copy, size: 20),
+        //             SizedBox(width: 8),
+        //             Expanded(child: Text('Copy billing information for shipping')),
+        //           ],
+        //         ),
+        //       ),
+        //       const PopupMenuItem<String>(
+        //         value: 'clear',
+        //         child: Row(
+        //           children: [
+        //             Icon(Icons.clear_all, size: 20),
+        //             SizedBox(width: 8),
+        //             Text("Clear all suggestions"),
+        //           ],
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.w),
@@ -343,57 +343,57 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
             SizedBox(height: 25.h),
 
             Text(
-              "بياناتك",
+              "Personal Information",
               style: AppStyle.styleRegular16(
                 context,
               ).copyWith(color: AppColors.primaryColor),
             ),
 
             _buildAutoCompleteField(
-              "الاسم الأول",
+              "First Name",
               widget.firstNameController,
               "firstName",
             ),
             _buildAutoCompleteField(
-              "الاسم الأخير",
+              "Last Name",
               widget.lastNameController,
               "lastName",
             ),
             _buildAutoCompleteField(
-              "البريد الإلكتروني",
+              "Email Address",
               widget.emailController,
               "email",
               TextInputType.emailAddress,
             ),
             _buildAutoCompleteField(
-              "رقم الهاتف",
+              "Phone Number",
               widget.phoneController,
               "phone",
               TextInputType.phone,
             ),
             _buildAutoCompleteField(
-              "العنوان 1",
+              "Address 1",
               widget.address1Controller,
               "address1",
             ),
             _buildAutoCompleteField(
-              "العنوان 2",
+              "Address 2",
               widget.address2Controller,
               "address2",
             ),
-            _buildAutoCompleteField("المدينة", widget.cityController, "city"),
+            _buildAutoCompleteField("City", widget.cityController, "city"),
             _buildAutoCompleteField(
-              "المحافظة",
+              "State/Province",
               widget.stateController,
               "state",
             ),
             _buildAutoCompleteField(
-              "الرمز البريدي",
+              "Zip/Postal Code",
               widget.postcodeController,
               "postcode",
             ),
             _buildAutoCompleteField(
-              "الدولة",
+              "Country",
               widget.countryController,
               "country",
             ),
@@ -401,66 +401,67 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
             const SizedBox(height: 24),
 
             // خيار نسخ بيانات الفوترة لعنوان الشحن
-            CheckboxListTile(
-              title: const Text("عنوان الشحن نفس عنوان الفوترة"),
-              value: _sameAsShipping,
-              onChanged: (value) {
-                setState(() {
-                  _sameAsShipping = value ?? false;
-                  if (_sameAsShipping) {
-                    _copyBillingToShipping();
-                  } else {
-                    _clearShippingFields();
-                  }
-                });
-              },
-            ),
+            // CheckboxListTile(
+            //   contentPadding: EdgeInsets.zero,
+            //   title: const Text("Shipping address is the same as the billing address."),
+            //   value: _sameAsShipping,
+            //   onChanged: (value) {
+            //     setState(() {
+            //       _sameAsShipping = value ?? false;
+            //       if (_sameAsShipping) {
+            //         _copyBillingToShipping();
+            //       } else {
+            //         _clearShippingFields();
+            //       }
+            //     });
+            //   },
+            // ),
 
             if (!_sameAsShipping) ...[
               Text(
-                "عنوان الشحن",
+                "Shipping Address",
                 style: AppStyle.styleRegular16(
                   context,
                 ).copyWith(color: AppColors.primaryColor),
               ),
 
               _buildAutoCompleteField(
-                "الاسم الأول",
+                "First Name",
                 widget.shippingFirstNameController,
                 "shippingFirstName",
               ),
               _buildAutoCompleteField(
-                "الاسم الأخير",
+                "Last Name",
                 widget.shippingLastNameController,
                 "shippingLastName",
               ),
               _buildAutoCompleteField(
-                "العنوان 1",
+                "Address 1",
                 widget.shippingAddress1Controller,
                 "shippingAddress1",
               ),
               _buildAutoCompleteField(
-                "العنوان 2",
+                "Address 2",
                 widget.shippingAddress2Controller,
                 "shippingAddress2",
               ),
               _buildAutoCompleteField(
-                "المدينة",
+                "City",
                 widget.shippingCityController,
                 "shippingCity",
               ),
               _buildAutoCompleteField(
-                "المحافظة",
+                "State/Province",
                 widget.shippingStateController,
                 "shippingState",
               ),
               _buildAutoCompleteField(
-                "الرمز البريدي",
+                "Zip/Postal Code",
                 widget.shippingPostcodeController,
                 "shippingPostcode",
               ),
               _buildAutoCompleteField(
-                "الدولة",
+                "Country",
                 widget.shippingCountryController,
                 "shippingCountry",
               ),
@@ -480,7 +481,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                       strokeWidth: 2,
                     )
                   : Text(
-                      "حفظ",
+                      "Save",
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: Colors.white),

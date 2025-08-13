@@ -14,7 +14,7 @@ class MyCodingsScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
-          const CustomJoinUsSliverAppBar(title: "أكوادي"),
+          const CustomJoinUsSliverAppBar(title: "My Coupons"),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
           SliverList.builder(

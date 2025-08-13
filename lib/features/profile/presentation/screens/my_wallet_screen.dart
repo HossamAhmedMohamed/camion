@@ -23,7 +23,7 @@ class MyWalletScreen extends StatelessWidget {
         slivers: [
           ProfileSliverAppBar(
             title: Text(
-              "المحفظة",
+              "Wallet",
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -54,7 +54,7 @@ class MyWalletScreen extends StatelessWidget {
                 onPressed: () {},
                 widget: Image.asset(Assets.imagesRefresh),
                 child: Text(
-                  "اضافة المال",
+                  "Add Money",
                   style: AppStyle.styleRegular15(
                     context,
                   ).copyWith(color: Colors.white),
@@ -70,7 +70,7 @@ class MyWalletScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: ExpandedRowForUserImplementation(
                 // firstTitle: 'العمليات',
-                secondTitle: 'الكل',
+                secondTitle: 'All',
                 onTapOnSecondTitle: () {},
               ),
             ),
@@ -83,7 +83,7 @@ class MyWalletScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return const Column(
                 children: [
-                  CustomListTile(title: 'العملية'),
+                  CustomListTile(title: 'Transaction',),
 
                   Row(
                     children: [

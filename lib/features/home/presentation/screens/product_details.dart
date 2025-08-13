@@ -72,7 +72,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             CustomSliverAppBar(
               appBarHeight: 70.h,
               title: Text(
-                "تفاصيل المنتج",
+                "Product Details",
                 style: AppStyle.styleRegular18(
                   context,
                 ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -436,7 +436,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
 
                                       SizedBox(width: 5.w),
-                                      SizedBox(width: 5.w),
+
                                       ...List.generate(5, (index) {
                                         int rating = 0;
                                         try {
@@ -461,17 +461,19 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                                   Row(
                                     children: [
+                                      Text(
+                                        product.reviewCount.toString(),
+                                        style: AppStyle.styleRegular14(
+                                          context,
+                                        ).copyWith(color: AppColors.gray),
+                                      ),
+
+                                      SizedBox(width: 5.w),
+
                                       Icon(
                                         Icons.visibility,
                                         color: AppColors.gray,
                                         size: 15.r,
-                                      ),
-                                      SizedBox(width: 5.w),
-                                      Text(
-                                        product.reviewCount.toString(),
-                                        style: AppStyle.styleRegular10(
-                                          context,
-                                        ).copyWith(color: AppColors.gray),
                                       ),
 
                                       // SizedBox(width: 10.w),
@@ -560,7 +562,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      'أذهب الي العربة',
+                                                      'Go To Cart',
                                                       style:
                                                           AppStyle.styleRegular15(
                                                             context,
@@ -605,7 +607,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      'أذهب الي العربة',
+                                                      'Go To Cart',
                                                       style:
                                                           AppStyle.styleRegular15(
                                                             context,
@@ -685,7 +687,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                         ]
                                                       : [
                                                           Text(
-                                                            'أضف للعربة',
+                                                            'Add To Cart',
                                                             style:
                                                                 AppStyle.styleRegular15(
                                                                   context,
@@ -698,8 +700,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           SvgPicture.asset(
                                                             Assets
                                                                 .imagesShoppingCartWhite,
-                                                            width: 22.w,
-                                                            height: 22.h,
+                                                            width: 18.w,
+                                                            height: 18.h,
                                                           ),
                                                         ],
                                                 ),

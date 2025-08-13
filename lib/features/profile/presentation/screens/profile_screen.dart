@@ -48,7 +48,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.myWallet);
         },
-        title: 'محفظتي',
+        title: 'My Wallet',
         image: Assets.imagesArchiveProfile,
       ),
 
@@ -56,7 +56,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.affiliateCheckScreen);
         },
-        title: 'التسويق بالعمولة',
+        title: 'Affiliate Marketing',
         image: Assets.imagesPlay,
       ),
 
@@ -67,13 +67,13 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
       //   title: 'المحفظة',
       //   image: Assets.imagesEmptyWallet,
       // ),
-      ProfileModel(
-        onTap: () {
-          GoRouter.of(context).push(AppRouter.settings);
-        },
-        title: 'الاعدادات',
-        image: Assets.imagesProfileSettings,
-      ),
+      // ProfileModel(
+      //   onTap: () {
+      //     GoRouter.of(context).push(AppRouter.settings);
+      //   },
+      //   title: 'Settings',
+      //   image: Assets.imagesProfileSettings,
+      // ),
 
       // ProfileModel(
       //   onTap: () {},
@@ -82,7 +82,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
       // ),
       ProfileModel(
         onTap: () {},
-        title: 'قيمنا',
+        title: 'Rate us',
         image: Assets.imagesIconsStarProfile,
       ),
 
@@ -90,16 +90,16 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.help);
         },
-        title: 'المساعدة',
+        title: 'Help',
         image: Assets.imagesIconsHelp,
       ),
 
       ProfileModel(
         onTap: () {
           customModalBottomSheetProfile(
-            title: "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+            title: "Are you sure you want to log out?",
             subTitle:
-                "سيتم إنهاء جلستك الحالية، وستحتاج إلى تسجيل الدخول مرة أخرى للوصول إلى حسابك.",
+                "Logging out will end your current session and you will be redirected to the login screen",
             screenWidth: double.infinity,
             context: context,
             content: Row(
@@ -108,7 +108,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                   child: CustomElevatedButton(
                     backgroundColor: AppColors.primaryColor,
                     child: Text(
-                      "تسجيل الخروج",
+                      "Log out",
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: Colors.white),
@@ -126,7 +126,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                     backgroundColor: AppColors.white,
                     textColor: AppColors.primaryColor,
                     child: Text(
-                      " الغاء",
+                      "Cancel",
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: AppColors.primaryColor),
@@ -140,7 +140,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             ),
           );
         },
-        title: 'تسجيل الخروج',
+        title: 'Log out',
         image: Assets.imagesLogout,
       ),
 
@@ -156,7 +156,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
         ProfileSliverAppBar(
           title: Text(
-            "الصفحة الشخصية",
+            "Profile",
             style: AppStyle.styleRegular18(context),
           ),
           isShoppingCartShown: true,

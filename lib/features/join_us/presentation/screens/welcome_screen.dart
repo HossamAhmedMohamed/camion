@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const CustomJoinUsSliverAppBar(title: "التسويق بالعمولة"),
+          const CustomJoinUsSliverAppBar(title: "Affiliate Marketing"),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: Padding(
@@ -31,12 +31,10 @@ class WelcomeScreen extends StatelessWidget {
                     Assets.imagesJoinUsPhoto,
                   ),
 
-                  SizedBox(
-                    height: 40.h,
-                  ),
+                  SizedBox(height: 40.h),
                   FittedBox(
                     child: Text(
-                      "يشرفنا انضمامك لفريق مسوقينا",
+                      "We are honored to have you join our marketing team",
                       style: AppStyle.styleRegular16(context).copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
@@ -47,7 +45,8 @@ class WelcomeScreen extends StatelessWidget {
                   SizedBox(height: 26.h),
 
                   Text(
-                    "نقدم نظام تسويق بالعمولة بسيط وفعّال، يعتمد على أكواد خاصة يحصل عليها كل مسوّق، بحيث يقدر يشاركها مع جمهوره ويكسب عمولة على كل عملية بيع تتم باستخدام الكود. العمولة بيتم تحويلها مباشرة إلى المحفظة بدون أي وسيط أو تأخير، لضمان سرعة وسهولة التحصيل. بنوفر مجموعة متنوعة من المنتجات في مجالات مختلفة، علشان كل مسوّق يلاقي اللي يناسب جمهوره ويحقق أعلى نسبة مبيعات. هدفنا إننا نساعدك تكسب دخل مستمر من خلال مجهود بسيط وتسويق ذكي.",
+                    textAlign: TextAlign.center,
+                    "We offer a simple and effective affiliate marketing system based on unique codes for each marketer. These codes can be shared with their audience, allowing them to earn a commission on every sale made using the code. The commission is transferred directly to their wallet without any intermediaries or delays, ensuring fast and easy payouts.We provide a wide variety of products across different fields, so every marketer can find what suits their audience and achieve the highest sales rates. Our goal is to help you earn a steady income through minimal effort and smart marketing",
                     style: AppStyle.styleRegular14(context).copyWith(
                       color: Colors.black54,
                       fontWeight: FontWeight.w400,
@@ -58,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
 
                   CustomElevatedButton(
                     child: Text(
-                      "ابدأ الان",
+                      "Start Now",
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: Colors.white),

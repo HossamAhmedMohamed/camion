@@ -22,40 +22,47 @@ class HomeJoinUsNow extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(Assets.imagesIconsNewJoinUs),
+              image: AssetImage(Assets.imagesIconsAffiliate),
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 25.w),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: GestureDetector(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouter.supplierWelcome);
-                },
-                child: Container(
-                  // height: 32.h,
-                  width: screenWidth > 800 ? 170.w : 100.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    color: AppColors.primaryColor,
-                  ),
-        
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
-                    child: FittedBox(
-                      // fit: BoxFit.scaleDown,
-                      child: Text(
-                        "انضم الينا الان",
-                        style: AppStyle.styleRegular14(
-                          context,
-                        ).copyWith(color: Colors.white),
-                        textAlign: TextAlign.center,
+            padding: EdgeInsets.symmetric(vertical: 25.h, horizontal: 50.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.supplierWelcome);
+                  },
+                  child: Container(
+                     
+                    // height: 32.h,
+                    width: screenWidth > 800 ? 170.w : 100.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      color: AppColors.primaryColor,
+                    ),
+                
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8.h,
+                        horizontal: 8.w,
+                      ),
+                      child: FittedBox(
+                        // fit: BoxFit.scaleDown,
+                        child: Text(
+                          "Join Us Now",
+                          style: AppStyle.styleRegular14(
+                            context,
+                          ).copyWith(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ),

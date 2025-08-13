@@ -14,19 +14,19 @@ class HelpScreen extends StatelessWidget {
   static List<ProfileModel> profileList = [
     ProfileModel(
       onTap: () {},
-      title: 'خدمة العملاء',
+      title: 'Client Services',
       image: Assets.imagesIconsCustomerService,
     ),
 
     ProfileModel(
       onTap: () {},
-      title: 'سياسة الرجوع',
+      title: 'Privacy & Return Policy',
       image: Assets.imagesIconsPrivacyReturn,
     ),
 
     ProfileModel(
       onTap: () {},
-      title: 'تقديم شكوي',
+      title: 'File a Complaint',
       image: Assets.imagesIconsHelp,
     ),
   ];
@@ -43,7 +43,7 @@ class HelpScreen extends StatelessWidget {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "المساعدة",
+              "Help",
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

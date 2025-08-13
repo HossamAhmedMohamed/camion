@@ -24,115 +24,6 @@ class _CategoriesBodyState extends State<CategoriesBody> {
   // VoidCallback onCategoreyTap(BuildContext context, {required String title}) {
   @override
   Widget build(BuildContext context) {
-    // List<CategoriesModel> firstCategories = [
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاطفال"),
-    //     title: "الاطفال",
-    //     image: Assets.imagesChildren,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاثاث"),
-    //     title: "الأثاث",
-    //     image: Assets.imagesFurniture,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الموضة"),
-    //     title: "الموضة",
-    //     image: Assets.imagesClothes,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "المطبخ"),
-    //     title: "المطبخ",
-    //     image: Assets.imagesKithcen,
-    //   ),
-
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاطفال"),
-    //     title: "الاطفال",
-    //     image: Assets.imagesChildren,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاثاث"),
-    //     title: "الأثاث",
-    //     image: Assets.imagesFurniture,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الموضة"),
-    //     title: "الموضة",
-    //     image: Assets.imagesClothes,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "المطبخ"),
-    //     title: "المطبخ",
-    //     image: Assets.imagesKithcen,
-    //   ),
-
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاطفال"),
-    //     title: "الاطفال",
-    //     image: Assets.imagesChildren,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاثاث"),
-    //     title: "الأثاث",
-    //     image: Assets.imagesFurniture,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الموضة"),
-    //     title: "الموضة",
-    //     image: Assets.imagesClothes,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "المطبخ"),
-    //     title: "المطبخ",
-    //     image: Assets.imagesKithcen,
-    //   ),
-    // ];
-
-    // List<CategoriesModel> secondCategories = [
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "البيت"),
-    //     title: "البيت",
-    //     image: Assets.imagesHomeCategory,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاجهزة"),
-    //     title: "الاجهزة",
-    //     image: Assets.imagesDevices,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "المطبخ"),
-    //     title: "المطبخ",
-    //     image: Assets.imagesKithcen,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الموبايل"),
-    //     title: "الموبايل",
-    //     image: Assets.imagesMobile,
-    //   ),
-
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "البيت"),
-    //     title: "البيت",
-    //     image: Assets.imagesHomeCategory,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الاجهزة"),
-    //     title: "الاجهزة",
-    //     image: Assets.imagesDevices,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "المطبخ"),
-    //     title: "المطبخ",
-    //     image: Assets.imagesKithcen,
-    //   ),
-    //   CategoriesModel(
-    //     onTap: onCategoreyTap(context, title: "الموبايل"),
-    //     title: "الموبايل",
-    //     image: Assets.imagesMobile,
-    //   ),
-    // ];
-
     List<GeTCategoriesModel> categories = [];
 
     return SliverToBoxAdapter(
@@ -144,7 +35,7 @@ class _CategoriesBodyState extends State<CategoriesBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "الاقسام",
+                  "Categories",
                   style: AppStyle.styleSemiBold16(context).copyWith(
                     color: AppColors.black,
 
@@ -164,7 +55,7 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                   },
 
                   child: Text(
-                    "عرض الكل",
+                    "See all",
                     style: AppStyle.styleRegular14(context).copyWith(
                       color: AppColors.primaryColor,
 

@@ -3,9 +3,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/categories_model.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
-import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/custom_order.dart';
-import 'package:camion/features/order_status/presentation/widgets/status_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,7 +38,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         CustomSliverAppBar(
           appBarHeight: 70.h,
           title: Text(
-            "طلباتي",
+            "My Orders",
             style: AppStyle.styleRegular18(
               context,
             ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

@@ -63,6 +63,8 @@ class CustomSliverAppBar extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+
+                
                 isShoppingCartShown ?? true
                     ? SizedBox(
                         height: 40.h,
@@ -126,6 +128,10 @@ class CustomSliverAppBar extends StatelessWidget {
                       )
                     : Container(),
 
+                    SizedBox(
+                      width: 16.w,
+                    )
+
                 // SizedBox(width: 16.w),
                 // GestureDetector(
                 //   onTap: () {
@@ -142,6 +148,8 @@ class CustomSliverAppBar extends StatelessWidget {
                 //     height: 30.h,
                 //   ),
                 // ),
+
+                
               ],
             ),
           ],

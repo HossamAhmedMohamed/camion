@@ -44,11 +44,11 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           CustomTextFormField(
             controller: _emailController,
-            hintText: "الايميل",
+            hintText: "Email",
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'الرجاء إدخال الاسم';
+                return 'Please enter your email';
               }
               return null;
             },
@@ -58,11 +58,11 @@ class _LoginFormState extends State<LoginForm> {
 
           CustomPhoneNumberField(
             controller: _phoneNumberController,
-            hintText: "رقم الهاتف",
+            hintText: "Phone number",
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'الرجاء إدخال رقم الهاتف';
+                return 'Please enter your phone number';
               }
               return null;
             },
@@ -92,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: state is LoginLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
-                        "تسجيل الدخول",
+                        "Login",
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: Colors.white),

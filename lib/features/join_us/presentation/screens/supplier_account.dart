@@ -18,7 +18,8 @@ class SupplierAccountScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
-          const CustomJoinUsSliverAppBar(title: "حساب المسوق"),
+          SliverToBoxAdapter(child: SizedBox(height: 15.h)),
+          const CustomJoinUsSliverAppBar(title: "Affiliate Account"),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: GestureDetector(
@@ -40,7 +41,7 @@ class SupplierAccountScreen extends StatelessWidget {
                     SizedBox(width: 15.w),
 
                     Text(
-                      "أكوادي",
+                      "My Coupons",
                       style: AppStyle.styleRegular18(context).copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -68,7 +69,7 @@ class SupplierAccountScreen extends StatelessWidget {
                     SizedBox(width: 15.w),
 
                     Text(
-                      "إنشاء كود",
+                      "Create Coupon",
                       style: AppStyle.styleRegular18(context).copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,

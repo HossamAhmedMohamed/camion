@@ -32,7 +32,7 @@ class _SupplierSignationFormState extends State<SupplierSignationForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "البيانات الشخصية",
+          "Personal data",
           style: AppStyle.styleRegular18(
             context,
           ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -43,10 +43,10 @@ class _SupplierSignationFormState extends State<SupplierSignationForm> {
 
         CustomTextFormField(
           controller: widget.fullNameController,
-          hintText: "الاسم بالكامل",
+          hintText: "Full name",
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'الرجاء إدخال الاسم';
+              return 'Please enter your full name';
             }
             return null;
           },
@@ -64,7 +64,7 @@ class _SupplierSignationFormState extends State<SupplierSignationForm> {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'الرجاء اختيار الجنس';
+              return 'Please select your gender';
             }
             return null;
           },
@@ -74,10 +74,10 @@ class _SupplierSignationFormState extends State<SupplierSignationForm> {
 
         CustomTextFormField(
           controller: widget.nationalityController,
-          hintText: "الجنسية",
+          hintText: "Nationality",
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'الرجاء إدخال الجنسية';
+              return 'Please enter your nationality';
             }
             return null;
           },
@@ -86,13 +86,13 @@ class _SupplierSignationFormState extends State<SupplierSignationForm> {
         SizedBox(height: 10.h),
 
         CustomTextFormField(
-          controller: widget.bioController, // تصحيح المتغير هنا
-          hintText: "نبذة عنك",
+          controller: widget.bioController, 
+          hintText: "About you",
           maxLines: 7,
           maxLength: 200,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'الرجاء إدخال نبذة عنك';
+              return 'Please enter your bio';
             }
             return null;
           },

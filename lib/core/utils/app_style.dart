@@ -33,7 +33,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -87,7 +87,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 18),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -96,7 +96,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 15),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -105,7 +105,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 12),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -114,7 +114,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 15),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w600,
     );
   }
@@ -123,7 +123,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w600,
     );
   }
@@ -207,7 +207,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFFFFFFFF),
       fontSize: getResponsiveFontSize(context, fontSize: 14),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
