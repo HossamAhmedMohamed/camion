@@ -61,7 +61,7 @@ class WalletCard extends StatelessWidget {
               children: [
                 // Header
                 Text(
-                  "إجمالي المبلغ",
+                  "Total Money",
                   style: AppStyle.styleRegular18(
                     context,
                   ).copyWith(color: Colors.white, fontWeight: FontWeight.w700),

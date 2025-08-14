@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "هل لديك حساب بالفعل؟  ",
+                          text: "Already have an account? ",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.sp,
@@ -106,7 +106,7 @@ class RegisterScreen extends StatelessWidget {
                             ..onTap = () {
                               GoRouter.of(context).pushNamed(AppRouter.login);
                             },
-                          text: "تسجيل الدخول",
+                          text: "Login",
                           style: TextStyle(
                             color: const Color(0xFFB92123),
                             decoration: TextDecoration.underline,

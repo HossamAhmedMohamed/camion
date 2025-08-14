@@ -101,7 +101,7 @@ class _PaymentWebViewPageState extends State<PaymentWebViewPage> {
                     ),
                     SizedBox(height: 16.h),
                     Text(
-                      "جاري تحميل صفحة الدفع...",
+                      "Payment page is loading, please wait...",
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.grey[600],
@@ -120,7 +120,7 @@ class _PaymentWebViewPageState extends State<PaymentWebViewPage> {
     // إظهار رسالة نجاح
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("تم الدفع بنجاح! ✅"),
+        content: Text("Successful payment "),
         backgroundColor: Colors.green,
         duration: Duration(seconds: 2),
       ),
@@ -142,7 +142,7 @@ class _PaymentWebViewPageState extends State<PaymentWebViewPage> {
   void _handlePaymentFailure() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("فشل في عملية الدفع ❌"),
+        content: Text("Payment failed"),
         backgroundColor: Colors.red,
         duration: Duration(seconds: 2),
       ),

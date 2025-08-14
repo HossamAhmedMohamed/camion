@@ -116,7 +116,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(child: SizedBox(height: 15.h)),
-                const CartSliverAppBar(title: "العربة"),
+                const CartSliverAppBar(title: "Cart"),
                 SliverToBoxAdapter(child: SizedBox(height: 20.h)),
                 _buildCartContent(),
                 SliverToBoxAdapter(child: SizedBox(height: 120.h)),
@@ -217,7 +217,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
             SizedBox(height: 10.h),
             ElevatedButton(
               onPressed: () => context.read<GetCartCubit>().getCart(),
-              child: Text('إعادة المحاولة', style: TextStyle(fontSize: 16.sp)),
+              child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
             ),
           ],
         ),
@@ -314,7 +314,7 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
                         ).push(AppRouter.confirmPayment, extra: cartList)
                       : () {},
                   child: Text(
-                    "المتابعة للدفع",
+                    "Continue To Checkout",
                     style: AppStyle.styleRegular15(
                       context,
                     ).copyWith(color: Colors.white),
@@ -328,40 +328,40 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
     );
   }
 
-  Widget _buildPriceRow(String label, String value) {
-    return Row(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: AppStyle.styleRegular16(
-            context,
-          ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
-        ),
-        SizedBox(width: 20.w),
-        Expanded(
-          child: Text(
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-            value,
-            style: AppStyle.styleRegular16(context).copyWith(
-              color: AppColors.primaryColor,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  // Widget _buildPriceRow(String label, String value) {
+  //   return Row(
+  //     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //     children: [
+  //       Text(
+  //         label,
+  //         style: AppStyle.styleRegular16(
+  //           context,
+  //         ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+  //       ),
+  //       SizedBox(width: 20.w),
+  //       Expanded(
+  //         child: Text(
+  //           overflow: TextOverflow.ellipsis,
+  //           maxLines: 5,
+  //           value,
+  //           style: AppStyle.styleRegular16(context).copyWith(
+  //             color: AppColors.primaryColor,
+  //             fontWeight: FontWeight.w500,
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
-  double _calculateTotal() {
-    // Calculate actual total from cartList
-    double total = 0;
-    for (var item in cartList) {
-      total += (double.tryParse(item.price ?? '0') ?? 0) * (item.quantity ?? 1);
-    }
-    return total; // Adding delivery fee
-  }
+  // double _calculateTotal() {
+  //   // Calculate actual total from cartList
+  //   double total = 0;
+  //   for (var item in cartList) {
+  //     total += (double.tryParse(item.price ?? '0') ?? 0) * (item.quantity ?? 1);
+  //   }
+  //   return total; // Adding delivery fee
+  // }
 }
 
 

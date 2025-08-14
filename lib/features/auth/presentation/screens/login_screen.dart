@@ -95,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "ليس لديك حساب؟  ",
+                          text: "Don't have an account? ",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.sp,
@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
                                 context,
                               ).pushNamed(AppRouter.register);
                             },
-                          text: "إنشاء حساب",
+                          text: "Register",
                           style: TextStyle(
                             color: const Color(0xFFB92123),
                             decoration: TextDecoration.underline,

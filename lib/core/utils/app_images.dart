@@ -162,6 +162,10 @@ class Assets {
   /// assets/images/icons/active_Shopping_Cart_new_icon_navbar.svg
   static const String imagesIconsActiveShoppingCartNewIconNavbar = "assets/images/icons/active_Shopping_Cart_new_icon_navbar.svg";
 
+  /// Assets for imagesIconsAffiliate
+  /// assets/images/icons/affiliate.png
+  static const String imagesIconsAffiliate = "assets/images/icons/affiliate.png";
+
   /// Assets for imagesIconsBlackfridayNotPixel
   /// assets/images/icons/blackfriday_not_pixel.png
   static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
@@ -233,6 +237,10 @@ class Assets {
   /// Assets for imagesIconsNewwwwwactivetalabaty
   /// assets/images/icons/newwwwwactivetalabaty.svg
   static const String imagesIconsNewwwwwactivetalabaty = "assets/images/icons/newwwwwactivetalabaty.svg";
+
+  /// Assets for imagesIconsNewwwwwwaffiliateImage
+  /// assets/images/icons/newwwwwwaffiliate_image.png
+  static const String imagesIconsNewwwwwwaffiliateImage = "assets/images/icons/newwwwwwaffiliate_image.png";
 
   /// Assets for imagesIconsPrivacyReturn
   /// assets/images/icons/privacy_return.svg

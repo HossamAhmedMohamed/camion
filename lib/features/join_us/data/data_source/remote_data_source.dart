@@ -1,11 +1,11 @@
 import 'package:camion/core/api/api_consumer.dart';
 import 'package:dio/dio.dart';
 
-class SupplierRemoteDataSource {
+class AffiliateRemoteDataSource {
   final ApiConsumer apiConsumer;
-  SupplierRemoteDataSource({required this.apiConsumer});
+  AffiliateRemoteDataSource({required this.apiConsumer});
 
-  Future<Response> signSupplier({
+  Future<Response> signAffiliate({
     required String token,
     required String name,
     required String nationality,
@@ -27,7 +27,7 @@ class SupplierRemoteDataSource {
     return response;
   }
 
-  Future<Response> getAffiliatePendings({required String token}) async {
+  Future<Response> getAffiliateStatus({required String token}) async {
     final response = await apiConsumer.get(
       "https://api-gateway.camion-app.com/affiliates/me/status",
       headers: {"Authorization": "Bearer $token"},
@@ -39,7 +39,7 @@ class SupplierRemoteDataSource {
     required String token,
     required String code,
  
-    required String discountPercentage,
+    required num discountPercentage,
   }) async {
     final response = await apiConsumer.post(
       "https://api-gateway.camion-app.com/affiliates/coupon",

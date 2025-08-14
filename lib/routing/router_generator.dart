@@ -32,18 +32,19 @@ import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/features/home/presentation/screens/stories_screen.dart';
 import 'package:camion/features/join_us/data/repository/supplier_repo.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/create_coupon_cubit/create_coupon_cubit.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/cubit/get_affiliate_status_cubit.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/supplier_sign_cubit/supplier_sign_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/get_affiliate_status_cubit/get_affiliate_status_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/Affiliate_sign_cubit/affiliate_sign_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/get_coupons_cubit/get_coupons_cubit.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_gender/toggle_join_us_cubit.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_cubit/toggle_social_media_selecting_cubit.dart';
 import 'package:camion/features/join_us/presentation/screens/affiliate_pending.dart';
 import 'package:camion/features/join_us/presentation/screens/check_affiliate_or_not.dart';
 import 'package:camion/features/join_us/presentation/screens/create_code_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/join_us_screen.dart';
-import 'package:camion/features/join_us/presentation/screens/my_codings_screen.dart';
+import 'package:camion/features/join_us/presentation/screens/my_coupons_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/select_countries_of_supplier.dart';
 import 'package:camion/features/join_us/presentation/screens/select_social_media_screen.dart';
-import 'package:camion/features/join_us/presentation/screens/supplier_account.dart';
+import 'package:camion/features/join_us/presentation/screens/affiliate_account.dart';
 import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart';
 import 'package:camion/features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
@@ -282,7 +283,7 @@ class RouterGenerator {
           providers: [
             BlocProvider(create: (context) => ToggleJoinUsCubit()),
             BlocProvider(
-              create: (context) => SupplierSignCubit(sl<SupplierRepository>()),
+              create: (context) => AffiliateSignCubit(sl<AffiliateRepository>()),
             ),
           ],
           child: const JoinUsScreen(),
@@ -316,20 +317,23 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.supplierAccount,
         path: AppRouter.supplierAccount,
-        builder: (context, state) => const SupplierAccountScreen(),
+        builder: (context, state) => const AffiliateAccountScreen(),
       ),
 
       GoRoute(
         name: AppRouter.myCodings,
         path: AppRouter.myCodings,
-        builder: (context, state) => const MyCodingsScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => GetCouponsCubit(sl<AffiliateRepository>()),
+          child: const MyCouponsScreen(),
+        ),
       ),
 
       GoRoute(
         name: AppRouter.createCode,
         path: AppRouter.createCode,
         builder: (context, state) => BlocProvider(
-          create: (context) => CreateCouponCubit(sl<SupplierRepository>()),
+          create: (context) => CreateCouponCubit(sl<AffiliateRepository>()),
           child: const CreateCodeScreen(),
         ),
       ),
@@ -367,7 +371,10 @@ class RouterGenerator {
         path: AppRouter.allCategoriesScreen,
         builder: (context, state) {
           final extra = state.extra as List<GeTCategoriesModel>;
-          return AllCategoriesScreen(categories: extra);
+          return BlocProvider(
+            create: (context) => GetCartCubit(sl<CartRepository>()),
+            child: AllCategoriesScreen(categories: extra),
+          );
         },
       ),
 
@@ -434,20 +441,23 @@ class RouterGenerator {
         },
       ),
 
-      GoRoute(
-        name: AppRouter.affiliateStatus,
-        path: AppRouter.affiliateStatus,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              GetAffiliateStatusCubit(sl<SupplierRepository>()),
-          child: const AffiliatePending(),
-        ),
-      ),
-
+      // GoRoute(
+      //   name: AppRouter.affiliateStatus,
+      //   path: AppRouter.affiliateStatus,
+      //   builder: (context, state) => BlocProvider(
+      //     create: (context) =>
+      //         GetAffiliateStatusCubit(sl<SupplierRepository>()),
+      //     child: const AffiliatePending(),
+      //   ),
+      // ),
       GoRoute(
         name: AppRouter.affiliateCheckScreen,
         path: AppRouter.affiliateCheckScreen,
-        builder: (context, state) => const AffiliateCheckScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              GetAffiliateStatusCubit(sl<AffiliateRepository>()),
+          child: const AffiliateCheckScreen(),
+        ),
       ),
 
       GoRoute(

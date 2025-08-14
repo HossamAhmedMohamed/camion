@@ -35,10 +35,10 @@ class _CouponFormState extends State<CouponForm> {
         children: [
           CustomTextFormField(
             controller: couponCodeController,
-            hintText: "الكود",
+            hintText: "Coupon ",
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'الرجاء إدخال الكود';
+                return 'Please enter a coupon code';
               }
               return null;
             },
@@ -46,10 +46,10 @@ class _CouponFormState extends State<CouponForm> {
           SizedBox(height: 20.h),
           CustomTextFormField(
             controller: discountController,
-            hintText: "نسبة الخصم",
+            hintText: "Discount rate",
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'الرجاء إدخال نسبة الخصم';
+                return 'Please enter a discount rate';
               }
               return null;
             },
@@ -62,7 +62,8 @@ class _CouponFormState extends State<CouponForm> {
               if (state is CreateCouponSuccess) {
                 Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
-                  msg: "تم انشاء الكوبون بنجاح",
+                  msg: "Coupon created successfully",
+                  backgroundColor: Colors.green
                 );
               }
               if (state is CreateCouponError) {
@@ -87,14 +88,14 @@ class _CouponFormState extends State<CouponForm> {
                         } else {
                           context.read<CreateCouponCubit>().createCoupon(
                             code: couponCodeController.text,
-                            discountPercentage: discountController.text,
+                            discountPercentage: num.tryParse(discountController.text) ?? 0,
                           );
                         }
                       },
                 child: state is CreateCouponLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
-                        "انشاء",
+                        "Create",
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: AppColors.primaryColor),

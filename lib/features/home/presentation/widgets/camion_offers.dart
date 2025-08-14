@@ -28,13 +28,13 @@ class CamionOffers extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "عروض كميون",
+                "Camion Offers",
                 style: AppStyle.styleSemiBold16(
                   context,
-                ).copyWith(color: AppColors.black, fontWeight: FontWeight.w600),
+                ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
               ),
               Text(
-                "المزيد",
+                "",
                 style: AppStyle.styleRegular14(context).copyWith(
                   color: AppColors.primaryColor,
                   decoration: TextDecoration.underline,
@@ -65,8 +65,8 @@ class CamionOffers extends StatelessWidget {
                     items: List.generate(state.slidersList.length, (index) {
                       return Padding(
                         padding: EdgeInsets.only(
-                          right: 15.w,
-                          left: index == state.slidersList.length - 1
+                          left: 15.w,
+                          right: index == state.slidersList.length - 1
                               ? 15.w
                               : 0,
                         ),

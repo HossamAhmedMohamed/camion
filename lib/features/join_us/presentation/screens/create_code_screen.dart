@@ -16,7 +16,10 @@ class CreateCodeScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: CustomScrollView(
           slivers: [
-            const CustomJoinUsSliverAppBar(title: "إنشاء كود"),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 15.h),
+            ),
+            const CustomJoinUsSliverAppBar(title: "Create Coupon"),
             SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
             const SliverToBoxAdapter(

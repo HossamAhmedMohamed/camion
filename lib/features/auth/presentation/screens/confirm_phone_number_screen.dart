@@ -43,7 +43,7 @@ class ConfirmPhoneNumberScreen extends StatelessWidget {
                 children: [
                   FittedBox(
                     child: Text(
-                      "ادخل رمز المصادقة المرسل علي رقم الجوال 📱",
+                      "Enter the Authentication code sent to your mobile number 📱",
                       style: AppStyle.styleSemiBold18(context),
                     ),
                   ),
@@ -52,7 +52,7 @@ class ConfirmPhoneNumberScreen extends StatelessWidget {
 
                   FittedBox(
                     child: Text(
-                      "ادخل رمز التحقيق المرسل علي جوالك :",
+                      "Enter the verification code sent to your phone:",
                       style: AppStyle.styleRegular14(
                         context,
                       ).copyWith(color: AppColors.gray),

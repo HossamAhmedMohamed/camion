@@ -57,7 +57,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
               autoFocus: true,
               controller: _searchController,
               focusNode: _focusNode,
-              hintText: 'ابحث عن ما تريد',
+              hintText: 'Search...',
               onChanged: (value) {
                 context.read<ProductsCubit>().searchProducts(query: value);
               },

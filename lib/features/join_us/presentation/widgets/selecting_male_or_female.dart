@@ -36,7 +36,7 @@ class SelectingMaleOrFemale extends StatelessWidget {
                     logo: state == 0
                         ? Assets.imagesActiveMale
                         : Assets.imagesInActiveMale,
-                    text: "ذكر",
+                    text: "Male",
                     textColor: state == 0 ? AppColors.primaryColor : null,
                     backgroundColor: state == 0
                         ? AppColors.primaryColor.withAlpha(15)
@@ -56,7 +56,7 @@ class SelectingMaleOrFemale extends StatelessWidget {
                     logo: state == 1
                         ? Assets.imagesActiveFemale
                         : Assets.imagesInactiveFemale,
-                    text: "أنثى",
+                    text: "Female",
                     textColor: state == 1 ? AppColors.primaryColor : null,
                     backgroundColor: state == 1
                         ? AppColors.primaryColor.withAlpha(15)

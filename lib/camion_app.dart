@@ -16,7 +16,7 @@ class CamionApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: RouterGenerator.mainRouting,
         debugShowCheckedModeBanner: false,
-        title: 'camion',
+        title: 'Camion',
         localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -24,7 +24,7 @@ class CamionApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        locale: const Locale('ar'),
+        locale: const Locale('en'),
         theme: ThemeData(),
       ),
     );

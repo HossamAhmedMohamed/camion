@@ -20,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
         onTap: () {
           GoRouter.of(context).push(AppRouter.changeLanuage);
         },
-        title: 'تغيير اللغة',
+        title: 'Change Language',
         image: Assets.imagesGlobal,
       ),
 
@@ -28,7 +28,7 @@ class SettingsScreen extends StatelessWidget {
         onTap: () {
           GoRouter.of(context).push(AppRouter.help);
         },
-        title: 'المساعدة',
+        title: 'Help',
         image: Assets.imagesIconsHelp,
       ),
 
@@ -50,7 +50,7 @@ class SettingsScreen extends StatelessWidget {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "الاعدادات",
+              "Settings",
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

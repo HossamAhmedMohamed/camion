@@ -10,7 +10,7 @@ class GenderFormField extends FormField<String> {
   }) : super(
     validator: validator ?? (value) {
       if (value == null || value.isEmpty) {
-        return 'الرجاء اختيار الجنس';
+        return 'Please select a gender';
       }
       return null;
     },

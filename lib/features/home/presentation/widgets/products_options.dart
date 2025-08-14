@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsSelectionOptions extends StatefulWidget {
-  const ProductsSelectionOptions({super.key, required this.attributes, this.onSelectionChanged});
+  const ProductsSelectionOptions({
+    super.key,
+    required this.attributes,
+    this.onSelectionChanged,
+  });
   final List<Attribute> attributes;
-  final Function(Map<String, String> attributes, int quantity)? onSelectionChanged;
+  final Function(Map<String, String> attributes, int quantity)?
+  onSelectionChanged;
 
   @override
   State<ProductsSelectionOptions> createState() =>
@@ -56,9 +61,12 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
         final List<AttributeTerm> terms = attr.terms;
 
         // عرض الألوان الفعلية فقط
-        if (attrName.toLowerCase() == 'color' || attrName == 'اللون' || attrName.toLowerCase().contains('color')) {
-          final List<AttributeTerm> colorTerms =
-              terms.where((t) => getColorFromNameOrHex(t.name) != null).toList();
+        if (attrName.toLowerCase() == 'color' ||
+            attrName == 'اللون' ||
+            attrName.toLowerCase().contains('color')) {
+          final List<AttributeTerm> colorTerms = terms
+              .where((t) => getColorFromNameOrHex(t.name) != null)
+              .toList();
 
           if (colorTerms.isEmpty) {
             return const SizedBox.shrink(); // مفيش ألوان فعلية
@@ -76,11 +84,7 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
             } else {
               cleanName = cleanName.split(' ').first.trim();
             }
-            return AttributeTerm(
-              id: t.id,
-              name: cleanName,
-              slug: t.slug,
-            );
+            return AttributeTerm(id: t.id, name: cleanName, slug: t.slug);
           }).toList();
 
           return _buildAttributeSection(attrName, cleanedTerms);
@@ -100,8 +104,10 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(attrName,
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
+        Text(
+          attrName,
+          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+        ),
         SizedBox(height: 15.h),
         Wrap(
           spacing: 8.w,
@@ -185,8 +191,10 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
         ),
       ),
       child: isSelected
-          ? Icon(Icons.check,
-              color: color == Colors.white ? Colors.black : Colors.white)
+          ? Icon(
+              Icons.check,
+              color: color == Colors.white ? Colors.black : Colors.white,
+            )
           : null,
     );
   }
@@ -217,11 +225,10 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'الكمية',
-          style: AppStyle.styleRegular18(context).copyWith(
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-          ),
+          'Quantity',
+          style: AppStyle.styleRegular18(
+            context,
+          ).copyWith(color: Colors.black, fontWeight: FontWeight.w700),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -238,9 +245,14 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
           child: Row(
             children: [
               GestureDetector(
-                onTap: () => _updateCounter(counter + 1),
-                child: _buildCounterButton(Icons.add),
+                onTap: () {
+                  if (counter > 1) {
+                    _updateCounter(counter - 1);
+                  }
+                },
+                child: _buildCounterButton(Icons.remove),
               ),
+
               Container(
                 width: 60.w,
                 height: 40.h,
@@ -248,18 +260,16 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
                 child: Center(
                   child: Text(
                     '$counter',
-                    style: AppStyle.styleBold18(context)
-                        .copyWith(color: Colors.black),
+                    style: AppStyle.styleBold18(
+                      context,
+                    ).copyWith(color: Colors.black),
                   ),
                 ),
               ),
+
               GestureDetector(
-                onTap: () {
-                  if (counter > 1) {
-                    _updateCounter(counter - 1);
-                  }
-                },
-                child: _buildCounterButton(Icons.remove),
+                onTap: () => _updateCounter(counter + 1),
+                child: _buildCounterButton(Icons.add),
               ),
             ],
           ),

@@ -104,7 +104,7 @@ class _WishListScreenBodyState extends State<WishListScreenBody> {
         CustomSliverAppBar(
           appBarHeight: 70.h,
           title: Text(
-            "المفضلة",
+            "Favorites",
             style: AppStyle.styleRegular18(
               context,
             ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

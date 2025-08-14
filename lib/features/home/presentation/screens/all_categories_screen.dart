@@ -3,7 +3,6 @@ import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
-import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,8 +23,10 @@ class AllCategoriesScreen extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(child: SizedBox(height: 25.h)),
           CustomSliverAppBar(
+            appBarHeight: 70.h,
+            actions: const [],
             title: Text(
-              "الاقسام",
+              "Categories",
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -40,23 +41,23 @@ class AllCategoriesScreen extends StatelessWidget {
                 size: 25,
               ),
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              background: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  // Divider(
-                  //     height: 1,
-                  //     thickness: 1,
-                  //     color: Colors.grey.shade300,
-                  //   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: SearchBarHome(readOnly: false, onTap: () {}),
-                  ),
-                ],
-              ),
-            ),
+            // flexibleSpace: FlexibleSpaceBar(
+            //   centerTitle: true,
+            //   background: Column(
+            //     mainAxisAlignment: MainAxisAlignment.end,
+            //     children: [
+            //       // Divider(
+            //       //     height: 1,
+            //       //     thickness: 1,
+            //       //     color: Colors.grey.shade300,
+            //       //   ),
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(horizontal: 10.w),
+            //         child: SearchBarHome(readOnly: false, onTap: () {}),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
 
           SliverToBoxAdapter(child: SizedBox(height: 15.h)),
@@ -89,19 +90,61 @@ class AllCategoriesScreen extends StatelessWidget {
                         onTap: () {
                           GoRouter.of(context).push(
                             AppRouter.productByCategory,
-                            extra: categories[index].slug,
+                            extra: categories[index].name,
                           );
                         },
                         // onTap: categories[index].,
                         child: Container(
-                          margin: EdgeInsets.only(right: index == 0 ? 0 : 10.w),
+                          width: screenWidth > 800 ? 140.w : 80.w,
+                          height: screenWidth > 800 ? 140.h : 80.h,
+                          padding: EdgeInsets.all(0.r),
+                            decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(100.r),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withAlpha(15),
+                                      spreadRadius: 2,
+                                      blurRadius: 4,
+                                      offset: Offset(0, 2.h),
+                                    ),
+                                  ],
+                                ),
+                                margin: EdgeInsets.only(left: 15.w),
+                          // margin: EdgeInsets.only(right: index == 0 ? 0 : 10.w),
                           child: SizedBox(
                             height: screenWidth > 800 ? 120.h : 60.h,
                             width: screenWidth > 800 ? 120.w : 60.w,
-                            child: CustomCachedNetworkImage(
-                              fit: BoxFit.contain,
-                              imageUrl: categories[index].image!.thumbnail,
-                            ),
+                            child: Stack(
+                                    children: [
+                                      Center(
+                                        child: ClipOval(
+                                          child: CustomCachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            imageUrl:
+                                                categories[index]
+                                                    .image!
+                                                    .thumbnail,
+                                          ),
+                                        ),
+                                      ),
+
+                                      Positioned(
+                                        top: 10.h,
+                                        bottom: 10.h,
+                                        left: 20.w,
+                                        right: 20.w,
+                                        child: Center(
+                                          child: Text(
+                                            categories[index].name,
+                                            style: AppStyle.styleRegular18(
+                                              context,
+                                            ).copyWith(color: Colors.black),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                           ),
                         ),
                       );

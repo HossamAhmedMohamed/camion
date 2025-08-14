@@ -70,7 +70,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
             child: Row(
               children: [
                 Text(
-                  'اختر الدولة',
+                  'Choose Country',
                   style: AppStyle.styleSemiBold18(context),
                 ),
                 const Spacer(),
@@ -89,7 +89,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
               controller: _searchController,
               onChanged: _filterCountries,
               decoration: InputDecoration(
-                hintText: 'البحث عن دولة...',
+                hintText: 'Search For Country...',
                 hintStyle: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(

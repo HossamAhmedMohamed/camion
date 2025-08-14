@@ -49,11 +49,11 @@ class _RegisterFormState extends State<RegisterForm> {
         children: [
           CustomTextFormField(
             controller: _fullNameController,
-            hintText: "الاسم هنا",
+            hintText: "Name here",
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'الرجاء إدخال الاسم';
+                return 'Please enter your name';
               }
               return null;
             },
@@ -67,14 +67,14 @@ class _RegisterFormState extends State<RegisterForm> {
                 flex: 2,
                 child: CustomPhoneNumberField(
                   controller: _phoneNumberController,
-                  hintText: "رقم الهاتف",
+                  hintText: "Phone number",
 
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'الرجاء إدخال  رقم الهاتف';
+                      return 'please enter your phone number';
                     }
                     if (value.length < 8) {
-                      return 'رقم الهاتف قصير جداً';
+                      return 'Number must be at least 8 digits';
                     }
                     return null;
                   },
@@ -89,11 +89,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
           CustomTextFormField(
             controller: _emailController,
-            hintText: "البريد الإلكتروني",
+            hintText: "Email",
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'الرجاء إدخال البريد الإلكتروني';
+                return 'Please enter your email';
               }
               return null;
             },
@@ -122,7 +122,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 child: state is RegisterLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
-                        "إنشاء حساب",
+                        "Register",
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: Colors.white),

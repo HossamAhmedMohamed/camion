@@ -154,7 +154,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Text(
-                "القصص",
+                "Stories",
                 style: AppStyle.styleSemiBold16(
                   context,
                 ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
@@ -313,10 +313,10 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "الاكثر مبيعا",
+                    "Top Sales",
                     style: AppStyle.styleSemiBold16(context).copyWith(
                       color: AppColors.black,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
 

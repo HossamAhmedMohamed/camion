@@ -66,7 +66,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "الرئيسية",
+                        "Home",
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -98,7 +98,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "طلباتي",
+                        "Orders",
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -141,7 +141,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "المفضلة",
+                        "Favorites",
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -240,7 +240,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "حسابي",
+                        "Profile",
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,

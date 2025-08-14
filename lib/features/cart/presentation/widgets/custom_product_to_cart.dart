@@ -99,7 +99,7 @@ class _ProductCartItemState extends State<ProductCartItem> {
                   color: AppColors.paleGray,
                 ),
                 child: CustomCachedNetworkImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   imageUrl: widget.imageUrl,
                 ),
               ),
@@ -139,7 +139,7 @@ class _ProductCartItemState extends State<ProductCartItem> {
               Row(
                 children: [
                   Text(
-                    'اجمالي:',
+                    'Total:',
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
@@ -147,9 +147,11 @@ class _ProductCartItemState extends State<ProductCartItem> {
                   ),
                   SizedBox(width: 5.w),
                   Text(
-                    '${(unitPrice * quantity).toStringAsFixed(2)}\$',
-                    style: AppStyle.styleBold18(context).copyWith(color: AppColors.primaryColor),
-                  )
+                    (unitPrice * quantity).toStringAsFixed(2),
+                    style: AppStyle.styleBold18(
+                      context,
+                    ).copyWith(color: AppColors.primaryColor),
+                  ),
                 ],
               ),
 
@@ -168,8 +170,12 @@ class _ProductCartItemState extends State<ProductCartItem> {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: () => _updateQuantity(quantity + 1),
-                      child: _buildQuantityButton(Icons.add),
+                      onTap: () {
+                        if (quantity > 1) {
+                          _updateQuantity(quantity - 1);
+                        }
+                      },
+                      child: _buildQuantityButton(Icons.remove),
                     ),
 
                     Padding(
@@ -192,12 +198,8 @@ class _ProductCartItemState extends State<ProductCartItem> {
                     ),
 
                     GestureDetector(
-                      onTap: () {
-                        if (quantity > 1) {
-                          _updateQuantity(quantity - 1);
-                        }
-                      },
-                      child: _buildQuantityButton(Icons.remove),
+                      onTap: () => _updateQuantity(quantity + 1),
+                      child: _buildQuantityButton(Icons.add),
                     ),
                   ],
                 ),

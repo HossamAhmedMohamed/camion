@@ -90,7 +90,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
 
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'الرجاء إدخال الرمز';
+                  return 'Please enter OTP';
                 }
                 return null;
               },
@@ -102,7 +102,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "اعادة الارسال بعد ",
+                  "Resend after",
                   style: AppStyle.styleRegular14(
                     context,
                   ).copyWith(color: Colors.grey),
@@ -135,7 +135,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
                   child: state is VerifyLoading
                       ? const CircularProgressIndicator(color: Colors.white)
                       : Text(
-                          "المتابعة",
+                          "Continue",
                           style: AppStyle.styleRegular15(
                             context,
                           ).copyWith(color: Colors.white),

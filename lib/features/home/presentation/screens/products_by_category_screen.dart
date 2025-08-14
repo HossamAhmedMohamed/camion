@@ -1,14 +1,19 @@
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_by_category_cubit/product_by_category_cubit.dart';
+import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 
 import 'package:camion/features/home/presentation/widgets/list_view_item_skeletonizer.dart';
 import 'package:camion/features/home/presentation/widgets/search_bar.dart';
+import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
+import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +26,17 @@ class ProductsByCategoryScreen extends StatelessWidget {
   final String slug;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductByCategoryCubit(sl<HomeRepository>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProductByCategoryCubit(sl<HomeRepository>()),
+        ),
+        BlocProvider(create: (context) => AddToWishListCubit(sl<WishListRepository>())),
+        BlocProvider(create: (context) => AddCartCubit(sl<CartRepository>())),
+        BlocProvider(create: (context) => GetCartCubit(sl<CartRepository>())),
+        BlocProvider(create: (context) => GetWishListCubit(sl<WishListRepository>())),
+
+      ],
       child: ProductsByCategoryScreenBody(slug: slug),
     );
   }
@@ -44,6 +58,7 @@ class _ProductsByCategoryScreenBodyState
     context.read<ProductByCategoryCubit>().getProductsByCategory(
       slug: widget.slug,
     );
+    context.read<GetWishListCubit>().getWishList();
     super.initState();
   }
 
@@ -58,6 +73,7 @@ class _ProductsByCategoryScreenBodyState
           SliverToBoxAdapter(child: SizedBox(height: 15.h)),
 
           CustomSliverAppBar(
+            appBarHeight: 70.h,
             title: Text(
               widget.slug,
               style: AppStyle.styleRegular18(
@@ -77,18 +93,18 @@ class _ProductsByCategoryScreenBodyState
             isShownDivider: true,
             actions: const [],
 
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              background: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: const SearchBarHome(),
-                  ),
-                ],
-              ),
-            ),
+            // flexibleSpace: FlexibleSpaceBar(
+            //   centerTitle: true,
+            //   background: Column(
+            //     mainAxisAlignment: MainAxisAlignment.end,
+            //     children: [
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(horizontal: 10.w),
+            //         child: const SearchBarHome(),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
 
           SliverToBoxAdapter(child: SizedBox(height: 15.h)),
@@ -135,17 +151,19 @@ class _ProductsByCategoryScreenBodyState
                           onAddToCartTap: () {
                             // context.read<AddCartCubit>().addToCart(
                             //   productId: product.id.toString(),
-                             
+
                             //   quantity: 1,
                             // );
                           },
-                          onAddToWishListTap: () {
-                            context.read<AddToWishListCubit>().addtoWishList(
+                          onAddToWishListTap: () async{
+                            await context.read<AddToWishListCubit>().addtoWishList(
                               productId: product.id.toString(),
                               title: product.name,
                               price: product.prices.price,
                               image: product.images[0].thumbnail,
                             );
+
+                            context.read<GetWishListCubit>().getWishList();
                           },
                         ),
                       ),

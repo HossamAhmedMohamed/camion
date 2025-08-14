@@ -8,11 +8,11 @@ part 'create_coupon_state.dart';
 
 class CreateCouponCubit extends Cubit<CreateCouponState> {
   CreateCouponCubit(this.supplierRepository) : super(CreateCouponInitial());
-  final SupplierRepository supplierRepository;
+  final AffiliateRepository supplierRepository;
 
   Future<void> createCoupon({
     required String code,
-    required String discountPercentage,
+    required num discountPercentage,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
     emit(CreateCouponLoading());
