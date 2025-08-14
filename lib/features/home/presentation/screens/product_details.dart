@@ -245,7 +245,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 child: InkWell(
                                   onTap: () {
                                     final productLink =
-                                        "https://buckydrop.camion-app.com/api/${EndPoints.products}/${state.productIdDetailsModel.id}";
+                                        state.productIdDetailsModel.permalink;
                                     Share.share(
                                       productLink,
                                       subject: state.productIdDetailsModel.name,

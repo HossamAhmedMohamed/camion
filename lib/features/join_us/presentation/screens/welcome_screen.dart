@@ -32,13 +32,12 @@ class WelcomeScreen extends StatelessWidget {
                   ),
 
                   SizedBox(height: 40.h),
-                  FittedBox(
-                    child: Text(
-                      "We are honored to have you join our marketing team",
-                      style: AppStyle.styleRegular16(context).copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
+                  Text(
+                    textAlign: TextAlign.center,
+                    "We are honored to have you join our marketing team",
+                    style: AppStyle.styleRegular18(context).copyWith(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
 

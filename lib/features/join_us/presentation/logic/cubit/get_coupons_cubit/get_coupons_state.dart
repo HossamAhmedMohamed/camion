@@ -16,6 +16,6 @@ final class GetCouponsError extends GetCouponsState {
 
 final class GetCouponsSuccess extends GetCouponsState {
   
-  final dynamic coupons;
+  final List<GetCouponsModel> coupons;
   GetCouponsSuccess({required this.coupons});
 }

@@ -51,11 +51,11 @@ Future<void> initRepositories() async {
     () => OrderStatusRepository(orderStatusRemoteDataSource: sl()),
   );
 
-  sl.registerLazySingleton<SupplierRemoteDataSource>(
-    () => SupplierRemoteDataSource(apiConsumer: sl()),
+  sl.registerLazySingleton<AffiliateRemoteDataSource>(
+    () => AffiliateRemoteDataSource(apiConsumer: sl()),
   );
 
-  sl.registerLazySingleton<SupplierRepository>(
-    () => SupplierRepository(supplierRemoteDataSource: sl()),
+  sl.registerLazySingleton<AffiliateRepository>(
+    () => AffiliateRepository(supplierRemoteDataSource: sl()),
   );
 }

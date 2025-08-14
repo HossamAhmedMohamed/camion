@@ -1,9 +1,9 @@
 import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/supplier_sign_cubit/supplier_sign_cubit.dart';
+import 'package:camion/features/join_us/presentation/logic/cubit/Affiliate_sign_cubit/affiliate_sign_cubit.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
-import 'package:camion/features/join_us/presentation/widgets/supplier_signation_form.dart';
+import 'package:camion/features/join_us/presentation/widgets/affiliate_signation_form.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +62,7 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
 
                   child: Form(
                     key: formKey,
-                    child: SupplierSignationForm(
+                    child: AffiliateSignationForm(
                       fullNameController: fullNameController,
                       nationalityController: nationalityController,
                       bioController: bioController,
@@ -88,12 +88,12 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
             bottom: 16.h,
             left: 16.w,
             right: 16.w,
-            child: BlocConsumer<SupplierSignCubit, SupplierSignState>(
+            child: BlocConsumer<AffiliateSignCubit, AffiliateSignState>(
               listener: (context, state) {
-                if (state is SupplierSignSuccess) {
-                  GoRouter.of(context).pushReplacement(AppRouter.affiliateStatus);
+                if (state is AffiliateSignSuccess) {
+                  GoRouter.of(context).pushReplacement(AppRouter.affiliateCheckScreen);
                 }
-                if (state is SupplierSignError) {
+                if (state is AffiliateSignError) {
                   Fluttertoast.showToast(
                     msg: state.error.message,
                     backgroundColor: Colors.red,
@@ -102,10 +102,8 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
                 }
               },
               builder: (context, state) {
-                return state is SupplierSignLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : CustomElevatedButton(
-                        onPressed: state is SupplierSignLoading
+                return  CustomElevatedButton(
+                        onPressed: state is AffiliateSignLoading
                             ? () {}
                             : () {
                                 formKey.currentState!.save();
@@ -123,14 +121,14 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
                                   return;
                                 }
 
-                                context.read<SupplierSignCubit>().signSupplier(
+                                context.read<AffiliateSignCubit>().signSupplier(
                                   name: fullNameController.text,
                                   nationality: nationalityController.text,
-                                  gender: selectedGender!, // الآن آمن للاستخدام
+                                  gender: selectedGender!,  
                                   bio: bioController.text,
                                 );
                               },
-                        child: Text(
+                        child: state is AffiliateSignLoading ? const CircularProgressIndicator(color: Colors.white,) : Text(
                           "Next",
                           style: AppStyle.styleRegular15(
                             context,

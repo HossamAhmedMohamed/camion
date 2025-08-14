@@ -63,6 +63,7 @@ class _CouponFormState extends State<CouponForm> {
                 Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
                   msg: "Coupon created successfully",
+                  backgroundColor: Colors.green
                 );
               }
               if (state is CreateCouponError) {
@@ -87,7 +88,7 @@ class _CouponFormState extends State<CouponForm> {
                         } else {
                           context.read<CreateCouponCubit>().createCoupon(
                             code: couponCodeController.text,
-                            discountPercentage: discountController.text,
+                            discountPercentage: num.tryParse(discountController.text) ?? 0,
                           );
                         }
                       },

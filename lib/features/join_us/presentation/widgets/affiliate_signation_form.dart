@@ -5,8 +5,8 @@ import 'package:camion/features/join_us/presentation/widgets/gender_form_field.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SupplierSignationForm extends StatefulWidget {
-  const SupplierSignationForm({
+class AffiliateSignationForm extends StatefulWidget {
+  const AffiliateSignationForm({
     super.key,
     required this.fullNameController,
     required this.nationalityController,
@@ -20,10 +20,10 @@ class SupplierSignationForm extends StatefulWidget {
   final Function(String?)? onGenderChanged;
 
   @override
-  State<SupplierSignationForm> createState() => _SupplierSignationFormState();
+  State<AffiliateSignationForm> createState() => _AffiliateSignationFormState();
 }
 
-class _SupplierSignationFormState extends State<SupplierSignationForm> {
+class _AffiliateSignationFormState extends State<AffiliateSignationForm> {
   String? selectedGender;
 
   @override

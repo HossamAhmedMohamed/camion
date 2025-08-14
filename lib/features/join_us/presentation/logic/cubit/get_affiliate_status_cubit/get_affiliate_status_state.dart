@@ -8,7 +8,7 @@ final class GetAffiliateStatusInitial extends GetAffiliateStatusState {}
 final class GetAffiliateStatusLoading extends GetAffiliateStatusState {}
 
 final class GetAffiliateStatusSuccess extends GetAffiliateStatusState {
-  final dynamic data;
+  final AffiliateStatus data;
   GetAffiliateStatusSuccess({required this.data});
 }
 
