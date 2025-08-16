@@ -37,5 +37,6 @@ class AppRouter {
   // static const String affiliateStatus = '/affiliateStatus';
   static const String affiliateCheckScreen = '/affiliateCheckScreen';
   static const String paymentWebPage = '/paymentWebPage';
+  static const String privacyScreen = '/privacyScreen';
  
 }

@@ -40,8 +40,6 @@ class ListViewItemBuilding extends StatefulWidget {
 }
 
 class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
-
-  
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -78,7 +76,8 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     child: Image.asset(Assets.imagesShoes, fit: BoxFit.fill),
                   ),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) =>
+                    const Center(child: Icon(Icons.error)),
               ),
 
               Positioned(

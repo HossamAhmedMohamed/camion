@@ -63,6 +63,7 @@ import 'package:camion/features/profile/presentation/screens/edit_profile_screen
 import 'package:camion/features/profile/presentation/screens/help_screen.dart';
 import 'package:camion/features/profile/presentation/screens/my_info.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
+import 'package:camion/features/profile/presentation/screens/privacy_and_return_policy_scren.dart';
 import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/profile/presentation/screens/settings_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
@@ -498,6 +499,12 @@ class RouterGenerator {
             // orderId: extra['orderId'] as String,
           );
         },
+      ),
+
+      GoRoute(
+        name: AppRouter.privacyScreen,
+        path: AppRouter.privacyScreen,
+        builder: (context, state) => const PrivacyAndReturnPolicyScren(),
       ),
     ],
   );

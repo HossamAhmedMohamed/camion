@@ -135,11 +135,14 @@ class AllCategoriesScreen extends StatelessWidget {
                                         left: 20.w,
                                         right: 20.w,
                                         child: Center(
-                                          child: Text(
-                                            categories[index].name,
-                                            style: AppStyle.styleRegular18(
-                                              context,
-                                            ).copyWith(color: Colors.black),
+                                          child: FittedBox(
+                                            child: Text(
+                                              categories[index].name,
+                                              style: AppStyle.styleRegular18(
+                                                context,
+                                              ).copyWith(
+                                                color: Colors.black),
+                                            ),
                                           ),
                                         ),
                                       ),

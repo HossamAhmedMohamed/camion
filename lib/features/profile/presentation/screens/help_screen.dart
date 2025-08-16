@@ -3,35 +3,53 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/profile/data/models/profile_model.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});
 
-  static List<ProfileModel> profileList = [
-    ProfileModel(
-      onTap: () {},
-      title: 'Client Services',
-      image: Assets.imagesIconsCustomerService,
-    ),
-
-    ProfileModel(
-      onTap: () {},
-      title: 'Privacy & Return Policy',
-      image: Assets.imagesIconsPrivacyReturn,
-    ),
-
-    ProfileModel(
-      onTap: () {},
-      title: 'File a Complaint',
-      image: Assets.imagesIconsHelp,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
+    List<ProfileModel> profileList = [
+      ProfileModel(
+        onTap: () async {
+          final phone = "+201158778592";
+          final url = Uri.parse("https://wa.me/$phone");
+
+          if (await canLaunchUrl(url)) {
+            await launchUrl(url, mode: LaunchMode.externalApplication);
+          } else {
+            Fluttertoast.showToast(
+              backgroundColor: Colors.red,
+              gravity: ToastGravity.TOP,
+              msg: "Unable to open WhatsApp",
+            );
+          }
+        },
+        title: 'Client Services',
+        image: Assets.imagesIconsCustomerService,
+      ),
+
+      ProfileModel(
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.privacyScreen);
+        },
+        title: 'Privacy & Return Policy',
+        image: Assets.imagesIconsPrivacyReturn,
+      ),
+
+      // ProfileModel(
+      //   onTap: () {},
+      //   title: 'File a Complaint',
+      //   image: Assets.imagesIconsHelp,
+      // ),
+    ];
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,

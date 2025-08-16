@@ -5,6 +5,7 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
@@ -12,6 +13,7 @@ import 'package:camion/features/home/presentation/widgets/product_id_image_skele
 import 'package:camion/features/home/presentation/widgets/products_options.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
+import 'package:camion/features/wish_list/presentation/screens/wish_list_screen.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -180,6 +182,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                   .read<GetWishListCubit>()
                                                   .getWishList();
 
+                                              WishListScreen
+                                                  .wishListKey
+                                                  .currentState
+                                                  ?.refreshGetWishList();
                                               HomeScreen.homeKey.currentState
                                                   ?.refreshWishListAndCartList();
                                             } else {
@@ -198,6 +204,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                               context
                                                   .read<GetWishListCubit>()
                                                   .getWishList();
+                                              WishListScreen
+                                                  .wishListKey
+                                                  .currentState
+                                                  ?.refreshGetWishList();
                                               HomeScreen.homeKey.currentState
                                                   ?.refreshWishListAndCartList();
                                             }
@@ -656,6 +666,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                         .read<GetCartCubit>()
                                                         .getCart();
                                                   }
+                                                  MyCartScreen
+                                                      .cartKey
+                                                      .currentState
+                                                      ?.refreshGetCart();
                                                   HomeScreen
                                                       .homeKey
                                                       .currentState
