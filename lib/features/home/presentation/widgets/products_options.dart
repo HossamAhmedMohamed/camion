@@ -142,8 +142,8 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     "orange": Colors.orange,
     "grey": Colors.grey,
     "gray": Colors.grey,
-    "brown": Color(0xFFA52A2A),
-    "navy": Color(0xFF000080),
+    "brown": const Color(0xFFA52A2A),
+    "navy": const Color(0xFF000080),
   };
 
   Color? getColorFromNameOrHex(String colorName) {

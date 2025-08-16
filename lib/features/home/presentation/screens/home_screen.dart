@@ -7,7 +7,8 @@ import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
-import 'package:camion/features/home/presentation/logic/cubit/cubit/sliders_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/send_fcm_token_cubit/send_fcm_oken_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/sliders_cubit/sliders_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/get_categories_cubit/get_categories_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/stories_cubit/stories_cubit.dart';
@@ -59,6 +60,9 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(create: (context) => ToggleAddCartCubit()),
         BlocProvider(create: (context) => ToggleProductIdImagesCubit()),
         BlocProvider(create: (context) => SlidersCubit(sl<HomeRepository>())),
+        BlocProvider(
+          create: (context) => SendFcmTokenCubit(sl<HomeRepository>()),
+        ),
       ],
       child: HomeScreenBody(key: homeKey),
     );
@@ -81,6 +85,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
 
   @override
   void initState() {
+    context.read<SendFcmTokenCubit>().sendFcmToken();
     context.read<ProductsCubit>().getProducts();
     context.read<StoriesCubit>().getStories();
     context.read<GetCategoriesCubit>().getCategories();
@@ -108,6 +113,21 @@ class HomeScreenBodyState extends State<HomeScreenBody>
         cubit.getProducts(isLoadMore: true);
       }
     }
+  }
+
+  void scrollToTopAndRefresh() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+
+    context.read<ProductsCubit>().getProducts();
+    context.read<GetCartCubit>().getCart();
+    context.read<StoriesCubit>().getStories();
+    context.read<GetCategoriesCubit>().getCategories();
+    context.read<GetWishListCubit>().getWishList();
+    context.read<SlidersCubit>().getSliders();
   }
 
   @override

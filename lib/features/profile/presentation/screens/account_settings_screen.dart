@@ -3,7 +3,7 @@ import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit/log_out_cubit.dart';
 import 'package:camion/features/profile/presentation/widgets/custom_modal_bottom_sheet_profile.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';

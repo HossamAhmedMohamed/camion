@@ -7,8 +7,12 @@ import 'package:camion/features/home/data/data_source/remote_data_source.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/join_us/data/data_source/remote_data_source.dart';
 import 'package:camion/features/join_us/data/repository/supplier_repo.dart';
+import 'package:camion/features/notifications/data/data_source/remote_data_source.dart';
+import 'package:camion/features/notifications/data/repository/notification_repo.dart';
 import 'package:camion/features/order_status/data/data_source/remote_data_source.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
+import 'package:camion/features/profile/data/data_source/remote_data_source.dart';
+import 'package:camion/features/profile/data/repository/profie_repo.dart';
 import 'package:camion/features/wish_list/data/data_source/remote_data_source.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 
@@ -57,5 +61,21 @@ Future<void> initRepositories() async {
 
   sl.registerLazySingleton<AffiliateRepository>(
     () => AffiliateRepository(supplierRemoteDataSource: sl()),
+  );
+
+  sl.registerLazySingleton<ProfileRemoteDataSource>(
+    () => ProfileRemoteDataSource(apiConsumer: sl()),
+  );
+
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepository(profileRemoteDataSource: sl()),
+  );
+
+  sl.registerLazySingleton<NotificationRemoteDataSource>(
+    () => NotificationRemoteDataSource(apiConsumer: sl()),
+  );
+
+  sl.registerLazySingleton<NotificationRepository>(
+    () => NotificationRepository(notificationRemoteDataSource: sl()),
   );
 }

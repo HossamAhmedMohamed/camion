@@ -1,11 +1,13 @@
 class OrderModel {
   final String id;
   final String userId;
+  final DateTime createdAt;
   final List<OrderItemModel> items;
 
   OrderModel({
     required this.id,
     required this.userId,
+    required this.createdAt,
     required this.items,
   });
 
@@ -16,6 +18,7 @@ class OrderModel {
       items: (json['items'] as List<dynamic>)
           .map((item) => OrderItemModel.fromJson(item))
           .toList(),
+      createdAt: DateTime.parse(json['createdAt']),
     );
   }
 }

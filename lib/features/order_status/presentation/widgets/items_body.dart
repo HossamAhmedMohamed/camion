@@ -8,13 +8,13 @@ class ItemsBody extends StatelessWidget {
   const ItemsBody({
     super.key,
     required this.title,
-    required this.quantity,
+    required this.numberOfProducts,
     required this.totalPrice,
   });
 
   final String? totalPrice;
   final DateTime title;
-  final int quantity;
+  final int numberOfProducts;
   // final String totalPrice;
 
   @override
@@ -34,7 +34,7 @@ class ItemsBody extends StatelessWidget {
         // ),
         // SizedBox(height: 8.h),
         Text(
-          "Quantity : $quantity ",
+          "Number of products : $numberOfProducts ",
           style: AppStyle.styleRegular14(
             context,
           ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

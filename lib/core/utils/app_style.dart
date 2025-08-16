@@ -216,7 +216,7 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFFFFFFFF),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Cairo',
+      fontFamily: 'Inter',
       fontWeight: FontWeight.w400,
     );
   }

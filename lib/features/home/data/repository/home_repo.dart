@@ -151,4 +151,19 @@ class HomeRepository {
       return left(ApiErrorHandler.handle(e));
     }
   }
+
+  Future<Either<ApiErrorModel, dynamic>> sendFcmToken({
+    required String fcmToken,
+    required String token,
+  }) async {
+    try {
+      final response = await remoteDataSource.sendFcmToken(
+        fcmToken: fcmToken,
+        token: token,
+      );
+      return Right(response.data);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
 }

@@ -9,13 +9,13 @@ class CustomOrder extends StatelessWidget {
   const CustomOrder({
     super.key,
     required this.totalPrice,
-    required this.quantity,
+    required this.numberOfProducts,
     required this.date,
     required this.numberOfRequest,
   });
   final String numberOfRequest;
   final String totalPrice;
-  final int quantity;
+  final int numberOfProducts;
   final DateTime date;
 
   @override
@@ -58,7 +58,7 @@ class CustomOrder extends StatelessWidget {
           ItemsBody(
             totalPrice: totalPrice,
             title: date,
-            quantity: quantity,
+            numberOfProducts: numberOfProducts,
             // totalPrice: "120",
           ),
 

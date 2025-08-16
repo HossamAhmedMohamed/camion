@@ -33,7 +33,7 @@ class HomeJoinUsNow extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    GoRouter.of(context).push(AppRouter.supplierWelcome);
+                    GoRouter.of(context).push(AppRouter.affiliateCheckScreen);
                   },
                   child: Container(
                      

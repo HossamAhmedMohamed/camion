@@ -37,7 +37,6 @@ import 'package:camion/features/join_us/presentation/logic/cubit/Affiliate_sign_
 import 'package:camion/features/join_us/presentation/logic/cubit/get_coupons_cubit/get_coupons_cubit.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_gender/toggle_join_us_cubit.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_social_media_cubit/toggle_social_media_selecting_cubit.dart';
-import 'package:camion/features/join_us/presentation/screens/affiliate_pending.dart';
 import 'package:camion/features/join_us/presentation/screens/check_affiliate_or_not.dart';
 import 'package:camion/features/join_us/presentation/screens/create_code_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/join_us_screen.dart';
@@ -46,13 +45,18 @@ import 'package:camion/features/join_us/presentation/screens/select_countries_of
 import 'package:camion/features/join_us/presentation/screens/select_social_media_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/affiliate_account.dart';
 import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart';
+import 'package:camion/features/notifications/data/repository/notification_repo.dart';
+import 'package:camion/features/notifications/presentation/logic/cubit/notifications_cubit.dart';
 import 'package:camion/features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/screens/my_orders.dart';
 import 'package:camion/features/order_status/presentation/screens/order_details.dart';
-import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit.dart';
+import 'package:camion/features/profile/data/repository/profie_repo.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/get_user_cubit/get_user_cubit.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit/log_out_cubit.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/update_user_cubit/update_user_cubit.dart';
 import 'package:camion/features/profile/presentation/screens/account_settings_screen.dart';
 import 'package:camion/features/profile/presentation/screens/change_language_screen.dart';
 import 'package:camion/features/profile/presentation/screens/edit_profile_screen.dart';
@@ -267,7 +271,10 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.notificationScreen,
         path: AppRouter.notificationScreen,
-        builder: (context, state) => const NotificationsScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => NotificationsCubit(sl<NotificationRepository>()),
+          child: const NotificationsScreen(),
+        ),
       ),
 
       GoRoute(
@@ -283,7 +290,8 @@ class RouterGenerator {
           providers: [
             BlocProvider(create: (context) => ToggleJoinUsCubit()),
             BlocProvider(
-              create: (context) => AffiliateSignCubit(sl<AffiliateRepository>()),
+              create: (context) =>
+                  AffiliateSignCubit(sl<AffiliateRepository>()),
             ),
           ],
           child: const JoinUsScreen(),
@@ -396,13 +404,33 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.myInfo,
         path: AppRouter.myInfo,
-        builder: (context, state) => const MyInfoScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => GetUserCubit(sl<ProfileRepository>()),
+          child: const MyInfoScreen(),
+        ),
       ),
 
       GoRoute(
         name: AppRouter.editInfo,
         path: AppRouter.editInfo,
-        builder: (context, state) => const EditInfoScreen(),
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => UpdateUserCubit(sl<ProfileRepository>()),
+              ),
+              BlocProvider(
+                create: (context) => GetUserCubit(sl<ProfileRepository>()),
+              ),
+            ],
+            child: EditInfoScreen(
+              fullName: extra['fullName'],
+              phone: extra['phone'],
+              email: extra['email'],
+            ),
+          );
+        },
       ),
 
       GoRoute(

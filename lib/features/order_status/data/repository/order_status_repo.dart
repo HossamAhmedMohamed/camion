@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
-import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:camion/features/order_status/data/data_source/remote_data_source.dart';
 import 'package:camion/features/order_status/data/models/order_model/order_model.dart';
 import 'package:camion/features/order_status/data/models/order_response_model/order_response_model.dart';

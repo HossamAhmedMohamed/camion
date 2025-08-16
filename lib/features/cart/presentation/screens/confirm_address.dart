@@ -291,7 +291,7 @@ class ConfirmAddress extends StatefulWidget {
 
 class _ConfirmAddressState extends State<ConfirmAddress> {
   bool _isLoading = false;
-  bool _sameAsShipping = false;
+  final bool _sameAsShipping = false;
 
   @override
   Widget build(BuildContext context) {
@@ -514,27 +514,27 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
     );
   }
 
-  void _copyBillingToShipping() {
-    widget.shippingFirstNameController.text = widget.firstNameController.text;
-    widget.shippingLastNameController.text = widget.lastNameController.text;
-    widget.shippingAddress1Controller.text = widget.address1Controller.text;
-    widget.shippingAddress2Controller.text = widget.address2Controller.text;
-    widget.shippingCityController.text = widget.cityController.text;
-    widget.shippingStateController.text = widget.stateController.text;
-    widget.shippingPostcodeController.text = widget.postcodeController.text;
-    widget.shippingCountryController.text = widget.countryController.text;
-  }
+  // void _copyBillingToShipping() {
+  //   widget.shippingFirstNameController.text = widget.firstNameController.text;
+  //   widget.shippingLastNameController.text = widget.lastNameController.text;
+  //   widget.shippingAddress1Controller.text = widget.address1Controller.text;
+  //   widget.shippingAddress2Controller.text = widget.address2Controller.text;
+  //   widget.shippingCityController.text = widget.cityController.text;
+  //   widget.shippingStateController.text = widget.stateController.text;
+  //   widget.shippingPostcodeController.text = widget.postcodeController.text;
+  //   widget.shippingCountryController.text = widget.countryController.text;
+  // }
 
-  void _clearShippingFields() {
-    widget.shippingFirstNameController.clear();
-    widget.shippingLastNameController.clear();
-    widget.shippingAddress1Controller.clear();
-    widget.shippingAddress2Controller.clear();
-    widget.shippingCityController.clear();
-    widget.shippingStateController.clear();
-    widget.shippingPostcodeController.clear();
-    widget.shippingCountryController.clear();
-  }
+  // void _clearShippingFields() {
+  //   widget.shippingFirstNameController.clear();
+  //   widget.shippingLastNameController.clear();
+  //   widget.shippingAddress1Controller.clear();
+  //   widget.shippingAddress2Controller.clear();
+  //   widget.shippingCityController.clear();
+  //   widget.shippingStateController.clear();
+  //   widget.shippingPostcodeController.clear();
+  //   widget.shippingCountryController.clear();
+  // }
 
   Future<void> _saveAddressData() async {
     setState(() {
