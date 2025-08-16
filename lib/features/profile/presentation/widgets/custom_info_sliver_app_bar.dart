@@ -9,14 +9,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomInfoSliverAppBar extends StatelessWidget {
-  const CustomInfoSliverAppBar({super.key});
-
+  const CustomInfoSliverAppBar({super.key, required this.fullName, required this.email, required this.phone});
+  final String fullName;
+  final String email;
+  final String phone;
   @override
   Widget build(BuildContext context) {
     return CustomSliverAppBar(
       appBarHeight: 70.h,
       title: Text(
-        "معلوماتي الشخصية",
+        "Personal Information",
         style: AppStyle.styleRegular18(
           context,
         ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -31,10 +33,14 @@ class CustomInfoSliverAppBar extends StatelessWidget {
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.only(left: 10.w),
+          padding: EdgeInsets.only(right: 10.w),
           child: GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(AppRouter.editInfo);
+              GoRouter.of(context).push(AppRouter.editInfo , extra: {
+                'fullName': fullName,
+                'email': email,
+                'phone': phone
+              });
             },
             child: SvgPicture.asset(
               width: 26.w,

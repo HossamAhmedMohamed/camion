@@ -1,6 +1,7 @@
 import 'package:camion/camion_app.dart';
 import 'package:camion/core/cache/cache_helper.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
+import 'package:camion/core/notifications/push_notification.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/firebase_options.dart';
 import 'package:device_preview/device_preview.dart';
@@ -22,6 +23,8 @@ Future<void> main() async {
   ]);
   await sl<CacheHelper>().init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await PushNotificationsService.init();
+  await PushNotificationsService.handleNotifications();
   await checkIfUserIsLoggedIn();
   runApp(
     DevicePreview(

@@ -1,5 +1,4 @@
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
-import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

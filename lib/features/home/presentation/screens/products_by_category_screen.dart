@@ -6,11 +6,8 @@ import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_by_category_cubit/product_by_category_cubit.dart';
-import 'package:camion/features/home/presentation/screens/home_screen.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
-
 import 'package:camion/features/home/presentation/widgets/list_view_item_skeletonizer.dart';
-import 'package:camion/features/home/presentation/widgets/search_bar.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';

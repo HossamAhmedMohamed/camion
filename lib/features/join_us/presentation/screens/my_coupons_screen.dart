@@ -1,6 +1,4 @@
-import 'package:camion/core/utils/app_colors.dart';
-import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/join_us/presentation/logic/cubit/get_affiliate_status_cubit/get_affiliate_status_cubit.dart';
+
 import 'package:camion/features/join_us/presentation/logic/cubit/get_coupons_cubit/get_coupons_cubit.dart';
 import 'package:camion/features/join_us/presentation/widgets/coupons_list_view_skeltonizer.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';

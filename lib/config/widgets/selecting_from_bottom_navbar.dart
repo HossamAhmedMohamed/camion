@@ -74,8 +74,11 @@ class _SelectingFromBottomNavBarState extends State<SelectingFromBottomNavBar> {
               child: CustomBottomNavBar(
                 currentIndex: currentIndex,
                 onTap: (index) {
-                   
-                  _pageController.jumpToPage(index);
+                  if (index == 0 && currentIndex == 0) {
+                    HomeScreen.homeKey.currentState?.scrollToTopAndRefresh();
+                  } else {
+                    _pageController.jumpToPage(index);
+                  }
                 },
               ),
             ),

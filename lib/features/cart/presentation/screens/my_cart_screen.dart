@@ -1,6 +1,5 @@
 import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/services/service_locator.dart';
-import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';

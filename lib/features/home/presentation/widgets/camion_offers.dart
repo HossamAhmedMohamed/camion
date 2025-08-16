@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/home/presentation/logic/cubit/cubit/sliders_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/sliders_cubit/sliders_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/cursor_slider_skeleton.dart';
 import 'package:carousel_slider/carousel_slider.dart';

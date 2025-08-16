@@ -1,11 +1,9 @@
-import 'package:barcode_scan2/platform_wrapper.dart';
+ 
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
-import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 class SearchBarHome extends StatelessWidget {
   const SearchBarHome({
@@ -35,7 +33,7 @@ class SearchBarHome extends StatelessWidget {
                 controller: searchController,
                 hintText: "Search...",
                 readOnly: readOnly,
-                prefixIcon: Padding(
+                suffixIcon: Padding(
                   padding: EdgeInsets.all(12.r),
                   child: SvgPicture.asset(
                     Assets.imagesSearchBar,
@@ -50,36 +48,36 @@ class SearchBarHome extends StatelessWidget {
                     width: 1.w,
                   ),
                 ),
-                suffixIcon: SizedBox(
-                  width: 60.w,
-                  child: const Row(
-                    children: [
-                      // // SvgPicture.asset(
-                      // //   Assets.imagesFluentScanCamera,
-                      // //   width: 24.w,
-                      // //   height: 24.h,
-                      // // ),
-                      // SizedBox(
-                      //   width: 24.h,
-                      //   height: 24.h,
-                      // ),
-                      // SizedBox(width: 8.w),
-                      // const Spacer(),
-                      // GestureDetector(
-                      //   onTap: () async {
-                      //     await BarcodeScanner.scan();
-                      //   },
-                      //   child: SvgPicture.asset(
-                      //     Assets.imagesMdiBarcodeScan,
-                      //     width: 24.w,
-                      //     height: 24.h,
-                      //   ),
-                      // ),
+                // suffixIcon: SizedBox(
+                //   width: 60.w,
+                //   child: const Row(
+                //     children: [
+                //       // // SvgPicture.asset(
+                //       // //   Assets.imagesFluentScanCamera,
+                //       // //   width: 24.w,
+                //       // //   height: 24.h,
+                //       // // ),
+                //       // SizedBox(
+                //       //   width: 24.h,
+                //       //   height: 24.h,
+                //       // ),
+                //       // SizedBox(width: 8.w),
+                //       // const Spacer(),
+                //       // GestureDetector(
+                //       //   onTap: () async {
+                //       //     await BarcodeScanner.scan();
+                //       //   },
+                //       //   child: SvgPicture.asset(
+                //       //     Assets.imagesMdiBarcodeScan,
+                //       //     width: 24.w,
+                //       //     height: 24.h,
+                //       //   ),
+                //       // ),
 
-                      // SizedBox(width: 8.w),
-                    ],
-                  ),
-                ),
+                //       // SizedBox(width: 8.w),
+                //     ],
+                //   ),
+                // ),
               ),
             ),
 

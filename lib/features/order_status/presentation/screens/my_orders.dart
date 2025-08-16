@@ -102,29 +102,23 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
             }
 
             if (state is GetOrdersSuccess) {
-              List<Map<String, dynamic>> allCartItems = [];
-
-              for (var order in state.orders) {
-                for (var cartItem in order.items) {
-                  allCartItems.add({
-                    'orderId': order.id,
-                    'cartItem': cartItem,
-                    'orderDate': cartItem.createdAt,
-                  });
-                }
-              }
-
               return SliverList.builder(
-                itemCount: allCartItems.length,
+                itemCount: state.orders.length,
                 itemBuilder: (context, index) {
-                  final item = allCartItems[index];
+                  final order = state.orders[index];
+
+                  double totalPrice = order.items.fold(0, (sum, item) {
+                    return sum +
+                        (double.tryParse(item.price) ?? 0);
+                  });
+
                   return Padding(
                     padding: EdgeInsets.only(bottom: 10.h),
                     child: CustomOrder(
-                      numberOfRequest: item['orderId'],
-                      totalPrice: item['cartItem'].price!,
-                      quantity: item['cartItem'].quantity!,
-                      date: item['orderDate'],
+                      numberOfRequest: order.id,
+                      totalPrice: totalPrice.toStringAsFixed(2),
+                      numberOfProducts: order.items.length,
+                      date: order.createdAt,
                     ),
                   );
                 },
@@ -139,16 +133,13 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Icon(state.error.icon, color: Colors.red, size: 50),
-
                       SizedBox(height: 20.h),
                       Text(
                         state.error.message,
                         style: TextStyle(fontSize: 16.sp, color: Colors.red),
                         textAlign: TextAlign.center,
                       ),
-
                       SizedBox(height: 10.h),
-
                       ElevatedButton(
                         onPressed: () async {
                           context.read<GetOrdersCubit>().getOrders();

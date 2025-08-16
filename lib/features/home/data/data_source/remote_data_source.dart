@@ -90,4 +90,16 @@ class HomeRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> sendFcmToken({required String fcmToken , required String token}) async {
+    final response = await apiConsumer.post(
+      "https://api-gateway.camion-app.com/users/notifications/token",
+      data: {"token": fcmToken},
+      headers: {
+        "Authorization":
+            "Bearer $token",
+      }
+    );
+    return response;
+  }
 }
