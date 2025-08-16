@@ -71,7 +71,9 @@ dependencies:
   url_launcher: ^6.3.2
   device_info_plus: ^11.5.0
   awesome_notifications: ^0.10.1
+  app_links: ^6.4.1
   uuid: ^4.5.1
+  firebase_dynamic_links: ^6.1.10
   flutter_localizations:
         sdk: flutter
 

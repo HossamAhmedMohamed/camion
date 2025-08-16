@@ -17,6 +17,7 @@ import 'package:go_router/go_router.dart';
 class MyCartScreen extends StatelessWidget {
   const MyCartScreen({super.key});
 
+  static GlobalKey<MyCartScreenBodyState> cartKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -26,7 +27,7 @@ class MyCartScreen extends StatelessWidget {
           create: (context) => UpdateCartCubit(sl<CartRepository>()),
         ),
       ],
-      child: const MyCartScreenBody(),
+      child: MyCartScreenBody(key: cartKey),
     );
   }
 }
@@ -35,10 +36,10 @@ class MyCartScreenBody extends StatefulWidget {
   const MyCartScreenBody({super.key});
 
   @override
-  State<MyCartScreenBody> createState() => _MyCartScreenBodyState();
+  State<MyCartScreenBody> createState() => MyCartScreenBodyState();
 }
 
-class _MyCartScreenBodyState extends State<MyCartScreenBody> {
+class MyCartScreenBodyState extends State<MyCartScreenBody> {
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();
   List<GetCartModel> cartList = [];
@@ -46,6 +47,10 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
   @override
   void initState() {
     super.initState();
+    context.read<GetCartCubit>().getCart();
+  }
+
+  refreshGetCart() {
     context.read<GetCartCubit>().getCart();
   }
 
@@ -167,7 +172,15 @@ class _MyCartScreenBodyState extends State<MyCartScreenBody> {
             key: _listKey,
             initialItemCount: cartList.length,
             itemBuilder: (context, index, animation) {
-              return _buildAnimatedItem(animation, index);
+              return GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push(
+                    AppRouter.productDetails,
+                    extra: cartList[index].productId,
+                  );
+                },
+                child: _buildAnimatedItem(animation, index),
+              );
             },
           );
         },

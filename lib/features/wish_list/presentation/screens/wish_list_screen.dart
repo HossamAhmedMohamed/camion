@@ -8,18 +8,21 @@ import 'package:camion/features/wish_list/data/models/get_wish_list_model.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/widgets/product_wish_list.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
 
+  static GlobalKey<WishListScreenBodyState> wishListKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetWishListCubit(sl<WishListRepository>()),
-      child: const WishListScreenBody(),
+      child: WishListScreenBody(key: wishListKey),
     );
   }
 }
@@ -28,16 +31,20 @@ class WishListScreenBody extends StatefulWidget {
   const WishListScreenBody({super.key});
 
   @override
-  State<WishListScreenBody> createState() => _WishListScreenBodyState();
+  State<WishListScreenBody> createState() => WishListScreenBodyState();
 }
 
-class _WishListScreenBodyState extends State<WishListScreenBody> {
+class WishListScreenBodyState extends State<WishListScreenBody> {
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();
   @override
   void initState() {
     context.read<GetWishListCubit>().getWishList();
     super.initState();
+  }
+
+  refreshGetWishList() {
+    context.read<GetWishListCubit>().getWishList();
   }
 
   List<GetWishListModel> wishList = [];
@@ -185,7 +192,15 @@ class _WishListScreenBodyState extends State<WishListScreenBody> {
                 key: _listKey,
                 initialItemCount: wishList.length,
                 itemBuilder: (context, index, animation) {
-                  return _buildAnimatedItem(animation, index);
+                  return GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        AppRouter.productDetails,
+                        extra: wishList[index].productId,
+                      );
+                    },
+                    child: _buildAnimatedItem(animation, index),
+                  );
                 },
               );
             },

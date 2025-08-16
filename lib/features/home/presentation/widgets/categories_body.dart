@@ -168,11 +168,13 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                         left: 20.w,
                                         right: 20.w,
                                         child: Center(
-                                          child: Text(
-                                            categoriesWithImages[index].name,
-                                            style: AppStyle.styleRegular18(
-                                              context,
-                                            ).copyWith(color: Colors.black),
+                                          child: FittedBox(
+                                            child: Text(
+                                              categoriesWithImages[index].name,
+                                              style: AppStyle.styleRegular18(
+                                                context,
+                                              ).copyWith(color: Colors.black),
+                                            ),
                                           ),
                                         ),
                                       ),

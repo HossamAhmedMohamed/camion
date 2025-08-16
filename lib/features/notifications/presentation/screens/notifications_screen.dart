@@ -1,5 +1,4 @@
 import 'package:camion/config/widgets/custom_box_decoration.dart';
-import 'package:camion/config/widgets/custom_list_tile.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
