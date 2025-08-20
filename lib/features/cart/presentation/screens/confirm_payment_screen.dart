@@ -147,7 +147,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      GoRouter.of(context).push(AppRouter.myCart);
+                      GoRouter.of(context).pushReplacementNamed(AppRouter.myCart);
                     },
                     child: Text(
                       "View Cart",
@@ -418,10 +418,10 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                     }
                   },
                   builder: (context, state) {
-                    double total = widget.cartList.fold(
-                      0,
-                      (sum, item) => sum + (item.totalPrice ?? 0),
-                    );
+                    // double total = widget.cartList.fold(
+                    //   0,
+                    //   (sum, item) => sum + (item.totalPrice ?? 0),
+                    // );
                     return CustomElevatedButton(
                       verticalPadding: 4.h,
                       height: 60.h,
@@ -462,13 +462,13 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                                     context,
                                   ).copyWith(color: Colors.white),
                                 ),
-                                SizedBox(width: 10.w),
-                                Text(
-                                  "${total.toStringAsFixed(2)} ",
-                                  style: AppStyle.styleRegular15(
-                                    context,
-                                  ).copyWith(color: Colors.white),
-                                ),
+                                // SizedBox(width: 10.w),
+                                // Text(
+                                //   "${total.toStringAsFixed(2)} ",
+                                //   style: AppStyle.styleRegular15(
+                                //     context,
+                                //   ).copyWith(color: Colors.white),
+                                // ),
                               ],
                             ),
                     );

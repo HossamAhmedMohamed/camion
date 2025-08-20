@@ -8,6 +8,7 @@ import 'package:camion/features/cart/presentation/logic/cubit/update_cubit/updat
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
 import 'package:camion/features/cart/presentation/widgets/custom_product_to_cart.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
+import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ import 'package:go_router/go_router.dart';
 class MyCartScreen extends StatelessWidget {
   const MyCartScreen({super.key});
 
-  static GlobalKey<MyCartScreenBodyState> cartKey = GlobalKey();
+  // static GlobalKey<MyCartScreenBodyState> cartKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -27,7 +28,7 @@ class MyCartScreen extends StatelessWidget {
           create: (context) => UpdateCartCubit(sl<CartRepository>()),
         ),
       ],
-      child: MyCartScreenBody(key: cartKey),
+      child: const MyCartScreenBody(),
     );
   }
 }
@@ -77,7 +78,10 @@ class MyCartScreenBodyState extends State<MyCartScreenBody> {
         productId: removedItem.productId!,
       );
       HomeScreen.homeKey.currentState?.refreshWishListAndCartList();
-
+      // ProductDetailsState().refreshCartAndWishList();
+      // ProductDetails(
+      //   productId: removedItem.productId!,
+      // ).productKey.currentState?.refreshGetCart();
       // Show success feedback
     } catch (error) {
       // 4. Rollback on error - re-add the item
@@ -321,9 +325,10 @@ class MyCartScreenBodyState extends State<MyCartScreenBody> {
                   height: 50.h,
                   verticalPadding: 0,
                   onPressed: cartList.isNotEmpty
-                      ? () => GoRouter.of(
-                          context,
-                        ).push(AppRouter.confirmPayment, extra: cartList)
+                      ? () => GoRouter.of(context).pushReplacement(
+                          AppRouter.confirmPayment,
+                          extra: cartList,
+                        )
                       : () {},
                   child: Text(
                     "Continue To Checkout",

@@ -119,4 +119,15 @@ class OrderStatusRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> getOrderStatus({
+    required String token,
+    required String status,
+  }) async {
+    final response = await apiConsumer.get(
+      "https://api-gateway.camion-app.com/checkout/status/$status",
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return response;
+  }
 }

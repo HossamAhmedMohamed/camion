@@ -1,6 +1,8 @@
 import 'package:camion/config/widgets/custom_box_decoration.dart';
+import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/order_status/data/models/order_status_item_model.dart';
 import 'package:camion/features/order_status/presentation/widgets/items_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,12 +14,23 @@ class CustomOrder extends StatelessWidget {
     required this.numberOfProducts,
     required this.date,
     required this.numberOfRequest,
+    required this.onTapOnOrderDetails,
+    required this.isOrderShipped,
+    required this.isOrderPaied,
+    required this.orderConfirmationTime,
+    required this.paidSubtitle,
+    required this.shippedSubtitle,
   });
   final String numberOfRequest;
   final String totalPrice;
   final int numberOfProducts;
   final DateTime date;
-
+  final VoidCallback onTapOnOrderDetails;
+  final bool isOrderShipped;
+  final bool isOrderPaied;
+  final DateTime orderConfirmationTime;
+  final String paidSubtitle;
+  final String shippedSubtitle;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -61,11 +74,6 @@ class CustomOrder extends StatelessWidget {
             numberOfProducts: numberOfProducts,
             // totalPrice: "120",
           ),
-
-          const Row(
-            children: [Expanded(child: Divider(color: AppColors.fogGray))],
-          ),
-
           SizedBox(height: 10.h),
 
           Row(
@@ -87,52 +95,65 @@ class CustomOrder extends StatelessWidget {
               ),
             ],
           ),
+
+          const Row(
+            children: [Expanded(child: Divider(color: AppColors.fogGray))],
+          ),
+
+          SizedBox(height: 10.h),
+
           // SizedBox(height: 20.h),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   children: [
-          //     const Spacer(),
-          //     Expanded(
-          //       flex: 2,
-          //       child: Row(
-          //         children: [
-          //           Expanded(
-          //             child: CustomElevatedButton(
-          //               backgroundColor: AppColors.primaryColor,
-          //               onPressed: () {
-          //                 showOrderTrackingModal(context);
-          //               },
-          //               verticalPadding: 5.h,
-          //               child: Text(
-          //                 "تتبع الطلب",
-          //                 style: AppStyle.styleRegular15(
-          //                   context,
-          //                 ).copyWith(color: Colors.white),
-          //               ),
-          //             ),
-          //           ),
-          //           SizedBox(width: 10.w),
-          //           Expanded(
-          //             child: CustomElevatedButton(
-          //               borderColor: AppColors.primaryColor,
-          //               backgroundColor: AppColors.white,
-          //               onPressed: () {
-          //                 GoRouter.of(context).push(AppRouter.orderDetails);
-          //               },
-          //               verticalPadding: 5.h,
-          //               child: Text(
-          //                 "تفاصيل الطلب",
-          //                 style: AppStyle.styleRegular15(
-          //                   context,
-          //                 ).copyWith(color: AppColors.primaryColor),
-          //               ),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CustomElevatedButton(
+                        backgroundColor: AppColors.primaryColor,
+                        onPressed: () {
+                          showOrderTrackingModal(
+                            context,
+                            orderConfirmingTime: orderConfirmationTime,
+                            isOrderShipped: isOrderShipped,
+                            isOrderPaied: isOrderPaied,
+                            paidSubtitle: paidSubtitle,
+                            shippedSubtitle: shippedSubtitle
+                          );
+                        },
+                        verticalPadding: 5.h,
+                        child: Text(
+                          "Order Tracking",
+                          style: AppStyle.styleRegular15(
+                            context,
+                          ).copyWith(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+                    Expanded(
+                      child: CustomElevatedButton(
+                        borderColor: AppColors.primaryColor,
+                        backgroundColor: AppColors.white,
+                        onPressed: onTapOnOrderDetails,
+                        verticalPadding: 5.h,
+                        child: Text(
+                          "Order Details",
+                          style: AppStyle.styleRegular15(
+                            context,
+                          ).copyWith(color: AppColors.primaryColor),
+                        ),
+                      ),
+                    ),
+
+                    const Spacer(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

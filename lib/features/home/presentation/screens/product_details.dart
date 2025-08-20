@@ -5,7 +5,6 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
-import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
@@ -24,9 +23,20 @@ import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+// class ProductDetails extends StatelessWidget {
+//   ProductDetails({super.key, required this.productId});
+//   final String productId;
+
+//   final GlobalKey<ProductDetailsBodyState> productKey =
+//       GlobalKey<ProductDetailsBodyState>();
+//   @override
+//   Widget build(BuildContext context) {
+//     return ProductDetailsBody(productId: productId , key: productKey,);
+//   }
+// }
+
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key, required this.productId});
-
   final String productId;
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -44,6 +54,10 @@ class _ProductDetailsState extends State<ProductDetails> {
     super.initState();
     BlocProvider.of<GetCartCubit>(context).getCart();
     super.initState();
+  }
+
+  void refreshGetCart() {
+    BlocProvider.of<GetCartCubit>(context).getCart();
   }
 
   @override
@@ -254,7 +268,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 child: InkWell(
                                   onTap: () {
                                     final productLink =
-                                        state.productIdDetailsModel.permalink;
+                                        "https://camion-app.com/en/shop/${state.productIdDetailsModel.id}";
                                     Share.share(
                                       productLink,
                                       subject: state.productIdDetailsModel.name,
@@ -666,10 +680,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                         .read<GetCartCubit>()
                                                         .getCart();
                                                   }
-                                                  MyCartScreen
-                                                      .cartKey
-                                                      .currentState
-                                                      ?.refreshGetCart();
+                                                  // MyCartScreen
+                                                  //     .cartKey
+                                                  //     .currentState
+                                                  //     ?.refreshGetCart();
                                                   HomeScreen
                                                       .homeKey
                                                       .currentState

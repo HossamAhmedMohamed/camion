@@ -48,10 +48,9 @@ import 'package:camion/features/join_us/presentation/screens/welcome_screen.dart
 import 'package:camion/features/notifications/data/repository/notification_repo.dart';
 import 'package:camion/features/notifications/presentation/logic/cubit/notifications_cubit.dart';
 import 'package:camion/features/notifications/presentation/screens/notifications_screen.dart';
+import 'package:camion/features/order_status/data/models/order_model/order_model.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
-import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
-import 'package:camion/features/order_status/presentation/screens/my_orders.dart';
 import 'package:camion/features/order_status/presentation/screens/order_details.dart';
 import 'package:camion/features/profile/data/repository/profie_repo.dart';
 import 'package:camion/features/profile/presentation/logic/cubit/get_user_cubit/get_user_cubit.dart';
@@ -387,19 +386,49 @@ class RouterGenerator {
         },
       ),
 
-      GoRoute(
-        name: AppRouter.myOrders,
-        path: AppRouter.myOrders,
-        builder: (context, state) => BlocProvider(
-          create: (context) => ToggleNavBarCubit(),
-          child: const MyOrdersScreen(),
-        ),
-      ),
+      // GoRoute(
+      //   name: AppRouter.myOrders,
+      //   path: AppRouter.myOrders,
+      //   builder: (context, state) => BlocProvider(
+      //     create: (context) => ToggleNavBarCubit(),
+      //     child: const MyOrdersScreen(),
+      //   ),
+      // ),
+
+      // GoRoute(
+      //   name: AppRouter.orderDetails,
+      //   path: AppRouter.orderDetails,
+
+      //   builder: (context, state) {
+      //     final extra = state.extra as Map<String, Object>;
+      //     return OrderDetailsScreen(
+      //       items: extra['items'] as List<OrderItemModel>,
+      //       numberOfOrder: extra['numberOfOrder'] as String,
+      //       orderDate: extra['orderDate'] as DateTime,
+      //       totalPrice: extra['totalPrice'] as String,
+      //       deliveryCost: extra['deliveryCost'] as String,
+      //       paymentMethod: extra['paymentMethod'] as String,
+      //       shippingAddress: extra['shippingAddress'] as String,
+      //     );
+      //   },
+      // ),
 
       GoRoute(
-        name: AppRouter.orderDetails,
-        path: AppRouter.orderDetails,
-        builder: (context, state) => const OrderDetailsScreen(),
+        path: AppRouter.orderDetailsScreen,
+        name: AppRouter.orderDetailsScreen,
+
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+          return OrderDetailsScreen(
+            items: extra['items'] as List<OrderItemModel>,
+            numberOfOrder: extra['numberOfOrder'] as String,
+            orderDate: extra['orderDate'] as DateTime,
+            totalPrice: extra['totalPrice'] as String,
+            deliveryCost: extra['deliveryCost'] as String,
+            paymentMethod: extra['paymentMethod'] as String,
+            shippingAddress: extra['shippingAddress'] as String,
+          );
+        },
       ),
 
       GoRoute(

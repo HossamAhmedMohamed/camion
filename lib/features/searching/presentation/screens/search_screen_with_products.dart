@@ -23,10 +23,23 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
+  final ScrollController _scrollController = ScrollController();
+
+  void _onScroll() {
+    final cubit = context.read<ProductsCubit>();
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent) {
+      if (cubit.hasMore && !cubit.isLoadingMore && !cubit.hasLoadMoreError) {
+        cubit.getProducts(isLoadMore: true);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     context.read<ProductsCubit>().getProducts();
+    _scrollController.addListener(_onScroll);
     _focusNode.requestFocus();
   }
 
@@ -34,6 +47,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
   void dispose() {
     _searchController.dispose();
     _focusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -44,6 +58,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverToBoxAdapter(child: SizedBox(height: 15.h)),
           SliverAppBar(
@@ -61,7 +76,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
               onChanged: (value) {
                 context.read<ProductsCubit>().searchProducts(query: value);
               },
-              prefixIcon: Padding(
+              suffixIcon: Padding(
                 padding: const EdgeInsets.all(12),
                 child: SvgPicture.asset(Assets.imagesSearchBar),
               ),
@@ -107,39 +122,63 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
               }
 
               if (state is ProductsLoaded) {
+                final products = state.products;
+                final bool isLoadingMore = context
+                    .watch<ProductsCubit>()
+                    .isLoadingMore;
                 return SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   sliver: SliverGrid.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: screenWidth > 800 ? 3 : 2,
-                      childAspectRatio: (0.23.w / 0.42.h).clamp(0.5, 1),
+                      childAspectRatio: isLoadingMore
+                          ? (0.23.w / 0.45.h).clamp(0.5, 1)
+                          : (0.23.w / 0.42.h).clamp(0.5, 1),
                       crossAxisSpacing: 20.w,
                       mainAxisSpacing: 10.h,
                     ),
                     itemBuilder: (context, index) {
-                      final product = state.products[index];
-                      return GestureDetector(
-                        onTap: () {
-                          GoRouter.of(context).push(
-                            AppRouter.productDetails,
-                            extra: product.id.toString(),
-                          );
-                        },
-                        child: ProductCarouselWidget(
-                          reviewCount: product.reviewCount.toString(),
-                          averageRating: product.averageRating,
-                          productId: product.id.toString(),
-                          imageUrl: product.images[0].thumbnail,
-                          productName: product.name,
-                          originalPrice: product.prices.price.toString(),
-                          outPrice: product.prices.regularPrice.toString(),
-                          isGridView: true,
-                          onAddToCartTap: () {},
-                          onAddToWishListTap: () {},
-                        ),
-                      );
+                      if (index < products.length) {
+                        final product = products[index];
+                        return GestureDetector(
+                          onTap: () {
+                            GoRouter.of(context).push(
+                              AppRouter.productDetails,
+                              extra: product.id.toString(),
+                            );
+                          },
+                          child: ProductCarouselWidget(
+                            reviewCount: product.reviewCount.toString(),
+                            averageRating: product.averageRating,
+                            productId: product.id.toString(),
+                            imageUrl: product.images.isEmpty
+                                ? ''
+                                : product.images[0].thumbnail,
+                            productName: product.name,
+                            originalPrice: product.prices.price.toString(),
+                            outPrice: product.prices.regularPrice,
+                            isGridView: true,
+                            onAddToCartTap: () {
+                              // context.read<AddCartCubit>().addToCart(
+                              //   productId: product.id.toString(),
+                              //   title: product.name,
+                              //   price: product.prices.price,
+                              //   image: product.images[0].thumbnail,
+                              //   quantity: 1,
+                              // );
+                            },
+                            onAddToWishListTap: () {},
+                          ),
+                        );
+                      } else if (isLoadingMore) {
+                        return const Skeletonizer(
+                          enabled: true,
+                          child: GridItemBuildingSkeleton(),
+                        );
+                      }
+                      return const SizedBox();
                     },
-                    itemCount: state.products.length,
+                    itemCount: state.products.length + (isLoadingMore ? 2 : 0),
                   ),
                 );
               }
