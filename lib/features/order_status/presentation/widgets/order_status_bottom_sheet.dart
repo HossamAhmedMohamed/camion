@@ -5,8 +5,6 @@ import 'package:camion/features/order_status/presentation/widgets/order_status_i
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Model للبيانات
-
 class OrderStatusBottomSheet extends StatelessWidget {
   final List<OrderStatusItemModel> trackingItems;
 
@@ -15,7 +13,7 @@ class OrderStatusBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.7,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.only(
@@ -25,43 +23,51 @@ class OrderStatusBottomSheet extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Header
+          // Header with close button
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+            padding: EdgeInsets.only(
+              left: 16.w,
+              right: 20.w,
+              top: 16.h,
+              bottom: 16.h,
+            ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Icon(Icons.close, size: 24.sp, color: AppColors.black),
                 ),
-                Text(
-                  "تتبع الطلب",
-                  style: AppStyle.styleRegular18(context).copyWith(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Order Status",
+                      style: AppStyle.styleRegular18(context).copyWith(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(width: 24.w), // للتوازن
+                SizedBox(width: 24.w), // To balance the close button
               ],
             ),
           ),
 
-          // Divider
-          Divider(height: 1.h, color: AppColors.gray.withAlpha(100)),
-
           // Tracking Items
           Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Column(
-                children: List.generate(
-                  trackingItems.length,
-                  (index) => OrderStatusItemWidget(
-                    item: trackingItems[index],
-                    isLast: index == trackingItems.length - 1,
-                  ),
-                ),
+            child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              itemCount: trackingItems.length,
+              itemBuilder: (context, index) => OrderStatusItemWidget(
+                item: trackingItems[index],
+                isCurrent: index < trackingItems.length - 1
+                    ? trackingItems[index].isCompleted &&
+                          trackingItems[index + 1].isCompleted
+                    : false,
+
+                isFirst: index == 0,
+                isLast: index == trackingItems.length - 1,
+                // isCurrent: index == trackingItems.length - 2, // Assuming last item is current
               ),
             ),
           ),

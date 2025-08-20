@@ -65,7 +65,7 @@ class GridItemBuilding extends StatelessWidget {
                       child: Image.asset(Assets.imagesShoes, fit: BoxFit.cover),
                     ),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                 ),
               ],
             ),

@@ -5,7 +5,7 @@ part 'toggle_nav_bar_state.dart';
 class ToggleNavBarCubit extends Cubit<ToggleNavBarState> {
   ToggleNavBarCubit() : super(ToggleNavBarInitial());
 
-  void toggle(int index) {
+  Future<void> toggle(int index) async{
     emit(ToggleNavBarChanged(index: index));
   }
 }

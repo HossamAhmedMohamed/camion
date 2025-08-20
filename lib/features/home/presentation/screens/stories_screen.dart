@@ -504,9 +504,9 @@ class _StoryViewerScreenState extends State<StoryViewerScreen>
     return Positioned(
       bottom: MediaQuery.of(context).padding.bottom + 20,
       left: 20,
-      // right: 20,
+      right: 20,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           if (currentStory.title.isNotEmpty)

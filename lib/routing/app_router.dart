@@ -25,7 +25,7 @@ class AppRouter {
   static const String allCategoriesScreen = '/allCategoriesScreen';
   static const String profileScreen = '/profileScreen';
   static const String myOrders = '/myOrders';
-  static const String orderDetails = '/orderDetails';
+  // static const String orderDetails = '/orderDetails';
   static const String myInfo = '/myInfo';
   static const String editInfo = '/editInfo';
   static const String settings = '/settings';
@@ -38,5 +38,6 @@ class AppRouter {
   static const String affiliateCheckScreen = '/affiliateCheckScreen';
   static const String paymentWebPage = '/paymentWebPage';
   static const String privacyScreen = '/privacyScreen';
+  static const String orderDetailsScreen = '/orderDetailsScreen';
  
 }

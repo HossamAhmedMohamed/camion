@@ -129,4 +129,24 @@ class OrderStatusRepository {
       return left(ApiErrorHandler.handle(e));
     }
   }
+
+  Future<Either<ApiErrorModel, List<OrderModel>>> getOrderStatus({
+    required String token,
+    required String status,
+  }) async {
+    try {
+      final response = await orderStatusRemoteDataSource.getOrderStatus(
+        token: token,
+        status: status,
+      );
+      final orders = (response.data as List).map((order) {
+        return OrderModel.fromJson(order);
+      }).toList();
+
+      return right(orders);
+    } catch (e) {
+      log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
 }

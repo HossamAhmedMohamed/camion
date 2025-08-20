@@ -76,7 +76,8 @@ class _LoginFormState extends State<LoginForm> {
                 Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
                   backgroundColor: Colors.green,
-                  msg: state.message);
+                  msg: state.message,
+                );
                 GoRouter.of(context).push(AppRouter.confirmPhoneNumberScreen);
               }
 
@@ -84,7 +85,8 @@ class _LoginFormState extends State<LoginForm> {
                 Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
                   backgroundColor: Colors.red,
-                  msg: state.error.message);
+                  msg: state.error.message,
+                );
               }
             },
             builder: (context, state) {
@@ -108,6 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                     email: _emailController.text,
                     phoneNumber: fullPhoneNumber,
                   );
+                 
                 },
               );
             },

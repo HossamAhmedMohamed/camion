@@ -1,5 +1,6 @@
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/get_order_status_cubit/get_order_status_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/screens/my_orders.dart';
@@ -17,9 +18,9 @@ class OrderStatusScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => GetOrdersCubit(sl<OrderStatusRepository>()),
         ),
-         BlocProvider(
-          create: (context) => ToggleNavBarCubit(),
-         
+        BlocProvider(create: (context) => ToggleNavBarCubit()),
+        BlocProvider(
+          create: (context) => GetOrderStatusCubit(sl<OrderStatusRepository>()),
         ),
       ],
       // child: const OrderStatusScreenBody(),

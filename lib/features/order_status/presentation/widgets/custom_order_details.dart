@@ -1,13 +1,25 @@
 import 'package:camion/config/widgets/custom_box_decoration.dart';
+import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
-import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomOrderDetails extends StatelessWidget {
-  const CustomOrderDetails({super.key});
-
+  const CustomOrderDetails({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.variations,
+    required this.total,
+    required this.quantity,
+  });
+  final String image;
+  final String title;
+  final List<Variation> variations;
+  final String total;
+  final String quantity;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -30,7 +42,10 @@ class CustomOrderDetails extends StatelessWidget {
                       ),
                       color: AppColors.paleGray,
                     ),
-                    child: Image.asset(Assets.imagesShoes, fit: BoxFit.contain),
+                    child: CustomCachedNetworkImage(
+                      imageUrl: image,
+                      fit: BoxFit.contain,
+                    ),
 
                     // CustomCachedNetworkImage(
                     //   fit: BoxFit.cover,
@@ -40,37 +55,70 @@ class CustomOrderDetails extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 15.w),
-              // const ItemsBody(
-              //   title: "رقم الطلب :548964132",
-              //   quantity: 4,
-              //   totalPrice: "120",
-              // ),
 
-              
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
 
-             
+                      title,
+                      style: AppStyle.styleRegular14(context).copyWith(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 10.h),
+
+                    variations.isEmpty
+                        ? Container()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: List.generate(variations.length, (index) {
+                              return Padding(
+                                padding:   EdgeInsets.only(bottom: index == variations.length - 1 ? 0 : 10.h),
+                                child: Text(
+                                  "${variations[index].attribute} : ${variations[index].value}",
+                                  style: AppStyle.styleRegular14(context)
+                                      .copyWith(
+                                        color: AppColors.black,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              );
+                            }),
+                          ),
+                  ],
+                ),
+              ),
             ],
           ),
 
-          SizedBox(height: 20.h),
+          SizedBox(height: 10.h),
 
           const Row(
             children: [Expanded(child: Divider(color: AppColors.fogGray))],
           ),
-          SizedBox(height: 20.h),
-        Row(
+          SizedBox(height: 10.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
                   Text(
-                    "اجمالي:",
-                    style: AppStyle.styleRegular14(context).copyWith(
+                    "Total:",
+                    style: AppStyle.styleRegular16(context).copyWith(
                       color: AppColors.black,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+
                   SizedBox(width: 5.w),
 
                   Text(
-                    "150",
+                    total,
                     style: AppStyle.styleRegular18(context).copyWith(
                       color: AppColors.primaryColor,
                       fontWeight: FontWeight.w600,
@@ -78,6 +126,15 @@ class CustomOrderDetails extends StatelessWidget {
                   ),
                 ],
               ),
+
+              Text(
+                "Quantity: $quantity",
+                style: AppStyle.styleRegular16(
+                  context,
+                ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
         ],
       ),
     );

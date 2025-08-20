@@ -2,13 +2,15 @@ import 'package:camion/features/order_status/presentation/widgets/order_status_b
 import 'package:flutter/material.dart';
 
 class OrderStatusItemModel {
+  final int index;
   final String title;
   final String subtitle;
-  final String? time;
+  final DateTime? time;
   final bool isCompleted;
   final bool isActive;
 
   OrderStatusItemModel({
+    required this.index,
     required this.title,
     required this.subtitle,
     this.time,
@@ -17,30 +19,41 @@ class OrderStatusItemModel {
   });
 }
 
-void showOrderTrackingModal(BuildContext context) {
+void showOrderTrackingModal(
+  BuildContext context, {
+  required DateTime orderConfirmingTime,
+  required bool isOrderShipped,
+  required bool isOrderPaied,
+  required String paidSubtitle,
+  required String shippedSubtitle,
+}) {
   List<OrderStatusItemModel> trackingItems = [
     OrderStatusItemModel(
-      title: "تم تأكيد الطلب",
-      subtitle: "لقد تم تأكيد طلبك بنجاح",
-      time: "05:00 PM",
+      index: 0,
+      title: "Order Confirmed",
+      subtitle: "Your order has been successfully confirmed",
+      time: orderConfirmingTime,
       isCompleted: true,
     ),
+    // OrderStatusItemModel(
+    //   title: "خارج للتوصيل",
+    //   subtitle: "",
+    //   isCompleted: false,
+    //   isActive: true,
+    // ),
     OrderStatusItemModel(
-      title: "تم شحن الطلب",
-      subtitle: "لقد تم شحن الطلب الى الفاهرة",
-      time: "05:00 PM",
-      isCompleted: true,
+      index: 1,
+      title: "Order Paid",
+      subtitle: paidSubtitle,
+      isCompleted: isOrderPaied,
     ),
+
     OrderStatusItemModel(
-      title: "خارج للتوصيل",
-      subtitle: "",
-      isCompleted: false,
-      isActive: true,
-    ),
-    OrderStatusItemModel(
-      title: "تم تسليم الطلب",
-      subtitle: "",
-      isCompleted: false,
+      index: 2,
+      title: "Order Delivered",
+      subtitle: shippedSubtitle,
+      // time: "",
+      isCompleted: isOrderShipped,
     ),
   ];
 
@@ -49,7 +62,6 @@ void showOrderTrackingModal(BuildContext context) {
     constraints: const BoxConstraints(maxHeight: double.infinity),
     backgroundColor: Colors.white,
     isScrollControlled: true,
-    builder: (context) =>
-        OrderStatusBottomSheet(trackingItems: trackingItems),
+    builder: (context) => OrderStatusBottomSheet(trackingItems: trackingItems),
   );
 }

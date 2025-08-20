@@ -67,9 +67,9 @@ class _CustomPhoneNumberFieldState extends State<CustomPhoneNumberField> {
       style: AppStyle.styleRegular15(context).copyWith(color: Colors.black),
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: AppStyle.styleRegular15(context).copyWith(
-          color:   AppColors.gray,
-        ),
+        // hintStyle: AppStyle.styleRegular15(context).copyWith(
+        //   color:   AppColors.gray,
+        // ),
         suffixIcon: InkWell(
           onTap: widget.enabled ? _showCountryPicker : null,
           borderRadius: BorderRadius.circular(8.r),
