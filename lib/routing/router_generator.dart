@@ -59,6 +59,7 @@ import 'package:camion/features/profile/presentation/logic/cubit/update_user_cub
 import 'package:camion/features/profile/presentation/screens/account_settings_screen.dart';
 import 'package:camion/features/profile/presentation/screens/change_language_screen.dart';
 import 'package:camion/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:camion/features/profile/presentation/screens/feed_back_screen.dart';
 import 'package:camion/features/profile/presentation/screens/help_screen.dart';
 import 'package:camion/features/profile/presentation/screens/my_info.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
@@ -534,6 +535,12 @@ class RouterGenerator {
         name: AppRouter.privacyScreen,
         path: AppRouter.privacyScreen,
         builder: (context, state) => const PrivacyAndReturnPolicyScren(),
+      ),
+
+      GoRoute(
+        name: AppRouter.feedBackScreen,
+        path: AppRouter.feedBackScreen,
+        builder: (context, state) => const FeedBackScreen(),
       ),
     ],
   );

@@ -39,5 +39,6 @@ class AppRouter {
   static const String paymentWebPage = '/paymentWebPage';
   static const String privacyScreen = '/privacyScreen';
   static const String orderDetailsScreen = '/orderDetailsScreen';
+  static const String feedBackScreen = '/feedBackScreen';
  
 }

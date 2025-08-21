@@ -24,43 +24,41 @@ class MyOrdersScreen extends StatefulWidget {
 class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   void initState() {
-    context.read<GetOrdersCubit>().getOrders();
+    context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     List<CategoriesModel> categories = [
-      CategoriesModel(
-        onTap: () {
-          context.read<GetOrdersCubit>().getOrders();
-        },
-        title: "All",
-      ),
+      // CategoriesModel(
+      //   onTap: () {
+      //     context.read<GetOrdersCubit>().getOrders();
+      //   },
+      //   title: "All",
+      // ),
       CategoriesModel(
         onTap: () {
           context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
         },
         title: "Paid",
-        image: Assets.imagesCalendar
+        image: Assets.imagesCalendar,
       ),
+
       CategoriesModel(
         onTap: () {
-          context.read<GetOrdersCubit>().getOrderStatus(
-            status: "complete",
-          );
-        },
-        title: "Completed",
-        image: Assets.imagesIconsCompleteIconNewww
-      ),
-      CategoriesModel(
-        onTap: () {
-          context.read<GetOrdersCubit>().getOrderStatus(
-            status: "delivered",
-          );
+          context.read<GetOrdersCubit>().getOrderStatus(status: "delivered");
         },
         title: "Delivered",
-        image: Assets.imagesIconsDeliveryIconNewwwLight
+        image: Assets.imagesIconsDeliveryIconNewwwLight,
+      ),
+
+      CategoriesModel(
+        onTap: () {
+          context.read<GetOrdersCubit>().getOrderStatus(status: "complete");
+        },
+        title: "Completed",
+        image: Assets.imagesIconsCompleteIconNewww,
       ),
     ];
     return CustomScrollView(
@@ -108,8 +106,10 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                       builder: (context, state) {
                         return GestureDetector(
                           onTap: () {
-                            context.read<ToggleNavBarCubit>().toggle(index).then((_) =>
-                            categories[index].onTap());
+                            context
+                                .read<ToggleNavBarCubit>()
+                                .toggle(index)
+                                .then((_) => categories[index].onTap());
                           },
 
                           child: StatusNavBar(
