@@ -88,6 +88,14 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
 
       ProfileModel(
         onTap: () {
+          GoRouter.of(context).push(AppRouter.feedBackScreen);
+        },
+        title: 'Give us a feedback',
+        image: Assets.imagesCalendar,
+      ),
+
+      ProfileModel(
+        onTap: () {
           GoRouter.of(context).push(AppRouter.help);
         },
         title: 'Help',
@@ -104,22 +112,8 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             context: context,
             content: Row(
               children: [
-                Expanded(
-                  child: CustomElevatedButton(
-                    backgroundColor: AppColors.primaryColor,
-                    child: Text(
-                      "Log out",
-                      style: AppStyle.styleRegular15(
-                        context,
-                      ).copyWith(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      context.read<LogOutCubit>().logOut();
-                      GoRouter.of(context).goNamed(AppRouter.login);
-                    },
-                  ),
-                ),
-                SizedBox(width: 10.w),
+                
+                
                 Expanded(
                   child: CustomElevatedButton(
                     borderColor: AppColors.primaryColor,
@@ -133,6 +127,24 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                     ),
                     onPressed: () {
                       GoRouter.of(context).pop();
+                    },
+                  ),
+                ),
+
+                SizedBox(width: 10.w),
+
+                Expanded(
+                  child: CustomElevatedButton(
+                    backgroundColor: AppColors.primaryColor,
+                    child: Text(
+                      "Log out",
+                      style: AppStyle.styleRegular15(
+                        context,
+                      ).copyWith(color: Colors.white),
+                    ),
+                    onPressed: () {
+                      context.read<LogOutCubit>().logOut();
+                      GoRouter.of(context).goNamed(AppRouter.login);
                     },
                   ),
                 ),

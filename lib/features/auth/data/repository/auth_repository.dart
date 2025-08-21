@@ -61,4 +61,51 @@ class AuthRepository {
       return left(ApiErrorHandler.handle(e));
     }
   }
+
+  Future<Either<ApiErrorModel, dynamic>> sendUserShippingAddress({
+    required String token,
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String phone,
+    required String address1,
+    required String address2,
+    required String city,
+    required String postcode,
+    required String country,
+    required String shippingFirstName,
+    required String shippingLastName,
+    required String shippingAddress1,
+    required String shippingAddress2,
+    required String shippingCity,
+    required String shippingState,
+    required String shippingPostcode,
+    required String shippingCountry,
+  }) async {
+    try {
+      final response = await authRemoteDataSource.sendUserShippingAddress(
+        token: token,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        address1: address1,
+        address2: address2,
+        city: city,
+        postcode: postcode,
+        country: country,
+        shippingFirstName: shippingFirstName,
+        shippingLastName: shippingLastName,
+        shippingAddress1: shippingAddress1,
+        shippingAddress2: shippingAddress2,
+        shippingCity: shippingCity,
+        shippingState: shippingState,
+        shippingPostcode: shippingPostcode,
+        shippingCountry: shippingCountry,
+      );
+      return Right(response.data);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
 }

@@ -24,13 +24,13 @@ class OrderResponse {
 
 class OrderData {
   final String sessionId;
-  final String stripeCheckoutUrl;
+  final String skipCashPaymentUrl;
   final String orderId;
   final Order order;
 
   OrderData({
     required this.sessionId,
-    required this.stripeCheckoutUrl,
+    required this.skipCashPaymentUrl,
     required this.orderId,
     required this.order,
   });
@@ -38,7 +38,7 @@ class OrderData {
   factory OrderData.fromJson(Map<String, dynamic> json) {
     return OrderData(
       sessionId: json['sessionId'] ?? '',
-      stripeCheckoutUrl: json['stripeCheckoutUrl'] ?? '',
+      skipCashPaymentUrl: json['skipCashPaymentUrl'] ?? '',
       orderId: json['orderId'] ?? '',
       order: Order.fromJson(json['order'] ?? {}),
     );
@@ -47,7 +47,7 @@ class OrderData {
   Map<String, dynamic> toJson() {
     return {
       'sessionId': sessionId,
-      'stripeCheckoutUrl': stripeCheckoutUrl,
+      'skipCashPaymentUrl': skipCashPaymentUrl,
       'orderId': orderId,
       'order': order.toJson(),
     };

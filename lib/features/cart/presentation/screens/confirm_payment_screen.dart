@@ -367,7 +367,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                       GoRouter.of(context).push(
                         AppRouter.paymentWebPage,
                         extra: {
-                          "checkoutUrl": state.order.data.stripeCheckoutUrl,
+                          "checkoutUrl": state.order.data.skipCashPaymentUrl,
                           // "orderId": state.order.data.orderId,
                         },
                       );
