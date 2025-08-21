@@ -31,4 +31,20 @@ class GetOrdersCubit extends Cubit<GetOrdersState> {
       (r) => emit(GetOrdersSuccess(orders: r)),
     );
   }
+
+  Future<void> getOrderStatus({required String status}) async {
+    if (isClosed) return;
+
+    final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    emit(GetOrdersLoading());
+    final result = await orderStatusRepository.getOrderStatus(
+      token: token!,
+      status: status,
+    );
+    if (isClosed) return;
+    result.fold(
+      (l) => emit(GetOrdersError(error: l)),
+      (r) => emit(GetOrdersSuccess(orders: r)),
+    );
+  }
 }

@@ -130,4 +130,16 @@ class OrderStatusRemoteDataSource {
     );
     return response;
   }
+
+
+  Future<Response> getOrderTracking({
+    required String token,
+    required String orderId,
+  }) async {
+    final response = await apiConsumer.get(
+      "https://buckydrop.camion-app.com/api/tracking/order/$orderId",
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return response;
+  }
 }

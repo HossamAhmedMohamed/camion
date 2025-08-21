@@ -170,9 +170,17 @@ class Assets {
   /// assets/images/icons/blackfriday_not_pixel.png
   static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
 
+  /// Assets for imagesIconsCompleteIconNewww
+  /// assets/images/icons/complete_icon_newww.svg
+  static const String imagesIconsCompleteIconNewww = "assets/images/icons/complete_icon_newww.svg";
+
   /// Assets for imagesIconsCustomerService
   /// assets/images/icons/customer_service.svg
   static const String imagesIconsCustomerService = "assets/images/icons/customer_service.svg";
+
+  /// Assets for imagesIconsDeliveryIconNewwwLight
+  /// assets/images/icons/delivery_icon_newww_light.svg
+  static const String imagesIconsDeliveryIconNewwwLight = "assets/images/icons/delivery_icon_newww_light.svg";
 
   /// Assets for imagesIconsEditInfo
   /// assets/images/icons/edit_info.svg

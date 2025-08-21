@@ -2,7 +2,7 @@ class ShippingMethodModel {
   final int instanceId;
   final String methodId;
   final String title;
-  final double cost;
+  final String cost;
   // final bool enabled;
   // final String description;
 
@@ -20,7 +20,7 @@ class ShippingMethodModel {
       instanceId: json['instance_id'],
       methodId: json['method_id'],
       title: json['title'],
-      cost: (json['cost'] as num).toDouble(),
+      cost: json['cost'] ?? '',
       // enabled: json['enabled'],
       // description: json['description'],
     );

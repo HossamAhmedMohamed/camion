@@ -8,7 +8,6 @@ import 'package:camion/features/cart/presentation/logic/cubit/update_cubit/updat
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
 import 'package:camion/features/cart/presentation/widgets/custom_product_to_cart.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
-import 'package:camion/features/home/presentation/screens/product_details.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,10 @@
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
+import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/categories_model.dart';
-import 'package:camion/features/order_status/presentation/logic/cubit/get_order_status_cubit/get_order_status_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/order_tracking_cubit/order_tracking_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/custom_order.dart';
 import 'package:camion/features/order_status/presentation/widgets/status_nav_bar.dart';
@@ -38,25 +39,28 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
       ),
       CategoriesModel(
         onTap: () {
-          context.read<GetOrderStatusCubit>().getOrderStatus(status: "paid");
+          context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
         },
         title: "Paid",
+        image: Assets.imagesCalendar
       ),
       CategoriesModel(
         onTap: () {
-          context.read<GetOrderStatusCubit>().getOrderStatus(
+          context.read<GetOrdersCubit>().getOrderStatus(
             status: "complete",
           );
         },
-        title: "Complete",
+        title: "Completed",
+        image: Assets.imagesIconsCompleteIconNewww
       ),
       CategoriesModel(
         onTap: () {
-          context.read<GetOrderStatusCubit>().getOrderStatus(
+          context.read<GetOrdersCubit>().getOrderStatus(
             status: "delivered",
           );
         },
         title: "Delivered",
+        image: Assets.imagesIconsDeliveryIconNewwwLight
       ),
     ];
     return CustomScrollView(
@@ -111,6 +115,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                           child: StatusNavBar(
                             isActive: state,
                             title: categories[index].title,
+                            image: categories[index].image,
                           ),
                         );
                       },
@@ -122,7 +127,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
         BlocBuilder<GetOrdersCubit, GetOrdersState>(
           builder: (context, state) {
-            if (state is GetOrdersLoading) {
+            if (state is GetOrdersLoading || state is OrderTrackingLoading) {
               return const SliverToBoxAdapter(
                 child: Center(
                   child: CircularProgressIndicator(color: Colors.red),
@@ -163,6 +168,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         ).push(AppRouter.orderDetailsScreen, extra: extra);
                       },
                       child: CustomOrder(
+                        orderId: order.worderId,
                         numberOfRequest: order.id,
                         totalPrice: totalPrice.toStringAsFixed(2),
                         numberOfProducts: order.items.length,

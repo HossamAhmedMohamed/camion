@@ -6,6 +6,7 @@ import 'package:camion/features/order_status/data/data_source/remote_data_source
 import 'package:camion/features/order_status/data/models/order_model/order_model.dart';
 import 'package:camion/features/order_status/data/models/order_response_model/order_response_model.dart';
 import 'package:camion/features/order_status/data/models/shipping_method_model.dart';
+import 'package:camion/features/order_status/data/models/tracking_order_model/tracking_order_model_response_model.dart';
 import 'package:dartz/dartz.dart';
 
 class OrderStatusRepository {
@@ -144,6 +145,22 @@ class OrderStatusRepository {
       }).toList();
 
       return right(orders);
+    } catch (e) {
+      log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, TrackingResponse>> getOrderTracking({
+    required String token,
+    required String orderId,
+  }) async {
+    try {
+      final response = await orderStatusRemoteDataSource.getOrderTracking(
+        token: token,
+        orderId: orderId,
+      );
+      return right(TrackingResponse.fromJson(response.data));
     } catch (e) {
       log(e.toString());
       return left(ApiErrorHandler.handle(e));

@@ -1,6 +1,7 @@
 import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 
 class OrderModel {
+  final String worderId;
   final String id;
   final String userId;
   final DateTime createdAt;
@@ -11,6 +12,7 @@ class OrderModel {
   final CustomerDataModel? customerData; // ✅ جديد
 
   OrderModel({
+    required this.worderId,
     required this.id,
     required this.userId,
     required this.createdAt,
@@ -23,6 +25,7 @@ class OrderModel {
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
+      worderId: json['wcOrderId'] ?? '',
       id: json['id'] ?? '',
       userId: json['userId'] ?? '',
       items: (json['items'] as List<dynamic>)
@@ -142,7 +145,7 @@ class CustomerDataModel {
 
 /// ✅ Shipping Option Model
 class ShippingOption {
-  final int cost;
+  final String cost;
   final String title;
   final String methodId;
   final int instanceId;
@@ -156,7 +159,7 @@ class ShippingOption {
 
   factory ShippingOption.fromJson(Map<String, dynamic> json) {
     return ShippingOption(
-      cost: json['cost'] ?? 0,
+      cost: json['cost'] ?? '',
       title: json['title'] ?? '',
       methodId: json['method_id'] ?? '',
       instanceId: json['instance_id'] ?? 0,
