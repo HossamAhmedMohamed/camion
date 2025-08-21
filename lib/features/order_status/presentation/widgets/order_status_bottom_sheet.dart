@@ -1,14 +1,58 @@
+import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/order_status/data/models/order_status_item_model.dart';
+import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/order_tracking_cubit/order_tracking_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/order_status_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OrderStatusBottomSheet extends StatelessWidget {
+  const OrderStatusBottomSheet({
+    super.key,
+    required this.trackingItems,
+    required this.orderId,
+  });
   final List<OrderStatusItemModel> trackingItems;
+  final String orderId;
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => OrderTrackingCubit(sl<OrderStatusRepository>()),
+      child: OrderStatusBottomSheetBody(
+        trackingItems: trackingItems,
+        orderId: orderId,
+      ),
+    );
+  }
+}
 
-  const OrderStatusBottomSheet({super.key, required this.trackingItems});
+class OrderStatusBottomSheetBody extends StatefulWidget {
+  final List<OrderStatusItemModel> trackingItems;
+  final String orderId;
+
+  const OrderStatusBottomSheetBody({
+    super.key,
+    required this.trackingItems,
+    required this.orderId,
+  });
+
+  @override
+  State<OrderStatusBottomSheetBody> createState() =>
+      _OrderStatusBottomSheetBodyState();
+}
+
+class _OrderStatusBottomSheetBodyState
+    extends State<OrderStatusBottomSheetBody> {
+  // @override
+  // void initState() {
+  //   context.read<OrderTrackingCubit>().getOrderTracking(
+  //     orderId: widget.orderId,
+  //   );
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,20 +99,29 @@ class OrderStatusBottomSheet extends StatelessWidget {
 
           // Tracking Items
           Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-              itemCount: trackingItems.length,
-              itemBuilder: (context, index) => OrderStatusItemWidget(
-                item: trackingItems[index],
-                isCurrent: index < trackingItems.length - 1
-                    ? trackingItems[index].isCompleted &&
-                          trackingItems[index + 1].isCompleted
-                    : false,
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 10.h,
+                    ),
+                    itemCount: widget.trackingItems.length,
+                    itemBuilder: (context, index) => OrderStatusItemWidget(
+                      item: widget.trackingItems[index],
+                      isCurrent: index < widget.trackingItems.length - 1
+                          ? widget.trackingItems[index].isCompleted &&
+                                widget.trackingItems[index + 1].isCompleted
+                          : false,
 
-                isFirst: index == 0,
-                isLast: index == trackingItems.length - 1,
-                // isCurrent: index == trackingItems.length - 2, // Assuming last item is current
-              ),
+                      isFirst: index == 0,
+                      isLast: index == widget.trackingItems.length - 1,
+                      // isCurrent: index == trackingItems.length - 2, // Assuming last item is current
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

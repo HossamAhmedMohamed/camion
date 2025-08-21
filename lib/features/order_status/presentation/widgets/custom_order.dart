@@ -7,7 +7,7 @@ import 'package:camion/features/order_status/presentation/widgets/items_body.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomOrder extends StatelessWidget {
+class CustomOrder extends StatefulWidget {
   const CustomOrder({
     super.key,
     required this.totalPrice,
@@ -20,6 +20,7 @@ class CustomOrder extends StatelessWidget {
     required this.orderConfirmationTime,
     required this.paidSubtitle,
     required this.shippedSubtitle,
+    required this.orderId,
   });
   final String numberOfRequest;
   final String totalPrice;
@@ -31,6 +32,21 @@ class CustomOrder extends StatelessWidget {
   final DateTime orderConfirmationTime;
   final String paidSubtitle;
   final String shippedSubtitle;
+  final String orderId;
+
+  @override
+  State<CustomOrder> createState() => _CustomOrderState();
+}
+
+class _CustomOrderState extends State<CustomOrder> {
+  // @override
+  // void initState() {
+  //   context.read<OrderTrackingCubit>().getOrderTracking(
+  //     orderId: widget.orderId,
+  //   );
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -69,9 +85,9 @@ class CustomOrder extends StatelessWidget {
           SizedBox(height: 30.h),
 
           ItemsBody(
-            totalPrice: totalPrice,
-            title: date,
-            numberOfProducts: numberOfProducts,
+            totalPrice: widget.totalPrice,
+            title: widget.date,
+            numberOfProducts: widget.numberOfProducts,
             // totalPrice: "120",
           ),
           SizedBox(height: 10.h),
@@ -87,7 +103,7 @@ class CustomOrder extends StatelessWidget {
               SizedBox(width: 5.w),
 
               Text(
-                totalPrice,
+                widget.totalPrice,
                 style: AppStyle.styleRegular18(context).copyWith(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.w600,
@@ -116,11 +132,12 @@ class CustomOrder extends StatelessWidget {
                         onPressed: () {
                           showOrderTrackingModal(
                             context,
-                            orderConfirmingTime: orderConfirmationTime,
-                            isOrderShipped: isOrderShipped,
-                            isOrderPaied: isOrderPaied,
-                            paidSubtitle: paidSubtitle,
-                            shippedSubtitle: shippedSubtitle
+                            orderId: widget.orderId,
+                            orderConfirmingTime: widget.orderConfirmationTime,
+                            isOrderShipped: widget.isOrderShipped,
+                            isOrderPaied: widget.isOrderPaied,
+                            paidSubtitle: widget.paidSubtitle,
+                            shippedSubtitle: widget.shippedSubtitle,
                           );
                         },
                         verticalPadding: 5.h,
@@ -137,7 +154,7 @@ class CustomOrder extends StatelessWidget {
                       child: CustomElevatedButton(
                         borderColor: AppColors.primaryColor,
                         backgroundColor: AppColors.white,
-                        onPressed: onTapOnOrderDetails,
+                        onPressed: widget.onTapOnOrderDetails,
                         verticalPadding: 5.h,
                         child: Text(
                           "Order Details",

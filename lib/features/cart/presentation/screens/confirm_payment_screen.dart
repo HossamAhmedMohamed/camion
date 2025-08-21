@@ -404,7 +404,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                         shippingState: shippingStateController.text,
                         shippingPostcode: shippingPostcodeController.text,
                         shippingCountry: shippingCountryController.text,
-                        paymentMethod: "stripe",
+                        paymentMethod: "skipcash",
                       );
                     }
                     if (state is CalculateShippingAddressError) {
