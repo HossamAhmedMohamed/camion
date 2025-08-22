@@ -8,8 +8,8 @@ final class VerifyInitial extends VerifyState {}
 final class VerifyLoading extends VerifyState {}
 
 final class VerifyLoaded extends VerifyState {
-  final VerifyModel loginModel;
-  VerifyLoaded({required this.loginModel});
+  final VerifyModel verifyModel;
+  VerifyLoaded({required this.verifyModel});
 }
 
 final class VerifyError extends VerifyState {

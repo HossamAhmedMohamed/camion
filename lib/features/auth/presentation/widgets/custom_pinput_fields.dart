@@ -121,13 +121,16 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
                   Fluttertoast.showToast(
                     gravity: ToastGravity.TOP,
                     backgroundColor: Colors.red,
-                    msg: state.error.message);
+                    msg: state.error.message,
+                  );
                 }
 
                 if (state is VerifyLoaded) {
-                  GoRouter.of(
-                    context,
-                  ).goNamed(AppRouter.selectingFromBottomNavBar);
+                  state.verifyModel.isFirstLogin
+                      ? GoRouter.of(context).goNamed(AppRouter.confirmAddress)
+                      : GoRouter.of(
+                          context,
+                        ).goNamed(AppRouter.selectingFromBottomNavBar);
                 }
               },
               builder: (context, state) {
