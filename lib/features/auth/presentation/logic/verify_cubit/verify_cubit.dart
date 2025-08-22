@@ -29,7 +29,7 @@ class VerifyCubit extends Cubit<VerifyState> {
         sl<SecureCacheHelper>().saveData(key: 'userRole', value: r.user.role),
         sl<CacheHelper>().saveData(key: 'userName', value: r.user.fullName),
       ]);
-      emit(VerifyLoaded(loginModel: r));
+      emit(VerifyLoaded(verifyModel: r));
     });
   }
 }

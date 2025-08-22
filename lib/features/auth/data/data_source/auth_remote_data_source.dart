@@ -49,6 +49,7 @@ class AuthRemoteDataSource {
     required String address1,
     required String address2,
     required String city,
+    required String state,
     required String postcode,
     required String country,
     required String shippingFirstName,
@@ -70,6 +71,7 @@ class AuthRemoteDataSource {
         "address_1": address1,
         "address_2": address2,
         "city": city,
+        "state": state,
         "postcode": postcode,
         "country": country,
         "shipping_address": {

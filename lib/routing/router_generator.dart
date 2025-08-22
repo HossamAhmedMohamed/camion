@@ -4,6 +4,7 @@ import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/auth/data/repository/auth_repository.dart';
 import 'package:camion/features/auth/presentation/logic/login_cubit/login_cubit.dart';
 import 'package:camion/features/auth/presentation/logic/register_cubit/register_cubit.dart';
+import 'package:camion/features/auth/presentation/logic/send_user_shipping_cubit/send_user_shipping_address_cubit.dart';
 import 'package:camion/features/auth/presentation/logic/verify_cubit/verify_cubit.dart';
 import 'package:camion/features/auth/presentation/screens/confirm_phone_number_screen.dart';
 import 'package:camion/features/auth/presentation/screens/first_screen_if_first_time.dart';
@@ -14,7 +15,7 @@ import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
-import 'package:camion/features/cart/presentation/screens/confirm_address.dart';
+import 'package:camion/features/auth/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/cart/presentation/screens/payment_web_page.dart';
@@ -219,46 +220,15 @@ class RouterGenerator {
         name: AppRouter.confirmAddress,
         path: AppRouter.confirmAddress,
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
           return MultiBlocProvider(
             providers: [
-              BlocProvider(create: (context) => PaymentMethodCubit()),
+              // BlocProvider(create: (context) => PaymentMethodCubit()),
               BlocProvider(
                 create: (context) =>
-                    CreateOrderCubit(sl<OrderStatusRepository>()),
+                    SendUserShippingAddressCubit(sl<AuthRepository>()),
               ),
             ],
-            child: ConfirmAddress(
-              // items: extra['items'] as List<GetCartModel>,
-              firstNameController: extra['firstName'] as TextEditingController,
-              lastNameController: extra['lastName'] as TextEditingController,
-              emailController: extra['email'] as TextEditingController,
-              phoneController: extra['phone'] as TextEditingController,
-              address1Controller: extra['address1'] as TextEditingController,
-              address2Controller: extra['address2'] as TextEditingController,
-              cityController: extra['city'] as TextEditingController,
-              stateController: extra['state'] as TextEditingController,
-              postcodeController: extra['postcode'] as TextEditingController,
-              countryController: extra['country'] as TextEditingController,
-              shippingFirstNameController:
-                  extra['shippingFirstName'] as TextEditingController,
-              shippingLastNameController:
-                  extra['shippingLastName'] as TextEditingController,
-              shippingAddress1Controller:
-                  extra['shippingAddress1'] as TextEditingController,
-              shippingAddress2Controller:
-                  extra['shippingAddress2'] as TextEditingController,
-              shippingCityController:
-                  extra['shippingCity'] as TextEditingController,
-              shippingStateController:
-                  extra['shippingState'] as TextEditingController,
-              shippingPostcodeController:
-                  extra['shippingPostcode'] as TextEditingController,
-              shippingCountryController:
-                  extra['shippingCountry'] as TextEditingController,
-              // creditCardController:
-              //     extra['creditCard'] as TextEditingController,
-            ),
+            child: const ConfirmAddress(),
           );
         },
       ),
@@ -413,7 +383,6 @@ class RouterGenerator {
       //     );
       //   },
       // ),
-
       GoRoute(
         path: AppRouter.orderDetailsScreen,
         name: AppRouter.orderDetailsScreen,
