@@ -22,6 +22,8 @@ import 'package:camion/features/cart/presentation/screens/payment_web_page.dart'
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:camion/features/home/data/repository/home_repo.dart';
+import 'package:camion/features/home/presentation/logic/cubit/create_review_cubit/create_review_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/get_review_cubit/get_review_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_add_cart_cubit/toggle_add_cart_cubit.dart';
@@ -182,6 +184,14 @@ class RouterGenerator {
 
               BlocProvider(
                 create: (context) => GetWishListCubit(sl<WishListRepository>()),
+              ),
+
+              BlocProvider(
+                create: (context) => GetReviewCubit(sl<HomeRepository>()),
+              ),
+
+              BlocProvider(
+                create: (context) => CreateReviewCubit(sl<HomeRepository>()),
               ),
             ],
             child: ProductDetails(productId: extra),

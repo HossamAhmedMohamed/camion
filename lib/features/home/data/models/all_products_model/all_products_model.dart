@@ -1,6 +1,7 @@
 // all_product_model.dart
 import 'package:camion/features/home/data/models/all_products_model/sub_models/add_to_cart.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/attribute.dart';
+import 'package:camion/features/home/data/models/all_products_model/sub_models/product_variations.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/prices_model.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/product_image.dart';
@@ -30,6 +31,7 @@ class AllProductModel {
   final List<Brand> brands;
   final List<Attribute> attributes;
   final List<Variation> variations;
+  final List<ProductVariations> productVariations;
   final bool hasOptions;
   final bool isPurchasable;
   final bool isInStock;
@@ -62,6 +64,7 @@ class AllProductModel {
     required this.brands,
     required this.attributes,
     required this.variations,
+    required this.productVariations,
     required this.hasOptions,
     required this.isPurchasable,
     required this.isInStock,
@@ -108,12 +111,17 @@ class AllProductModel {
       variations: (json['variations'] as List? ?? [])
           .map((v) => Variation.fromJson(v))
           .toList(),
+
+      productVariations: (json['variations'] as List? ?? [])
+          .map((v) => ProductVariations.fromJson(v))
+          .toList(),
       hasOptions: json['has_options'] ?? false,
       isPurchasable: json['is_purchasable'] ?? false,
       isInStock: json['is_in_stock'] ?? false,
       isOnBackorder: json['is_on_backorder'] ?? false,
-      stockAvailability:
-          StockAvailability.fromJson(json['stock_availability'] ?? {}),
+      stockAvailability: StockAvailability.fromJson(
+        json['stock_availability'] ?? {},
+      ),
       soldIndividually: json['sold_individually'] ?? false,
       addToCart: AddToCart.fromJson(json['add_to_cart'] ?? {}),
       isInCart: json['cart'],

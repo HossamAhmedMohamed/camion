@@ -24,13 +24,13 @@ class OrderResponse {
 
 class OrderData {
   final String sessionId;
-  final String skipCashPaymentUrl;
+
   final String orderId;
   final Order order;
 
   OrderData({
     required this.sessionId,
-    required this.skipCashPaymentUrl,
+
     required this.orderId,
     required this.order,
   });
@@ -38,7 +38,7 @@ class OrderData {
   factory OrderData.fromJson(Map<String, dynamic> json) {
     return OrderData(
       sessionId: json['sessionId'] ?? '',
-      skipCashPaymentUrl: json['skipCashPaymentUrl'] ?? '',
+
       orderId: json['orderId'] ?? '',
       order: Order.fromJson(json['order'] ?? {}),
     );
@@ -47,7 +47,7 @@ class OrderData {
   Map<String, dynamic> toJson() {
     return {
       'sessionId': sessionId,
-      'skipCashPaymentUrl': skipCashPaymentUrl,
+
       'orderId': orderId,
       'order': order.toJson(),
     };
@@ -71,8 +71,7 @@ class Order {
   final String? paidAt;
   final bool isDelivered;
   final String? deliveredAt;
-  final String stripeSessionId;
-  final String stripeCheckoutUrl;
+  final String skipCashPaymentUrl;
   final String createdAt;
   final String updatedAt;
 
@@ -93,8 +92,8 @@ class Order {
     required this.paidAt,
     required this.isDelivered,
     required this.deliveredAt,
-    required this.stripeSessionId,
-    required this.stripeCheckoutUrl,
+
+    required this.skipCashPaymentUrl,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -119,8 +118,8 @@ class Order {
       paidAt: json['paidAt'],
       isDelivered: json['isDelivered'] ?? false,
       deliveredAt: json['deliveredAt'],
-      stripeSessionId: json['stripeSessionId'] ?? '',
-      stripeCheckoutUrl: json['stripeCheckoutUrl'] ?? '',
+
+      skipCashPaymentUrl: json['skipCashPaymentUrl'] ?? '',
       createdAt: json['createdAt'] ?? '',
       updatedAt: json['updatedAt'] ?? '',
     );
@@ -144,8 +143,7 @@ class Order {
       'paidAt': paidAt,
       'isDelivered': isDelivered,
       'deliveredAt': deliveredAt,
-      'stripeSessionId': stripeSessionId,
-      'stripeCheckoutUrl': stripeCheckoutUrl,
+
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };

@@ -55,7 +55,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
 
       CategoriesModel(
         onTap: () {
-          context.read<GetOrdersCubit>().getOrderStatus(status: "complete");
+          context.read<GetOrdersCubit>().getOrders();
         },
         title: "Completed",
         image: Assets.imagesIconsCompleteIconNewww,
@@ -195,6 +195,8 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         isOrderPaied: order.isPaid,
                         isOrderShipped: order.isDelivered,
                         orderConfirmationTime: order.createdAt,
+                        orderPayingTime: order.paidAt,
+                        orderShippedTime: order.deliveredAt,
                         paidSubtitle: order.isPaid
                             ? "Your order has been successfully paid"
                             : "Your order has not been paid yet",

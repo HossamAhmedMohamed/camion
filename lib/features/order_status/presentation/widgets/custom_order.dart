@@ -18,6 +18,8 @@ class CustomOrder extends StatefulWidget {
     required this.isOrderShipped,
     required this.isOrderPaied,
     required this.orderConfirmationTime,
+    required this.orderPayingTime,
+    required this.orderShippedTime,
     required this.paidSubtitle,
     required this.shippedSubtitle,
     required this.orderId,
@@ -30,6 +32,8 @@ class CustomOrder extends StatefulWidget {
   final bool isOrderShipped;
   final bool isOrderPaied;
   final DateTime orderConfirmationTime;
+  final DateTime? orderPayingTime;
+  final DateTime? orderShippedTime;
   final String paidSubtitle;
   final String shippedSubtitle;
   final String orderId;
@@ -138,6 +142,8 @@ class _CustomOrderState extends State<CustomOrder> {
                             isOrderPaied: widget.isOrderPaied,
                             paidSubtitle: widget.paidSubtitle,
                             shippedSubtitle: widget.shippedSubtitle,
+                            orderPayingTime: widget.orderPayingTime,
+                            orderShippedTime: widget.orderShippedTime,
                           );
                         },
                         verticalPadding: 5.h,

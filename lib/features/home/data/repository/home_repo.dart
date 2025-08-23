@@ -5,6 +5,7 @@ import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/home/data/data_source/remote_data_source.dart';
 import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
+import 'package:camion/features/home/data/models/reviews_model/review_model.dart';
 import 'package:camion/features/home/data/models/slider_items/slider_item_model.dart';
 import 'package:camion/features/home/data/models/stories_model.dart/stories_model.dart';
 import 'package:dartz/dartz.dart';
@@ -163,6 +164,57 @@ class HomeRepository {
       );
       return Right(response.data);
     } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  // Future<Either<ApiErrorModel, dynamic>> canReview({
+  //   required String token,
+  //   required String productId,
+  // }) async {
+  //   try {
+  //     final response = await remoteDataSource.canReview(
+  //       token: token,
+  //       productId: productId,
+  //     );
+  //     return Right(response.data);
+  //   } catch (e) {
+  //     return left(ApiErrorHandler.handle(e));
+  //   }
+  // }
+
+  Future<Either<ApiErrorModel, dynamic>> createReview({
+    required int productId,
+    required String review,
+    required double rating,
+    required String reviewerName,
+    required String reviewerEmail,
+  }) async {
+    try {
+      final response = await remoteDataSource.createReview(
+        productId: productId,
+        review: review,
+        rating: rating,
+        reviewerName: reviewerName,
+        reviewerEmail: reviewerEmail,
+      );
+      return Right(response.data);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, List<ReviewModel>>> getReviews({
+    required String productId,
+  }) async {
+    try {
+      final response = await remoteDataSource.getReviews(productId: productId);
+      final List<ReviewModel> reviews = (response.data as List)
+          .map((review) => ReviewModel.fromJson(review))
+          .toList();
+      return Right(reviews);
+    } catch (e) {
+      log(e.toString());
       return left(ApiErrorHandler.handle(e));
     }
   }

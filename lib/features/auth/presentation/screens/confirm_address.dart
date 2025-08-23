@@ -34,6 +34,8 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
       TextEditingController();
   final TextEditingController shippingLastNameController =
       TextEditingController();
+  final TextEditingController shippingEmailController = TextEditingController();
+  final TextEditingController shippingPhoneController = TextEditingController();
   final TextEditingController shippingAddress1Controller =
       TextEditingController();
   final TextEditingController shippingAddress2Controller =
@@ -206,7 +208,6 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                       },
                     ),
 
-                   
                     const SizedBox(height: 24),
 
                     Text(
@@ -221,7 +222,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
 
                     CustomTextFormField(
                       hintText: "First Name",
-                      controller: firstNameController,
+                      controller: shippingFirstNameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your first name';
@@ -234,7 +235,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
 
                     CustomTextFormField(
                       hintText: "Last Name",
-                      controller: lastNameController,
+                      controller: shippingLastNameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your last name';
@@ -243,10 +244,36 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                       },
                     ),
 
+                    SizedBox(height: 10.h),
+
+                    CustomTextFormField(
+                      hintText: "Email",
+                      controller: shippingEmailController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        return null;
+                      },
+                    ),
+
+                    SizedBox(height: 10.h),
+
+                    CustomTextFormField(
+                      hintText: "Phone",
+                      controller: shippingPhoneController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your phone';
+                        }
+                        return null;
+                      },
+                    ),
+
                     const SizedBox(height: 10),
                     CustomTextFormField(
                       hintText: "Address 1",
-                      controller: address1Controller,
+                      controller: shippingAddress1Controller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your address';
@@ -258,7 +285,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                     const SizedBox(height: 10),
                     CustomTextFormField(
                       hintText: "Address 2",
-                      controller: address2Controller,
+                      controller: shippingAddress2Controller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your address';
@@ -269,16 +296,13 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
 
                     const SizedBox(height: 10),
 
-                     CountryStateCityWidget(
+                    CountryStateCityWidget(
                       cityController: shippingCityController,
                       stateController: shippingStateController,
                       countryController: shippingCountryController,
                     ),
 
                     // const SizedBox(height: 10),
-
-                   
-
                     const SizedBox(height: 24),
 
                     BlocConsumer<
@@ -334,6 +358,8 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                                             firstNameController.text,
                                         shippingLastName:
                                             lastNameController.text,
+                                        shippingEmail: emailController.text,
+                                        shippingPhone: phoneController.text,
                                         shippingAddress1:
                                             address1Controller.text,
                                         shippingAddress2:
