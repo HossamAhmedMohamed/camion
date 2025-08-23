@@ -72,8 +72,8 @@ class OrderStatusItemWidget extends StatelessWidget {
                       ),
                     ),
 
-                    Text(
-                      DateFormat('h:mm a').format(item.time ?? DateTime.now()),
+                    item.time == null ? Container() :  Text(
+                      DateFormat('h:mm a').format(item.time!),
                       style: AppStyle.styleRegular14(
                         context,
                       ).copyWith(color: AppColors.gray.withAlpha(178)),

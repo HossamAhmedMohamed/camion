@@ -20,6 +20,8 @@ class OrderStatusItemModel {
 void showOrderTrackingModal(
   BuildContext context, {
   required DateTime orderConfirmingTime,
+  required DateTime? orderPayingTime,
+  required DateTime? orderShippedTime,
   required bool isOrderShipped,
   required bool isOrderPaied,
   required String paidSubtitle,
@@ -43,12 +45,13 @@ void showOrderTrackingModal(
       title: "Order Paid",
       subtitle: paidSubtitle,
       isCompleted: isOrderPaied,
+      time: orderPayingTime
     ),
 
     OrderStatusItemModel(
       title: "Order Delivered",
       subtitle: shippedSubtitle,
-      // time: "",
+      time: orderShippedTime,
       isCompleted: isOrderShipped,
     ),
   ];

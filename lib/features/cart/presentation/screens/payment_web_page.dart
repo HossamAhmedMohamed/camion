@@ -25,11 +25,12 @@ class _PaymentWebViewPageState extends State<PaymentWebViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarHeight: 50.h,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   toolbarHeight: 50.h,
+      // ),
       body: Stack(
         children: [
           InAppWebView(

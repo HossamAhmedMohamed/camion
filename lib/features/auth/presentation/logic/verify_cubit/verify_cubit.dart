@@ -1,5 +1,6 @@
+
+
 import 'package:camion/core/api/api_error_model.dart';
-import 'package:camion/core/cache/cache_helper.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/features/auth/data/models/verify_model/verify_model.dart';
@@ -27,7 +28,7 @@ class VerifyCubit extends Cubit<VerifyState> {
         sl<SecureCacheHelper>().saveData(key: 'token', value: r.accessToken),
         sl<SecureCacheHelper>().saveData(key: 'id', value: r.user.id),
         sl<SecureCacheHelper>().saveData(key: 'userRole', value: r.user.role),
-        sl<CacheHelper>().saveData(key: 'userName', value: r.user.fullName),
+        sl<SecureCacheHelper>().saveData(key: 'userName', value: r.user.fullName),
       ]);
       emit(VerifyLoaded(verifyModel: r));
     });

@@ -70,10 +70,10 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
                   Expanded(
                     child: Text(
                       widget.title,
-                      style: AppStyle.styleBold14(
+                      style: AppStyle.styleRegular18(
                         context,
                       ).copyWith(color: Colors.black),
-                      textAlign: TextAlign.right,
+                      textAlign: TextAlign.left,
                     ),
                   ),
 
@@ -122,7 +122,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
                   style: AppStyle.styleBold14(
                     context,
                   ).copyWith(color: AppColors.gray),
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.left,
                 ),
               ),
             ),

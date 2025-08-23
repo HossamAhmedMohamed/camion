@@ -5,6 +5,8 @@ class OrderModel {
   final String id;
   final String userId;
   final DateTime createdAt;
+  final DateTime? paidAt;
+  final DateTime? deliveredAt;
   final List<OrderItemModel> items;
   final String paymentMethod;
   final bool isDelivered;
@@ -16,6 +18,8 @@ class OrderModel {
     required this.id,
     required this.userId,
     required this.createdAt,
+    required this.paidAt,
+    required this.deliveredAt,
     required this.items,
     required this.paymentMethod,
     required this.isDelivered,
@@ -32,6 +36,10 @@ class OrderModel {
           .map((item) => OrderItemModel.fromJson(item))
           .toList(),
       createdAt: DateTime.parse(json['createdAt']),
+      paidAt: json['paidAt'] != null ? DateTime.parse(json['paidAt']) : null,
+      deliveredAt: json['deliveredAt'] != null
+          ? DateTime.parse(json['deliveredAt'])
+          : null,
       paymentMethod: json['payment_method'] ?? '',
       isDelivered: json['isDelivered'] ?? false,
       isPaid: json['isPaid'] ?? false,

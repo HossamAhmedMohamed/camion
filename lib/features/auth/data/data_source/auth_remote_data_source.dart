@@ -54,6 +54,8 @@ class AuthRemoteDataSource {
     required String country,
     required String shippingFirstName,
     required String shippingLastName,
+    required String shippingEmail,
+    required String shippingPhone,
     required String shippingAddress1,
     required String shippingAddress2,
     required String shippingCity,
@@ -62,7 +64,7 @@ class AuthRemoteDataSource {
     required String shippingCountry,
   }) async {
     final response = await apiConsumer.post(
-      "https://api-gateway.camion-app.com/users/shipping-address",
+      "https://api-gateway.camion-app.com/users/address/update",
       data: {
         "first_name": firstName,
         "last_name": lastName,
@@ -77,6 +79,8 @@ class AuthRemoteDataSource {
         "shipping_address": {
           "first_name": shippingFirstName,
           "last_name": shippingLastName,
+          "email": shippingEmail,
+          "phone": shippingPhone,
           "address_1": shippingAddress1,
           "address_2": shippingAddress2,
           "city": shippingCity,
