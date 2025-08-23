@@ -29,4 +29,24 @@ class ProfileRemoteDataSource {
     );
     return response;
   }
+  Future<Response> getWalletBalance({
+    required String token,
+  }) async {
+    final response = await apiConsumer.get(
+      "https://api-gateway.camion-app.com/affiliates/wallet",
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return response;
+  }
+
+
+  Future<Response> getAllTransactions({
+    required String token,
+  }) async {
+    final response = await apiConsumer.get(
+      "https://api-gateway.camion-app.com/affiliates/wallet/transactions",
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return response;
+  }
 }
