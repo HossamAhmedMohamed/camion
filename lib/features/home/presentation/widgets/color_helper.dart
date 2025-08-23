@@ -105,6 +105,7 @@ class ColorDetectionService {
     "dust": Color(0xFFD2B48C),
     "stone": Color(0xFF928E85),
     "rock": Color(0xFF71797E),
+    "Cocoa" : Color(0xFFD2691E),
   };
 
   // 2. قاموس للكلمات المركبة والعبارات الشائعة
@@ -127,6 +128,7 @@ class ColorDetectionService {
     "dark red": Color(0xFF8B0000),
     "wine red": Color(0xFF722F37),
     "burgundy red": Color(0xFF800020),
+    "Cocoa" : Color(0xFFD2691E),
   };
 
   // 3. الدالة الرئيسية لاستخراج اللون
@@ -234,7 +236,7 @@ class ColorDetectionService {
       }
       
       // كلمات تدل على البني
-      if (['chestnut', 'walnut', 'wood', 'chocolate', 'coffee'].contains(word)) {
+      if (['chestnut', 'walnut', 'wood', 'chocolate', 'coffee ' , "cocoa"].contains(word)) {
         return const Color(0xFF954535);
       }
       

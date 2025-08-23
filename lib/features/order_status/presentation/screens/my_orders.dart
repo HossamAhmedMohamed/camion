@@ -150,6 +150,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                     child: GestureDetector(
                       onTap: () {
                         final extra = {
+                          'currency': order.currencyCode,
                           'items': state.orders[index].items,
                           'numberOfOrder': order.id,
                           'totalPrice': totalPrice.toStringAsFixed(2),
@@ -168,6 +169,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         ).push(AppRouter.orderDetailsScreen, extra: extra);
                       },
                       child: CustomOrder(
+                        currencyCode: order.currencyCode,
                         orderId: order.worderId,
                         numberOfRequest: order.id,
                         totalPrice: totalPrice.toStringAsFixed(2),
@@ -175,6 +177,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         date: order.createdAt,
                         onTapOnOrderDetails: () {
                           final extra = {
+                            'currency': order.currencyCode,
                             'items': state.orders[index].items,
                             'numberOfOrder': order.id,
                             'totalPrice': totalPrice.toStringAsFixed(2),

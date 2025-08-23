@@ -29,38 +29,47 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
   @override
   void initState() {
     super.initState();
-    // تهيئة أول variation إذا كانت متاحة
-    // if (widget.variations.isNotEmpty) {
-    //   _selectVariation(widget.variations.first);
-    // }
   }
-
-  // void _selectVariation(ProductVariations variation) {
-  //   setState(() {
-  //     selectedVariation = variation;
-  //     selectedAttributes.clear();
-  //     // تحديث الخصائص المحددة بناءً على ال variation المختار
-  //     for (var attr in variation.attributes) {
-  //       selectedAttributes[attr.name] = attr.option;
-  //     }
-  //   });
-  //   _notifyParent();
-  // }
 
   void _updateSelection(String attrName, String option) {
     setState(() {
       selectedAttributes[attrName] = option;
     });
     
-     
-    final matchingVariation = _findMatchingVariation();
-    if (matchingVariation != null) {
-      selectedVariation = matchingVariation;
+    // إذا كان التغيير في اللون، نبحث عن variation يطابق اللون فقط
+    if (attrName.toLowerCase() == 'color' || attrName.toLowerCase().contains('color')) {
+      final matchingVariation = _findMatchingVariationByColor(option);
+      if (matchingVariation != null) {
+        selectedVariation = matchingVariation;
+      }
+    } else {
+      // للـ attributes الأخرى، نبحث عن variation يطابق كل الخصائص المحددة
+      final matchingVariation = _findMatchingVariation();
+      if (matchingVariation != null) {
+        selectedVariation = matchingVariation;
+      }
     }
     
     _notifyParent();
   }
 
+  // دالة للبحث عن variation بناءً على اللون فقط
+  ProductVariations? _findMatchingVariationByColor(String colorOption) {
+    for (var variation in widget.variations) {
+      if (variation.stockStatus != 'instock') continue;
+      
+      // البحث عن attribute اللون في هذا الـ variation
+      for (var attr in variation.attributes) {
+        if ((attr.name.toLowerCase() == 'color' || attr.name.toLowerCase().contains('color')) 
+            && attr.option == colorOption) {
+          return variation;
+        }
+      }
+    }
+    return null;
+  }
+
+  // الدالة الأصلية للبحث عن variation يطابق جميع الخصائص
   ProductVariations? _findMatchingVariation() {
     for (var variation in widget.variations) {
       bool matches = true;
@@ -89,12 +98,9 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
   }
 
   void _notifyParent() {
-    // إرسال الـ variation المطابق للـ parent
     widget.onSelectionChanged?.call(selectedAttributes, counter, selectedVariation);
   }
 
-
-   
   Map<String, Set<String>> _getAvailableAttributes() {
     Map<String, Set<String>> attributes = {};
     
@@ -117,14 +123,11 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       children: [
         _buildCounterSection(),
         SizedBox(height: 20.h),
-        // _buildSelectedVariationInfo(),
         SizedBox(height: 20.h),
         _buildAttributesSections(),
       ],
     );
   }
-
-   
 
   Widget _buildAttributesSections() {
     final availableAttributes = _getAvailableAttributes();
@@ -144,7 +147,24 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     );
   }
 
+  // تحديث دالة التحقق من توفر الخيار للألوان
   bool _isOptionAvailable(String attrName, String option) {
+    // للألوان، نتحقق من وجود أي variation يحتوي على هذا اللون
+    if (attrName.toLowerCase() == 'color' || attrName.toLowerCase().contains('color')) {
+      for (var variation in widget.variations) {
+        if (variation.stockStatus != 'instock') continue;
+        
+        for (var attr in variation.attributes) {
+          if ((attr.name.toLowerCase() == 'color' || attr.name.toLowerCase().contains('color')) 
+              && attr.option == option) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    
+    // للـ attributes الأخرى، نستخدم نفس المنطق القديم
     Map<String, String> tempAttributes = Map.from(selectedAttributes);
     tempAttributes[attrName] = option;
     
@@ -164,16 +184,13 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     return false;
   }
 
-  // استخدام ColorDetectionService بدلاً من الدالة القديمة
   Color? getColorFromNameOrHex(String colorName) {
-    // محاولة الحصول على اللون من النص باستخدام ColorDetectionService
     Color? detectedColor = ColorDetectionService.getColorFromText(colorName);
     
     if (detectedColor != null) {
       return detectedColor;
     }
     
-    // التحقق من hex colors كما كان من قبل
     final lower = colorName.toLowerCase().trim();
     if (lower.startsWith('#') && (lower.length == 7 || lower.length == 9)) {
       try {
@@ -181,7 +198,6 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       } catch (_) {}
     }
     
-    // إرجاع لون افتراضي بناءً على النص
     return ColorDetectionService.getDefaultColorByIndex(colorName.hashCode.abs());
   }
 
@@ -204,7 +220,6 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
             final bool isSelected = selectedAttributes[attrName] == option;
             final bool isAvailable = _isOptionAvailable(attrName, option);
             
-            // الحصول على اللون باستخدام الخدمة الجديدة
             final color = isColor ? getColorFromNameOrHex(option) : null;
 
             return GestureDetector(
@@ -212,7 +227,7 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
               child: Opacity(
                 opacity: isAvailable ? 1.0 : 0.5,
                 child: color != null
-                    ? buildColorBox(color, isSelected, option) // إضافة النص كمعامل
+                    ? buildColorBox(color, isSelected, option)
                     : buildTextBox(option, isSelected, isAvailable),
               ),
             );
@@ -223,7 +238,6 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
     );
   }
 
-  // تحسين buildColorBox لإظهار النص أيضاً
   Widget buildColorBox(Color color, bool isSelected, String colorName) {
     return Column(
       children: [
@@ -234,7 +248,7 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
             color: color,
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(
-              color: Colors.black54  ,
+              color: Colors.black54,
               width: isSelected ? 2 : 1,
             ),
           ),
@@ -246,27 +260,11 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
                 )
               : null,
         ),
-
-        // SizedBox(height: 5.h),
-        // SizedBox(
-        //   width: 45.w,
-        //   child: Text(
-        //     maxLines: 2,
-        //     overflow: TextOverflow.ellipsis,
-        //     colorName,
-        //     style: TextStyle(
-        //       fontSize: 12.sp,
-        //       color: isSelected ? Colors.black : Colors.grey,
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }
 
-  // دالة مساعدة للحصول على لون متباين للنص
   Color _getContrastColor(Color color) {
-    // حساب السطوع
     double brightness = (color.red * 299 + color.green * 587 + color.blue * 114) / 1000;
     return brightness > 128 ? Colors.black : Colors.white;
   }

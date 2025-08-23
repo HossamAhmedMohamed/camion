@@ -4,6 +4,7 @@ class OrderModel {
   final String worderId;
   final String id;
   final String userId;
+  final String currencyCode;
   final DateTime createdAt;
   final DateTime? paidAt;
   final DateTime? deliveredAt;
@@ -14,6 +15,7 @@ class OrderModel {
   final CustomerDataModel? customerData; // ✅ جديد
 
   OrderModel({
+    required this.currencyCode,
     required this.worderId,
     required this.id,
     required this.userId,
@@ -29,6 +31,7 @@ class OrderModel {
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
+      currencyCode: json['currency'] ?? '',
       worderId: json['wcOrderId'] ?? '',
       id: json['id'] ?? '',
       userId: json['userId'] ?? '',

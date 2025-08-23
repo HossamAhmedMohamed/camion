@@ -154,6 +154,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                             imageUrl: product.images.isEmpty
                                 ? ''
                                 : product.images[0].thumbnail,
+                                currencyCode: product.prices.currencyCode,
                             productName: product.name,
                             originalPrice: product.prices.price.toString(),
                             outPrice: product.prices.regularPrice,

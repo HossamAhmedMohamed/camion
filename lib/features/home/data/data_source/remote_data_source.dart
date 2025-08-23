@@ -68,6 +68,13 @@ class HomeRemoteDataSource {
     return response;
   }
 
+  Future<Response> getSubCategories({required int id}) async {
+    final response = await apiConsumer.get(
+      "https://buckydrop.camion-app.com/api/categories/$id",
+    );
+    return response;
+  }
+
   Future<Response> getProductsByCategory({required String slug}) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/${EndPoints.products}",
@@ -107,13 +114,11 @@ class HomeRemoteDataSource {
   // }
 
   Future<Response> createReview({
-   
     required int productId,
     required String review,
     required double rating,
     required String reviewerName,
     required String reviewerEmail,
-     
   }) async {
     final response = await apiConsumer.post(
       "https://buckydrop.camion-app.com/api/products/reviews",
@@ -122,19 +127,16 @@ class HomeRemoteDataSource {
         "review": review,
         "rating": rating,
         "reviewer": reviewerName,
-        "reviewer_email": reviewerEmail
+        "reviewer_email": reviewerEmail,
       },
     );
     return response;
   }
 
-  Future<Response> getReviews({
-     
-    required String productId,
-  }) async {
+  Future<Response> getReviews({required String productId}) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/products/reviews",
-     
+
       queryParameters: {"product": productId},
     );
     return response;

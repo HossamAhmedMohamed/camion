@@ -17,7 +17,7 @@ class GridItemBuilding extends StatelessWidget {
   final String outPrice;
   final String productId;
   final VoidCallback onTap;
-
+  final String currencyCode;
   const GridItemBuilding({
     super.key,
     required this.imageUrl,
@@ -28,6 +28,7 @@ class GridItemBuilding extends StatelessWidget {
     required this.reviewCount,
     required this.outPrice,
     required this.productId,
+    required this.currencyCode,
   });
 
   @override
@@ -107,14 +108,22 @@ class GridItemBuilding extends StatelessWidget {
                                 context,
                               ).copyWith(color: AppColors.primaryColor),
                             ),
+
                             SizedBox(width: 5.w),
                             Text(
-                              outPrice,
-                              style: AppStyle.styleRegular12(context).copyWith(
-                                color: AppColors.gray,
-                                decoration: TextDecoration.lineThrough,
-                              ),
+                              currencyCode,
+                              style: AppStyle.styleBold16(
+                                context,
+                              ).copyWith(color: AppColors.primaryColor),
                             ),
+                            // SizedBox(width: 5.w),
+                            // Text(
+                            //   "$outPrice $currencyCode",
+                            //   style: AppStyle.styleRegular12(context).copyWith(
+                            //     color: AppColors.gray,
+                            //     decoration: TextDecoration.lineThrough,
+                            //   ),
+                            // ),
                           ],
                         ),
 

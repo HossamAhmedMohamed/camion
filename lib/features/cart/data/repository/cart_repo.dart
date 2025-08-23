@@ -13,14 +13,14 @@ class CartRepository {
     required String token,
     required String productId,
     required int quantity,
-    required List<dynamic> variations
+    required List<dynamic> variations,
   }) async {
     try {
       final response = await cartRemoteDataSource.addToCart(
         token: token,
         productId: productId,
         quantity: quantity,
-        variations: variations
+        variations: variations,
       );
       return Right(response.data);
     } catch (e) {
@@ -55,7 +55,7 @@ class CartRepository {
         productId: productId,
         quantity: quantity,
       );
-       
+
       return Right(GetCartModel.fromJson(response.data));
     } catch (e) {
       return left(ApiErrorHandler.handle(e));
@@ -72,6 +72,21 @@ class CartRepository {
         productId: productId,
       );
       return Right(GetCartModel.fromJson(response.data));
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, dynamic>> applyCoupon({
+    required String token,
+    required String code,
+  }) async {
+    try {
+      final response = await cartRemoteDataSource.applyCoupon(
+        token: token,
+        code: code,
+      );
+      return Right(response.data);
     } catch (e) {
       return left(ApiErrorHandler.handle(e));
     }
