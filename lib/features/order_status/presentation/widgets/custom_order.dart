@@ -23,6 +23,7 @@ class CustomOrder extends StatefulWidget {
     required this.paidSubtitle,
     required this.shippedSubtitle,
     required this.orderId,
+    required this.currencyCode,
   });
   final String numberOfRequest;
   final String totalPrice;
@@ -37,6 +38,7 @@ class CustomOrder extends StatefulWidget {
   final String paidSubtitle;
   final String shippedSubtitle;
   final String orderId;
+  final String currencyCode;
 
   @override
   State<CustomOrder> createState() => _CustomOrderState();
@@ -109,6 +111,18 @@ class _CustomOrderState extends State<CustomOrder> {
               Text(
                 widget.totalPrice,
                 style: AppStyle.styleRegular18(context).copyWith(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.w600,
+                ),
+
+              
+              ),
+
+              SizedBox(width: 5.w),
+
+              Text(
+                widget.currencyCode,
+                style: AppStyle.styleRegular16(context).copyWith(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.w600,
                 ),

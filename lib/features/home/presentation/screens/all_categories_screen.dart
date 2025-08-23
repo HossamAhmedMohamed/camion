@@ -88,11 +88,15 @@ class AllCategoriesScreen extends StatelessWidget {
                     children: List.generate(categories.length, (index) {
                       return GestureDetector(
                         onTap: () {
-                          GoRouter.of(context).push(
-                            AppRouter.productByCategory,
-                            extra: categories[index].name,
-                          );
-                        },
+                                final slug = categories[index].name;
+                                final id = categories[index].id;
+                                GoRouter.of(context).push(
+                                  AppRouter.productByCategory,
+                                  extra: {
+                                    "slug": slug,
+                                    "id": id,},
+                                );
+                              },
                         // onTap: categories[index].,
                         child: Container(
                           width: screenWidth > 800 ? 140.w : 80.w,

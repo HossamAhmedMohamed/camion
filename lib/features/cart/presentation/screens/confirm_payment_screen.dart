@@ -5,6 +5,7 @@ import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/apply_coupon_cubit/apply_coupon_cubit.dart';
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
 import 'package:camion/features/cart/presentation/widgets/confirmation_products.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
@@ -25,6 +26,14 @@ class ConfirmPaymentScreen extends StatefulWidget {
 }
 
 class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
+  final TextEditingController _couponController = TextEditingController();
+
+  @override
+  void dispose() {
+    _couponController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -115,9 +124,10 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                   SizedBox(height: 30.h),
                   Row(
                     children: [
-                      const Expanded(
+                      Expanded(
                         flex: 2,
                         child: CustomTextFormField(
+                          controller: _couponController,
                           hintText: "Enter Coupon Code",
                         ),
                       ),
@@ -125,27 +135,74 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                       Expanded(
                         child: SizedBox(
                           height: 52.h,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16.r),
-                                side: const BorderSide(
-                                  color: AppColors.primaryColor,
-                                  width: 1.5,
-                                ),
+                          child:
+                              BlocConsumer<ApplyCouponCubit, ApplyCouponState>(
+                                listener: (context, state) {
+                                  if (state is ApplyCouponSuccess) {
+                                    Fluttertoast.showToast(
+                                      msg: "Coupon applied successfully",
+                                      gravity: ToastGravity.TOP,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white,
+                                    );
+                                  }
+
+                                  if (state is ApplyCouponError) {
+                                    Fluttertoast.showToast(
+                                      msg: state.error.message,
+                                      gravity: ToastGravity.TOP,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                    );
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return ElevatedButton(
+                                    onPressed: state is ApplyCouponLoading
+                                        ? () {}
+                                        : () {
+                                            if (_couponController
+                                                .text
+                                                .isNotEmpty) {
+                                              context
+                                                  .read<ApplyCouponCubit>()
+                                                  .applyCoupon(
+                                                    code:
+                                                        _couponController.text,
+                                                  );
+                                            }
+                                          },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          16.r,
+                                        ),
+                                        side: const BorderSide(
+                                          color: AppColors.primaryColor,
+                                          width: 1.5,
+                                        ),
+                                      ),
+                                    ),
+                                    child: state is ApplyCouponLoading
+                                        ? const CircularProgressIndicator(
+                                            color: AppColors.primaryColor,
+                                          )
+                                        : FittedBox(
+                                            child: Text(
+                                              "Confirm",
+                                              style:
+                                                  AppStyle.styleBold16(
+                                                    context,
+                                                  ).copyWith(
+                                                    color:
+                                                        AppColors.primaryColor,
+                                                  ),
+                                            ),
+                                          ),
+                                  );
+                                },
                               ),
-                            ),
-                            child: FittedBox(
-                              child: Text(
-                                "Confirm",
-                                style: AppStyle.styleBold16(
-                                  context,
-                                ).copyWith(color: AppColors.primaryColor),
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ],
@@ -178,7 +235,8 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                       GoRouter.of(context).push(
                         AppRouter.paymentWebPage,
                         extra: {
-                          "checkoutUrl": state.order.data.order.skipCashPaymentUrl,
+                          "checkoutUrl":
+                              state.order.data.order.skipCashPaymentUrl,
                         },
                       );
                     }

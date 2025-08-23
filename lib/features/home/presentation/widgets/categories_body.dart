@@ -118,10 +118,13 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                           ) {
                             return GestureDetector(
                               onTap: () {
-                                final extra = categoriesWithImages[index].name;
+                                final slug = categoriesWithImages[index].name;
+                                final id = categoriesWithImages[index].id;
                                 GoRouter.of(context).push(
                                   AppRouter.productByCategory,
-                                  extra: extra,
+                                  extra: {
+                                    "slug": slug,
+                                    "id": id,},
                                 );
                               },
                               child: Container(

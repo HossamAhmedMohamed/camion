@@ -183,12 +183,12 @@ class HomeScreenBodyState extends State<HomeScreenBody>
           ),
 
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: 100.h,
-              child: BlocBuilder<StoriesCubit, StoriesState>(
-                builder: (context, state) {
-                  if (state is StoriesLoading) {
-                    return ListView.builder(
+            child: BlocBuilder<StoriesCubit, StoriesState>(
+              builder: (context, state) {
+                if (state is StoriesLoading) {
+                  return SizedBox(
+                    height: 100.h,
+                    child: ListView.builder(
                       padding: EdgeInsets.only(right: 16.w),
                       scrollDirection: Axis.horizontal,
                       itemCount: 10,
@@ -215,11 +215,14 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                           ),
                         );
                       },
-                    );
-                  }
-
-                  if (state is StoriesLoaded) {
-                    return ListView.builder(
+                    ),
+                  );
+                }
+            
+                if (state is StoriesLoaded) {
+                  return SizedBox(
+                    height: state.storiesList.isEmpty ? 0.h : 100.h,
+                    child: ListView.builder(
                       padding: EdgeInsets.only(right: 16.w),
                       scrollDirection: Axis.horizontal,
                       itemCount: state.storiesList.length,
@@ -267,7 +270,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                                       child: ClipOval(
                                         child: CachedNetworkImage(
                                           height: 60.h,
-
+                                
                                           imageUrl:
                                               state.storiesList[index].mediaUrl,
                                           fit: BoxFit.cover,
@@ -293,12 +296,12 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                           ),
                         );
                       },
-                    );
-                  }
-
-                  return const SizedBox();
-                },
-              ),
+                    ),
+                  );
+                }
+            
+                return const SizedBox();
+              },
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 10.h)),

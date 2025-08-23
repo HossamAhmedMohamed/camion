@@ -13,6 +13,7 @@ import 'package:camion/features/auth/presentation/screens/register_screen.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
 import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/apply_coupon_cubit/apply_coupon_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/auth/presentation/screens/confirm_address.dart';
@@ -220,6 +221,10 @@ class RouterGenerator {
                 create: (context) =>
                     CreateOrderCubit(sl<OrderStatusRepository>()),
               ),
+
+              BlocProvider(
+                create: (context) => ApplyCouponCubit(sl<CartRepository>()),
+              ),
             ],
             child: ConfirmPaymentScreen(cartList: extra),
           );
@@ -400,6 +405,7 @@ class RouterGenerator {
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
           return OrderDetailsScreen(
+            currency: extra['currency'] as String,
             items: extra['items'] as List<OrderItemModel>,
             numberOfOrder: extra['numberOfOrder'] as String,
             orderDate: extra['orderDate'] as DateTime,
@@ -474,8 +480,8 @@ class RouterGenerator {
         name: AppRouter.productByCategory,
         path: AppRouter.productByCategory,
         builder: (context, state) {
-          final extra = state.extra as String;
-          return ProductsByCategoryScreen(slug: extra);
+          final extra = state.extra as Map<String, dynamic>;
+          return ProductsByCategoryScreen(slug: extra['slug'], id: extra['id']);
         },
       ),
 

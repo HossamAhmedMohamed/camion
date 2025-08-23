@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -10,7 +8,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CamionOffers extends StatelessWidget {
   const CamionOffers({super.key, required this.pageController});
@@ -57,7 +57,6 @@ class CamionOffers extends StatelessWidget {
             }
 
             if (state is GetAllSlidersLoaded) {
-              log(state.slidersList[0].imageUrl.toString());
               final sliderList = state.slidersList;
               return Column(
                 children: [
@@ -70,13 +69,63 @@ class CamionOffers extends StatelessWidget {
                               ? 15.w
                               : 0,
                         ),
-                        child: SizedBox(
-                          height: 162.h,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12.r),
-                            child: CustomCachedNetworkImage(
-                              imageUrl: state.slidersList[index].imageUrl,
-                              fit: BoxFit.cover,
+                        child: GestureDetector(
+                          onTap: () async {
+                            final url = state.slidersList[index].description;
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                              await launchUrl(
+                                Uri.parse(url),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            } else {
+                              Fluttertoast.showToast(
+                                gravity: ToastGravity.TOP,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                msg: "Could not launch $url",
+                              );
+                            }
+                          },
+                          child: SizedBox(
+                            height: 162.h,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.r),
+                              child: Stack(
+                                children: [
+                                  CustomCachedNetworkImage(
+                                    imageUrl: state.slidersList[index].imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+
+                                  Positioned(
+                                    right: 0.w,
+                                    top: 10.h,
+                                    child: Transform.rotate(
+                                      angle: 0.4,
+                                      child: Container(
+                                        padding: EdgeInsets.all(10.r),
+                                        decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              50.r,
+                                            ),
+                                          ),
+                                          color: AppColors.primaryColor,
+                                        ),
+                                        child: Transform.rotate(
+                                          angle: 0,
+                                          child: Text(
+                                            "${state.slidersList[index].discount}% offer",
+                                            style: AppStyle.styleRegular14(
+                                              context,
+                                            ).copyWith(color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

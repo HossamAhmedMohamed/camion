@@ -1,4 +1,4 @@
-import 'dart:developer';
+ 
 
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/config/widgets/custom_expansion_tile.dart';
@@ -11,7 +11,6 @@ import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
 import 'package:camion/features/home/data/models/all_products_model/all_products_model.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/product_variations.dart';
-import 'package:camion/features/home/data/models/product_id_details_model/product_id_details_model.dart';
 import 'package:camion/features/home/presentation/logic/cubit/create_review_cubit/create_review_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/get_review_cubit/get_review_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/product_id_detailscubit/product_id_details_cubit.dart';
@@ -476,12 +475,23 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             ),
                                       ),
 
+                                      SizedBox(width: 4.w),
+
+                                      Text(
+                                        product.prices.currencyCode,
+                                        style: AppStyle.styleRegular16(context)
+                                            .copyWith(
+                                              fontWeight: FontWeight.w900,
+                                              color: AppColors.primaryColor,
+                                            ),
+                                      ),
+
                                       SizedBox(width: 8.w),
                                       Text(
-                                        double.parse(
+                                        "${double.parse(
                                           displayData['regularPrice']
                                               .toString(),
-                                        ).toStringAsFixed(2),
+                                        ).toStringAsFixed(2)} ${product.prices.currencyCode}",
                                         style: AppStyle.styleRegular15(context)
                                             .copyWith(
                                               color: AppColors.gray,
@@ -598,7 +608,6 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                                   const SizedBox(height: 20),
 
-                                 
                                   ProductsSelectionOptions(
                                     variations: product.productVariations,
                                     onSelectionChanged:

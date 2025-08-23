@@ -23,6 +23,7 @@ class ListViewItemBuilding extends StatefulWidget {
     required this.outPrice,
     required this.averageRating,
     required this.reviewCount,
+    required this.currencyCode,
   });
 
   final String imageUrl;
@@ -34,6 +35,7 @@ class ListViewItemBuilding extends StatefulWidget {
   final VoidCallback onAddToWishListTap;
   final String averageRating;
   final String reviewCount;
+  final String currencyCode;
 
   @override
   State<ListViewItemBuilding> createState() => _ListViewItemBuildingState();
@@ -171,14 +173,26 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                       context,
                     ).copyWith(color: AppColors.primaryColor),
                   ),
+
+                  SizedBox(width: 4.w),
+
+                  Text(
+                    widget.currencyCode,
+                    style: AppStyle.styleRegular16(context).copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
                   SizedBox(width: 8.w),
                   Text(
-                    widget.outPrice,
+                    "${widget.outPrice} ${widget.currencyCode} ",
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,
                       decoration: TextDecoration.lineThrough,
                     ),
                   ),
+
+                  SizedBox(width: 4.w),
                 ],
               ),
 

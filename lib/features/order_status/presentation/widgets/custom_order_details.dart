@@ -14,12 +14,14 @@ class CustomOrderDetails extends StatelessWidget {
     required this.variations,
     required this.total,
     required this.quantity,
+    required this.currency,
   });
   final String image;
   final String title;
   final List<Variation> variations;
   final String total;
   final String quantity;
+  final String currency;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -124,6 +126,17 @@ class CustomOrderDetails extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+
+                  SizedBox(width: 5.w),
+
+                  Text(
+                    currency,
+                    style: AppStyle.styleRegular16(context).copyWith(
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+
                 ],
               ),
 

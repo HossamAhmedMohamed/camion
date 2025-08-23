@@ -18,9 +18,11 @@ class ProfileNotaffiliateShown extends StatelessWidget {
 
         SizedBox(width: 10.w),
 
-        Text(
-          "You are not subscribed to affiliate marketing",
-          style: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
+        Expanded(
+          child: Text(
+            "You are not subscribed to affiliate marketing",
+            style: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
+          ),
         ),
         SizedBox(width: 10.w),
         Container(

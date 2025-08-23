@@ -110,6 +110,21 @@ class HomeRepository {
     }
   }
 
+  Future<Either<ApiErrorModel, List<GeTCategoriesModel>>> getSubCategories({
+    required int id,
+  }) async {
+    try {
+      final response = await remoteDataSource.getSubCategories(id: id);
+      final products = (response.data["subcategories"] as List)
+          .map((product) => GeTCategoriesModel.fromJson(product))
+          .toList();
+      return Right(products);
+    } catch (e) {
+      log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
   Future<Either<ApiErrorModel, List<AllProductModel>>> getProductsByCategory({
     required String slug,
   }) async {

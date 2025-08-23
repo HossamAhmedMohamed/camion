@@ -59,7 +59,7 @@ class SliverListViewBuilding extends StatelessWidget {
                       imageUrl: product.images.isEmpty?  '' : product.images[0].thumbnail  ,
                       productName: product.name,
                       originalPrice: product.prices.price.toString(),
-
+                      currencyCode: product.prices.currencyCode,
                       isGridView: false,
                       onAddToCartTap: () {
                         // context.read<AddCartCubit>().addToCart(

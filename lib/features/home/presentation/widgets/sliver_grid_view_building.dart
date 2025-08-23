@@ -87,6 +87,7 @@ class SliverGridViewBuilding extends StatelessWidget {
                     reviewCount: product.reviewCount.toString(),
                     averageRating: product.averageRating,
                     productId: product.id.toString(),
+                    currencyCode: product.prices.currencyCode,
                     imageUrl: product.images.isEmpty?  '' : product.images[0].thumbnail  ,
                     productName: product.name,
                     originalPrice: product.prices.price.toString(),

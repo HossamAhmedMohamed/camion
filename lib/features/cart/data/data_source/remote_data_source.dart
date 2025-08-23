@@ -56,4 +56,16 @@ class CartRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> applyCoupon({
+    required String token,
+    required String code,
+  }) async {
+    final response = await apiConsumer.post(
+      "https://api-gateway.camion-app.com/cart/apply-coupon",
+      headers: {"Authorization": "Bearer $token"},
+      data: {"couponCode": code},
+    );
+    return response;
+  }
 }

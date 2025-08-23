@@ -21,12 +21,14 @@ class OrderDetailsScreen extends StatelessWidget {
     required this.deliveryCost,
     required this.paymentMethod,
     required this.shippingAddress,
+    required this.currency,
   });
 
   final List<OrderItemModel> items;
   final String numberOfOrder;
   final DateTime orderDate;
   final String totalPrice;
+  final String currency;
   final String deliveryCost;
   final String paymentMethod;
   final String shippingAddress;
@@ -207,6 +209,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     );
                   },
                   child: CustomOrderDetails(
+                    currency: currency,
                     image: items[index].image,
                     title: items[index].title,
                     variations: items[index].variation,
@@ -261,11 +264,13 @@ class OrderDetailsScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
 
                           Text(
-                            totalPrice,
+                            "$totalPrice $currency",
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.black),
                           ),
+
+                           
                         ],
                       ),
 
@@ -284,7 +289,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
 
                           Text(
-                            deliveryCost,
+                            "$deliveryCost $currency",
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.black),
@@ -307,9 +312,9 @@ class OrderDetailsScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
 
                           Text(
-                            (double.parse(totalPrice) +
+                            "${(double.parse(totalPrice) +
                                     double.parse(deliveryCost))
-                                .toStringAsFixed(2),
+                                .toStringAsFixed(2)} $currency",
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.primaryColor),
