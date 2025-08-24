@@ -1,8 +1,11 @@
+import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
+import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +24,7 @@ class FeedBackScreen extends StatelessWidget {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "FeedBack",
+              "Feedback",
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -40,7 +43,7 @@ class FeedBackScreen extends StatelessWidget {
           ),
 
           SliverToBoxAdapter(
-            child: SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
+            child: SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
           ),
 
           SliverToBoxAdapter(
@@ -48,54 +51,70 @@ class FeedBackScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Image.asset(
+                  Assets.imagesIconsFeedbackImageLogo,
+                  width: 135.w,
+                  height: 154.h,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(height: 15.h),
                 Text(
-                  "Send us your recommendation for a better experience",
+                  textAlign: TextAlign.center,
+                  "Help us improve your experience",
                   style: AppStyle.styleBold20(
                     context,
                   ).copyWith(color: AppColors.primaryColor),
-                  textAlign: TextAlign.center,
                 ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Mail: ",
-                      style: AppStyle.styleRegular18(
-                        context,
-                      ).copyWith(color: Colors.black),
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        final Uri emailUri = Uri(
-                          scheme: 'mailto',
-                          path: 'info@camion-app.com',
-                        );
+                SizedBox(height: 10.h),
+                Text(
+                  "Share your thoughts and help us improve your experience",
+                  style: AppStyle.styleRegular16(
+                    context,
+                  ).copyWith(color: const Color(0xFF484C52)),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 30.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: CustomElevatedButton(
+                    onPressed: () async {
+                      final Uri emailUri = Uri(
+                        scheme: 'mailto',
+                        path: 'info@camion-app.com',
+                      );
 
-                        if (await canLaunchUrl(emailUri)) {
-                          await launchUrl(
-                            emailUri,
-                            mode: LaunchMode.externalApplication,
-                          );
-                        } else {
-                          Fluttertoast.showToast(
-                            backgroundColor: Colors.red,
-                            gravity: ToastGravity.TOP,
-                            msg: "Unable to open email ",
-                          );
-                        }
-                      },
-                      child: Text(
-                        "info@camion-app.com",
-                        style: AppStyle.styleRegular18(context).copyWith(
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                          decorationColor: Colors.blue,
+                      if (await canLaunchUrl(emailUri)) {
+                        await launchUrl(
+                          emailUri,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      } else {
+                        Fluttertoast.showToast(
+                          backgroundColor: Colors.red,
+                          gravity: ToastGravity.TOP,
+                          msg: "Unable to open email ",
+                        );
+                      }
+                    },
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(Assets.imagesIconsFeedbackMailIcon),
+                        SizedBox(width: 5.w),
+                        FittedBox(
+                          child: Text(
+                            "info@camion-app.com",
+                            style: AppStyle.styleRegular18(
+                              context,
+                            ).copyWith(color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),

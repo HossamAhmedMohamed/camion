@@ -10,8 +10,10 @@ class GetReviewCubit extends Cubit<GetReviewState> {
   final HomeRepository homeRepository;
 
   Future<void> getReviews({required String productId}) async {
+    if (isClosed) return;
     emit(GetReviewLoading());
     final response = await homeRepository.getReviews(productId: productId);
+    if (isClosed) return;
     response.fold(
       (l) => emit(GetReviewError(error: l)),
       (r) => emit(GetReviewSuccess(reviews: r)),

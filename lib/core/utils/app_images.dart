@@ -170,6 +170,10 @@ class Assets {
   /// assets/images/icons/blackfriday_not_pixel.png
   static const String imagesIconsBlackfridayNotPixel = "assets/images/icons/blackfriday_not_pixel.png";
 
+  /// Assets for imagesIconsCalendarBlaaaack
+  /// assets/images/icons/calendar_blaaaack.svg
+  static const String imagesIconsCalendarBlaaaack = "assets/images/icons/calendar_blaaaack.svg";
+
   /// Assets for imagesIconsCompleteIconNewww
   /// assets/images/icons/complete_icon_newww.svg
   static const String imagesIconsCompleteIconNewww = "assets/images/icons/complete_icon_newww.svg";
@@ -185,6 +189,14 @@ class Assets {
   /// Assets for imagesIconsEditInfo
   /// assets/images/icons/edit_info.svg
   static const String imagesIconsEditInfo = "assets/images/icons/edit_info.svg";
+
+  /// Assets for imagesIconsFeedbackImageLogo
+  /// assets/images/icons/feedback_image_logo.png
+  static const String imagesIconsFeedbackImageLogo = "assets/images/icons/feedback_image_logo.png";
+
+  /// Assets for imagesIconsFeedbackMailIcon
+  /// assets/images/icons/feedback_mail_icon.svg
+  static const String imagesIconsFeedbackMailIcon = "assets/images/icons/feedback_mail_icon.svg";
 
   /// Assets for imagesIconsHelp
   /// assets/images/icons/help.svg

@@ -63,6 +63,8 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
     countryController.dispose();
     shippingFirstNameController.dispose();
     shippingLastNameController.dispose();
+    shippingEmailController.dispose();
+    shippingPhoneController.dispose();
     shippingAddress1Controller.dispose();
     shippingAddress2Controller.dispose();
     shippingCityController.dispose();

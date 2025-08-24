@@ -11,8 +11,10 @@ class ApplyCouponCubit extends Cubit<ApplyCouponState> {
 
   Future<void> applyCoupon({required String code}) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if (isClosed) return;
     emit(ApplyCouponLoading());
     final result = await cartRepository.applyCoupon(token: token!, code: code);
+    if (isClosed) return;
     result.fold(
       (l) => emit(ApplyCouponError(l)),
       (r) => emit(ApplyCouponSuccess()),

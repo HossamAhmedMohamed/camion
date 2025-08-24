@@ -29,17 +29,16 @@ class CustomListTile extends StatelessWidget {
     
       subtitle: subtitle ?? Row(
         children: [
-          SvgPicture.asset(
+          
+          
+           subtitle ?? const SizedBox(),
+
+           SizedBox(width: 5.w),
+
+           SvgPicture.asset(
             Assets.imagesCalendar,
             width: 20.w,
             height: 20.h,
-          ),
-          SizedBox(width: 5.w),
-          Text(
-            "01/01/2023",
-            style: AppStyle.styleRegular14(
-              context,
-            ).copyWith(color: AppColors.gray),
           ),
         ],
       ),

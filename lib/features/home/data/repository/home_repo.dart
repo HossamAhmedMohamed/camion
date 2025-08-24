@@ -127,9 +127,40 @@ class HomeRepository {
 
   Future<Either<ApiErrorModel, List<AllProductModel>>> getProductsByCategory({
     required String slug,
+    required int page,
+    required int perPage,
   }) async {
     try {
-      final response = await remoteDataSource.getProductsByCategory(slug: slug);
+      final response = await remoteDataSource.getProductsByCategory(
+        slug: slug,
+
+        page: page,
+        perPage: perPage,
+      );
+
+      List<AllProductModel> products = [];
+
+      for (var product in response.data["products"]) {
+        products.add(AllProductModel.fromJson(product));
+      }
+
+      return Right(products);
+    } catch (e) {
+      log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, List<AllProductModel>>> getProductsOnSale({
+   
+    required int page,
+    required int perPage,
+  }) async {
+    try {
+      final response = await remoteDataSource.getProductsOnSale(
+        page: page,
+        perPage: perPage,
+      );
 
       List<AllProductModel> products = [];
 

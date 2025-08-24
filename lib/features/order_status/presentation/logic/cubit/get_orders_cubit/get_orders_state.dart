@@ -16,3 +16,16 @@ final class GetOrdersError extends GetOrdersState {
   final ApiErrorModel error;
   GetOrdersError({required this.error});
 }
+
+final class OrderTrackingLoading extends GetOrdersState {}
+
+final class OrderTrackingSuccess extends GetOrdersState {
+  final TrackingResponse trackingResponse;
+  OrderTrackingSuccess({required this.trackingResponse});
+}
+
+final class OrderTrackingError extends GetOrdersState {
+  final ApiErrorModel error;
+  OrderTrackingError({required this.error});
+}
+

@@ -75,10 +75,25 @@ class HomeRemoteDataSource {
     return response;
   }
 
-  Future<Response> getProductsByCategory({required String slug}) async {
+  Future<Response> getProductsByCategory({required String slug , required int page,
+    required int perPage,}) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/${EndPoints.products}",
-      queryParameters: {"category": slug},
+      queryParameters: {"category": slug,
+        "page": page,
+        "per_page": perPage
+      },
+    );
+    return response;
+  }
+
+  Future<Response> getProductsOnSale(
+      {required int page, required int perPage})
+  async {
+    final response = await apiConsumer.get(
+      "https://buckydrop.camion-app.com/api/products",
+
+      queryParameters: {"on_sale": true , "page": page, "per_page": perPage},
     );
     return response;
   }

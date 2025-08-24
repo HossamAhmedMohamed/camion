@@ -1,11 +1,16 @@
+import 'dart:developer';
+
 import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
-import 'package:camion/features/order_status/data/models/order_status_item_model.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/items_body.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomOrder extends StatefulWidget {
   const CustomOrder({
@@ -45,13 +50,11 @@ class CustomOrder extends StatefulWidget {
 }
 
 class _CustomOrderState extends State<CustomOrder> {
-  // @override
-  // void initState() {
-  //   context.read<OrderTrackingCubit>().getOrderTracking(
-  //     orderId: widget.orderId,
-  //   );
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    context.read<GetOrdersCubit>().getOrderTracking(orderId: widget.orderId);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +70,22 @@ class _CustomOrderState extends State<CustomOrder> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 decoration: BoxDecoration(
-                  color: AppColors.mintGreen,
+                  color: widget.isOrderPaied ? AppColors.blueC3 : AppColors.mintGreen,
                   borderRadius: BorderRadius.circular(15.r),
                 ),
-                child: Text(
+                child: widget.isOrderPaied ? Text(
+                  "Order is paid",
+                  style: AppStyle.styleRegular12(context).copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ) : widget.isOrderShipped ? Text(
+                  "Order is delivered",
+                  style: AppStyle.styleRegular12(context).copyWith(
+                    color: AppColors.green,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )  : Text(
                   "Delivery is in progress",
                   style: AppStyle.styleRegular12(context).copyWith(
                     color: AppColors.green,
@@ -79,7 +94,7 @@ class _CustomOrderState extends State<CustomOrder> {
                 ),
               ),
 
-              Text(
+              widget.isOrderShipped ? const SizedBox() : Text(
                 "Will arrive within days",
                 style: AppStyle.styleRegular14(
                   context,
@@ -114,8 +129,6 @@ class _CustomOrderState extends State<CustomOrder> {
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.w600,
                 ),
-
-              
               ),
 
               SizedBox(width: 5.w),
@@ -145,28 +158,61 @@ class _CustomOrderState extends State<CustomOrder> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: CustomElevatedButton(
-                        backgroundColor: AppColors.primaryColor,
-                        onPressed: () {
-                          showOrderTrackingModal(
-                            context,
-                            orderId: widget.orderId,
-                            orderConfirmingTime: widget.orderConfirmationTime,
-                            isOrderShipped: widget.isOrderShipped,
-                            isOrderPaied: widget.isOrderPaied,
-                            paidSubtitle: widget.paidSubtitle,
-                            shippedSubtitle: widget.shippedSubtitle,
-                            orderPayingTime: widget.orderPayingTime,
-                            orderShippedTime: widget.orderShippedTime,
+                      child: BlocBuilder<GetOrdersCubit, GetOrdersState>(
+                        builder: (context, state) {
+                          if (state is OrderTrackingSuccess) {
+                            log(state.trackingResponse.data.trackingItems.toString());
+                            final trackingNumber = state
+                                .trackingResponse
+                                .data
+                                .trackingItems.isEmpty ? "" : state
+                                .trackingResponse
+                                .data
+                                .trackingItems[0]["tracking_number"];
+                            return CustomElevatedButton(
+                              backgroundColor: AppColors.primaryColor,
+                              onPressed: () {
+                                final extra =
+                                    "https://t.17track.net/en#nums=$trackingNumber";
+
+                                GoRouter.of(context).push(
+                                  AppRouter.orderTrackingWebPage,
+                                  extra: extra,
+                                );
+                              },
+                              verticalPadding: 5.h,
+                              child: Text(
+                                "Order Tracking",
+                                style: AppStyle.styleRegular15(
+                                  context,
+                                ).copyWith(color: Colors.white),
+                              ),
+                            );
+                          }
+                          return CustomElevatedButton(
+                            backgroundColor: AppColors.primaryColor,
+                            onPressed: () {
+                              // showOrderTrackingModal(
+                              //   context,
+                              //   orderId: widget.orderId,
+                              //   orderConfirmingTime: widget.orderConfirmationTime,
+                              //   isOrderShipped: widget.isOrderShipped,
+                              //   isOrderPaied: widget.isOrderPaied,
+                              //   paidSubtitle: widget.paidSubtitle,
+                              //   shippedSubtitle: widget.shippedSubtitle,
+                              //   orderPayingTime: widget.orderPayingTime,
+                              //   orderShippedTime: widget.orderShippedTime,
+                              // );
+                            },
+                            verticalPadding: 5.h,
+                            child: Text(
+                              "Order Tracking",
+                              style: AppStyle.styleRegular15(
+                                context,
+                              ).copyWith(color: Colors.white),
+                            ),
                           );
                         },
-                        verticalPadding: 5.h,
-                        child: Text(
-                          "Order Tracking",
-                          style: AppStyle.styleRegular15(
-                            context,
-                          ).copyWith(color: Colors.white),
-                        ),
                       ),
                     ),
                     SizedBox(width: 10.w),

@@ -10,8 +10,10 @@ class GetSubCategoriesCubit extends Cubit<GetSubCategoriesState> {
   final HomeRepository homeRepository;
 
   Future<void> getSubCategories({required int id}) async {
+    if (isClosed) return;
     emit(GetSubCategoriesLoading());
     final response = await homeRepository.getSubCategories(id: id);
+    if (isClosed) return;
     response.fold(
       (l) => emit(GetSubCategoriesError(error: l)),
       (r) => emit(GetSubCategoriesSuccess(subCategories: r)),

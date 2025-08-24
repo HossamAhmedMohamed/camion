@@ -68,4 +68,12 @@ class CartRemoteDataSource {
     );
     return response;
   }
+
+  Future<Response> getUserAddress({required String token}) async {
+    final response = await apiConsumer.get(
+      "https://api-gateway.camion-app.com/users/address/me",
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return response;
+  }
 }

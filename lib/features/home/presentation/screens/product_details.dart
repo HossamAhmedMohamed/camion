@@ -1,5 +1,4 @@
- 
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/config/widgets/custom_expansion_tile.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
@@ -30,6 +29,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -174,24 +175,94 @@ class _ProductDetailsState extends State<ProductDetails> {
                             children: [
                               selectedVariation != null &&
                                       selectedVariation!.image!.isNotEmpty
-                                  ? CustomCachedNetworkImage(
-                                      fit: BoxFit.cover,
-                                      imageUrl: selectedVariation!.image!,
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        GoRouter.of(context).push(
+                                          AppRouter.fullScreenImage,
+                                          extra: selectedVariation!.image,
+                                        );
+                                      },
+                                      child: PhotoView(
+                                        imageProvider:
+                                            CachedNetworkImageProvider(
+                                              selectedVariation!.image!,
+                                            ),
+                                        // backgroundDecoration: const BoxDecoration(
+                                        //   color: Colors.transparent,
+                                        // ),
+                                        loadingBuilder: (context, event) =>
+                                            Skeletonizer(
+                                              enabled: true,
+                                              child: SizedBox(
+                                                height: 400.h,
+                                                width: double.infinity,
+                                                child: Image.asset(
+                                                  Assets.imagesShoes,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            ),
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                const Center(
+                                                  child: Icon(
+                                                    Icons.error,
+                                                    color: Colors.white,
+                                                    size: 50,
+                                                  ),
+                                                ),
+                                      ),
                                     )
-                                  : PageView.builder(
-                                      controller: pageController,
+                                  : PhotoViewGallery.builder(
+                                      itemCount: product.images.length,
+
+                                      builder: (context, index) {
+                                        return PhotoViewGalleryPageOptions(
+                                          onTapUp:
+                                              (
+                                                context,
+                                                details,
+                                                controllerValue,
+                                              ) {
+                                                GoRouter.of(context).push(
+                                                  AppRouter.fullScreenImage,
+                                                  extra: product
+                                                      .images[index]
+                                                      .thumbnail,
+                                                );
+                                              },
+                                          imageProvider:
+                                              CachedNetworkImageProvider(
+                                                product.images[index].thumbnail,
+                                              ),
+                                          minScale:
+                                              PhotoViewComputedScale.contained,
+                                          maxScale:
+                                              PhotoViewComputedScale.covered *
+                                              2, // zoom ×2
+                                        );
+                                      },
+                                      pageController: pageController,
+
+                                      backgroundDecoration: const BoxDecoration(
+                                        color: Colors.transparent,
+                                      ),
+                                      loadingBuilder: (context, event) =>
+                                          Skeletonizer(
+                                            enabled: true,
+                                            child: SizedBox(
+                                              height: 400.h,
+                                              width: double.infinity,
+                                              child: Image.asset(
+                                                Assets.imagesShoes,
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ),
+                                          ),
                                       onPageChanged: (index) {
                                         context
                                             .read<ToggleProductIdImagesCubit>()
                                             .toggle(index);
-                                      },
-                                      itemCount: product.images.length,
-                                      itemBuilder: (context, index) {
-                                        return CustomCachedNetworkImage(
-                                          fit: BoxFit.cover,
-                                          imageUrl:
-                                              product.images[index].thumbnail,
-                                        );
                                       },
                                     ),
 
@@ -488,10 +559,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                                       SizedBox(width: 8.w),
                                       Text(
-                                        "${double.parse(
-                                          displayData['regularPrice']
-                                              .toString(),
-                                        ).toStringAsFixed(2)} ${product.prices.currencyCode}",
+                                        "${double.parse(displayData['regularPrice'].toString()).toStringAsFixed(2)} ${product.prices.currencyCode}",
                                         style: AppStyle.styleRegular15(context)
                                             .copyWith(
                                               color: AppColors.gray,

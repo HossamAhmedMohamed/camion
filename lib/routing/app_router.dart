@@ -40,5 +40,10 @@ class AppRouter {
   static const String privacyScreen = '/privacyScreen';
   static const String orderDetailsScreen = '/orderDetailsScreen';
   static const String feedBackScreen = '/feedBackScreen';
+  static const String walletAffiliateCheckScreen = '/walletAffiliateCheckScreen';
+  static const String confirmShippingAddressScreen = '/confirmShippingAddressScreen';
+  static const String orderTrackingWebPage = '/orderTrackingWebPage';
+  static const String getProductsOnsale = '/getProductsOnsale';
+  static const String fullScreenImage = '/fullScreenImage';
  
 }

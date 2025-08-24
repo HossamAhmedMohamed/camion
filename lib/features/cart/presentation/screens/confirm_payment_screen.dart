@@ -109,6 +109,29 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
 
           SliverToBoxAdapter(child: SizedBox(height: 30.h)),
 
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: GestureDetector(
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.confirmShippingAddressScreen);
+                },
+                child: Text(
+                  
+                  "Review Your Shipping Address Data",
+                  style: AppStyle.styleBold16(
+                    context,
+                  ).copyWith(
+                    decoration: TextDecoration.underline,
+                    decorationColor: AppColors.primaryColor,
+                    color: AppColors.primaryColor),
+                ),
+              ),
+            ),
+          ),
+
+          SliverToBoxAdapter(child: SizedBox(height: 30.h)),
+
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             sliver: SliverToBoxAdapter(

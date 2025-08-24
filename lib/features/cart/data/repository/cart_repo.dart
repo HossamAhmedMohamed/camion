@@ -3,6 +3,7 @@ import 'package:camion/core/api/api_error_handler.dart';
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/features/cart/data/data_source/remote_data_source.dart';
 import 'package:camion/features/cart/data/models/get_cart_model.dart';
+import 'package:camion/features/cart/data/models/get_user_address_model.dart';
 import 'package:dartz/dartz.dart';
 
 class CartRepository {
@@ -87,6 +88,17 @@ class CartRepository {
         code: code,
       );
       return Right(response.data);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
+  Future<Either<ApiErrorModel, GetUserAddressModel>> getUserAddress({
+    required String token,
+  }) async {
+    try {
+      final response = await cartRemoteDataSource.getUserAddress(token: token);
+      return Right(GetUserAddressModel.fromJson(response.data));
     } catch (e) {
       return left(ApiErrorHandler.handle(e));
     }

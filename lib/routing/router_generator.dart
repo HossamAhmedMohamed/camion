@@ -15,9 +15,11 @@ import 'package:camion/features/cart/data/repository/cart_repo.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/add_cart_cubit/add_cart_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/apply_coupon_cubit/apply_coupon_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_cart_cubit/get_cart_cubit.dart';
+import 'package:camion/features/cart/presentation/logic/cubit/get_user_address_cubit/get_user_address_cubit.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/toggle_payment_cubit/payment_method_cubit.dart';
 import 'package:camion/features/auth/presentation/screens/confirm_address.dart';
 import 'package:camion/features/cart/presentation/screens/confirm_payment_screen.dart';
+import 'package:camion/features/cart/presentation/screens/confirm_shipping_address_screen.dart';
 import 'package:camion/features/cart/presentation/screens/my_cart_screen.dart';
 import 'package:camion/features/cart/presentation/screens/payment_web_page.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
@@ -33,7 +35,9 @@ import 'package:camion/features/home/presentation/screens/all_categories_screen.
 import 'package:camion/features/home/presentation/screens/category_screen.dart';
 import 'package:camion/features/home/presentation/screens/products_by_category_screen.dart';
 import 'package:camion/features/home/presentation/screens/product_details.dart';
+import 'package:camion/features/home/presentation/screens/products_on_sale.dart';
 import 'package:camion/features/home/presentation/screens/stories_screen.dart';
+import 'package:camion/features/home/presentation/widgets/full_screen_image.dart';
 import 'package:camion/features/join_us/data/repository/supplier_repo.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/create_coupon_cubit/create_coupon_cubit.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/get_affiliate_status_cubit/get_affiliate_status_cubit.dart';
@@ -56,8 +60,11 @@ import 'package:camion/features/order_status/data/models/order_model/order_model
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
 import 'package:camion/features/order_status/presentation/screens/order_details.dart';
+import 'package:camion/features/order_status/presentation/screens/order_tracking_web_view.dart';
 import 'package:camion/features/profile/data/repository/profie_repo.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/get_all_transations_cubit/get_all_transations_cubit.dart';
 import 'package:camion/features/profile/presentation/logic/cubit/get_user_cubit/get_user_cubit.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/get_wallet_cubit/get_wallet_balance_cubit.dart';
 import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit/log_out_cubit.dart';
 import 'package:camion/features/profile/presentation/logic/cubit/update_user_cubit/update_user_cubit.dart';
 import 'package:camion/features/profile/presentation/screens/account_settings_screen.dart';
@@ -70,6 +77,7 @@ import 'package:camion/features/profile/presentation/screens/my_wallet_screen.da
 import 'package:camion/features/profile/presentation/screens/privacy_and_return_policy_scren.dart';
 import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/profile/presentation/screens/settings_screen.dart';
+import 'package:camion/features/profile/presentation/screens/wallet_affiliate_check.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
 import 'package:camion/features/searching/presentation/screens/search_screen_with_products.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
@@ -251,7 +259,19 @@ class RouterGenerator {
       GoRoute(
         name: AppRouter.myWallet,
         path: AppRouter.myWallet,
-        builder: (context, state) => const MyWalletScreen(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  GetWalletBalanceCubit(sl<ProfileRepository>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  GetAllTransationsCubit(sl<ProfileRepository>()),
+            ),
+          ],
+          child: const MyWalletScreen(),
+        ),
       ),
 
       GoRoute(
@@ -526,6 +546,59 @@ class RouterGenerator {
         name: AppRouter.feedBackScreen,
         path: AppRouter.feedBackScreen,
         builder: (context, state) => const FeedBackScreen(),
+      ),
+
+      GoRoute(
+        name: AppRouter.walletAffiliateCheckScreen,
+        path: AppRouter.walletAffiliateCheckScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              GetAffiliateStatusCubit(sl<AffiliateRepository>()),
+          child: const WalletAffiliateCheckScreen(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.confirmShippingAddressScreen,
+        path: AppRouter.confirmShippingAddressScreen,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => GetUserAddressCubit(sl<CartRepository>()),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  SendUserShippingAddressCubit(sl<AuthRepository>()),
+            ),
+          ],
+          child: const ConfirmShippingAddressScreen(),
+        ),
+      ),
+
+      GoRoute(
+        name: AppRouter.orderTrackingWebPage,
+        path: AppRouter.orderTrackingWebPage,
+        builder: (context, state) {
+          final extra = state.extra as String;
+          return OrderTrackingWebView(orderTrackingUrl: extra);
+        },
+      ),
+
+      GoRoute(
+        name: AppRouter.getProductsOnsale,
+        path: AppRouter.getProductsOnsale,
+        builder: (context, state) {
+          return const ProductsOnSaleScreen();
+        },
+      ),
+
+      GoRoute(
+        name: AppRouter.fullScreenImage,
+        path: AppRouter.fullScreenImage,
+        builder: (context, state) {
+          final extra = state.extra as String;
+          return FullScreenImageViewer(imageUrl: extra);
+        },
       ),
     ],
   );

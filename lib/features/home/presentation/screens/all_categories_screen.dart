@@ -88,71 +88,82 @@ class AllCategoriesScreen extends StatelessWidget {
                     children: List.generate(categories.length, (index) {
                       return GestureDetector(
                         onTap: () {
-                                final slug = categories[index].name;
-                                final id = categories[index].id;
-                                GoRouter.of(context).push(
-                                  AppRouter.productByCategory,
-                                  extra: {
-                                    "slug": slug,
-                                    "id": id,},
-                                );
-                              },
+                          final slug = categories[index].name;
+                          final id = categories[index].id;
+                          GoRouter.of(context).push(
+                            AppRouter.productByCategory,
+                            extra: {"slug": slug, "id": id},
+                          );
+                        },
                         // onTap: categories[index].,
-                        child: Container(
-                          width: screenWidth > 800 ? 140.w : 80.w,
-                          height: screenWidth > 800 ? 140.h : 80.h,
-                          padding: EdgeInsets.all(0.r),
-                            decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(100.r),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withAlpha(15),
-                                      spreadRadius: 2,
-                                      blurRadius: 4,
-                                      offset: Offset(0, 2.h),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: screenWidth > 800 ? 140.w : 80.w,
+                              height: screenWidth > 800 ? 140.h : 80.h,
+                              padding: EdgeInsets.all(0.r),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(100.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withAlpha(15),
+                                    spreadRadius: 2,
+                                    blurRadius: 4,
+                                    offset: Offset(0, 2.h),
+                                  ),
+                                ],
+                              ),
+                              margin: EdgeInsets.only(left: 15.w),
+                              // margin: EdgeInsets.only(right: index == 0 ? 0 : 10.w),
+                              child: SizedBox(
+                                height: screenWidth > 800 ? 120.h : 60.h,
+                                width: screenWidth > 800 ? 120.w : 60.w,
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: ClipOval(
+                                        child: CustomCachedNetworkImage(
+                                          fit: BoxFit.cover,
+                                          imageUrl: categories[index]
+                                              .image!
+                                              .thumbnail,
+                                        ),
+                                      ),
                                     ),
+
+                                    // Positioned(
+                                    //   top: 10.h,
+                                    //   bottom: 10.h,
+                                    //   left: 20.w,
+                                    //   right: 20.w,
+                                    //   child: Center(
+                                    //     child: FittedBox(
+                                    //       child: Text(
+                                    //         categories[index].name,
+                                    //         style: AppStyle.styleRegular18(
+                                    //           context,
+                                    //         ).copyWith(
+                                    //           color: Colors.black),
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
-                                margin: EdgeInsets.only(left: 15.w),
-                          // margin: EdgeInsets.only(right: index == 0 ? 0 : 10.w),
-                          child: SizedBox(
-                            height: screenWidth > 800 ? 120.h : 60.h,
-                            width: screenWidth > 800 ? 120.w : 60.w,
-                            child: Stack(
-                                    children: [
-                                      Center(
-                                        child: ClipOval(
-                                          child: CustomCachedNetworkImage(
-                                            fit: BoxFit.cover,
-                                            imageUrl:
-                                                categories[index]
-                                                    .image!
-                                                    .thumbnail,
-                                          ),
-                                        ),
-                                      ),
+                              ),
+                            ),
 
-                                      Positioned(
-                                        top: 10.h,
-                                        bottom: 10.h,
-                                        left: 20.w,
-                                        right: 20.w,
-                                        child: Center(
-                                          child: FittedBox(
-                                            child: Text(
-                                              categories[index].name,
-                                              style: AppStyle.styleRegular18(
-                                                context,
-                                              ).copyWith(
-                                                color: Colors.black),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                          ),
+                            SizedBox(height: 5.h),
+
+                            Text(
+                              textAlign: TextAlign.center,
+                              categories[index].name,
+                              style: AppStyle.styleRegular12(
+                                context,
+                              ).copyWith(color: Colors.black),
+                            ),
+                          ],
                         ),
                       );
                     }),

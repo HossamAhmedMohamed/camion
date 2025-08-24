@@ -4,13 +4,13 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/presentation/logic/cubit/sliders_cubit/sliders_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/cursor_slider_skeleton.dart';
+import 'package:camion/routing/app_router.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CamionOffers extends StatelessWidget {
   const CamionOffers({super.key, required this.pageController});
@@ -70,21 +70,10 @@ class CamionOffers extends StatelessWidget {
                               : 0,
                         ),
                         child: GestureDetector(
-                          onTap: () async {
-                            final url = state.slidersList[index].description;
-                            if (await canLaunchUrl(Uri.parse(url))) {
-                              await launchUrl(
-                                Uri.parse(url),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            } else {
-                              Fluttertoast.showToast(
-                                gravity: ToastGravity.TOP,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                msg: "Could not launch $url",
-                              );
-                            }
+                          onTap: () {
+                            GoRouter.of(
+                              context,
+                            ).push(AppRouter.getProductsOnsale);
                           },
                           child: SizedBox(
                             height: 162.h,
@@ -97,33 +86,33 @@ class CamionOffers extends StatelessWidget {
                                     fit: BoxFit.cover,
                                   ),
 
-                                  Positioned(
-                                    right: 0.w,
-                                    top: 10.h,
-                                    child: Transform.rotate(
-                                      angle: 0.4,
-                                      child: Container(
-                                        padding: EdgeInsets.all(10.r),
-                                        decoration: ShapeDecoration(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              50.r,
-                                            ),
-                                          ),
-                                          color: AppColors.primaryColor,
-                                        ),
-                                        child: Transform.rotate(
-                                          angle: 0,
-                                          child: Text(
-                                            "${state.slidersList[index].discount}% offer",
-                                            style: AppStyle.styleRegular14(
-                                              context,
-                                            ).copyWith(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
+                                  // Positioned(
+                                  //   right: 0.w,
+                                  //   top: 10.h,
+                                  //   child: Transform.rotate(
+                                  //     angle: 0.4,
+                                  //     child: Container(
+                                  //       padding: EdgeInsets.all(10.r),
+                                  //       decoration: ShapeDecoration(
+                                  //         shape: RoundedRectangleBorder(
+                                  //           borderRadius: BorderRadius.circular(
+                                  //             50.r,
+                                  //           ),
+                                  //         ),
+                                  //         color: AppColors.primaryColor,
+                                  //       ),
+                                  //       child: Transform.rotate(
+                                  //         angle: 0,
+                                  //         child: Text(
+                                  //           "${state.slidersList[index].discount}% offer",
+                                  //           style: AppStyle.styleRegular14(
+                                  //             context,
+                                  //           ).copyWith(color: Colors.white),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),

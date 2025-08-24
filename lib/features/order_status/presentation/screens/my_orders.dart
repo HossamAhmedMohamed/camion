@@ -4,7 +4,6 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/categories_model.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
-import 'package:camion/features/order_status/presentation/logic/cubit/order_tracking_cubit/order_tracking_cubit.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/custom_order.dart';
 import 'package:camion/features/order_status/presentation/widgets/status_nav_bar.dart';
@@ -24,19 +23,20 @@ class MyOrdersScreen extends StatefulWidget {
 class _MyOrdersScreenState extends State<MyOrdersScreen> {
   @override
   void initState() {
-    context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
+    context.read<GetOrdersCubit>().getOrders();
+    // context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     List<CategoriesModel> categories = [
-      // CategoriesModel(
-      //   onTap: () {
-      //     context.read<GetOrdersCubit>().getOrders();
-      //   },
-      //   title: "All",
-      // ),
+      CategoriesModel(
+        onTap: () {
+          context.read<GetOrdersCubit>().getOrders();
+        },
+        title: "All",
+      ),
       CategoriesModel(
         onTap: () {
           context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
@@ -55,7 +55,8 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
 
       CategoriesModel(
         onTap: () {
-          context.read<GetOrdersCubit>().getOrders();
+          context.read<GetOrdersCubit>().getOrderStatus(status: "complete");
+          ();
         },
         title: "Completed",
         image: Assets.imagesIconsCompleteIconNewww,
@@ -126,8 +127,16 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         ),
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
         BlocBuilder<GetOrdersCubit, GetOrdersState>(
+          buildWhen: (previous, current) {
+            if (current is GetOrdersSuccess ||
+                current is GetOrdersLoading ||
+                current is GetOrdersError) {
+              return true;
+            }
+            return false;
+          },
           builder: (context, state) {
-            if (state is GetOrdersLoading || state is OrderTrackingLoading) {
+            if (state is GetOrdersLoading) {
               return const SliverToBoxAdapter(
                 child: Center(
                   child: CircularProgressIndicator(color: Colors.red),
@@ -141,9 +150,11 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                 itemBuilder: (context, index) {
                   final order = state.orders[index];
 
-                  double totalPrice = order.items.fold(0, (sum, item) {
-                    return sum + (double.tryParse(item.price) ?? 0);
-                  });
+                  // double totalPrice = order.items.fold(0, (sum, item) {
+                  //   return sum + (double.tryParse(item.price) ?? 0);
+                  // });
+
+                  String totalPrice = order.total;
 
                   return Padding(
                     padding: EdgeInsets.only(bottom: 10.h),
@@ -153,7 +164,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                           'currency': order.currencyCode,
                           'items': state.orders[index].items,
                           'numberOfOrder': order.id,
-                          'totalPrice': totalPrice.toStringAsFixed(2),
+                          'totalPrice': totalPrice,
                           'orderDate': order.createdAt,
                           'deliveryCost': order
                               .customerData!
@@ -172,7 +183,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         currencyCode: order.currencyCode,
                         orderId: order.worderId,
                         numberOfRequest: order.id,
-                        totalPrice: totalPrice.toStringAsFixed(2),
+                        totalPrice: totalPrice,
                         numberOfProducts: order.items.length,
                         date: order.createdAt,
                         onTapOnOrderDetails: () {
@@ -180,7 +191,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                             'currency': order.currencyCode,
                             'items': state.orders[index].items,
                             'numberOfOrder': order.id,
-                            'totalPrice': totalPrice.toStringAsFixed(2),
+                            'totalPrice': totalPrice,
                             'orderDate': order.createdAt,
                             'deliveryCost': order
                                 .customerData!

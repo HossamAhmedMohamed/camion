@@ -19,9 +19,11 @@ class PaymentWebViewPage extends StatefulWidget {
 }
 
 class _PaymentWebViewPageState extends State<PaymentWebViewPage> {
-  InAppWebViewController? webViewController;
+   InAppWebViewController? webViewController;
   bool isLoading = true;
+  
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

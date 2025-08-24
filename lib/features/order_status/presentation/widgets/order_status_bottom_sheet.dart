@@ -3,7 +3,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/order_status/data/models/order_status_item_model.dart';
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
-import 'package:camion/features/order_status/presentation/logic/cubit/order_tracking_cubit/order_tracking_cubit.dart';
+import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/order_status_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +20,7 @@ class OrderStatusBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OrderTrackingCubit(sl<OrderStatusRepository>()),
+      create: (context) => GetOrdersCubit(sl<OrderStatusRepository>()),
       child: OrderStatusBottomSheetBody(
         trackingItems: trackingItems,
         orderId: orderId,

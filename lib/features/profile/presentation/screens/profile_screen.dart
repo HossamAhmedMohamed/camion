@@ -46,7 +46,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
 
       ProfileModel(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.myWallet);
+          GoRouter.of(context).push(AppRouter.walletAffiliateCheckScreen);
         },
         title: 'My Wallet',
         image: Assets.imagesArchiveProfile,
@@ -91,7 +91,15 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           GoRouter.of(context).push(AppRouter.feedBackScreen);
         },
         title: 'Give us a feedback',
-        image: Assets.imagesCalendar,
+        image: Assets.imagesIconsCalendarBlaaaack,
+      ),
+
+      ProfileModel(
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.privacyScreen);
+        },
+        title: 'Privacy Policy',
+        image: Assets.imagesEmptyWallet,
       ),
 
       ProfileModel(

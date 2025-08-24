@@ -2,6 +2,7 @@ import 'package:camion/features/home/data/models/all_products_model/sub_models/v
 
 class OrderModel {
   final String worderId;
+  final String total;
   final String id;
   final String userId;
   final String currencyCode;
@@ -27,10 +28,12 @@ class OrderModel {
     required this.isDelivered,
     required this.isPaid,
     this.customerData,
+    required this.total,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
+      total: json['total'] ?? '',
       currencyCode: json['currency'] ?? '',
       worderId: json['wcOrderId'] ?? '',
       id: json['id'] ?? '',
