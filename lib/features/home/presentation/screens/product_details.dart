@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/config/widgets/custom_expansion_tile.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
