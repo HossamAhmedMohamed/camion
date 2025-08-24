@@ -2,9 +2,9 @@ class ProductVariations {
   final int id;
   final List<ProductAttribute> attributes;
   final String? image;
-  final double price;
-  final double regularPrice;
-  final double salePrice;
+  final num price;
+  final num regularPrice;
+  final num salePrice;
   final int stockQuantity;
   final String? stockStatus;
 

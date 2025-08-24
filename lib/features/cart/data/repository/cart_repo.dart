@@ -34,7 +34,7 @@ class CartRepository {
   }) async {
     try {
       final response = await cartRemoteDataSource.getCart(token: token);
-      final List<GetCartModel> cart = (response.data as List)
+      final List<GetCartModel> cart = (response.data["items"] as List)
           .map((cart) => GetCartModel.fromJson(cart))
           .toList();
       log(cart.toString());
