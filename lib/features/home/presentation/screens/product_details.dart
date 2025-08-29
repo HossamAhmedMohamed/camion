@@ -91,7 +91,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   Map<String, dynamic> _getDisplayData(AllProductModel product) {
     if (selectedVariation != null) {
       return {
-        'price': selectedVariation!.salePrice.toString(),
+        'price': selectedVariation!.price.toString(),
         'regularPrice': selectedVariation!.regularPrice.toString(),
         'image': selectedVariation!.image,
         'stockQuantity': selectedVariation!.stockQuantity,
@@ -117,6 +117,11 @@ class _ProductDetailsState extends State<ProductDetails> {
       backgroundColor: Colors.white,
       body: RefreshIndicator(
         onRefresh: () async {
+          setState(() {
+            selectedVariation = null;
+            chosenAttributes.clear();
+            chosenQuantity = 1;
+          });
           BlocProvider.of<ProductIdDetailsCubit>(
             context,
           ).getProductDetails(widget.productId, forceRefresh: true);
@@ -186,9 +191,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             CachedNetworkImageProvider(
                                               selectedVariation!.image!,
                                             ),
-                                        // backgroundDecoration: const BoxDecoration(
-                                        //   color: Colors.transparent,
-                                        // ),
+                                        backgroundDecoration:
+                                            const BoxDecoration(
+                                              color: Colors.transparent,
+                                            ),
                                         loadingBuilder: (context, event) =>
                                             Skeletonizer(
                                               enabled: true,

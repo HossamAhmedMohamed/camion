@@ -1,4 +1,4 @@
-package com.camion.app
+package com.camion.camion
 
 import io.flutter.embedding.android.FlutterActivity
 

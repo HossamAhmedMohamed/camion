@@ -1,3 +1,4 @@
+import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/product_variations.dart';
@@ -29,8 +30,8 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
   int counter = 1;
   Map<String, String> selectedAttributes = {};
   ProductVariations? selectedVariation;
-  String? selectedImageUrl;
-  bool _imageSelectedManually = false;
+  String? selectedImageUrl; // للصورة المختارة يدوياً
+  ProductVariations? selectedImageVariation;
 
   @override
   void initState() {
@@ -42,28 +43,12 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       selectedAttributes[attrName] = option;
     });
 
-    // بس نحدث الصورة إذا مكانتش اتختارت يدوياً
-    if (!_imageSelectedManually) {
-      if (attrName.toLowerCase() == 'color' ||
-          attrName.toLowerCase().contains('color')) {
-        final matchingVariation = _findMatchingVariationByColor(option);
-        if (matchingVariation != null) {
-          selectedVariation = matchingVariation;
-          selectedImageUrl = matchingVariation.image;
-        }
-      } else {
-        final matchingVariation = _findMatchingVariation();
-        if (matchingVariation != null) {
-          selectedVariation = matchingVariation;
-          selectedImageUrl = matchingVariation.image;
-        }
-      }
-    } else {
-      // حتى لو الصورة اتختارت يدوياً، لازم نحدث selectedVariation بناءً على الاختيارات الحالية
-      final matchingVariation = _findMatchingVariation();
-      if (matchingVariation != null) {
+    // البحث عن الـ variation المطابق بناءً على الـ attributes المختارة فقط
+    final matchingVariation = _findMatchingVariation();
+    if (matchingVariation != null) {
+      setState(() {
         selectedVariation = matchingVariation;
-      }
+      });
     }
 
     _notifyParent();
@@ -71,76 +56,214 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
 
   void _selectImageVariation(ProductVariations variation) {
     setState(() {
-      selectedVariation = variation;
       selectedImageUrl = variation.image;
-      _imageSelectedManually = true; // نعين إن الصورة اتختارت يدوياً
+      selectedImageVariation = variation;
 
-      // تحديث الـ color/specs attributes بناءً على الصورة المختارة
+      // تحديث selectedAttributes بناءً على الـ variation المختار من الصورة
+      // نستثني الـ size من التحديث
+      Map<String, String> newAttributes = {};
       for (var attr in variation.attributes) {
-        if (attr.name.toLowerCase().contains('color') ||
-            attr.name.toLowerCase().contains('specs')) {
-          selectedAttributes[attr.name] = attr.option;
+        if (attr.name.toLowerCase() != 'size') {
+          newAttributes[attr.name] = attr.option;
         }
       }
-
-      // التأكد من أن الـ size المختار متوفر مع هذا اللون/specs الجديد
-      String? currentSize = selectedAttributes['size'];
-      if (currentSize != null) {
-        bool sizeAvailableWithNewColor = _isSizeAvailableWithSelectedColor(currentSize);
-        
-        // إذا الـ size مش متوفر مع اللون الجديد، نشيله من الاختيار
-        if (!sizeAvailableWithNewColor) {
-          selectedAttributes.remove('size');
-        }
-      }
+      selectedAttributes = {...selectedAttributes, ...newAttributes};
     });
 
     _notifyParent();
   }
 
-// دالة جديدة للتحقق من توفر الـ size مع اللون المختار
-bool _isSizeAvailableWithSelectedColor(String size) {
-  // نجيب اللون/specs المختار حالياً
-  String? selectedColorOrSpecs;
-  for (var key in selectedAttributes.keys) {
-    if (key.toLowerCase().contains('color') ||
-        key.toLowerCase().contains('specs')) {
-      selectedColorOrSpecs = selectedAttributes[key];
-      break;
+  // إضافة هذه الدالة في أعلى الـ class
+  List<String> _sortSizes(List<String> sizes) {
+    // قائمة الأحجام المرتبة حسب الأولوية
+    final sizeOrder = [
+      'XS',
+      'S',
+      'M',
+      'L',
+      'XL',
+      'XXL',
+      'XXXL',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+      '15',
+      '16',
+      '17',
+      '18',
+      '19',
+      '20',
+      '21',
+      '22',
+      '23',
+      '24',
+      '25',
+      '26',
+      '27',
+      '28',
+      '29',
+      '30',
+      '31',
+      '32',
+      '33',
+      '34',
+      '35',
+      '36',
+      '37',
+      '38',
+      '39',
+      '40',
+      '41',
+      '42',
+      '43',
+      '44',
+      '45',
+      '46',
+      '47',
+      '48',
+      '49',
+      '50',
+      '51',
+      '52',
+      '53',
+      '54',
+      '55',
+      '56',
+      '57',
+      '58',
+      '59',
+      '60',
+      '61',
+      '62',
+      '63',
+      '64',
+      '65',
+      '66',
+      '67',
+      '68',
+      '69',
+      '70',
+      '71',
+      '72',
+      '73',
+      '74',
+      '75',
+      '76',
+      '77',
+      '78',
+      '79',
+      '80',
+      '81',
+      '82',
+      '83',
+      '84',
+      '85',
+      '86',
+      '87',
+      '88',
+      '89',
+      '90',
+      '91',
+      '92',
+      '93',
+      '94',
+      '95',
+      '96',
+      '97',
+      '98',
+      '99',
+      '100',
+    ];
+
+    // فصل الأحجام الرقمية والحرفية
+    List<String> numericSizes = [];
+    List<String> textSizes = [];
+    List<String> otherSizes = [];
+
+    for (String size in sizes) {
+      String cleanSize = size.trim();
+
+      // التحقق إذا كان الحجم رقمي
+      if (RegExp(r'^\d+(\.\d+)?$').hasMatch(cleanSize)) {
+        numericSizes.add(cleanSize);
+      }
+      // التحقق إذا كان من الأحجام النصية المعروفة
+      else if (sizeOrder.contains(cleanSize.toUpperCase())) {
+        textSizes.add(cleanSize);
+      }
+      // أي أحجام أخرى
+      else {
+        otherSizes.add(cleanSize);
+      }
     }
+
+    // ترتيب الأحجام الرقمية حسب القيمة الرقمية
+    numericSizes.sort((a, b) => double.parse(a).compareTo(double.parse(b)));
+
+    // ترتيب الأحجام النصية حسب الترتيب المحدد مسبقاً
+    textSizes.sort((a, b) {
+      int indexA = sizeOrder.indexOf(a.toUpperCase());
+      int indexB = sizeOrder.indexOf(b.toUpperCase());
+      return indexA.compareTo(indexB);
+    });
+
+    // دمج القوائم: الأحجام النصية أولاً ثم الرقمية ثم الأخرى
+    return [...textSizes, ...numericSizes, ...otherSizes];
   }
 
-  if (selectedColorOrSpecs == null) return true;
-
-  // ندور في كل الـ variations نشوف في variation يحتوي على الـ size والـ color/specs معاً
-  for (var variation in widget.variations) {
-    if (variation.stockStatus != 'instock') continue;
-
-    bool hasSize = false;
-    bool hasColorOrSpecs = false;
-
-    for (var attr in variation.attributes) {
-      if (attr.name == 'size' && attr.option == size) {
-        hasSize = true;
-      }
-      if ((attr.name.toLowerCase().contains('color') ||
-           attr.name.toLowerCase().contains('specs')) &&
-          attr.option == selectedColorOrSpecs) {
-        hasColorOrSpecs = true;
+  // دالة جديدة للتحقق من توفر الـ size مع اللون المختار
+  bool _isSizeAvailableWithSelectedColor(String size) {
+    // نجيب اللون/specs المختار حالياً
+    String? selectedColorOrSpecs;
+    for (var key in selectedAttributes.keys) {
+      if (key.toLowerCase().contains('color') ||
+          key.toLowerCase().contains('specs')) {
+        selectedColorOrSpecs = selectedAttributes[key];
+        break;
       }
     }
 
-    // إذا لقينا variation يحتوي على الاتنين، يبقى الـ size متوفر
-    if (hasSize && hasColorOrSpecs) {
-      return true;
+    if (selectedColorOrSpecs == null) return true;
+
+    // ندور في كل الـ variations نشوف في variation يحتوي على الـ size والـ color/specs معاً
+    for (var variation in widget.variations) {
+      if (variation.stockStatus != 'instock') continue;
+
+      bool hasSize = false;
+      bool hasColorOrSpecs = false;
+
+      for (var attr in variation.attributes) {
+        if (attr.name == 'size' && attr.option == size) {
+          hasSize = true;
+        }
+        if ((attr.name.toLowerCase().contains('color') ||
+                attr.name.toLowerCase().contains('specs')) &&
+            attr.option == selectedColorOrSpecs) {
+          hasColorOrSpecs = true;
+        }
+      }
+
+      // إذا لقينا variation يحتوي على الاتنين، يبقى الـ size متوفر
+      if (hasSize && hasColorOrSpecs) {
+        return true;
+      }
     }
+
+    return false;
   }
 
-  return false;
-}
-
-// تعديل دالة _isOptionAvailable لتتعامل مع الـ size بشكل صحيح
-
+  // تعديل دالة _isOptionAvailable لتتعامل مع الـ size بشكل صحيح
 
   ProductVariations? _findMatchingVariationByColor(String colorOption) {
     for (var variation in widget.variations) {
@@ -183,10 +306,15 @@ bool _isSizeAvailableWithSelectedColor(String size) {
   }
 
   void _notifyParent() {
+    // إذا كان هناك صورة مختارة يدوياً، نرسل الـ variation الخاص بها
+    // وإلا نرسل الـ variation المطابق للـ attributes المختارة
+    ProductVariations? variationToSend =
+        selectedImageVariation ?? selectedVariation;
+
     widget.onSelectionChanged?.call(
       selectedAttributes,
       counter,
-      selectedVariation,
+      variationToSend,
     );
   }
 
@@ -214,20 +342,20 @@ bool _isSizeAvailableWithSelectedColor(String size) {
       if (variation.stockStatus == 'instock' &&
           variation.image != null &&
           variation.image!.isNotEmpty) {
-        // البحث عن attribute اللون أو الـ specs
-        String? colorOrSpecs;
+        // البحث عن أي attribute عدا الـ size
+        String? nonSizeAttribute;
         for (var attr in variation.attributes) {
-          if (attr.name.toLowerCase().contains('color') ||
-              attr.name.toLowerCase().contains('specs')) {
-            colorOrSpecs = attr.option;
-            break;
+          if (attr.name.toLowerCase() != 'size') {
+            nonSizeAttribute = attr.option;
+            break; // نأخذ أول attribute نجده عدا الـ size
           }
         }
 
-        // إذا لم نجد color أو specs، نستخدم رابط الصورة كـ key
-        String key = colorOrSpecs ?? variation.image!;
+        // إذا لم نجد أي attribute عدا الـ size، نستخدم رابط الصورة كـ key
+        // أو نستخدم معرف فريد للـ variation
+        String key = nonSizeAttribute ?? variation.image!;
 
-        // إذا لم نرَ هذا اللون/specs من قبل، نضيفه
+        // إذا لم نرَ هذا الـ attribute من قبل، نضيفه
         if (!uniqueVariations.containsKey(key)) {
           uniqueVariations[key] = variation;
         }
@@ -238,133 +366,145 @@ bool _isSizeAvailableWithSelectedColor(String size) {
   }
 
   bool _shouldShowImages() {
-    final availableAttributes = _getAvailableAttributes();
-    final hasColorOrSpecs = availableAttributes.keys.any(
-      (key) =>
-          key.toLowerCase().contains('color') ||
-          key.toLowerCase().contains('specs'),
+    // نتحقق من وجود variations مع صور متاحة
+    final hasVariationsWithImages = widget.variations.any(
+      (variation) =>
+          variation.stockStatus == 'instock' &&
+          variation.image != null &&
+          variation.image!.isNotEmpty,
     );
 
-    // إذا كان هناك size فقط، أو color/specs، نعرض الصور
-    return availableAttributes.containsKey('size') || hasColorOrSpecs;
+    return hasVariationsWithImages;
   }
 
   bool _isOptionAvailable(String attrName, String option) {
-  // للـ size، نتأكد إنه متوفر مع اللون/specs المختار حالياً
-  if (attrName.toLowerCase() == 'size') {
-    String? selectedColorOrSpecs;
-    for (var key in selectedAttributes.keys) {
-      if (key.toLowerCase().contains('color') ||
-          key.toLowerCase().contains('specs')) {
-        selectedColorOrSpecs = selectedAttributes[key];
-        break;
-      }
-    }
+    // للـ size، نتأكد إنه متوفر مع اللون/specs المختار حالياً
+    if (attrName.toLowerCase() == 'size') {
+      String? selectedColorOrSpecs;
 
-    // إذا مفيش لون مختار بعد، كل الـ sizes متوفرة
-    if (selectedColorOrSpecs == null) {
+      // أولاً نجرب نجيب اللون من الـ selectedAttributes
+      for (var key in selectedAttributes.keys) {
+        if (key.toLowerCase().contains('color') ||
+            key.toLowerCase().contains('specs')) {
+          selectedColorOrSpecs = selectedAttributes[key];
+          break;
+        }
+      }
+
+      // إذا مفيش لون في الـ selectedAttributes، نجربه من الصورة المختارة
+      if (selectedColorOrSpecs == null && selectedImageVariation != null) {
+        for (var attr in selectedImageVariation!.attributes) {
+          if (attr.name.toLowerCase().contains('color') ||
+              attr.name.toLowerCase().contains('specs')) {
+            selectedColorOrSpecs = attr.option;
+            break;
+          }
+        }
+      }
+
+      // إذا مفيش لون مختار خالص، كل الـ sizes متوفرة
+      if (selectedColorOrSpecs == null) {
+        for (var variation in widget.variations) {
+          if (variation.stockStatus != 'instock') continue;
+          for (var attr in variation.attributes) {
+            if (attr.name == 'size' && attr.option == option) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+
+      // نتأكد إن الـ size متوفر مع اللون المختار
       for (var variation in widget.variations) {
         if (variation.stockStatus != 'instock') continue;
+
+        bool hasSize = false;
+        bool hasColorOrSpecs = false;
+
         for (var attr in variation.attributes) {
           if (attr.name == 'size' && attr.option == option) {
-            return true;
+            hasSize = true;
           }
+          if ((attr.name.toLowerCase().contains('color') ||
+                  attr.name.toLowerCase().contains('specs')) &&
+              attr.option == selectedColorOrSpecs) {
+            hasColorOrSpecs = true;
+          }
+        }
+
+        if (hasSize && hasColorOrSpecs) {
+          return true;
         }
       }
       return false;
     }
 
-    // نتأكد إن الـ size متوفر مع اللون المختار
-    for (var variation in widget.variations) {
-      if (variation.stockStatus != 'instock') continue;
+    // للـ color/specs
+    if (attrName.toLowerCase() == 'color' ||
+        attrName.toLowerCase().contains('color') ||
+        attrName.toLowerCase().contains('specs')) {
+      String? selectedSize = selectedAttributes['size'];
 
-      bool hasSize = false;
-      bool hasColorOrSpecs = false;
-
-      for (var attr in variation.attributes) {
-        if (attr.name == 'size' && attr.option == option) {
-          hasSize = true;
+      // إذا مفيش size مختار، كل الألوان متوفرة
+      if (selectedSize == null) {
+        for (var variation in widget.variations) {
+          if (variation.stockStatus != 'instock') continue;
+          for (var attr in variation.attributes) {
+            if ((attr.name.toLowerCase().contains('color') ||
+                    attr.name.toLowerCase().contains('specs')) &&
+                attr.option == option) {
+              return true;
+            }
+          }
         }
-        if ((attr.name.toLowerCase().contains('color') ||
-             attr.name.toLowerCase().contains('specs')) &&
-            attr.option == selectedColorOrSpecs) {
-          hasColorOrSpecs = true;
-        }
+        return false;
       }
 
-      if (hasSize && hasColorOrSpecs) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // للـ color/specs
-  if (attrName.toLowerCase() == 'color' ||
-      attrName.toLowerCase().contains('color') ||
-      attrName.toLowerCase().contains('specs')) {
-    
-    String? selectedSize = selectedAttributes['size'];
-    
-    // إذا مفيش size مختار، كل الألوان متوفرة
-    if (selectedSize == null) {
+      // نتأكد إن اللون متوفر مع الـ size المختار
       for (var variation in widget.variations) {
         if (variation.stockStatus != 'instock') continue;
+
+        bool hasSize = false;
+        bool hasColorOrSpecs = false;
+
         for (var attr in variation.attributes) {
-          if ((attr.name.toLowerCase().contains('color') ||
-               attr.name.toLowerCase().contains('specs')) &&
-              attr.option == option) {
-            return true;
+          if (attr.name == 'size' && attr.option == selectedSize) {
+            hasSize = true;
           }
+          if ((attr.name.toLowerCase().contains('color') ||
+                  attr.name.toLowerCase().contains('specs')) &&
+              attr.option == option) {
+            hasColorOrSpecs = true;
+          }
+        }
+
+        if (hasSize && hasColorOrSpecs) {
+          return true;
         }
       }
       return false;
     }
 
-    // نتأكد إن اللون متوفر مع الـ size المختار
+    // للباقي attributes
+    Map<String, String> tempAttributes = Map.from(selectedAttributes);
+    tempAttributes[attrName] = option;
+
     for (var variation in widget.variations) {
       if (variation.stockStatus != 'instock') continue;
 
-      bool hasSize = false;
-      bool hasColorOrSpecs = false;
-
+      bool matches = true;
       for (var attr in variation.attributes) {
-        if (attr.name == 'size' && attr.option == selectedSize) {
-          hasSize = true;
-        }
-        if ((attr.name.toLowerCase().contains('color') ||
-             attr.name.toLowerCase().contains('specs')) &&
-            attr.option == option) {
-          hasColorOrSpecs = true;
+        if (tempAttributes.containsKey(attr.name) &&
+            tempAttributes[attr.name] != attr.option) {
+          matches = false;
+          break;
         }
       }
-
-      if (hasSize && hasColorOrSpecs) {
-        return true;
-      }
+      if (matches) return true;
     }
     return false;
   }
-
-  // للباقي attributes
-  Map<String, String> tempAttributes = Map.from(selectedAttributes);
-  tempAttributes[attrName] = option;
-
-  for (var variation in widget.variations) {
-    if (variation.stockStatus != 'instock') continue;
-
-    bool matches = true;
-    for (var attr in variation.attributes) {
-      if (tempAttributes.containsKey(attr.name) &&
-          tempAttributes[attr.name] != attr.option) {
-        matches = false;
-        break;
-      }
-    }
-    if (matches) return true;
-  }
-  return false;
-}
 
   @override
   Widget build(BuildContext context) {
@@ -402,6 +542,7 @@ bool _isSizeAvailableWithSelectedColor(String size) {
             itemCount: uniqueImageVariations.length,
             itemBuilder: (context, index) {
               final variation = uniqueImageVariations[index];
+              // التحقق من التحديد بناءً على الصورة المختارة يدوياً فقط
               final isSelected = selectedImageUrl == variation.image;
 
               return GestureDetector(
@@ -423,33 +564,10 @@ bool _isSizeAvailableWithSelectedColor(String size) {
                           ),
                         ),
                         child: ClipOval(
-                          child: Image.network(
-                            variation.image!,
+                          child: CustomCachedNetworkImage(
+                            imageUrl:  variation.image!,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                color: Colors.grey.shade200,
-                                child: Icon(
-                                  Icons.image_not_supported,
-                                  color: Colors.grey.shade400,
-                                  size: 20.sp,
-                                ),
-                              );
-                            },
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Container(
-                                color: Colors.grey.shade200,
-                                child: Center(
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    valueColor: AlwaysStoppedAnimation(
-                                      Colors.grey.shade400,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
+                           
                           ),
                         ),
                       ),
@@ -524,43 +642,50 @@ bool _isSizeAvailableWithSelectedColor(String size) {
   }
 
   Widget _buildAttributeSection(
-    String attrName,
-    List<String> options, {
-    bool isColor = false,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          attrName,
-          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 15.h),
-        Wrap(
-          spacing: 8.w,
-          children: options.map((option) {
-            final bool isSelected = selectedAttributes[attrName] == option;
-            final bool isAvailable = _isOptionAvailable(attrName, option);
-
-            final color = isColor ? getColorFromNameOrHex(option) : null;
-
-            return GestureDetector(
-              onTap: isAvailable
-                  ? () => _updateSelection(attrName, option)
-                  : null,
-              child: Opacity(
-                opacity: isAvailable ? 1.0 : 0.5,
-                child: color != null
-                    ? buildColorBox(color, isSelected, option)
-                    : buildTextBox(option, isSelected, isAvailable),
-              ),
-            );
-          }).toList(),
-        ),
-        SizedBox(height: 20.h),
-      ],
-    );
+  String attrName,
+  List<String> options, {
+  bool isColor = false,
+}) {
+  // ترتيب الـ options إذا كانت sizes
+  List<String> sortedOptions = options;
+  if (attrName.toLowerCase() == 'size') {
+    sortedOptions = _sortSizes(options);
   }
+
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        attrName,
+        style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(height: 15.h),
+      Wrap(
+        spacing: 8.w,
+        runSpacing: 8.h,
+        children: sortedOptions.map((option) {
+          final bool isSelected = selectedAttributes[attrName] == option;
+          final bool isAvailable = _isOptionAvailable(attrName, option);
+
+          final color = isColor ? getColorFromNameOrHex(option) : null;
+
+          return GestureDetector(
+            onTap: isAvailable
+                ? () => _updateSelection(attrName, option)
+                : null,
+            child: Opacity(
+              opacity: isAvailable ? 1.0 : 0.5,
+              child: color != null
+                  ? buildColorBox(color, isSelected, option)
+                  : buildTextBox(option, isSelected, isAvailable),
+            ),
+          );
+        }).toList(),
+      ),
+      SizedBox(height: 20.h),
+    ],
+  );
+}
 
   Widget buildColorBox(Color color, bool isSelected, String colorName) {
     return Column(

@@ -22,6 +22,19 @@ class _AffiliateCheckScreenState extends State<AffiliateCheckScreen> {
     context.read<GetAffiliateStatusCubit>().getAffiliateStatus();
   }
 
+
+    bool _isCurrentRouteAffiliateCheck() {
+    final currentRoute = GoRouterState.of(context).uri.path;
+    return currentRoute == AppRouter.affiliateCheckScreen;
+  }
+
+   
+  void _navigateIfCurrentRoute(String route) {
+    if (_isCurrentRouteAffiliateCheck()) {
+      GoRouter.of(context).pushReplacement(route);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +47,11 @@ class _AffiliateCheckScreenState extends State<AffiliateCheckScreen> {
       body: Center(
         child: BlocConsumer<GetAffiliateStatusCubit, GetAffiliateStatusState>(
           listener: (context, state) {
-            if (state is GetAffiliateStatusSuccess) {
+             if (state is GetAffiliateStatusSuccess) {
               final status = state.data.status;
 
               if (status == 'approved') {
-
-                GoRouter.of(context).pushReplacement(AppRouter.supplierAccount);
+                _navigateIfCurrentRoute(AppRouter.supplierAccount);
               }
             }
 
@@ -47,7 +59,7 @@ class _AffiliateCheckScreenState extends State<AffiliateCheckScreen> {
               final message = state.error.message;
 
               if (message == "Affiliate request not found") {
-                GoRouter.of(context).pushReplacement(AppRouter.supplierWelcome);
+                _navigateIfCurrentRoute(AppRouter.supplierWelcome);
               }
             }
           },

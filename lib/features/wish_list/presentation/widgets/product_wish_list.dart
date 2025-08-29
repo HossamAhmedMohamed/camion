@@ -286,7 +286,7 @@ class _ProductWishListState extends State<ProductWishList>
                                 )
                               : null,
                           child: Text(
-                            '${widget.price}\$',
+                            widget.price,
                             style: AppStyle.styleBold18(context).copyWith(
                               color: widget.isSelected
                                   ? AppColors.primaryColor

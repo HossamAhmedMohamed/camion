@@ -17,12 +17,14 @@ class VerifyCubit extends Cubit<VerifyState> {
     final phoneNumber = await sl<SecureCacheHelper>().getData(
       key: 'phoneNumber',
     );
+    if(isClosed) return;
     emit(VerifyLoading());
     final result = await authRepository.verify(
       email: email!,
       phoneNumber: phoneNumber!,
       code: code,
     );
+    if(isClosed) return;
     result.fold((l) => emit(VerifyError(error: l)), (r) async {
       await Future.wait([
         sl<SecureCacheHelper>().saveData(key: 'token', value: r.accessToken),

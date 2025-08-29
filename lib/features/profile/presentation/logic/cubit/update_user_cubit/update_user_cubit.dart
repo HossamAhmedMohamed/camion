@@ -13,12 +13,14 @@ class UpdateUserCubit extends Cubit<UpdateUserState> {
   Future<void> updateUser({required Map<String, dynamic> data}) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
     final userId = await sl<SecureCacheHelper>().getData(key: 'id');
+    if(isClosed) return;
     emit(UpdateUserLoading());
     final response = await profileRepository.updateUser(
       token: token!,
       userId: userId!,
       data: data,
     );
+    if(isClosed) return;
     response.fold((l) => emit(UpdateUserError(error: l)), (r) {
       emit(UpdateUserLoaded(user: r));
     });

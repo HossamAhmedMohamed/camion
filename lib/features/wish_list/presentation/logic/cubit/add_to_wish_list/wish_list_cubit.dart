@@ -18,6 +18,7 @@ class AddToWishListCubit extends Cubit<AddToWishListState> {
     required String image,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if(isClosed) return;
     emit(WishListLoading(productId: productId));
     final result = await wishListRepository.addToWishList(
       token: token!,
@@ -27,6 +28,7 @@ class AddToWishListCubit extends Cubit<AddToWishListState> {
       price: price,
       image: image,
     );
+    if(isClosed) return;
     result.fold((l) => emit(WishListError(error: l, productId: productId)), (
       r,
     ) {

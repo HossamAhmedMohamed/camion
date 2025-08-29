@@ -10,6 +10,7 @@ import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomOrder extends StatefulWidget {
@@ -171,7 +172,13 @@ class _CustomOrderState extends State<CustomOrder> {
                                 .trackingItems[0]["tracking_number"];
                             return CustomElevatedButton(
                               backgroundColor: AppColors.primaryColor,
-                              onPressed: () {
+                              onPressed: trackingNumber == "" ? (){
+                                Fluttertoast.showToast(
+                                  backgroundColor: Colors.green,
+                                  gravity: ToastGravity.TOP,
+                                  textColor: Colors.white,
+                                  msg: "Your order is in progress");
+                              } : () {
                                 final extra =
                                     "https://t.17track.net/en#nums=$trackingNumber";
 

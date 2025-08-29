@@ -76,7 +76,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Number Of Order:",
+                        "Order Number:",
                         style: AppStyle.styleRegular18(context).copyWith(
                           fontWeight: FontWeight.w700,
                           color: Colors.black,

@@ -1,5 +1,3 @@
- 
-
 import 'package:camion/core/api/api_error_model.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
 import 'package:camion/core/services/service_locator.dart';
@@ -19,6 +17,7 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
     required int quantity,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if (isClosed) return;
     emit(UpdateCartLoading());
 
     final result = await cartRepository.updateCart(
@@ -27,6 +26,7 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
       quantity: quantity,
     );
 
+    if (isClosed) return;
     result.fold((l) => emit(UpdateCartError(error: l)), (r) {
       emit(UpdateCartSuccess(getCartModel: r));
     });
@@ -34,10 +34,13 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
 
   Future<void> deleteFromCart({required String productId}) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
-    emit(UpdateCartLoading()); 
-    final result = await cartRepository.deleteFromCart(token: token!, productId: productId);
+    emit(UpdateCartLoading());
+    final result = await cartRepository.deleteFromCart(
+      token: token!,
+      productId: productId,
+    );
     result.fold((l) => emit(UpdateCartError(error: l)), (r) {
       emit(UpdateCartSuccess(getCartModel: r));
-    }); 
+    });
   }
 }

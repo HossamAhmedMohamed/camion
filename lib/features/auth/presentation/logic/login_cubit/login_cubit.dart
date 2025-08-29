@@ -13,11 +13,13 @@ class LoginCubit extends Cubit<LoginState> {
     required String email,
     required String phoneNumber,
   }) async {
+    if(isClosed) return;
     emit(LoginLoading());
     final result = await authRepository.login(
       email: email,
       phoneNumber: phoneNumber,
     );
+    if(isClosed) return;
     result.fold((l) => emit(LoginError(error: l)), (r) {
       sl<SecureCacheHelper>().saveData(key: 'email', value: email);
       sl<SecureCacheHelper>().saveData(key: 'phoneNumber', value: phoneNumber);

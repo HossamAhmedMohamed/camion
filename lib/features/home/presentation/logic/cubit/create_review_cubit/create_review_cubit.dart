@@ -17,6 +17,7 @@ class CreateReviewCubit extends Cubit<CreateReviewState> {
   }) async {
     final userEmail = await sl<SecureCacheHelper>().getData(key: 'email');
     final userName = await sl<SecureCacheHelper>().getData(key: 'userName');
+    if(isClosed) return;
     emit(CreateReviewLoading());
     final response = await homeRepository.createReview(
      
@@ -26,6 +27,7 @@ class CreateReviewCubit extends Cubit<CreateReviewState> {
       reviewerName: userName!,
       reviewerEmail: userEmail!,
     );
+    if(isClosed) return;
     response.fold(
       (l) => emit(CreateReviewError(error: l)),
       (r) => emit(CreateReviewSuccess()),

@@ -18,6 +18,7 @@ class AddCartCubit extends Cubit<AddCartState> {
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
 
+    if (isClosed) return;
     emit(AddCartLoading(productId));
     final result = await cartRepository.addToCart(
       token: token!,
@@ -25,6 +26,8 @@ class AddCartCubit extends Cubit<AddCartState> {
       variations: variations,
       quantity: quantity,
     );
+
+    if (isClosed) return;
     result.fold((l) => emit(AddCartError(l, productId)), (r) {
       _addedToCartProducts.add(productId);
       emit(AddCartSuccess(productId));

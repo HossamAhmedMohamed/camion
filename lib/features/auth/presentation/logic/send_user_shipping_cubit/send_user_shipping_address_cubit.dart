@@ -33,6 +33,7 @@ class SendUserShippingAddressCubit extends Cubit<SendUserShippingAddressState> {
     required String shippingCountry,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if(isClosed) return;
     emit(SendUserShippingAddressLoading());
     final result = await authRepository.sendUserShippingAddress(
       token: token!,
@@ -57,6 +58,8 @@ class SendUserShippingAddressCubit extends Cubit<SendUserShippingAddressState> {
       shippingPostcode: shippingPostcode,
       shippingCountry: shippingCountry,
     );
+
+    if(isClosed) return;
     result.fold(
       (error) => emit(SendUserShippingAddressError(error: error)),
       (data) => emit(SendUserShippingAddressLoaded()),
