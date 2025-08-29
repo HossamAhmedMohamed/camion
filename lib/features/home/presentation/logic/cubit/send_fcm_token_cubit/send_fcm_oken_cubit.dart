@@ -13,11 +13,13 @@ class SendFcmTokenCubit extends Cubit<SendFcmOkenState> {
   void sendFcmToken() async {
     final fcmToken = PushNotificationsService.token;
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if(isClosed) return;
     emit(SendFcmOkenLoading());
     final response = await homeRepository.sendFcmToken(
       fcmToken: fcmToken!,
       token: token!,
     );
+    if(isClosed) return;
     response.fold(
       (error) => emit(SendFcmOkenError(error)),
       (data) => emit(SendFcmOkenSuccess()),

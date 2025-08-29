@@ -18,7 +18,7 @@ class AffiliateSignCubit extends Cubit<AffiliateSignState> {
     required String bio,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
-     
+     if(isClosed) return;
     emit(AffiliateSignLoading());
     final result = await supplierRepository.signAffiliate(
       token: token!,
@@ -28,6 +28,7 @@ class AffiliateSignCubit extends Cubit<AffiliateSignState> {
       bio: bio,
        
     );
+    if(isClosed) return;
     result.fold((l) => emit(AffiliateSignError(l)), (r) async {
       // await sl<SecureCacheHelper>().saveData(key: 'affiliateId', value: r.id);
 

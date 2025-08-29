@@ -13,8 +13,10 @@ class SlidersCubit extends Cubit<SlidersState> {
 
 
   Future<void> getSliders() async {
+    if(isClosed) return;
     emit(GetAllSlidersLoading());
     final result = await homeRepository.getSliders();
+    if(isClosed) return;
     result.fold(
       (error) {
         emit(GetAllSlidersError(error: error));

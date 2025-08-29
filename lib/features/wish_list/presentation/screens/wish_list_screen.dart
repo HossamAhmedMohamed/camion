@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart'; // إضافة المكتبة
+import 'package:share_plus/share_plus.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
@@ -40,8 +40,8 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
       GlobalKey<SliverAnimatedListState>();
   
   List<GetWishListModel> wishList = [];
-  Set<int> selectedItems = {}; // لحفظ العناصر المحددة
-  bool isSelectionMode = false; // وضع التحديد
+  Set<int> selectedItems = {}; 
+  bool isSelectionMode = false;  
 
   @override
   void initState() {

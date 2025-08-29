@@ -15,6 +15,7 @@ class CreateCouponCubit extends Cubit<CreateCouponState> {
     required num discountPercentage,
   }) async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if(isClosed) return;
     emit(CreateCouponLoading());
     final result = await supplierRepository.createCoupon(
       token: token!
@@ -22,6 +23,7 @@ class CreateCouponCubit extends Cubit<CreateCouponState> {
       code: code,
       discountPercentage: discountPercentage,
     );
+    if(isClosed) return;
     result.fold(
       (l) => emit(CreateCouponError(error: l)),
       (r) => emit(CreateCouponSuccess()),

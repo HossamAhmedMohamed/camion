@@ -195,6 +195,11 @@ class CountriesData {
     // يمكنك إضافة المزيد من الدول
   ];
 
+
+   static List<CountryModel> getAllCountries() {
+    return countries;
+  }
+
   static CountryModel getDefaultCountry() {
     return countries.first; // مصر كافتراضي
   }

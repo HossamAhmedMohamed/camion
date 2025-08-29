@@ -14,12 +14,15 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String phoneNumber,
   }) async {
+    if(isClosed) return;
     emit(RegisterLoading());
     final result = await authRepository.register(
       fullName: fullName,
       email: email,
       phoneNumber: phoneNumber,
     );
+
+    if(isClosed) return;
     result.fold((l) => emit(RegisterError(error: l)), (r) async {
      
       emit(RegisterLoaded(registerModel: r));

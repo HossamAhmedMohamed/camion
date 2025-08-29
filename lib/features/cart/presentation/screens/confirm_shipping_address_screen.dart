@@ -5,6 +5,8 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/logic/send_user_shipping_cubit/send_user_shipping_address_cubit.dart';
 import 'package:camion/features/auth/presentation/widgets/countries_stae_cities.dart';
+import 'package:camion/features/auth/presentation/widgets/custom_phone_number_controller.dart';
+import 'package:camion/features/auth/presentation/widgets/phone_number_controller.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_user_address_cubit/get_user_address_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +27,7 @@ class _ConfirmShippingAddressScreenState
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+  final PhoneNumberController _phoneNumberController = PhoneNumberController();
   final TextEditingController address1Controller = TextEditingController();
   final TextEditingController address2Controller = TextEditingController();
   final TextEditingController cityController = TextEditingController();
@@ -37,7 +39,8 @@ class _ConfirmShippingAddressScreenState
   final TextEditingController shippingLastNameController =
       TextEditingController();
   final TextEditingController shippingEmailController = TextEditingController();
-  final TextEditingController shippingPhoneController = TextEditingController();
+  final PhoneNumberController _shippingPhoneController =
+      PhoneNumberController();
   final TextEditingController shippingAddress1Controller =
       TextEditingController();
   final TextEditingController shippingAddress2Controller =
@@ -62,7 +65,7 @@ class _ConfirmShippingAddressScreenState
     firstNameController.dispose();
     lastNameController.dispose();
     emailController.dispose();
-    phoneController.dispose();
+    _phoneNumberController.dispose();
     address1Controller.dispose();
     address2Controller.dispose();
     cityController.dispose();
@@ -72,7 +75,7 @@ class _ConfirmShippingAddressScreenState
     shippingFirstNameController.dispose();
     shippingLastNameController.dispose();
     shippingEmailController.dispose();
-    shippingPhoneController.dispose();
+    _shippingPhoneController.dispose();
     shippingAddress1Controller.dispose();
     shippingAddress2Controller.dispose();
     shippingCityController.dispose();
@@ -114,7 +117,7 @@ class _ConfirmShippingAddressScreenState
                 firstNameController.text = data.firstName;
                 lastNameController.text = data.lastName;
                 emailController.text = data.email;
-                phoneController.text = data.phone;
+                _phoneNumberController.fullPhoneNumber = data.phone;
                 address1Controller.text = data.address1;
                 address2Controller.text = data.address2;
                 cityController.text = data.city;
@@ -126,7 +129,8 @@ class _ConfirmShippingAddressScreenState
                     data.shippingAddress.firstName;
                 shippingLastNameController.text = data.shippingAddress.lastName;
                 shippingEmailController.text = data.shippingAddress.email;
-                shippingPhoneController.text = data.shippingAddress.phone;
+                _shippingPhoneController.fullPhoneNumber =
+                    data.shippingAddress.phone;
                 shippingAddress1Controller.text = data.shippingAddress.address1;
                 shippingAddress2Controller.text = data.shippingAddress.address2;
                 shippingCityController.text = data.shippingAddress.city;
@@ -165,9 +169,9 @@ class _ConfirmShippingAddressScreenState
                               color: AppColors.primaryColor,
                             ),
                           ),
-                  
+
                           SizedBox(height: 15.h),
-                  
+
                           CustomTextFormField(
                             hintText: "First Name",
                             controller: firstNameController,
@@ -178,9 +182,9 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
-                  
+
                           CustomTextFormField(
                             hintText: "Last Name",
                             controller: lastNameController,
@@ -191,7 +195,7 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
                           CustomTextFormField(
                             hintText: "Email",
@@ -203,12 +207,13 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
-                  
-                          CustomTextFormField(
-                            hintText: "Phone Number",
-                            controller: phoneController,
+
+                          CustomPhoneNumberField(
+                            controller: _phoneNumberController,
+                            hintText: "Phone number",
+
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your phone number';
@@ -216,7 +221,7 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
                           CustomTextFormField(
                             hintText: "Address 1",
@@ -228,7 +233,7 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
                           CustomTextFormField(
                             hintText: "Address 2",
@@ -240,16 +245,16 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
-                  
+
                           CountryStateCityWidget(
                             cityController: cityController,
                             stateController: stateController,
                             countryController: countryController,
                           ),
                           SizedBox(height: 10.h),
-                  
+
                           CustomTextFormField(
                             hintText: "Postcode",
                             controller: postcodeController,
@@ -260,9 +265,9 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           const SizedBox(height: 24),
-                  
+
                           Text(
                             "Shipping Address",
                             style: AppStyle.styleRegular16(context).copyWith(
@@ -270,9 +275,9 @@ class _ConfirmShippingAddressScreenState
                               color: AppColors.primaryColor,
                             ),
                           ),
-                  
+
                           const SizedBox(height: 15),
-                  
+
                           CustomTextFormField(
                             hintText: "First Name",
                             controller: shippingFirstNameController,
@@ -283,9 +288,9 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           const SizedBox(height: 10),
-                  
+
                           CustomTextFormField(
                             hintText: "Last Name",
                             controller: shippingLastNameController,
@@ -296,9 +301,9 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
-                  
+
                           CustomTextFormField(
                             hintText: "Email",
                             controller: shippingEmailController,
@@ -309,20 +314,21 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           SizedBox(height: 10.h),
-                  
-                          CustomTextFormField(
-                            hintText: "Phone",
-                            controller: shippingPhoneController,
+
+                          CustomPhoneNumberField(
+                            controller: _shippingPhoneController,
+                            hintText: "Phone number",
+
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your phone';
+                                return 'Please enter your phone number';
                               }
                               return null;
                             },
                           ),
-                  
+
                           const SizedBox(height: 10),
                           CustomTextFormField(
                             hintText: "Address 1",
@@ -334,7 +340,7 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           const SizedBox(height: 10),
                           CustomTextFormField(
                             hintText: "Address 2",
@@ -346,18 +352,18 @@ class _ConfirmShippingAddressScreenState
                               return null;
                             },
                           ),
-                  
+
                           const SizedBox(height: 10),
-                  
+
                           CountryStateCityWidget(
                             cityController: shippingCityController,
                             stateController: shippingStateController,
                             countryController: shippingCountryController,
                           ),
-                  
+
                           // const SizedBox(height: 10),
                           const SizedBox(height: 24),
-                  
+
                           BlocConsumer<
                             SendUserShippingAddressCubit,
                             SendUserShippingAddressState
@@ -371,7 +377,7 @@ class _ConfirmShippingAddressScreenState
                                   textColor: Colors.white,
                                 );
                               }
-                  
+
                               if (state is SendUserShippingAddressLoaded) {
                                 Fluttertoast.showToast(
                                   msg: "Shipping address updated successfully",
@@ -379,9 +385,11 @@ class _ConfirmShippingAddressScreenState
                                   backgroundColor: Colors.green,
                                   textColor: Colors.white,
                                 );
+
+                                GoRouter.of(context).pop();
                               }
-                  
-                              GoRouter.of(context).pop();
+
+                              
                             },
                             builder: (context, state) {
                               return CustomElevatedButton(
@@ -393,7 +401,7 @@ class _ConfirmShippingAddressScreenState
                                             .validate()) {
                                           return;
                                         }
-                  
+
                                         context
                                             .read<
                                               SendUserShippingAddressCubit
@@ -401,18 +409,15 @@ class _ConfirmShippingAddressScreenState
                                             .sendUserShippingAddress(
                                               firstName:
                                                   firstNameController.text,
-                                              lastName:
-                                                  lastNameController.text,
+                                              lastName: lastNameController.text,
                                               email: emailController.text,
-                                              phone: phoneController.text,
-                                              address1:
-                                                  address1Controller.text,
-                                              address2:
-                                                  address2Controller.text,
+                                              phone: _phoneNumberController
+                                                  .fullPhoneNumber,
+                                              address1: address1Controller.text,
+                                              address2: address2Controller.text,
                                               city: cityController.text,
                                               state: stateController.text,
-                                              postcode:
-                                                  postcodeController.text,
+                                              postcode: postcodeController.text,
                                               country: countryController.text,
                                               shippingFirstName:
                                                   firstNameController.text,
@@ -421,13 +426,13 @@ class _ConfirmShippingAddressScreenState
                                               shippingEmail:
                                                   emailController.text,
                                               shippingPhone:
-                                                  phoneController.text,
+                                                  _shippingPhoneController
+                                                      .fullPhoneNumber,
                                               shippingAddress1:
                                                   address1Controller.text,
                                               shippingAddress2:
                                                   address2Controller.text,
-                                              shippingCity:
-                                                  cityController.text,
+                                              shippingCity: cityController.text,
                                               shippingState:
                                                   stateController.text,
                                               shippingPostcode:
@@ -449,9 +454,9 @@ class _ConfirmShippingAddressScreenState
                               );
                             },
                           ),
-                  
+
                           SizedBox(height: 20.h),
-                  
+
                           SizedBox(
                             height: MediaQuery.of(context).viewInsets.bottom,
                           ),

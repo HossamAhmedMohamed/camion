@@ -5,6 +5,8 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/logic/send_user_shipping_cubit/send_user_shipping_address_cubit.dart';
 import 'package:camion/features/auth/presentation/widgets/countries_stae_cities.dart';
+import 'package:camion/features/auth/presentation/widgets/custom_phone_number_controller.dart';
+import 'package:camion/features/auth/presentation/widgets/phone_number_controller.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +25,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+  final PhoneNumberController phoneController = PhoneNumberController();
   final TextEditingController address1Controller = TextEditingController();
   final TextEditingController address2Controller = TextEditingController();
   final TextEditingController cityController = TextEditingController();
@@ -35,7 +37,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
   final TextEditingController shippingLastNameController =
       TextEditingController();
   final TextEditingController shippingEmailController = TextEditingController();
-  final TextEditingController shippingPhoneController = TextEditingController();
+  final PhoneNumberController shippingPhoneController = PhoneNumberController();
   final TextEditingController shippingAddress1Controller =
       TextEditingController();
   final TextEditingController shippingAddress2Controller =
@@ -155,9 +157,10 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
 
                     SizedBox(height: 10.h),
 
-                    CustomTextFormField(
-                      hintText: "Phone Number",
+                    CustomPhoneNumberField(
                       controller: phoneController,
+                      hintText: "Phone number",
+
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your phone number';
@@ -261,12 +264,13 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
 
                     SizedBox(height: 10.h),
 
-                    CustomTextFormField(
-                      hintText: "Phone",
+                    CustomPhoneNumberField(
                       controller: shippingPhoneController,
+                      hintText: "Phone number",
+
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your phone';
+                          return 'Please enter your phone number';
                         }
                         return null;
                       },
@@ -349,7 +353,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                                         firstName: firstNameController.text,
                                         lastName: lastNameController.text,
                                         email: emailController.text,
-                                        phone: phoneController.text,
+                                        phone: phoneController.fullPhoneNumber,
                                         address1: address1Controller.text,
                                         address2: address2Controller.text,
                                         city: cityController.text,
@@ -361,7 +365,7 @@ class _ConfirmAddressState extends State<ConfirmAddress> {
                                         shippingLastName:
                                             lastNameController.text,
                                         shippingEmail: emailController.text,
-                                        shippingPhone: phoneController.text,
+                                        shippingPhone: phoneController.fullPhoneNumber,
                                         shippingAddress1:
                                             address1Controller.text,
                                         shippingAddress2:

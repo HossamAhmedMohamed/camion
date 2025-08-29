@@ -16,21 +16,30 @@ class GetAffiliateStatusCubit extends Cubit<GetAffiliateStatusState> {
 
   Future<void> getAffiliateStatus() async {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
+    if (isClosed) return;
     emit(GetAffiliateStatusLoading());
     final result = await supplierRepository.getAffiliateStatus(token: token!);
-    result.fold((l) => emit(GetAffiliateStatusError(error: l)), (r) async {
-      if (r.status == "approved") {
-        Future.wait([
-          sl<SecureCacheHelper>().saveData(key: 'token', value: r.token!),
-          sl<SecureCacheHelper>().saveData(
-            key: 'AffiliateId',
-            value: r.affiliateId,
-          ),
-        ]);
+    if (isClosed) return;
+    result.fold(
+      (l) {
+        if (isClosed) return;
+        emit(GetAffiliateStatusError(error: l));
+      },
+      (r) async {
+        if (isClosed) return;
+        if (r.status == "approved") {
+          Future.wait([
+            sl<SecureCacheHelper>().saveData(key: 'token', value: r.token!),
+            sl<SecureCacheHelper>().saveData(
+              key: 'AffiliateId',
+              value: r.affiliateId,
+            ),
+          ]);
 
-        log(r.token.toString());
-      }
-      emit(GetAffiliateStatusSuccess(data: r));
-    });
+          log(r.token.toString());
+        }
+        emit(GetAffiliateStatusSuccess(data: r));
+      },
+    );
   }
 }
