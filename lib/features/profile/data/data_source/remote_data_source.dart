@@ -16,7 +16,6 @@ class ProfileRemoteDataSource {
     return response;
   }
 
-
   Future<Response> updateUser({
     required String token,
     required String userId,
@@ -29,9 +28,8 @@ class ProfileRemoteDataSource {
     );
     return response;
   }
-  Future<Response> getWalletBalance({
-    required String token,
-  }) async {
+
+  Future<Response> getWalletBalance({required String token}) async {
     final response = await apiConsumer.get(
       "https://api-gateway.camion-app.com/affiliates/wallet",
       headers: {"Authorization": "Bearer $token"},
@@ -39,12 +37,20 @@ class ProfileRemoteDataSource {
     return response;
   }
 
-
-  Future<Response> getAllTransactions({
-    required String token,
-  }) async {
+  Future<Response> getAllTransactions({required String token}) async {
     final response = await apiConsumer.get(
       "https://api-gateway.camion-app.com/affiliates/wallet/transactions",
+      headers: {"Authorization": "Bearer $token"},
+    );
+    return response;
+  }
+
+  Future<Response> deleteAccount({
+    required String token,
+    required String userId,
+  }) async {
+    final response = await apiConsumer.delete(
+      "https://api-gateway.camion-app.com/users/$userId",
       headers: {"Authorization": "Bearer $token"},
     );
     return response;

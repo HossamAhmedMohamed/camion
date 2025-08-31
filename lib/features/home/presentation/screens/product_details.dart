@@ -563,7 +563,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
 
                                       SizedBox(width: 8.w),
-                                      Text(
+                                      displayData['price'] == displayData['regularPrice'] ? const SizedBox() : Text(
                                         "${double.parse(displayData['regularPrice'].toString()).toStringAsFixed(2)} ${product.prices.currencyCode}",
                                         style: AppStyle.styleRegular15(context)
                                             .copyWith(

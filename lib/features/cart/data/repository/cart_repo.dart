@@ -100,6 +100,7 @@ class CartRepository {
       final response = await cartRemoteDataSource.getUserAddress(token: token);
       return Right(GetUserAddressModel.fromJson(response.data));
     } catch (e) {
+      log(e.toString());
       return left(ApiErrorHandler.handle(e));
     }
   }

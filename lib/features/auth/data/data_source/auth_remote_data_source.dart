@@ -91,7 +91,7 @@ class AuthRemoteDataSource {
 
         "shipping_option": {
           "method_id": "flat_rate",
-          "method_title": "Shipping",
+          "title": "Shipping",
           "cost": "100",
         },
       },

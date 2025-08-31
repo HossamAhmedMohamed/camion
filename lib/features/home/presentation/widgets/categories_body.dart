@@ -1,4 +1,3 @@
-
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
@@ -122,38 +121,43 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                 final id = categoriesWithImages[index].id;
                                 GoRouter.of(context).push(
                                   AppRouter.productByCategory,
-                                  extra: {
-                                    "slug": slug,
-                                    "id": id,},
+                                  extra: {"slug": slug, "id": id},
                                 );
                               },
-                              child: Container(
-                                width: widget.screenWidth > 800 ? 140.w : 80.w,
-                                height: widget.screenWidth > 800 ? 140.h : 80.h,
-                                padding: EdgeInsets.all(0.r),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(100.r),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withAlpha(15),
-                                      spreadRadius: 2,
-                                      blurRadius: 4,
-                                      offset: Offset(0, 2.h),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: widget.screenWidth > 800
+                                        ? 140.w
+                                        : 80.w,
+                                    height: widget.screenWidth > 800
+                                        ? 140.h
+                                        : 80.h,
+                                    padding: EdgeInsets.all(0.r),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(
+                                        100.r,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withAlpha(15),
+                                          spreadRadius: 2,
+                                          blurRadius: 4,
+                                          offset: Offset(0, 2.h),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                margin: EdgeInsets.only(left: 15.w),
-                                child: SizedBox(
-                                  height: widget.screenWidth > 800
-                                      ? 120.h
-                                      : 60.h,
-                                  width: widget.screenWidth > 800
-                                      ? 120.w
-                                      : 60.w,
-                                  child: Stack(
-                                    children: [
-                                      Center(
+                                    margin: EdgeInsets.only(left: 15.w),
+                                    child: SizedBox(
+                                      height: widget.screenWidth > 800
+                                          ? 120.h
+                                          : 60.h,
+                                      width: widget.screenWidth > 800
+                                          ? 120.w
+                                          : 60.w,
+                                      child: Center(
                                         child: ClipOval(
                                           child: CustomCachedNetworkImage(
                                             fit: BoxFit.cover,
@@ -164,31 +168,35 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                           ),
                                         ),
                                       ),
+                                    ),
+                                  ),
 
-                                      Positioned(
-                                        top: 10.h,
-                                        bottom: 10.h,
-                                        left: 20.w,
-                                        right: 20.w,
-                                        child: Center(
-                                          child: FittedBox(
-                                            child: Text(
-                                              categoriesWithImages[index].name,
-                                              style: AppStyle.styleRegular18(
-                                                context,
-                                              ).copyWith(color: Colors.black),
-                                            ),
-                                          ),
+                                  SizedBox(height: 8.h),
+
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 15.w),
+                                    child: SizedBox(
+                                      width: widget.screenWidth > 800
+                                          ? 140.w
+                                          : 80.w,
+                                      child: Center(
+                                        child: Text(
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          categoriesWithImages[index].name,
+                                          style: AppStyle.styleRegular12(
+                                            context,
+                                          ).copyWith(color: Colors.black),
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             );
                           }),
                         ),
-                        SizedBox(height: 15.h),
+                        SizedBox(height: 6.h),
                       ],
                     );
                   }

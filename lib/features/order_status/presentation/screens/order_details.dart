@@ -1,5 +1,3 @@
- 
-
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -7,6 +5,7 @@ import 'package:camion/features/order_status/data/models/order_model/order_model
 import 'package:camion/features/order_status/presentation/widgets/custom_order_details.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -85,13 +84,31 @@ class OrderDetailsScreen extends StatelessWidget {
                       SizedBox(width: 10.w),
 
                       Expanded(
-                        child: Text(
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          numberOfOrder,
-                          style: AppStyle.styleRegular14(
-                            context,
-                          ).copyWith(color: Colors.black),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                numberOfOrder,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppStyle.styleRegular14(
+                                  context,
+                                ).copyWith(color: Colors.black),
+                              ),
+                            ),
+                            IconButton(
+                              icon: const Icon(
+                                Icons.copy,
+                                size: 18,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                                Clipboard.setData(
+                                  ClipboardData(text: numberOfOrder),
+                                );
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -138,17 +155,15 @@ class OrderDetailsScreen extends StatelessWidget {
                   //     ),
                   //   ],
                   // ),
-
                   SizedBox(height: 20.h),
                   Row(
                     children: [
                       Text(
                         "Order Date:",
-                        style: AppStyle.styleRegular18(
-                          context,
-                        ).copyWith(
+                        style: AppStyle.styleRegular18(context).copyWith(
                           fontWeight: FontWeight.w700,
-                          color: Colors.black),
+                          color: Colors.black,
+                        ),
                       ),
                       SizedBox(width: 10.w),
 
@@ -264,13 +279,11 @@ class OrderDetailsScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
 
                           Text(
-                            "$totalPrice $currency",
+                            "${(double.parse(totalPrice)).toStringAsFixed(2)} $currency",
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.black),
                           ),
-
-                           
                         ],
                       ),
 
@@ -312,9 +325,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           SizedBox(width: 10.w),
 
                           Text(
-                            "${(double.parse(totalPrice) +
-                                    double.parse(deliveryCost))
-                                .toStringAsFixed(2)} $currency",
+                            "${(double.parse(totalPrice) + double.parse(deliveryCost)).toStringAsFixed(2)} $currency",
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.primaryColor),
@@ -359,7 +370,7 @@ class OrderDetailsScreen extends StatelessWidget {
 
                           SizedBox(width: 10.w),
 
-                            Text(
+                          Text(
                             paymentMethod,
                             style: AppStyle.styleRegular16(
                               context,

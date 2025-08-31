@@ -63,8 +63,8 @@ class GetUserAddressModel {
 }
 
 class ShippingOption {
-  final String cost;
-  final String methodId;
+  final num cost;
+  final int methodId;
   final String methodTitle;
 
   ShippingOption({
@@ -77,7 +77,7 @@ class ShippingOption {
     return ShippingOption(
       cost: json['cost'],
       methodId: json['method_id'],
-      methodTitle: json['method_title'],
+      methodTitle: json['title'],
     );
   }
 

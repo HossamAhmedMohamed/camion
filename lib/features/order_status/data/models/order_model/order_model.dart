@@ -159,24 +159,24 @@ class CustomerDataModel {
 
 /// ✅ Shipping Option Model
 class ShippingOption {
-  final String cost;
+  final num cost;
   final String title;
-  final String methodId;
-  final int instanceId;
+  final int methodId;
+  
 
   ShippingOption({
     required this.cost,
     required this.title,
     required this.methodId,
-    required this.instanceId,
+   
   });
 
   factory ShippingOption.fromJson(Map<String, dynamic> json) {
     return ShippingOption(
-      cost: json['cost'] ?? '',
+      cost: json['cost'] ?? 0.0,
       title: json['title'] ?? '',
-      methodId: json['method_id'] ?? '',
-      instanceId: json['instance_id'] ?? 0,
+      methodId: json['method_id'] ?? 0,
+     
     );
   }
 }
