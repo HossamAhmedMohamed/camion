@@ -1,8 +1,11 @@
 import 'package:camion/config/widgets/custom_elevated_button.dart';
+import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/profile/data/models/profile_model.dart';
+import 'package:camion/features/profile/data/repository/profie_repo.dart';
+import 'package:camion/features/profile/presentation/logic/cubit/delete_account_cubit/delete_account_cubit.dart';
 import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit/log_out_cubit.dart';
 import 'package:camion/features/profile/presentation/widgets/custom_modal_bottom_sheet_profile.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_sliver_app_bar.dart';
@@ -11,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -18,8 +22,13 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LogOutCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LogOutCubit()),
+        BlocProvider(
+          create: (context) => DeleteAccountCubit(sl<ProfileRepository>()),
+        ),
+      ],
       child: const ProfileScreenBody(),
     );
   }
@@ -120,8 +129,6 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             context: context,
             content: Row(
               children: [
-                
-                
                 Expanded(
                   child: CustomElevatedButton(
                     borderColor: AppColors.primaryColor,
@@ -164,6 +171,92 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         image: Assets.imagesLogout,
       ),
 
+      ProfileModel(
+        onTap: () {
+          customModalBottomSheetProfile(
+            title: "Are you sure you want to delete your account?",
+            subTitle:
+                "Deleting your account will remove all your data and cannot be undone.",
+            screenWidth: double.infinity,
+            context: context,
+            content: Row(
+              children: [
+                Expanded(
+                  child: CustomElevatedButton(
+                    borderColor: AppColors.primaryColor,
+                    backgroundColor: AppColors.white,
+                    textColor: AppColors.primaryColor,
+                    child: Text(
+                      "Cancel",
+                      style: AppStyle.styleRegular15(
+                        context,
+                      ).copyWith(color: AppColors.primaryColor),
+                    ),
+                    onPressed: () {
+                      GoRouter.of(context).pop();
+                    },
+                  ),
+                ),
+
+                SizedBox(width: 10.w),
+
+                Expanded(
+                  child: BlocProvider.value(
+                    value: context.read<DeleteAccountCubit>(),
+                    child: BlocListener<DeleteAccountCubit, DeleteAccountState>(
+                      listener: (context, state) {
+                        if (state is DeleteAccountLoading) {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) => const Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          );
+                        } else {
+                          // hide loading indicator
+                          GoRouter.of(context).pop();
+                        }
+
+                        if (state is DeleteAccountSuccess) {
+                          GoRouter.of(context).goNamed(AppRouter.login);
+                        }
+
+                        if (state is DeleteAccountFailure) {
+                          Fluttertoast.showToast(
+                            msg: state.error.message,
+                            gravity: ToastGravity.TOP,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.sp,
+                          );
+                        }
+                      },
+                      child: CustomElevatedButton(
+                        backgroundColor: AppColors.primaryColor,
+                        child: Text(
+                          "Delete",
+                          style: AppStyle.styleRegular15(
+                            context,
+                          ).copyWith(color: Colors.white),
+                        ),
+                        onPressed: () {
+                          context.read<DeleteAccountCubit>().deleteAccount();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        title: 'Delete Account',
+        image: Assets.imagesAccountDelete,
+      ),
+
       // ProfileModel(
       //   onTap: () {},
       //   title: 'تسجيل الخروج',
@@ -175,10 +268,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
       slivers: [
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
         ProfileSliverAppBar(
-          title: Text(
-            "Profile",
-            style: AppStyle.styleRegular18(context),
-          ),
+          title: Text("Profile", style: AppStyle.styleRegular18(context)),
           isShoppingCartShown: true,
           leading: const SizedBox(),
           // leading: Container(
@@ -252,7 +342,6 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         //     ),
         //   ),
         // ),
-
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
 
         SliverList.builder(

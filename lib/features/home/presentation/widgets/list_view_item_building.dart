@@ -184,7 +184,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     ),
                   ),
                   SizedBox(width: 8.w),
-                  Text(
+                  widget.originalPrice == widget.outPrice ? const SizedBox() : Text(
                     "${widget.outPrice} ${widget.currencyCode} ",
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,

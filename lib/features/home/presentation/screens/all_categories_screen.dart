@@ -156,13 +156,20 @@ class AllCategoriesScreen extends StatelessWidget {
 
                             SizedBox(height: 5.h),
 
-                            Text(
-                              textAlign: TextAlign.center,
-                              categories[index].name,
-                              style: AppStyle.styleRegular12(
-                                context,
-                              ).copyWith(color: Colors.black),
-                            ),
+                            Padding(
+                                padding: EdgeInsets.only(left: 15.w),
+                                    child: SizedBox(
+                                      width: screenWidth > 800
+                                          ? 140.w
+                                          : 80.w,
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                categories[index].name,
+                                style: AppStyle.styleRegular12(
+                                  context,
+                                ).copyWith(color: Colors.black),
+                              ),
+                            )),
                           ],
                         ),
                       );

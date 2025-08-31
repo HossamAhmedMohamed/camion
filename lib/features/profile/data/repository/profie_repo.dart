@@ -69,4 +69,19 @@ class ProfileRepository {
       return left(ApiErrorHandler.handle(e));
     }
   }
+
+  Future<Either<ApiErrorModel, dynamic>> deleteAccount({
+    required String token,
+    required String userId,
+  }) async {
+    try {
+      final response = await profileRemoteDataSource.deleteAccount(
+        token: token,
+        userId: userId,
+      );
+      return Right(response.data);
+    } catch (e) {
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
 }

@@ -75,7 +75,6 @@ import 'package:camion/features/profile/presentation/screens/help_screen.dart';
 import 'package:camion/features/profile/presentation/screens/my_info.dart';
 import 'package:camion/features/profile/presentation/screens/my_wallet_screen.dart';
 import 'package:camion/features/profile/presentation/screens/privacy_and_return_policy_scren.dart';
-import 'package:camion/features/profile/presentation/screens/profile_screen.dart';
 import 'package:camion/features/profile/presentation/screens/settings_screen.dart';
 import 'package:camion/features/profile/presentation/screens/wallet_affiliate_check.dart';
 import 'package:camion/features/searching/presentation/screens/search_filter_screen.dart';
@@ -132,14 +131,17 @@ class RouterGenerator {
         ),
       ),
 
-      GoRoute(
-        name: AppRouter.profileScreen,
-        path: AppRouter.profileScreen,
-        builder: (context, state) => BlocProvider(
-          create: (context) => LogOutCubit(),
-          child: const ProfileScreenBody(),
-        ),
-      ),
+      // GoRoute(
+      //   name: AppRouter.profileScreen,
+      //   path: AppRouter.profileScreen,
+      //   builder: (context, state) => MultiBlocProvider(
+      //     providers: [
+      //       BlocProvider(create: (context) => LogOutCubit()),
+      //       BlocProvider(create: (context) => DeleteAccountCubit(sl<ProfileRepository>())),
+      //     ],
+      //     child: const ProfileScreenBody(),
+      //   ),
+      // ),
 
       GoRoute(
         name: AppRouter.selectingFromBottomNavBar,

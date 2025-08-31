@@ -26,7 +26,7 @@ class _HelpScreenState extends State<HelpScreen> {
           question:
               "How long is the delivery time and what are the coverage areas?",
           answer:
-              "Delivery typically takes 3 to 5 business days within major cities in Saudi Arabia. Shipments to remote areas may take longer. We are currently working to expand our services to cover all regions as soon as possible",
+              "Delivery typically takes 3 to 5 business days and shipping is available worldwide.",
         ),
         FAQItem(
           question: "How can I track my order?",
