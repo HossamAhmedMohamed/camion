@@ -1,5 +1,6 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class PendingScreen extends StatelessWidget {
         SizedBox(height: 10.h),
 
         Text(
-          'Pending...',
+           S.of(context).pedning,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
@@ -30,7 +31,7 @@ class PendingScreen extends StatelessWidget {
         SizedBox(height: 8.h),
 
         Text(
-          'Your request is currently under review.\nPlease wait for admin approval.',
+           S.of(context).pending_message,
           style: TextStyle(fontSize: 16.sp, color: Colors.black54),
           textAlign: TextAlign.center,
         ),
@@ -49,7 +50,7 @@ class PendingScreen extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Back',
+             S.of(context).back,
             style: TextStyle(fontSize: 18.sp, color: Colors.white),
           ),
         ),

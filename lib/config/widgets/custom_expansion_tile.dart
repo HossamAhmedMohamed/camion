@@ -73,7 +73,7 @@ class _CustomExpansionTileState extends State<CustomExpansionTile>
                       style: AppStyle.styleRegular18(
                         context,
                       ).copyWith(color: Colors.black),
-                      textAlign: TextAlign.left,
+                     
                     ),
                   ),
 

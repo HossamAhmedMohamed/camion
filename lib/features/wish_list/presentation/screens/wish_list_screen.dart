@@ -1,3 +1,4 @@
+ 
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:camion/features/wish_list/data/models/get_wish_list_model.dart';
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/widgets/product_wish_list.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +20,7 @@ class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
 
   static GlobalKey<WishListScreenBodyState> wishListKey = GlobalKey();
-  
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -38,10 +40,10 @@ class WishListScreenBody extends StatefulWidget {
 class WishListScreenBodyState extends State<WishListScreenBody> {
   final GlobalKey<SliverAnimatedListState> _listKey =
       GlobalKey<SliverAnimatedListState>();
-  
+
   List<GetWishListModel> wishList = [];
-  Set<int> selectedItems = {}; 
-  bool isSelectionMode = false;  
+  Set<int> selectedItems = {};
+  bool isSelectionMode = false;
 
   @override
   void initState() {
@@ -77,7 +79,9 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
   // تحديد الكل
   void selectAll() {
     setState(() {
-      selectedItems = Set<int>.from(List.generate(wishList.length, (index) => index));
+      selectedItems = Set<int>.from(
+        List.generate(wishList.length, (index) => index),
+      );
     });
   }
 
@@ -93,18 +97,20 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
     if (selectedItems.isEmpty) return;
 
     List<String> productLinks = [];
-    
+
     for (int index in selectedItems) {
       if (index < wishList.length) {
         GetWishListModel product = wishList[index];
-         
-        String productLink = "https://camion-app.com/en/shop/${product.productId}";
+
+        String productLink =
+            "https://camion-app.com/en/shop/${product.productId}";
         productLinks.add("${product.productName}: $productLink");
       }
     }
 
-    String shareText = "Check out these amazing products I found:\n\n${productLinks.join('\n\n')}";
-    
+    String shareText =
+        "Check out these amazing products I found:\n\n${productLinks.join('\n\n')}";
+
     await Share.share(shareText);
   }
 
@@ -178,13 +184,12 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
         CustomSliverAppBar(
           appBarHeight: 70.h,
           title: Text(
-            isSelectionMode 
-                ? "${selectedItems.length} Selected" 
-                : "Favorites",
-            style: AppStyle.styleRegular18(context).copyWith(
-              color: AppColors.black, 
-              fontWeight: FontWeight.w500
-            ),
+            isSelectionMode
+                ? "${selectedItems.length} ${S.of(context).selected}"
+                : S.of(context).favorites,
+            style: AppStyle.styleRegular18(
+              context,
+            ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
           ),
           isShownDivider: true,
           isShoppingCartShown: false,
@@ -193,12 +198,12 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
             if (isSelectionMode) ...[
               // زر تحديد الكل/إلغاء تحديد الكل
               IconButton(
-                onPressed: selectedItems.length == wishList.length 
-                    ? deselectAll 
+                onPressed: selectedItems.length == wishList.length
+                    ? deselectAll
                     : selectAll,
                 icon: Icon(
-                  selectedItems.length == wishList.length 
-                      ? Icons.deselect 
+                  selectedItems.length == wishList.length
+                      ? Icons.deselect
                       : Icons.select_all,
                   color: AppColors.black,
                 ),
@@ -224,7 +229,7 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
           ],
         ),
         SliverToBoxAdapter(child: SizedBox(height: 25.h)),
-        
+
         // إضافة شريط معلومات عند التحديد
         if (isSelectionMode && selectedItems.isNotEmpty)
           SliverToBoxAdapter(
@@ -238,11 +243,15 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline, color: AppColors.primaryColor, size: 20.sp),
+                  Icon(
+                    Icons.info_outline,
+                    color: AppColors.primaryColor,
+                    size: 20.sp,
+                  ),
                   SizedBox(width: 8.w),
                   Expanded(
                     child: Text(
-                      "${selectedItems.length} product${selectedItems.length > 1 ? 's' : ''} selected for sharing",
+                      "${selectedItems.length} ${S.of(context).product}${selectedItems.length > 1 ? S.of(context).s : ''}  ${S.of(context).selected_for_sharing}.",
                       style: TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 14.sp,
@@ -295,7 +304,10 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
                           onPressed: () {
                             context.read<GetWishListCubit>().getWishList();
                           },
-                          child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                          child: Text(
+                             S.of(context).retry,
+                            style: TextStyle(fontSize: 16.sp),
+                          ),
                         ),
                       ],
                     ),
@@ -317,7 +329,7 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
                         ),
                         SizedBox(height: 16.h),
                         Text(
-                          'Your wishlist is empty',
+                           S.of(context).Your_wishlist_is_empty,
                           style: TextStyle(
                             fontSize: 18.sp,
                             color: Colors.grey[600],
@@ -326,7 +338,7 @@ class WishListScreenBodyState extends State<WishListScreenBody> {
                         ),
                         SizedBox(height: 8.h),
                         Text(
-                          'Add some products to your favorites!',
+                           S.of(context).add_some_products_to_your_favorites,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Colors.grey[500],

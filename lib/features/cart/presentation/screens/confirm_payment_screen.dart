@@ -9,6 +9,7 @@ import 'package:camion/features/cart/presentation/logic/cubit/apply_coupon_cubit
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
 import 'package:camion/features/cart/presentation/widgets/confirmation_products.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/create_order_cubit/create_order_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +44,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const CartSliverAppBar(title: "Checkout"),
+            CartSliverAppBar(title:  S.of(context).checkout),
 
           SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
@@ -54,7 +55,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Products",
+                     S.of(context).products,
                     style: AppStyle.styleBold16(
                       context,
                     ).copyWith(color: AppColors.black),
@@ -66,7 +67,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                       ).pushReplacementNamed(AppRouter.myCart);
                     },
                     child: Text(
-                      "View Cart",
+                       S.of(context).view_cart,
                       style: AppStyle.styleRegular12(context).copyWith(
                         color: AppColors.primaryColor,
                         decoration: TextDecoration.underline,
@@ -118,7 +119,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                 },
                 child: Text(
                   
-                  "Review Your Shipping Address Data",
+                     S.of(context).Review_Your_Shipping_Address_Data,
                   style: AppStyle.styleBold16(
                     context,
                   ).copyWith(
@@ -139,7 +140,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Coupon code",
+                     S.of(context).coupon_code,
                     style: AppStyle.styleBold16(
                       context,
                     ).copyWith(color: AppColors.black),
@@ -151,7 +152,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                         flex: 2,
                         child: CustomTextFormField(
                           controller: _couponController,
-                          hintText: "Enter Coupon Code",
+                          hintText:  S.of(context).enter_your_coupon_code,
                         ),
                       ),
                       SizedBox(width: 10.w),
@@ -163,7 +164,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                                 listener: (context, state) {
                                   if (state is ApplyCouponSuccess) {
                                     Fluttertoast.showToast(
-                                      msg: "Coupon applied successfully",
+                                      msg: S.of(context).Coupon_applied_successfully,
                                       gravity: ToastGravity.TOP,
                                       backgroundColor: Colors.green,
                                       textColor: Colors.white,
@@ -213,7 +214,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                                           )
                                         : FittedBox(
                                             child: Text(
-                                              "Confirm",
+                                               S.of(context).confirm,
                                               style:
                                                   AppStyle.styleBold16(
                                                     context,
@@ -291,7 +292,7 @@ class _ConfirmPaymentScreenState extends State<ConfirmPaymentScreen> {
                           : Row(
                               children: [
                                 Text(
-                                  "Checkout",
+                                   S.of(context).checkout,
                                   style: AppStyle.styleRegular15(
                                     context,
                                   ).copyWith(color: Colors.white),

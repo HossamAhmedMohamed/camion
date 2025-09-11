@@ -1,0 +1,340 @@
+{
+  "name": "Jeneng kene",
+  "phone_Number": "Nomer Telpon",
+  "email": "Email",
+  "login": "Mlebu",
+  "logout": "Metu",
+  "settings": "Setelan",
+  "Sign_up": "Daftar",
+  "dont_have_an_account": "Durung duwe akun",
+  "already_have_an_account": "Wis duwe akun",
+  "enter_verify_otp": "Lebokna kode verifikasi sing dikirim menyang nomer telpon 📱",
+  "enter_verify_otp_subtitle": "Lebokna kode verifikasi sing dikirim menyang telponmu:",
+  "resend_otp": "Kirim maneh sawisé",
+  "continuee": "Terusake",
+
+
+  "search": "Golèk",
+  "stories": "Crita",
+  "join_us": "Gabung Saiki",
+  "join_our_team": "Gabung Tim Afiliasi",
+  "join_our_team_description": "Gawé wektu onlinemu dadi bathi! Gabung program afiliasi lan wiwiti entuk dhuwit saka omah.",
+  "categories": "Kategori",
+  "view_all": "Delok Kabeh",
+  "camion_offers": "Penawaran Camion",
+  "top_sales": "Penjualan Paling Laris",
+  "choose_prduct": "Pilih Produk",
+
+
+  "home": "Omah",
+  "cart": "Kréta",
+  "profile": "Profil",
+  "favorites": "Favorit",
+  "orders": "Pesenan",
+
+
+  "personal_information": "Informasi Pribadi",
+  "my_wallet": "Dompetku",
+  "my_orders": "Pesenanku",
+  "affiliate_marketing": "Pemasaran Afiliasi",
+  "language": "Basa",
+  "rate_us": "Nilai Kita",
+  "give_us_feedback": "Wenehi Saran",
+  "about_us": "Babagan Kita",
+  "privacy_policy": "Kebijakan Privasi",
+  "help": "Bantuan",
+  "delete_account": "Busak Akun",
+  "are_you_sure_you_want_to_logout": "Kowe yakin pengin metu?",
+  "logout_description": "Sesi saiki bakal diakhiri, lan kowe kudu mlebu maneh kanggo ngakses akunmu.",
+  "are_you_sure_you_want_to_delete": "Kowe yakin pengin mbusak akun?",
+  "delete_account_description": "Kabeh datamu bakal dibusak permanen lan ora bisa dipulihake maneh. Tindakan iki ora bisa dibalekake.",
+  "cancel": "Batal",
+  "change_language": "Ganti Basa",
+  "arabic": "Arab",
+  "english": "Inggris",
+  "german": "Jerman",
+  "french": "Prancis",
+  "spanish": "Spanyol",
+  "italian": "Italia",
+  "bengali": "Bengali",
+  "dutch": "Belanda",
+  "hindi": "Hindi",
+  "indonesian": "Indonesia",
+  "japanese": "Jepang",
+  "javanese": "Jawa",
+  "korean": "Korea",
+  "malay": "Melayu/Indonesia",
+  "mandarin_chinese": "Mandarin",
+  "marathi": "Marathi",
+  "persian": "Persia (Farsi)",
+  "polish": "Polandia",
+  "portuguese": "Portugis",
+  "punjabi": "Punjabi",
+  "romanian": "Rumania",
+  "russian": "Rusia",
+  "swahili": "Swahili",
+  "tamil": "Tamil",
+  "telugu": "Telugu",
+  "thai": "Thai",
+  "turkish": "Turki",
+  "ukrainian": "Ukraina",
+  "urdu": "Urdu",
+  "vietnamese": "Vietnam",
+
+
+  "description": "Katrangan",
+  "coupon_code": "Kode Kupon",
+  "apply": "Terapake",
+
+
+  "product_details": "Rincian Produk",
+  "reviews": "Ulasan",
+  "in_stock": "Ana Stok",
+  "out_of_stock": "Ora Ana Stok",
+  "add_to_cart": "Tambah menyang Kréta",
+  "go_to_cart": "Pindhah menyang Kréta",
+  "quantity": "Jumlah",
+  "add_review": "Tambah Ulasan",
+
+  "retry": "Coba Maneh",
+  "available_options": "Pilihan Kasedhiya",
+
+  "full_name": "Jeneng Lengkap",
+  "edit_profile": "Sunting Profil",
+  "save": "Simpen",
+
+  "pedning": "Ngenteni....",
+  "back": "Bali",
+  "pending_message": "Panjalukmu saiki isih ditinjau.\nMangga ngenteni persetujuan admin.",
+
+  "rejected": "Ditolak",
+  "rejected_message": "Panjaluk registrasimu ditolak.\nCoba daftar maneh.",
+  "register_again_as_affiliate": "Daftar Maneh dadi Afiliasi",
+
+  "all": "Kabeh",
+  "transactions": "Transaksi",
+  "My_Wallet": "Dompetku",
+  "withdraw": "Tarik",
+
+  "Affiliate_marketing": "Pemasaran Afiliasi",
+  "start_now": "Mulai Saiki",
+  "affiliate_welcome_message": "Kita seneng kowe gabung tim pemasaran",
+  "affiliate_welcome_subtitle": "Kita nyedhiyakake sistem afiliasi sing gampang lan efektif adhedhasar kode unik kanggo saben pemasar. Kode iki bisa dienggo bareng karo audiens, supaya entuk komisi saben ana penjualan nganggo kode kasebut. Komisi bakal langsung ditransfer menyang dompet tanpa perantara utawa tundha, njamin pembayaran cepet lan gampang. Kita nyedhiyakake macem-macem produk ing bidang beda, supaya saben pemasar bisa nemokake sing cocog karo audiensé lan entuk penjualan maksimal. Tujuan kita kanggo mbantu kowe entuk penghasilan tetep kanthi usaha minimal lan pemasaran sing pinter.",
+
+
+  "affiliate_account": "Akun Afiliasi",
+
+  "my_coupuns": "Kuponku",
+  "create_coupon": "Gawe Kupon",
+
+
+  "join_us_as_affiliate": "Gabung dadi Afiliasi",
+
+  "next": "Sabanjuré",
+
+  "create": "Gawe",
+  "coupon": "Kupon",
+  "discount_rate": "Persentase Diskon",
+
+
+  "personal_data": "Data Pribadi",
+
+  "nationality": "Kewarganegaraan",
+  "about_you": "Babagan Kowe",
+  "city": "Kutha",
+  "phone": "Telpon",
+  "address": "Alamat",
+
+  "male": "Lanang",
+  "female": "Wadon",
+
+
+  "feedback": "Saran",
+
+  "help_us_improve": "Tulungi kita ningkatake pengalamanmu",
+
+  "feed_back_description": "Barengna pikiranmu lan tulungi ningkatake pengalamanmu",
+
+  "privacy_poilicy_camion_app": "Kebijakan - Aplikasi Camion",
+
+  "terms_of_use": "Syarat Panggunaan",
+  "terms_of_use_description1": "Kanthi nggunakake Camion, kowe setuju netepi kabeh syarat lan ketentuan sing ana ing kebijakan iki.",
+  "terms_of_use_description2": "Camion nduwèni hak nganyari utawa ngowahi kebijakan iki kapan wae. Pangguna bakal diwenehi kabar liwat aplikasi utawa email.",
+  "terms_of_use_description3": "Aplikasi ora kena digunakake kanggo kegiyatan ilegal utawa nglanggar hukum lokal utawa internasional.",
+
+  "product_policy": "Kebijakan Produk",
+  "product_policy_description1": "Kabeh produk ing Camion asli lan cocog karo spesifikasi sing diterangaké ing kaca produk.",
+  "product_policy_description2": "Regane wis kalebu PPN (yen ana) lan ora kalebu biaya kirim kajaba disebutaké.",
+  "product_policy_description3": "Warna produk bisa wae rada beda amarga setelan layar utawa bedane pabrik.",
+
+  "payment_policy": "Kebijakan Pembayaran",
+  "payment_policy_description1": "Camion ndhukung macem-macem cara pembayaran (kertu kredit/debit, transfer bank, e-wallet, lan COD yen ana).",
+  "payment_policy_description2": "Kabeh pembayaran aman liwat panyedhiya layanan pembayaran sing disertifikasi.",
+  "payment_policy_description3": "Yen pembayaran gagal, pesenan ora bakal dikonfirmasi, lan pangguna bisa nyoba maneh nganggo cara liyane.",
+
+  "shipping_policy": "Kebijakan Pengiriman",
+  "shipping_policy_description1": "Camion nyedhiyakake pengiriman internasional liwat layanan kurir terpercaya.",
+  "shipping_policy_description2": "Wektu pangiriman gumantung saka negara tujuan lan panyedhiya kiriman.",
+  "shipping_policy_description3": "Pelanggan bakal nampa nomer pelacakan sawisé pesenan dikirim.",
+  "shipping_policy_description4": "Camion ora tanggung jawab kanggo keterlambatan amarga bea cukai, bencana alam, utawa masalah kurir sing ora bisa dikendhaleni.",
+
+  "return_policy": "Kebijakan Balik & Refund",
+  "return_policy_description1": "Pelanggan bisa njaluk mbalekake barang sajrone 14 dina sawisé nampa pesenan, kanthi cathetan barang durung digunakake, ora rusak, lan isih ana ing kemasan asli.",
+  "return_policy_description2": "Barang tartamtu kaya produk perawatan pribadi, panganan, utawa barang kustom ora bisa dibalekake.",
+  "return_policy_description3": "Refund bakal diproses menyang cara pembayaran asli sajrone 7–14 dina kerja sawisé barang dikonfirmasi.",
+  "return_policy_description4": "Biaya pengiriman ora bisa dibalekake, lan biaya kirim bali dadi tanggung jawab pelanggan (kajaba barang rusak utawa salah).",
+
+  "privacy_policy_details": "Kebijakan Privasi",
+  "privacy_policy_description1": "Camion ngajeni lan nglindhungi data pribadimu.",
+  "privacy_policy_description2": "Kita nglumpukake informasi (jeneng, alamat, kontak, lan info pembayaran) mung kanggo ngolah pesenan lan ningkatake pengalaman pangguna.",
+  "privacy_policy_description3": "Data pribadhi ora bakal didol utawa dienggo bareng pihak katelu, kecuali karo partner pengiriman lan pembayaran kanggo ngrampungake pesenan.",
+  "privacy_policy_description4": "Kabeh data disimpen kanthi aman, lan pangguna nduwèni hak njaluk akses, koreksi, utawa mbusak informasi pribadhi.",
+
+  "limitation_liability": "Watesan Tanggung Jawab",
+  "limitation_liability_description1": "Camion ora tanggung jawab kanggo kerugian ora langsung utawa akibat saka panggunaan aplikasi utawa produk sing dituku.",
+  "limitation_liability_description2": "Tanggung jawab panggunaan produk ana ing pelanggan.",
+  "limitation_liability_description3": "Ing kasus perselisihan, tanggung jawab Camion winates mung nganti nilai pesenan.",
+
+
+  "paid": "Wis Dibayar",
+  "delivered": "Wis Dikirim",
+  "completed": "Rampung",
+
+
+  "Shipping_and_Delivery": "Pengiriman",
+
+  "question_1": "Pira suwene wektu pangiriman lan ngendi wae area cakupane?",
+
+  "answer_1": "Biasane pangiriman butuh 3 nganti 5 dina kerja lan kasedhiya ing saindenging donya.",
+
+  "question_2": "Kepiye aku bisa nglacak pesenan?",
+
+  "answer_2": "Sawisé pesenan dikirim, kowe bakal nampa kabar lan email isi nomer pelacakan. Kowe bisa nganggo nomer kuwi kanggo nglacak pesenan langsung ing situs web perusahaan kiriman. Kowe uga bisa mriksa status pesenan liwat bagean Pesenanku.",
+
+  "Payments": "Pembayaran",
+
+  "question_3": "Cara pembayaran apa wae sing kasedhiya?",
+
+  "answer_3": "Kita nampa pembayaran nganggo kertu kredit, Mada, Apple Pay, lan COD.",
+
+  "Return_and_Exchange": "Balik lan Tukar",
+
+  "question_4": "Apa kebijakan balik barang?",
+
+  "answer_4": "Produk bisa dibalekake sajrone 14 dina saka tanggal panriman, kanthi syarat isih kondisi asli.",
+
+  "Direct_communication": "Komunikasi Langsung",
+
+  "Contact_us_via_WhatsApp": "Hubungi liwat WhatsApp",
+
+  "For_immediate_assistance": "Kanggo pitulungan cepet",
+
+
+  "selected": "Dipilih",
+  "product": "Produk",
+  "selected_for_sharing": "Dipilih kanggo dibagi",
+
+  "Your_wishlist_is_empty": "Daftar karepmu kosong",
+  "add_some_products_to_your_favorites": "Tambah produk menyang favoritmu!",
+  "s": "s",
+
+  "Continue_To_Checkout": "Terus menyang Checkout",
+
+  "payment_page_loading": "Kaca pembayaran lagi dimuat, mangga ngenteni...",
+
+  "address_confirmation": "Konfirmasi Alamat",
+  "first_name": "Jeneng Depan",
+  "please_enter_your_first_name": "Lebokna jeneng ngarep",
+  "please_enter_your_last_name": "Lebokna jeneng mburi",
+  "last_name": "Jeneng Mburi",
+  "confirm": "Konfirmasi",
+  "shipping_address": "Alamat Pangiriman",
+  "address_1": "Alamat 1",
+  "please_enter_your_address": "Lebokna alamatmu",
+  "address_2": "Alamat 2",
+  "country": "Negara",
+  "please_select_your_country": "Pilih negaramu",
+  "please_enter_your_email": "Lebokna emailmu",
+  "please_enter_your_phone_number": "Lebokna nomer telponmu",
+  "please_enter_your_city": "Lebokna kutha",
+  "please_enter_your_state": "Lebokna provinsimu",
+  "please_enter_your_postal_code": "Lebokna kode posmu",
+  "state": "Provinsi",
+  "postal_code": "Kode Pos",
+  "confirm_your_shipping_address": "Konfirmasi alamat pangirimanmu",
+
+  "checkout": "Checkout",
+  "products": "Produk",
+  "view_cart": "Delok Kréta",
+  "subtotal": "Subtotal",
+  "total": "Total",
+  "Review_Your_Shipping_Address_Data": "Mriksa Data Alamat Pangiriman",
+  "enter_your_coupon_code": "Lebokna kode kupon",
+
+  "notifications": "Notifikasi",
+
+  "order_details": "Rincian Pesenan",
+  "order_id": "ID Pesenan",
+  "order_number": "Nomer Pesenan:",
+  "order_date": "Tanggal Pesenan:",
+
+  "payment_method": "Cara Bayar",
+  "payment_details": "Rincian Pembayaran",
+
+  "order_tracking": "Pelacakan Pesenan",
+  "order_status": "Status Pesenan",
+
+  "delivery_charge": "Biaya Kirim",
+  "delivery_address": "Alamat Pangiriman",
+
+  "grand_total": "Total Pungkasan",
+
+  "order_is_paid": "Pesenan wis dibayar",
+
+  "order_is_delivered": "Pesenan wis dikirim",
+
+  "delivery_is_in_progress": "Pengiriman lagi proses",
+
+  "Will_arrive_within_days": "Bakal teka sajrone sawetara dina",
+
+  "your_order_is_in_progress": "Pesenanmu lagi diproses",
+
+  "Number_of_products": "Jumlah produk",
+
+  "Ordered_in": "Dipesen ing",
+
+  "Shipping_address_added_successfully": "Alamat pangiriman kasil ditambahake",
+  "Shipping_address_updated_successfully": "Alamat pangiriman kasil dianyari",
+  "register": "Daftar",
+  "please_enter_your_name": "Lebokna jenengmu",
+
+  "account_created_successfully": "Akun kasil digawe",
+
+  "choose_country": "Pilih Negara",
+
+  "search_for_countries": "Golèk negara",
+
+  "Coupon_applied_successfully": "Kupon kasil ditrapake",
+
+  "Review_Added_Successfully": "Ulasan kasil ditambahake",
+
+  "please_select_your_gender": "Pilih jendermu",
+
+  "please_select_your_nationality": "Pilih kewarganegaraanmu",
+
+  "please_enter_your_bio": "Lebokna bio",
+  "Coupon_created_successfully": "Kupon kasil digawe",
+  "please_enter_your_coupon_code": "Lebokna kode kuponmu",
+  "please_enter_your_discount_rate": "Lebokna persentase diskon",
+
+  "profile_updated_successfully": "Profil kasil dianyari",
+
+  "You_are_subscribed_to_affiliate_marketing": "Kowe wis melu pemasaran afiliasi",
+  "view_your_activity": "Delok aktivitasmu",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "Kowe durung melu pemasaran afiliasi",
+  "subscribe_now": "Melu Saiki!",
+
+
+  "Something_went_wrong": "Ana sing salah"
+}

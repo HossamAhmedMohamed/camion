@@ -1,0 +1,339 @@
+{
+  "name": "Jina hapa",
+  "phone_Number": "Nambari ya Simu",
+  "email": "Barua pepe",
+  "login": "Ingia",
+  "logout": "Toka",
+  "settings": "Mipangilio",
+  "Sign_up": "Jisajili",
+  "dont_have_an_account": "Huna akaunti?",
+  "already_have_an_account": "Tayari una akaunti?",
+  "enter_verify_otp": "Ingiza nambari ya kuthibitisha iliyotumwa kwa nambari ya simu 📱",
+  "enter_verify_otp_subtitle": "Ingiza nambari ya kuthibitisha iliyotumwa kwa simu yako:",
+  "resend_otp": "Tuma tena baada ya",
+  "continuee": "Endelea",
+
+
+  "search": "Tafuta",
+  "stories": "Hadithi",
+  "join_us": "Jiunge Nasi Sasa",
+  "join_our_team": "Jiunge na Timu Yetu ya Washirika",
+  "join_our_team_description": "Geuza muda wako mtandaoni kuwa faida! Jiunge na programu yetu ya washirika na anza kupata pesa ukiwa nyumbani.",
+  "categories": "Makundi",
+  "view_all": "Tazama Zote",
+  "camion_offers": "Ofa za Camion",
+  "top_sales": "Mauzo Bora",
+  "choose_prduct": "Chagua Bidhaa",
+
+
+  "home": "Nyumbani",
+  "cart": "Kikapu",
+  "profile": "Wasifu",
+  "favorites": "Vipendwa",
+  "orders": "Oda",
+
+
+  "personal_information": "Taarifa Binafsi",
+  "my_wallet": "Pochi Yangu",
+  "my_orders": "Oda Zangu",
+  "affiliate_marketing": "Uuzaji wa Washirika",
+  "language": "Lugha",
+  "rate_us": "Tupatie Kiwango",
+  "give_us_feedback": "Toa Maoni",
+  "about_us": "Kuhusu Sisi",
+  "privacy_policy": "Sera ya Faragha",
+  "help": "Msaada",
+  "delete_account": "Futa Akaunti",
+  "are_you_sure_you_want_to_logout": "Una uhakika unataka kutoka?",
+  "logout_description": "Kipindi chako cha sasa kitaisha, na utahitaji kuingia tena ili kufikia akaunti yako.",
+  "are_you_sure_you_want_to_delete": "Una uhakika unataka kufuta akaunti yako?",
+  "delete_account_description": "Data zako zote zitafutwa kabisa na haziwezi kurejeshwa baadaye. Hatua hii haiwezi kubadilishwa.",
+  "cancel": "Ghairi",
+  "change_language": "Badilisha Lugha",
+  "arabic": "Kiarabu",
+  "english": "Kiingereza",
+  "german": "Kijerumani",
+  "french": "Kifaransa",
+  "spanish": "Kihispania",
+  "italian": "Kiitaliano",
+  "bengali": "Kibengali",
+  "dutch": "Kiholanzi",
+  "hindi": "Kihindi",
+  "indonesian": "Kiindonesia",
+  "japanese": "Kijapani",
+  "javanese": "Kijava",
+  "korean": "Kikorea",
+  "malay": "Kimalay/Kiindonesia",
+  "mandarin_chinese": "Kichina cha Mandarin",
+  "marathi": "Kimarathi",
+  "persian": "Kiajemi (Farsi)",
+  "polish": "Kipolandi",
+  "portuguese": "Kireno",
+  "punjabi": "Kipunjabi",
+  "romanian": "Kiromania",
+  "russian": "Kirusi",
+  "swahili": "Kiswahili",
+  "tamil": "Kitamili",
+  "telugu": "Kitelugu",
+  "thai": "Kithai",
+  "turkish": "Kituruki",
+  "ukrainian": "Kiukraine",
+  "urdu": "Kiurdu",
+  "vietnamese": "Kivietinamu",
+
+
+  "description": "Maelezo",
+  "coupon_code": "Nambari ya Kuponi",
+  "apply": "Tumia",
+
+
+  "product_details": "Maelezo ya Bidhaa",
+  "reviews": "Mapitio",
+  "in_stock": "Inapatikana",
+  "out_of_stock": "Haipatikani",
+  "add_to_cart": "Ongeza Kwenye Kikapu",
+  "go_to_cart": "Nenda Kwenye Kikapu",
+  "quantity": "Idadi",
+  "add_review": "Ongeza Mapitio",
+
+  "retry": "Jaribu tena",
+  "available_options": "Chaguo Zinazopatikana",
+
+  "full_name": "Jina Kamili",
+  "edit_profile": "Hariri Wasifu",
+  "save": "Hifadhi",
+
+  "pedning": "Inasubiri....",
+  "back": "Rudi",
+  "pending_message": "Ombi lako lipo chini ya uhakiki.\nTafadhali subiri idhini ya msimamizi.",
+
+  "rejected": "Imekataliwa",
+  "rejected_message": "Ombi lako la usajili limekataliwa.\nTafadhali jaribu kusajili tena.",
+  "register_again_as_affiliate": "Jisajili Tena kama Mshirika",
+
+  "all": "Zote",
+  "transactions": "Muamala",
+  "My_Wallet": "Pochi Yangu",
+  "withdraw": "Toa Pesa",
+
+  "Affiliate_marketing": "Uuzaji wa Washirika",
+  "start_now": "Anza Sasa",
+  "affiliate_welcome_message": "Tunaheshimu kuwa sehemu ya timu yetu ya masoko",
+  "affiliate_welcome_subtitle": "Tunatoa mfumo rahisi na bora wa uuzaji wa washirika unaotegemea misimbo ya kipekee kwa kila muuzaji. Msimbo unaweza kushirikiwa na hadhira yao, na kuwaruhusu kupata kamisheni kwa kila mauzo yaliyofanywa kwa kutumia msimbo huo. Kamisheni inahamishwa moja kwa moja kwenye pochi yao bila wapatanishi au ucheleweshaji, kuhakikisha malipo ya haraka na rahisi. Tunatoa bidhaa mbalimbali katika nyanja tofauti, ili kila muuzaji apate anachofaa kwa hadhira yake na kufanikisha viwango vya juu vya mauzo. Lengo letu ni kukusaidia kupata kipato cha kudumu kupitia juhudi ndogo na uuzaji wa busara.",
+
+  "affiliate_account": "Akaunti ya Ushirika",
+
+  "my_coupuns": "Kuponi Zangu",
+  "create_coupon": "Unda Kuponi",
+
+
+  "join_us_as_affiliate": "Jiunge Nasi kama Mshirika",
+
+  "next": "Ifuatayo",
+
+  "create": "Unda",
+  "coupon": "Kuponi",
+  "discount_rate": "Kiwango cha Punguzo",
+
+
+  "personal_data": "Taarifa Binafsi",
+
+  "nationality": "Uraia",
+  "about_you": "Kuhusu Wewe",
+  "city": "Jiji",
+  "phone": "Simu",
+  "address": "Anwani",
+
+  "male": "Mwanaume",
+  "female": "Mwanamke",
+
+
+  "feedback": "Maoni",
+
+  "help_us_improve": "Tusaidie kuboresha uzoefu wako",
+
+  "feed_back_description": "Shiriki mawazo yako na tusaidie kuboresha uzoefu wako",
+
+  "privacy_poilicy_camion_app": "Sera - Programu ya Camion",
+
+  "terms_of_use": "Masharti ya Matumizi",
+  "terms_of_use_description1": "Kwa kutumia Camion, unakubaliana kuzingatia masharti yote yaliyotajwa katika sera hii.",
+  "terms_of_use_description2": "Camion inahifadhi haki ya kusasisha au kurekebisha sera hizi wakati wowote. Watumiaji watajulishwa mabadiliko kupitia programu au barua pepe.",
+  "terms_of_use_description3": "Programu haitakiwi kutumika kwa shughuli zozote haramu au kinyume cha sheria za ndani au kimataifa.",
+
+  "product_policy": "Sera ya Bidhaa",
+  "product_policy_description1": "Bidhaa zote zilizoorodheshwa kwenye Camion ni halisi na zinafanana na maelezo yaliyotolewa kwenye ukurasa wa bidhaa.",
+  "product_policy_description2": "Bei zinajumuisha VAT (ikiwa inahitajika) na hazijumuishi ada za usafirishaji isipokuwa zikitajwa vinginevyo.",
+  "product_policy_description3": "Rangi za bidhaa zinaweza kutofautiana kidogo kutokana na mipangilio ya skrini au tofauti za utengenezaji.",
+
+  "payment_policy": "Sera ya Malipo",
+  "payment_policy_description1": "Camion inasaidia njia nyingi za malipo (kadi za mkopo/debit, uhamisho wa benki, pochi za kielektroniki, na malipo kwa mkono ikiwa yanapatikana).",
+  "payment_policy_description2": "Malipo yote yanalindwa kupitia watoa huduma waliothibitishwa.",
+  "payment_policy_description3": "Ikiwa malipo yatashindikana, oda haitathibitishwa, na mtumiaji anaweza kujaribu tena kutumia njia nyingine.",
+
+  "shipping_policy": "Sera ya Usafirishaji na Uwasilishaji",
+  "shipping_policy_description1": "Camion inatoa huduma za usafirishaji duniani kote kupitia kampuni za usafirishaji za kimataifa zilizoaminika.",
+  "shipping_policy_description2": "Muda wa uwasilishaji hutofautiana kulingana na nchi unakoenda na mtoa huduma wa usafirishaji.",
+  "shipping_policy_description3": "Wateja watapokea nambari ya kufuatilia mara tu oda yao itakapotumwa.",
+  "shipping_policy_description4": "Camion haihusiki na ucheleweshaji unaosababishwa na forodha, matukio ya asili, au matatizo ya kampuni ya usafirishaji yaliyo nje ya uwezo wetu.",
+
+  "return_policy": "Sera ya Marejesho na Marejesho ya Fedha",
+  "return_policy_description1": "Wateja wanaweza kuomba kurejesha ndani ya siku 14 baada ya kupokea oda, mradi tu bidhaa haijatumika, haijaharibika, na iko kwenye kifurushi chake cha asili.",
+  "return_policy_description2": "Bidhaa fulani kama vile bidhaa za usafi binafsi, chakula, au bidhaa maalum haziwezi kurejeshwa.",
+  "return_policy_description3": "Marejesho ya fedha yatafanywa kwa njia ile ile ya malipo ndani ya siku 7–14 za kazi baada ya bidhaa kurudishwa kukaguliwa.",
+  "return_policy_description4": "Ada za usafirishaji hazitarejeshwa, na gharama za kurudisha mzigo zitalipwa na mteja (isipokuwa bidhaa imeharibika au sio sahihi).",
+
+  "privacy_policy_details": "Sera ya Faragha",
+  "privacy_policy_description1": "Camion inaheshimu na kulinda data zako binafsi.",
+  "privacy_policy_description2": "Tunakusanya taarifa (kama jina, anwani, maelezo ya mawasiliano, na taarifa za malipo) ili kushughulikia oda na kuboresha uzoefu wa mtumiaji.",
+  "privacy_policy_description3": "Data binafsi haitauzwa au kushirikiwa na watu wa tatu, isipokuwa na washirika wa usafirishaji na malipo kukamilisha oda yako.",
+  "privacy_policy_description4": "Data zote zimehifadhiwa salama, na watumiaji wana haki ya kuomba ufikiaji, marekebisho, au kufutwa kwa taarifa zao binafsi.",
+
+  "limitation_liability": "Kikomo cha Dhima",
+  "limitation_liability_description1": "Camion haiwajibikii kwa madhara yoyote yasiyo ya moja kwa moja, ajali, au yanayofuata yanayotokana na matumizi ya programu au bidhaa zilizonunuliwa.",
+  "limitation_liability_description2": "Uwajibikaji wa matumizi ya bidhaa uko mikononi mwa mteja.",
+  "limitation_liability_description3": "Katika kesi ya mizozo, dhima ya Camion imezuiliwa kwa thamani ya oda pekee.",
+
+
+  "paid": "Imelipwa",
+  "delivered": "Imewasilishwa",
+  "completed": "Imekamilika",
+
+
+  "Shipping_and_Delivery": "Usafirishaji na Uwasilishaji",
+
+  "question_1": "Muda wa uwasilishaji ni gani na maeneo yanayofikiwa ni yapi?",
+
+  "answer_1": "Uwasilishaji kawaida huchukua siku 3 hadi 5 za kazi na usafirishaji unapatikana duniani kote.",
+
+  "question_2": "Ninawezaje kufuatilia oda yangu?",
+
+  "answer_2": "Mara tu oda yako itakaposafirishwa, utapokea taarifa na barua pepe yenye nambari ya kufuatilia. Unaweza kutumia nambari hii kufuatilia moja kwa moja kwenye tovuti ya kampuni ya usafirishaji. Pia unaweza kuangalia hali ya oda yako kupitia sehemu ya Oda Zangu kwenye akaunti yako.",
+
+  "Payments": "Malipo",
+
+  "question_3": "Njia gani za malipo zinapatikana?",
+
+  "answer_3": "Tunapokea malipo kupitia kadi za mkopo, Mada, Apple Pay, na malipo kwa mkono.",
+
+  "Return_and_Exchange": "Marejesho na Kubadilisha",
+
+  "question_4": "Sera ya kurejesha ni ipi?",
+
+  "answer_4": "Bidhaa zinaweza kurejeshwa ndani ya siku 14 tangu kupokelewa, mradi tu ziko katika hali ya asili.",
+
+  "Direct_communication": "Mawasiliano ya Moja kwa Moja",
+
+  "Contact_us_via_WhatsApp": "Wasiliana nasi kupitia WhatsApp",
+
+  "For_immediate_assistance": "Kwa msaada wa haraka",
+
+
+  "selected": "Imechaguliwa",
+  "product": "Bidhaa",
+  "selected_for_sharing": "Imechaguliwa kwa kushiriki",
+
+  "Your_wishlist_is_empty": "Orodha yako ya matamanio haina kitu",
+  "add_some_products_to_your_favorites": "Ongeza bidhaa kadhaa kwenye vipendwa vyako!",
+  "s": "s",
+
+  "Continue_To_Checkout": "Endelea Kwenye Malipo",
+
+  "payment_page_loading": "Ukurasa wa malipo unalewa, tafadhali subiri...",
+
+  "address_confirmation": "Uthibitisho wa Anwani",
+  "first_name": "Jina la Kwanza",
+  "please_enter_your_first_name": "Tafadhali weka jina lako la kwanza",
+  "please_enter_your_last_name": "Tafadhali weka jina lako la mwisho",
+  "last_name": "Jina la Mwisho",
+  "confirm": "Thibitisha",
+  "shipping_address": "Anwani ya Usafirishaji",
+  "address_1": "Anwani 1",
+  "please_enter_your_address": "Tafadhali weka anwani yako",
+  "address_2": "Anwani 2",
+  "country": "Nchi",
+  "please_select_your_country": "Tafadhali chagua nchi yako",
+  "please_enter_your_email": "Tafadhali weka barua pepe yako",
+  "please_enter_your_phone_number": "Tafadhali weka nambari yako ya simu",
+  "please_enter_your_city": "Tafadhali weka jiji lako",
+  "please_enter_your_state": "Tafadhali weka jimbo lako",
+  "please_enter_your_postal_code": "Tafadhali weka nambari ya posta",
+  "state": "Jimbo",
+  "postal_code": "Nambari ya Posta",
+  "confirm_your_shipping_address": "Thibitisha anwani yako ya usafirishaji",
+
+  "checkout": "Malipo",
+  "products": "Bidhaa",
+  "view_cart": "Angalia Kikapu",
+  "subtotal": "Jumla Ndogo",
+  "total": "Jumla",
+  "Review_Your_Shipping_Address_Data": "Kagua Data ya Anwani ya Usafirishaji",
+  "enter_your_coupon_code": "Weka nambari ya kuponi",
+
+  "notifications": "Arifa",
+
+  "order_details": "Maelezo ya Oda",
+  "order_id": "Kitambulisho cha Oda",
+  "order_number": "Nambari ya Oda:",
+  "order_date": "Tarehe ya Oda:",
+
+  "payment_method": "Njia ya Malipo",
+  "payment_details": "Maelezo ya Malipo",
+
+  "order_tracking": "Ufuatiliaji wa Oda",
+  "order_status": "Hali ya Oda",
+
+  "delivery_charge": "Gharama ya Usafirishaji",
+  "delivery_address": "Anwani ya Usafirishaji",
+
+  "grand_total": "Jumla Kuu",
+
+  "order_is_paid": "Oda imelipwa",
+
+  "order_is_delivered": "Oda imewasilishwa",
+
+  "delivery_is_in_progress": "Uwasilishaji unaendelea",
+
+  "Will_arrive_within_days": "Itawasili ndani ya siku",
+
+  "your_order_is_in_progress": "Oda yako ipo kwenye mchakato",
+
+  "Number_of_products": "Idadi ya bidhaa",
+
+  "Ordered_in": "Imeagizwa mnamo",
+
+  "Shipping_address_added_successfully": "Anwani ya usafirishaji imeongezwa kwa mafanikio",
+  "Shipping_address_updated_successfully": "Anwani ya usafirishaji imesasishwa kwa mafanikio",
+  "register": "Jisajili",
+  "please_enter_your_name": "Tafadhali weka jina lako",
+
+  "account_created_successfully": "Akaunti imeundwa kwa mafanikio",
+
+  "choose_country": "Chagua Nchi",
+
+  "search_for_countries": "Tafuta nchi",
+
+  "Coupon_applied_successfully": "Kuponi imetumika kwa mafanikio",
+
+  "Review_Added_Successfully": "Mapitio Yameongezwa kwa Mafanikio",
+
+  "please_select_your_gender": "Tafadhali chagua jinsia yako",
+
+  "please_select_your_nationality": "Tafadhali chagua uraia wako",
+
+  "please_enter_your_bio": "Tafadhali weka wasifu wako",
+  "Coupon_created_successfully": "Kuponi imeundwa kwa mafanikio",
+  "please_enter_your_coupon_code": "Tafadhali weka nambari yako ya kuponi",
+  "please_enter_your_discount_rate": "Tafadhali weka kiwango chako cha punguzo",
+
+  "profile_updated_successfully": "Wasifu umesasishwa kwa mafanikio",
+
+  "You_are_subscribed_to_affiliate_marketing": "Umejiunga na uuzaji wa washirika",
+  "view_your_activity": "Tazama shughuli zako",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "Hujajiunga na uuzaji wa washirika",
+  "subscribe_now": "Jiunge Sasa!",
+
+
+  "Something_went_wrong": "Kuna tatizo fulani"
+}

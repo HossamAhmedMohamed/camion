@@ -5,6 +5,7 @@ import 'package:camion/features/order_status/data/models/order_status_item_model
 import 'package:camion/features/order_status/data/repository/order_status_repo.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/order_status_item_widget.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -84,7 +85,7 @@ class _OrderStatusBottomSheetBodyState
                 Expanded(
                   child: Center(
                     child: Text(
-                      "Order Status",
+                       S.of(context).order_status,
                       style: AppStyle.styleRegular18(context).copyWith(
                         color: AppColors.black,
                         fontWeight: FontWeight.w600,

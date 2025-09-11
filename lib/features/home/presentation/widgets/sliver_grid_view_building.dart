@@ -1,6 +1,8 @@
- import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
+ import 'package:camion/config/localization/cubit/localizations_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/grid_item_skeletonizer.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -88,6 +90,7 @@ class SliverGridViewBuilding extends StatelessWidget {
                     averageRating: product.averageRating,
                     productId: product.id.toString(),
                     currencyCode: product.prices.currencyCode,
+                    currencySymbol: product.prices.currencySymbol,
                     imageUrl: product.images.isEmpty?  '' : product.images[0].thumbnail  ,
                     productName: product.name,
                     originalPrice: product.prices.price.toString(),
@@ -137,9 +140,11 @@ class SliverGridViewBuilding extends StatelessWidget {
 
                   ElevatedButton(
                     onPressed: () {
-                      context.read<ProductsCubit>().retryLoadMore();
+                      context.read<ProductsCubit>().getProducts(
+                          lang: context.read<LocalizationsCubit>().state.languageCode
+                      );
                     },
-                    child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                    child: Text( S.of(context).retry, style: TextStyle(fontSize: 16.sp)),
                   ),
                 ],
               ),

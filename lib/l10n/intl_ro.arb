@@ -1,0 +1,314 @@
+{
+  "name": "Nume aici",
+  "phone_Number": "Număr de telefon",
+  "email": "Email",
+  "login": "Autentificare",
+  "logout": "Deconectare",
+  "settings": "Setări",
+  "Sign_up": "Înregistrare",
+  "dont_have_an_account": "Nu ai un cont",
+  "already_have_an_account": "Ai deja un cont",
+  "enter_verify_otp": "Introdu codul de verificare trimis pe numărul de telefon 📱",
+  "enter_verify_otp_subtitle": "Introdu codul de verificare trimis pe mobil:",
+  "resend_otp": "Retrimite după",
+  "continuee": "Continuă",
+
+
+  "search": "Căutare",
+  "stories": "Povești",
+  "join_us": "Alătură-te acum",
+  "join_our_team": "Alătură-te echipei noastre de afiliați",
+  "join_our_team_description": "Transformă-ți timpul online în profit! Alătură-te programului nostru de afiliere și începe să câștigi bani din confortul casei tale.",
+  "categories": "Categorii",
+  "view_all": "Vezi tot",
+  "camion_offers": "Oferte Camion",
+  "top_sales": "Top Vânzări",
+  "choose_prduct": "Alege Produs",
+
+
+  "home": "Acasă",
+  "cart": "Coș",
+  "profile": "Profil",
+  "favorites": "Favorite",
+  "orders": "Comenzi",
+
+
+  "personal_information": "Informații personale",
+  "my_wallet": "Portofelul meu",
+  "my_orders": "Comenzile mele",
+  "affiliate_marketing": "Marketing afiliat",
+  "language": "Limbă",
+  "rate_us": "Evaluează-ne",
+  "give_us_feedback": "Oferă-ne feedback",
+  "about_us": "Despre noi",
+  "privacy_policy": "Politica de confidențialitate",
+  "help": "Ajutor",
+  "delete_account": "Șterge contul",
+  "are_you_sure_you_want_to_logout": "Ești sigur că vrei să te deconectezi?",
+  "logout_description": "Sesiunea ta curentă va fi încheiată și va trebui să te autentifici din nou pentru a accesa contul.",
+  "are_you_sure_you_want_to_delete": "Ești sigur că vrei să ștergi contul?",
+  "delete_account_description": "Toate datele tale vor fi șterse permanent și nu vor putea fi recuperate ulterior. Această acțiune este ireversibilă.",
+  "cancel": "Anulează",
+  "change_language": "Schimbă limba",
+  "arabic": "Arabă",
+  "english": "Engleză",
+  "german": "Germană",
+  "french": "Franceză",
+  "spanish": "Spaniolă",
+  "italian": "Italiană",
+  "bengali": "Bengaleză",
+  "dutch": "Olandeză",
+  "hindi": "Hindi",
+  "indonesian": "Indoneziană",
+  "japanese": "Japoneză",
+  "javanese": "Javaneză",
+  "korean": "Coreeană",
+  "malay": "Malay/Indoneziană",
+  "mandarin_chinese": "Chineză mandarină",
+  "marathi": "Marathi",
+  "persian": "Persană (Farsi)",
+  "polish": "Poloneză",
+  "portuguese": "Portugheză",
+  "punjabi": "Punjabi",
+  "romanian": "Română",
+  "russian": "Rusă",
+  "swahili": "Swahili",
+  "tamil": "Tamilă",
+  "telugu": "Telugu",
+  "thai": "Thailandeză",
+  "turkish": "Turcă",
+  "ukrainian": "Ucraineană",
+  "urdu": "Urdu",
+  "vietnamese": "Vietnameză",
+
+
+  "description": "Descriere",
+  "coupon_code": "Cod cupon",
+  "apply": "Aplică",
+
+
+  "product_details": "Detalii produs",
+  "reviews": "Recenzii",
+  "in_stock": "În stoc",
+  "out_of_stock": "Stoc epuizat",
+  "add_to_cart": "Adaugă în coș",
+  "go_to_cart": "Mergi la coș",
+  "quantity": "Cantitate",
+  "add_review": "Adaugă recenzie",
+
+  "retry": "Reîncearcă",
+  "available_options": "Opțiuni disponibile",
+
+  "full_name": "Nume complet",
+  "edit_profile": "Editează profilul",
+  "save": "Salvează",
+
+  "pedning": "În așteptare....",
+  "back": "Înapoi",
+  "pending_message": "Cererea ta este în prezent în revizuire.\nTe rugăm să aștepți aprobarea administratorului.",
+
+  "rejected": "Respins",
+  "rejected_message": "Cererea ta de înregistrare a fost respinsă.\nTe rugăm să încerci să te înregistrezi din nou.",
+  "register_again_as_affiliate": "Înregistrează-te din nou ca afiliat",
+
+  "all": "Toate",
+  "transactions": "Tranzacție",
+  "My_Wallet": "Portofelul meu",
+  "withdraw": "Retrage",
+
+
+  "Affiliate_marketing": "Marketing afiliat",
+  "start_now": "Începe acum",
+  "affiliate_welcome_message": "Suntem onorați să te avem în echipa noastră de marketing",
+  "affiliate_welcome_subtitle": "Oferim un sistem simplu și eficient de marketing afiliat, bazat pe coduri unice pentru fiecare comerciant. Aceste coduri pot fi distribuite publicului lor, permițându-le să câștige un comision pentru fiecare vânzare realizată cu acel cod. Comisionul este transferat direct în portofelul lor, fără intermediari sau întârzieri, asigurând plăți rapide și ușoare. Oferim o varietate largă de produse din diferite domenii, astfel încât fiecare comerciant să poată găsi ceea ce se potrivește publicului său și să obțină cele mai mari rate de vânzări. Scopul nostru este să te ajutăm să obții un venit constant prin efort minim și marketing inteligent.",
+
+  "affiliate_account": "Cont afiliat",
+  "my_coupuns": "Cupoanele mele",
+  "create_coupon": "Creează cupon",
+
+  "join_us_as_affiliate": "Alătură-te ca afiliat",
+
+  "next": "Următorul",
+
+  "create": "Creează",
+  "coupon": "Cupon",
+  "discount_rate": "Rată de reducere",
+
+
+  "personal_data": "Date personale",
+  "nationality": "Naționalitate",
+  "about_you": "Despre tine",
+  "city": "Oraș",
+  "phone": "Telefon",
+  "address": "Adresă",
+
+  "male": "Masculin",
+  "female": "Feminin",
+
+
+  "feedback": "Feedback",
+  "help_us_improve": "Ajută-ne să îți îmbunătățim experiența",
+  "feed_back_description": "Împărtășește-ți gândurile și ajută-ne să îți îmbunătățim experiența",
+
+  "privacy_poilicy_camion_app": "Politici - Aplicația Camion",
+
+  "terms_of_use": "Termeni de utilizare",
+  "terms_of_use_description1": "Folosind Camion, ești de acord să respecți toți termenii și condițiile prevăzute în această politică.",
+  "terms_of_use_description2": "Camion își rezervă dreptul de a actualiza sau modifica aceste politici în orice moment. Utilizatorii vor fi notificați cu privire la orice schimbări prin aplicație sau email.",
+  "terms_of_use_description3": "Aplicația nu trebuie folosită pentru activități ilegale sau în încălcarea legilor locale sau internaționale.",
+
+  "product_policy": "Politica produselor",
+  "product_policy_description1": "Toate produsele listate pe Camion sunt originale și corespund specificațiilor descrise pe pagina produsului.",
+  "product_policy_description2": "Prețurile includ TVA (dacă este cazul) și nu includ taxele de livrare, cu excepția cazurilor în care este specificat altfel.",
+  "product_policy_description3": "Culorile produselor pot varia ușor din cauza setărilor ecranului sau a diferențelor de fabricație.",
+
+  "payment_policy": "Politica de plată",
+  "payment_policy_description1": "Camion acceptă mai multe metode de plată (carduri de credit/debit, transfer bancar, portofele electronice și plata ramburs, dacă este disponibilă).",
+  "payment_policy_description2": "Toate plățile sunt securizate prin furnizori de servicii de plată certificați.",
+  "payment_policy_description3": "Dacă o plată eșuează, comanda nu va fi confirmată, iar utilizatorul poate reîncerca folosind o metodă diferită.",
+
+  "shipping_policy": "Politica de livrare",
+  "shipping_policy_description1": "Camion oferă livrare internațională prin servicii de curierat de încredere.",
+  "shipping_policy_description2": "Timpul de livrare variază în funcție de țara de destinație și de furnizorul de transport.",
+  "shipping_policy_description3": "Clienții vor primi un număr de urmărire odată ce comanda a fost expediată.",
+  "shipping_policy_description4": "Camion nu este responsabil pentru întârzierile cauzate de vamă, evenimente naturale sau probleme de curierat ce nu sunt sub controlul nostru.",
+
+  "return_policy": "Politica de retur și rambursare",
+  "return_policy_description1": "Clienții pot solicita returnarea în termen de 14 zile de la primirea comenzii, cu condiția ca produsul să fie nefolosit, nedeteriorat și în ambalajul original.",
+  "return_policy_description2": "Anumite produse, precum articole de îngrijire personală, alimente sau produse personalizate, nu pot fi returnate.",
+  "return_policy_description3": "Rambursările vor fi procesate în metoda de plată originală în termen de 7–14 zile lucrătoare după ce produsul returnat a fost inspectat.",
+  "return_policy_description4": "Taxele de livrare nu sunt rambursabile, iar costurile de retur sunt responsabilitatea clientului (cu excepția cazului în care produsul este defect sau incorect).",
+
+  "privacy_policy_details": "Politica de confidențialitate",
+  "privacy_policy_description1": "Camion respectă și protejează datele tale personale.",
+  "privacy_policy_description2": "Colectăm informații (precum nume, adresă, detalii de contact și informații de plată) doar pentru a procesa comenzile și pentru a îmbunătăți experiența utilizatorului.",
+  "privacy_policy_description3": "Datele personale nu vor fi niciodată vândute sau partajate cu terțe părți, cu excepția partenerilor de livrare și plată pentru a finaliza comanda.",
+  "privacy_policy_description4": "Toate datele sunt stocate în siguranță, iar utilizatorii au dreptul să solicite acces, corectare sau ștergere a informațiilor lor personale.",
+
+  "limitation_liability": "Limitarea răspunderii",
+  "limitation_liability_description1": "Camion nu este responsabil pentru daune indirecte, incidentale sau consecutive care rezultă din utilizarea aplicației sau a produselor achiziționate.",
+  "limitation_liability_description2": "Responsabilitatea pentru utilizarea produsului aparține clientului.",
+  "limitation_liability_description3": "În caz de dispute, răspunderea Camion este limitată doar la valoarea comenzii.",
+
+
+  "paid": "Plătit",
+  "delivered": "Livrat",
+  "completed": "Finalizat",
+
+
+  "Shipping_and_Delivery": "Livrare și expediere",
+  "question_1": "Care este timpul de livrare și ce zone sunt acoperite?",
+  "answer_1": "Livrarea durează de obicei între 3 și 5 zile lucrătoare și este disponibilă la nivel mondial.",
+
+  "question_2": "Cum îmi pot urmări comanda?",
+  "answer_2": "Odată ce comanda a fost expediată, vei primi o notificare și un email cu un număr de urmărire. Poți folosi acest număr pentru a-ți urmări comanda direct pe site-ul companiei de transport. De asemenea, poți verifica statusul comenzii în secțiunea Comenzile mele din contul tău.",
+
+  "Payments": "Plăți",
+  "question_3": "Ce metode de plată sunt disponibile?",
+  "answer_3": "Acceptăm plăți prin carduri de credit, Mada, Apple Pay și plata ramburs.",
+
+  "Return_and_Exchange": "Retur și schimb",
+  "question_4": "Care este politica de retur?",
+  "answer_4": "Produsele pot fi returnate în termen de 14 zile de la primire, cu condiția să fie în starea lor originală.",
+
+  "Direct_communication": "Comunicare directă",
+  "Contact_us_via_WhatsApp": "Contactează-ne prin WhatsApp",
+  "For_immediate_assistance": "Pentru asistență imediată",
+
+
+  "selected": "Selectat",
+  "product": "Produs",
+  "selected_for_sharing": "Selectat pentru partajare",
+
+  "Your_wishlist_is_empty": "Lista ta de dorințe este goală",
+  "add_some_products_to_your_favorites": "Adaugă produse la favorite!",
+  "s": "s",
+
+  "Continue_To_Checkout": "Continuă către plată",
+
+  "payment_page_loading": "Pagina de plată se încarcă, te rugăm așteaptă...",
+
+  "address_confirmation": "Confirmare adresă",
+  "first_name": "Prenume",
+  "please_enter_your_first_name": "Te rugăm să introduci prenumele",
+  "please_enter_your_last_name": "Te rugăm să introduci numele de familie",
+  "last_name": "Nume",
+  "confirm": "Confirmă",
+  "shipping_address": "Adresă de livrare",
+  "address_1": "Adresă 1",
+  "please_enter_your_address": "Te rugăm să introduci adresa",
+  "address_2": "Adresă 2",
+  "country": "Țară",
+  "please_select_your_country": "Te rugăm să selectezi țara",
+  "please_enter_your_email": "Te rugăm să introduci emailul",
+  "please_enter_your_phone_number": "Te rugăm să introduci numărul de telefon",
+  "please_enter_your_city": "Te rugăm să introduci orașul",
+  "please_enter_your_state": "Te rugăm să introduci statul/regiunea",
+  "please_enter_your_postal_code": "Te rugăm să introduci codul poștal",
+  "state": "Stat/Regiune",
+  "postal_code": "Cod poștal",
+  "confirm_your_shipping_address": "Confirmă adresa de livrare",
+
+  "checkout": "Finalizare comandă",
+  "products": "Produse",
+  "view_cart": "Vezi coșul",
+  "subtotal": "Subtotal",
+  "total": "Total",
+  "Review_Your_Shipping_Address_Data": "Verifică datele adresei de livrare",
+  "enter_your_coupon_code": "Introdu codul cuponului",
+
+  "notifications": "Notificări",
+
+  "order_details": "Detalii comandă",
+  "order_id": "ID comandă",
+  "order_number": "Număr comandă:",
+  "order_date": "Data comenzii:",
+
+  "payment_method": "Metodă de plată",
+  "payment_details": "Detalii plată",
+
+  "order_tracking": "Urmărire comandă",
+  "order_status": "Status comandă",
+
+  "delivery_charge": "Taxă de livrare",
+  "delivery_address": "Adresă de livrare",
+
+  "grand_total": "Total general",
+
+  "order_is_paid": "Comanda este plătită",
+  "order_is_delivered": "Comanda este livrată",
+  "delivery_is_in_progress": "Livrarea este în curs",
+  "Will_arrive_within_days": "Va ajunge în câteva zile",
+  "your_order_is_in_progress": "Comanda ta este în curs",
+  "Number_of_products": "Număr de produse",
+  "Ordered_in": "Comandat în",
+
+  "Shipping_address_added_successfully": "Adresa de livrare a fost adăugată cu succes",
+  "Shipping_address_updated_successfully": "Adresa de livrare a fost actualizată cu succes",
+  "register": "Înregistrare",
+  "please_enter_your_name": "Te rugăm să introduci numele",
+
+  "account_created_successfully": "Cont creat cu succes",
+
+  "choose_country": "Alege țara",
+  "search_for_countries": "Caută țări",
+
+  "Coupon_applied_successfully": "Cupon aplicat cu succes",
+  "Review_Added_Successfully": "Recenzie adăugată cu succes",
+  "please_select_your_gender": "Te rugăm să selectezi sexul",
+  "please_select_your_nationality": "Te rugăm să selectezi naționalitatea",
+  "please_enter_your_bio": "Te rugăm să introduci biografia",
+  "Coupon_created_successfully": "Cupon creat cu succes",
+  "please_enter_your_coupon_code": "Te rugăm să introduci codul cuponului",
+  "please_enter_your_discount_rate": "Te rugăm să introduci rata de reducere",
+
+  "profile_updated_successfully": "Profil actualizat cu succes",
+
+  "You_are_subscribed_to_affiliate_marketing": "Ești abonat la marketing afiliat",
+  "view_your_activity": "Vezi activitatea ta",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "Nu ești abonat la marketing afiliat",
+  "subscribe_now": "Abonează-te acum!",
+
+  "Something_went_wrong": "Ceva a mers prost"
+}

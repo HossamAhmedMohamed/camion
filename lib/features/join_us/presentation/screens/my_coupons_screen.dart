@@ -3,6 +3,7 @@ import 'package:camion/features/join_us/presentation/logic/cubit/get_coupons_cub
 import 'package:camion/features/join_us/presentation/widgets/coupons_list_view_skeltonizer.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom_coupon.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,7 @@ class _MyCouponsScreenState extends State<MyCouponsScreen> {
       resizeToAvoidBottomInset: false,
       body: CustomScrollView(
         slivers: [
-          const CustomJoinUsSliverAppBar(title: "My Coupons"),
+            CustomJoinUsSliverAppBar(title: S.of(context).my_coupuns),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
           BlocBuilder<GetCouponsCubit, GetCouponsState>(

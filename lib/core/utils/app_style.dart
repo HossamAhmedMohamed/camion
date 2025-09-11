@@ -1,12 +1,16 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class AppStyle {
   static TextStyle styleBold17(BuildContext context) {
     return TextStyle(
       color: const Color(0xFFFAFAFA),
       fontSize: getResponsiveFontSize(context, fontSize: 17),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -15,7 +19,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 12),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -24,7 +30,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 14),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -33,7 +41,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -42,7 +52,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 18),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -51,7 +63,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 20),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -60,7 +74,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 25),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w700,
     );
   }
@@ -69,7 +85,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 30),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.bold,
     );
   }
@@ -78,7 +96,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 35),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.bold,
     );
   }
@@ -87,7 +107,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 18),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -96,7 +118,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 15),
-      fontFamily: 'Inter',
+      fontFamily: context.read<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -105,7 +129,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 12),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -114,7 +140,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 15),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w600,
     );
   }
@@ -123,7 +151,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w600,
     );
   }
@@ -132,7 +162,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 18),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w500,
     );
   }
@@ -141,7 +173,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 20),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w500,
     );
   }
@@ -150,7 +184,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 25),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w500,
     );
   }
@@ -159,7 +195,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF232323),
       fontSize: getResponsiveFontSize(context, fontSize: 30),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w500,
     );
   }
@@ -168,7 +206,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 25),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -177,7 +217,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFF5C5858),
       fontSize: getResponsiveFontSize(context, fontSize: 40),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -186,28 +228,31 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFFFFFFFF),
       fontSize: getResponsiveFontSize(context, fontSize: 10),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
 
   static TextStyle styleRegular11(BuildContext context) {
     return TextStyle(
-      color:  AppColors.primaryColor,
+      color: AppColors.primaryColor,
       fontSize: getResponsiveFontSize(context, fontSize: 11),
-      fontFamily: 'Cairo',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
-
- 
-
 
   static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
       color: const Color(0xFFFFFFFF),
       fontSize: getResponsiveFontSize(context, fontSize: 14),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }
@@ -216,7 +261,9 @@ abstract class AppStyle {
     return TextStyle(
       color: const Color(0xFFFFFFFF),
       fontSize: getResponsiveFontSize(context, fontSize: 16),
-      fontFamily: 'Inter',
+      fontFamily: context.watch<LocalizationsCubit>().state.languageCode == 'ar'
+          ? 'Cairo'
+          : 'Inter',
       fontWeight: FontWeight.w400,
     );
   }

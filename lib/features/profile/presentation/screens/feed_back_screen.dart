@@ -3,6 +3,7 @@ import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +25,7 @@ class FeedBackScreen extends StatelessWidget {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "Feedback",
+               S.of(context).feedback,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -60,7 +61,7 @@ class FeedBackScreen extends StatelessWidget {
                 SizedBox(height: 15.h),
                 Text(
                   textAlign: TextAlign.center,
-                  "Help us improve your experience",
+                   S.of(context).help_us_improve,
                   style: AppStyle.styleBold20(
                     context,
                   ).copyWith(color: AppColors.primaryColor),
@@ -68,7 +69,7 @@ class FeedBackScreen extends StatelessWidget {
 
                 SizedBox(height: 10.h),
                 Text(
-                  "Share your thoughts and help us improve your experience",
+                   S.of(context).feed_back_description,
                   style: AppStyle.styleRegular16(
                     context,
                   ).copyWith(color: const Color(0xFF484C52)),

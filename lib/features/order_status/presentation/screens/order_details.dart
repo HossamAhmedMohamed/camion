@@ -1,11 +1,14 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/order_status/data/models/order_model/order_model.dart';
 import 'package:camion/features/order_status/presentation/widgets/custom_order_details.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -44,7 +47,7 @@ class OrderDetailsScreen extends StatelessWidget {
             appBarHeight: 70.h,
             actions: const [],
             title: Text(
-              "Order Details",
+              S.of(context).order_details,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -75,7 +78,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Order Number:",
+                        S.of(context).order_number,
                         style: AppStyle.styleRegular18(context).copyWith(
                           fontWeight: FontWeight.w700,
                           color: Colors.black,
@@ -159,7 +162,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Order Date:",
+                        S.of(context).order_date,
                         style: AppStyle.styleRegular18(context).copyWith(
                           fontWeight: FontWeight.w700,
                           color: Colors.black,
@@ -168,10 +171,16 @@ class OrderDetailsScreen extends StatelessWidget {
                       SizedBox(width: 10.w),
 
                       Text(
-                        DateFormat('d MMMM h:mm a', 'en')
-                            .format(orderDate)
-                            .replaceAll('ص', 'صباحاً')
-                            .replaceAll('م', 'مساءً'),
+                        context.read<LocalizationsCubit>().state.languageCode ==
+                                'ar'
+                            ? DateFormat('d MMMM h:mm a', 'ar')
+                                  .format(orderDate)
+                                  .replaceAll('ص', 'صباحاً')
+                                  .replaceAll('م', 'مساءً')
+                            : DateFormat(
+                                'MMMM d, h:mm a',
+                                'en',
+                              ).format(orderDate),
                         style: AppStyle.styleRegular14(
                           context,
                         ).copyWith(color: Colors.black),
@@ -188,7 +197,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Orders",
+                         S.of(context).orders,
                         style: AppStyle.styleRegular18(context).copyWith(
                           fontWeight: FontWeight.w800,
                           color: AppColors.black,
@@ -259,7 +268,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Payment Details",
+                         S.of(context).payment_details,
                         style: AppStyle.styleRegular18(
                           context,
                         ).copyWith(color: AppColors.black),
@@ -270,7 +279,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Total",
+                             S.of(context).total,
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.black),
@@ -293,7 +302,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Delivery Charge",
+                             S.of(context).delivery_charge,
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.black),
@@ -316,7 +325,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Grand Total",
+                             S.of(context).grand_total,
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.black),
@@ -340,7 +349,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       SizedBox(height: 10.h),
 
                       Text(
-                        "Delivery Address",
+                         S.of(context).delivery_address,
                         style: AppStyle.styleRegular16(
                           context,
                         ).copyWith(color: AppColors.primaryColor),
@@ -362,7 +371,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "Payment Method",
+                             S.of(context).payment_method,
                             style: AppStyle.styleRegular16(
                               context,
                             ).copyWith(color: AppColors.primaryColor),

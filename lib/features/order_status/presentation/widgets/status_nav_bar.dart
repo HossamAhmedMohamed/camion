@@ -1,6 +1,8 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -35,7 +37,7 @@ class StatusNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             image != null ? Padding(
-              padding: EdgeInsets.only(right: 5.w),
+              padding: context.read<LocalizationsCubit>().state.languageCode == 'ar' ? EdgeInsets.only(left: 5.w) : EdgeInsets.only(right: 5.w),
               child: SvgPicture.asset(image!),
             ) : Container(),
             FittedBox(

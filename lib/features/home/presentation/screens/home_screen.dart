@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
@@ -24,6 +25,7 @@ import 'package:camion/features/home/presentation/widgets/sliver_list_view_build
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,9 +88,13 @@ class HomeScreenBodyState extends State<HomeScreenBody>
   @override
   void initState() {
     context.read<SendFcmTokenCubit>().sendFcmToken();
-    context.read<ProductsCubit>().getProducts();
+    context.read<ProductsCubit>().getProducts(
+      lang: context.read<LocalizationsCubit>().state.languageCode
+    );
     context.read<StoriesCubit>().getStories();
-    context.read<GetCategoriesCubit>().getCategories();
+    context.read<GetCategoriesCubit>().getCategories(
+      lang: context.read<LocalizationsCubit>().state.languageCode
+    );
     context.read<GetWishListCubit>().getWishList();
     context.read<GetCartCubit>().getCart();
     context.read<SlidersCubit>().getSliders();
@@ -105,12 +111,18 @@ class HomeScreenBodyState extends State<HomeScreenBody>
     context.read<GetCartCubit>().getCart();
   }
 
+  void refreshProducts() {
+    context.read<ProductsCubit>().getProducts(
+        lang: context.read<LocalizationsCubit>().state.languageCode
+    );
+  }
+
   void _onScroll() {
     final cubit = context.read<ProductsCubit>();
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
       if (cubit.hasMore && !cubit.isLoadingMore && !cubit.hasLoadMoreError) {
-        cubit.getProducts(isLoadMore: true);
+        cubit.getProducts(isLoadMore: true ,   lang: context.read<LocalizationsCubit>().state.languageCode);
       }
     }
   }
@@ -122,10 +134,14 @@ class HomeScreenBodyState extends State<HomeScreenBody>
       curve: Curves.easeInOut,
     );
 
-    context.read<ProductsCubit>().getProducts();
+    context.read<ProductsCubit>().getProducts(
+        lang: context.read<LocalizationsCubit>().state.languageCode
+    );
     context.read<GetCartCubit>().getCart();
     context.read<StoriesCubit>().getStories();
-    context.read<GetCategoriesCubit>().getCategories();
+    context.read<GetCategoriesCubit>().getCategories(
+      lang: context.read<LocalizationsCubit>().state.languageCode
+    );
     context.read<GetWishListCubit>().getWishList();
     context.read<SlidersCubit>().getSliders();
   }
@@ -144,10 +160,14 @@ class HomeScreenBodyState extends State<HomeScreenBody>
     final screenHeight = MediaQuery.of(context).size.height;
     return RefreshIndicator(
       onRefresh: () async {
-        context.read<ProductsCubit>().getProducts();
+        context.read<ProductsCubit>().getProducts(
+            lang: context.read<LocalizationsCubit>().state.languageCode
+        );
         context.read<GetCartCubit>().getCart();
         context.read<StoriesCubit>().getStories();
-        context.read<GetCategoriesCubit>().getCategories();
+        context.read<GetCategoriesCubit>().getCategories(
+          lang: context.read<LocalizationsCubit>().state.languageCode
+        );
         context.read<GetWishListCubit>().getWishList();
         context.read<SlidersCubit>().getSliders();
       },
@@ -174,7 +194,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Text(
-                "Stories",
+                 S.of(context).stories,
                 style: AppStyle.styleSemiBold16(
                   context,
                 ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
@@ -336,7 +356,7 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Top Sales",
+                    S.of(context).top_sales,
                     style: AppStyle.styleSemiBold16(context).copyWith(
                       color: AppColors.black,
                       fontWeight: FontWeight.w500,
@@ -467,7 +487,9 @@ class HomeScreenBodyState extends State<HomeScreenBody>
                           const SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () {
-                              context.read<ProductsCubit>().retryLoadMore();
+                              context.read<ProductsCubit>().getProducts(
+                                  lang: context.read<LocalizationsCubit>().state.languageCode
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,

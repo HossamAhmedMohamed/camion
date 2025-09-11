@@ -8,10 +8,14 @@ class GetCategoriesCubit extends Cubit<GetCategoriesState> {
   GetCategoriesCubit(this.homeRepository) : super(GetCategoriesInitial());
   final HomeRepository homeRepository;
 
-  Future<void> getCategories() async {
+  Future<void> getCategories(
+    {required String lang}
+  ) async {
     if (isClosed) return;
     emit(GetCategoriesLoading());
-    final result = await homeRepository.getCategories();
+    final result = await homeRepository.getCategories(
+      lang: lang,
+    );
     result.fold(
       (error) {
         if (!isClosed) {

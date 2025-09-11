@@ -1,3 +1,4 @@
+ 
 import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_colors.dart';
@@ -9,6 +10,7 @@ import 'package:camion/features/profile/presentation/logic/cubit/delete_account_
 import 'package:camion/features/profile/presentation/logic/cubit/log_out_cubit/log_out_cubit.dart';
 import 'package:camion/features/profile/presentation/widgets/custom_modal_bottom_sheet_profile.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_sliver_app_bar.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +51,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.myInfo);
         },
-        title: 'Personal Information',
+        title: S.of(context).personal_information,
         image: Assets.imagesInActiveProfile,
       ),
 
@@ -57,7 +59,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.walletAffiliateCheckScreen);
         },
-        title: 'My Wallet',
+        title: S.of(context).my_wallet,
         image: Assets.imagesArchiveProfile,
       ),
 
@@ -65,8 +67,16 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.affiliateCheckScreen);
         },
-        title: 'Affiliate Marketing',
+        title: S.of(context).affiliate_marketing,
         image: Assets.imagesPlay,
+      ),
+
+      ProfileModel(
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.changeLanuage);
+        },
+        title: S.of(context).language,
+        image: Assets.imagesGlobal,
       ),
 
       // ProfileModel(
@@ -91,7 +101,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
       // ),
       ProfileModel(
         onTap: () {},
-        title: 'Rate us',
+        title: S.of(context).rate_us,
         image: Assets.imagesIconsStarProfile,
       ),
 
@@ -99,7 +109,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.feedBackScreen);
         },
-        title: 'Give us a feedback',
+        title: S.of(context).give_us_feedback,
         image: Assets.imagesIconsCalendarBlaaaack,
       ),
 
@@ -107,7 +117,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.privacyScreen);
         },
-        title: 'Privacy Policy',
+        title: S.of(context).privacy_policy,
         image: Assets.imagesEmptyWallet,
       ),
 
@@ -115,16 +125,15 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
         onTap: () {
           GoRouter.of(context).push(AppRouter.help);
         },
-        title: 'Help',
+        title: S.of(context).help,
         image: Assets.imagesIconsHelp,
       ),
 
       ProfileModel(
         onTap: () {
           customModalBottomSheetProfile(
-            title: "Are you sure you want to log out?",
-            subTitle:
-                "Logging out will end your current session and you will be redirected to the login screen",
+            title: S.of(context).are_you_sure_you_want_to_logout,
+            subTitle: S.of(context).logout_description,
             screenWidth: double.infinity,
             context: context,
             content: Row(
@@ -135,7 +144,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                     backgroundColor: AppColors.white,
                     textColor: AppColors.primaryColor,
                     child: Text(
-                      "Cancel",
+                      S.of(context).cancel,
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: AppColors.primaryColor),
@@ -152,7 +161,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                   child: CustomElevatedButton(
                     backgroundColor: AppColors.primaryColor,
                     child: Text(
-                      "Log out",
+                      S.of(context).logout,
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: Colors.white),
@@ -167,16 +176,15 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             ),
           );
         },
-        title: 'Log out',
+        title: S.of(context).logout,
         image: Assets.imagesLogout,
       ),
 
       ProfileModel(
         onTap: () {
           customModalBottomSheetProfile(
-            title: "Are you sure you want to delete your account?",
-            subTitle:
-                "Deleting your account will remove all your data and cannot be undone.",
+            title: S.of(context).are_you_sure_you_want_to_delete,
+            subTitle: S.of(context).delete_account_description,
             screenWidth: double.infinity,
             context: context,
             content: Row(
@@ -187,7 +195,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                     backgroundColor: AppColors.white,
                     textColor: AppColors.primaryColor,
                     child: Text(
-                      "Cancel",
+                      S.of(context).cancel,
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: AppColors.primaryColor),
@@ -203,6 +211,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                 Expanded(
                   child: BlocProvider.value(
                     value: context.read<DeleteAccountCubit>(),
+
                     child: BlocListener<DeleteAccountCubit, DeleteAccountState>(
                       listener: (context, state) {
                         if (state is DeleteAccountLoading) {
@@ -237,7 +246,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                       child: CustomElevatedButton(
                         backgroundColor: AppColors.primaryColor,
                         child: Text(
-                          "Delete",
+                          S.of(context).delete_account,
                           style: AppStyle.styleRegular15(
                             context,
                           ).copyWith(color: Colors.white),
@@ -253,7 +262,7 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
             ),
           );
         },
-        title: 'Delete Account',
+        title: S.of(context).delete_account,
         image: Assets.imagesAccountDelete,
       ),
 
@@ -268,80 +277,14 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
       slivers: [
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
         ProfileSliverAppBar(
-          title: Text("Profile", style: AppStyle.styleRegular18(context)),
+          title: Text(
+            S.of(context).profile,
+            style: AppStyle.styleRegular18(context),
+          ),
           isShoppingCartShown: true,
           leading: const SizedBox(),
-          // leading: Container(
-          //   // margin: EdgeInsets.only(right: 2.w),
-          //   padding: EdgeInsets.all(13.r),
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       GoRouter.of(context).pop();
-          //     },
-          //     child: Icon(Icons.arrow_back, size: 25.sp, color: Colors.black),
-          //   ),
-          // ),
         ),
 
-        // SliverToBoxAdapter(child: SizedBox(height: 20.h)),
-        // SliverToBoxAdapter(
-        //   child: Padding(
-        //     padding: EdgeInsets.only(
-        //       left: 20.w,
-        //       right: 20.w,
-        //       top: screenWidth > 800 ? 30.h : 12.h,
-        //     ),
-        //     child: Container(
-        //       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
-        //       decoration: BoxDecoration(
-        //         color: Colors.white,
-        //         borderRadius: BorderRadius.circular(16.r),
-        //         boxShadow: [
-        //           BoxShadow(
-        //             color: Colors.black.withAlpha(15),
-        //             spreadRadius: 2,
-        //             blurRadius: 4,
-        //             offset: Offset(0, 2.h),
-        //           ),
-        //         ],
-        //       ),
-        //       child: Padding(
-        //         padding: EdgeInsets.symmetric(vertical: 8.h),
-        //         child: Row(
-        //           children: [
-        //             SizedBox(
-        //               width: 45.w,
-        //               height: 45.h,
-
-        //               child: SvgPicture.asset(
-        //                 Assets.imagesProfileEdit,
-        //                 fit: BoxFit.contain,
-        //               ),
-        //             ),
-        //             SizedBox(width: 12.w),
-        //             Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 Text(
-        //                   "Nihal_Kh",
-        //                   style: AppStyle.styleSemiBold18(
-        //                     context,
-        //                   ).copyWith(color: Colors.black),
-        //                 ),
-        //                 Text(
-        //                   "انضم منذ 3-12-2024",
-        //                   style: AppStyle.styleRegular14(
-        //                     context,
-        //                   ).copyWith(color: Colors.black),
-        //                 ),
-        //               ],
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         SliverToBoxAdapter(child: SizedBox(height: 15.h)),
 
         SliverList.builder(
@@ -370,14 +313,15 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                 ),
                 child: ListTile(
                   onTap: profileList[index].onTap,
-                  // trailing: index == 0
+                  // trailing: index == 3
                   //     ? GestureDetector(
                   //         onTap: () {},
                   //         child: Text(
-                  //           _languageController.text.isNotEmpty
-                  //               ? _languageController.text
-                  //               : "اختر اللغة",
-                  //           style: AppStyle.styleRegular12(
+                  //           context
+                  //               .read<LocalizationsCubit>()
+                  //               .state
+                  //               .languageCode,
+                  //           style: AppStyle.styleRegular14(
                   //             context,
                   //           ).copyWith(color: Colors.black),
                   //         ),

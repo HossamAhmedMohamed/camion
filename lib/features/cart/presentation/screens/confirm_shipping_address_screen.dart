@@ -8,6 +8,7 @@ import 'package:camion/features/auth/presentation/widgets/countries_stae_cities.
 import 'package:camion/features/auth/presentation/widgets/custom_phone_number_controller.dart';
 import 'package:camion/features/auth/presentation/widgets/phone_number_controller.dart';
 import 'package:camion/features/cart/presentation/logic/cubit/get_user_address_cubit/get_user_address_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -103,7 +104,7 @@ class _ConfirmShippingAddressScreenState
             appBarHeight: 70.h,
             isShownDivider: true,
             title: Text(
-              "Address Confirmation",
+               S.of(context).address_confirmation,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: Colors.black),
@@ -163,7 +164,7 @@ class _ConfirmShippingAddressScreenState
                         children: [
                           SizedBox(height: 15.h),
                           Text(
-                            "Personal Information",
+                             S.of(context).personal_information,
                             style: AppStyle.styleRegular16(context).copyWith(
                               fontWeight: FontWeight.w700,
                               color: AppColors.primaryColor,
@@ -173,11 +174,11 @@ class _ConfirmShippingAddressScreenState
                           SizedBox(height: 15.h),
 
                           CustomTextFormField(
-                            hintText: "First Name",
+                            hintText:  S.of(context).first_name,
                             controller: firstNameController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your first name';
+                                return  S.of(context).please_enter_your_first_name;
                               }
                               return null;
                             },
@@ -186,11 +187,11 @@ class _ConfirmShippingAddressScreenState
                           SizedBox(height: 10.h),
 
                           CustomTextFormField(
-                            hintText: "Last Name",
+                            hintText:  S.of(context).last_name,
                             controller: lastNameController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your last name';
+                                return  S.of(context).please_enter_your_last_name;
                               }
                               return null;
                             },
@@ -198,11 +199,11 @@ class _ConfirmShippingAddressScreenState
 
                           SizedBox(height: 10.h),
                           CustomTextFormField(
-                            hintText: "Email",
+                            hintText:  S.of(context).email,
                             controller: emailController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your email';
+                                return  S.of(context).please_enter_your_email;
                               }
                               return null;
                             },
@@ -212,11 +213,11 @@ class _ConfirmShippingAddressScreenState
 
                           CustomPhoneNumberField(
                             controller: _phoneNumberController,
-                            hintText: "Phone number",
+                            hintText:  S.of(context).phone_Number,
 
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your phone number';
+                                return  S.of(context).please_enter_your_phone_number;
                               }
                               return null;
                             },
@@ -224,11 +225,11 @@ class _ConfirmShippingAddressScreenState
 
                           SizedBox(height: 10.h),
                           CustomTextFormField(
-                            hintText: "Address 1",
+                            hintText:  S.of(context).address_1,
                             controller: address1Controller,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your address';
+                                return  S.of(context).please_enter_your_address;
                               }
                               return null;
                             },
@@ -236,11 +237,11 @@ class _ConfirmShippingAddressScreenState
 
                           SizedBox(height: 10.h),
                           CustomTextFormField(
-                            hintText: "Address 2",
+                            hintText:  S.of(context).address_2,
                             controller: address2Controller,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your address';
+                                return  S.of(context).please_enter_your_address;
                               }
                               return null;
                             },
@@ -256,11 +257,11 @@ class _ConfirmShippingAddressScreenState
                           SizedBox(height: 10.h),
 
                           CustomTextFormField(
-                            hintText: "Postcode",
+                            hintText:  S.of(context).postal_code,
                             controller: postcodeController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your postcode';
+                                return  S.of(context).please_enter_your_postal_code;
                               }
                               return null;
                             },
@@ -269,7 +270,7 @@ class _ConfirmShippingAddressScreenState
                           const SizedBox(height: 24),
 
                           Text(
-                            "Shipping Address",
+                             S.of(context).shipping_address,
                             style: AppStyle.styleRegular16(context).copyWith(
                               fontWeight: FontWeight.w700,
                               color: AppColors.primaryColor,
@@ -279,11 +280,11 @@ class _ConfirmShippingAddressScreenState
                           const SizedBox(height: 15),
 
                           CustomTextFormField(
-                            hintText: "First Name",
+                            hintText:  S.of(context).first_name,
                             controller: shippingFirstNameController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your first name';
+                                return   S.of(context).please_enter_your_first_name;
                               }
                               return null;
                             },
@@ -292,11 +293,11 @@ class _ConfirmShippingAddressScreenState
                           const SizedBox(height: 10),
 
                           CustomTextFormField(
-                            hintText: "Last Name",
+                            hintText: S.of(context).last_name,
                             controller: shippingLastNameController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your last name';
+                                return S.of(context).please_enter_your_last_name;
                               }
                               return null;
                             },
@@ -305,11 +306,11 @@ class _ConfirmShippingAddressScreenState
                           SizedBox(height: 10.h),
 
                           CustomTextFormField(
-                            hintText: "Email",
+                            hintText:  S.of(context).email,
                             controller: shippingEmailController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your email';
+                                return  S.of(context).please_enter_your_email;
                               }
                               return null;
                             },
@@ -319,11 +320,11 @@ class _ConfirmShippingAddressScreenState
 
                           CustomPhoneNumberField(
                             controller: _shippingPhoneController,
-                            hintText: "Phone number",
+                            hintText:  S.of(context).phone_Number,
 
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your phone number';
+                                return S.of(context).please_enter_your_phone_number;
                               }
                               return null;
                             },
@@ -331,11 +332,11 @@ class _ConfirmShippingAddressScreenState
 
                           const SizedBox(height: 10),
                           CustomTextFormField(
-                            hintText: "Address 1",
+                            hintText:  S.of(context).address_1,
                             controller: shippingAddress1Controller,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your address';
+                                return  S.of(context).please_enter_your_address;
                               }
                               return null;
                             },
@@ -343,11 +344,11 @@ class _ConfirmShippingAddressScreenState
 
                           const SizedBox(height: 10),
                           CustomTextFormField(
-                            hintText: "Address 2",
+                            hintText:  S.of(context).address_2,
                             controller: shippingAddress2Controller,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please enter your address';
+                                return  S.of(context).please_enter_your_address;
                               }
                               return null;
                             },
@@ -380,7 +381,7 @@ class _ConfirmShippingAddressScreenState
 
                               if (state is SendUserShippingAddressLoaded) {
                                 Fluttertoast.showToast(
-                                  msg: "Shipping address updated successfully",
+                                  msg: S.of(context).Shipping_address_updated_successfully,
                                   gravity: ToastGravity.TOP,
                                   backgroundColor: Colors.green,
                                   textColor: Colors.white,
@@ -446,7 +447,7 @@ class _ConfirmShippingAddressScreenState
                                         color: Colors.white,
                                       )
                                     : Text(
-                                        "Save",
+                                         S.of(context).save,
                                         style: AppStyle.styleRegular15(
                                           context,
                                         ).copyWith(color: Colors.white),
@@ -492,7 +493,7 @@ class _ConfirmShippingAddressScreenState
                                 .getUserAddress();
                           },
                           child: Text(
-                            'Retry',
+                             S.of(context).retry,
                             style: TextStyle(fontSize: 16.sp),
                           ),
                         ),

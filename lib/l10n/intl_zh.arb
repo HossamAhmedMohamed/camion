@@ -1,0 +1,309 @@
+{
+  "name": "姓名",
+  "phone_Number": "电话号码",
+  "email": "电子邮箱",
+  "login": "登录",
+  "logout": "退出登录",
+  "settings": "设置",
+  "Sign_up": "注册",
+  "dont_have_an_account": "没有账户？",
+  "already_have_an_account": "已经有账户",
+  "enter_verify_otp": "请输入发送到手机号的验证码 📱",
+  "enter_verify_otp_subtitle": "请输入发送到您手机的验证码：",
+  "resend_otp": "重新发送倒计时",
+  "continuee": "继续",
+
+  "search": "搜索",
+  "stories": "故事",
+  "join_us": "立即加入我们",
+  "join_our_team": "加入我们的联盟团队",
+  "join_our_team_description": "把您的上网时间变成收益！加入我们的联盟计划，在家轻松赚钱。",
+  "categories": "分类",
+  "view_all": "查看全部",
+  "camion_offers": "Camion 优惠",
+  "top_sales": "畅销商品",
+  "choose_prduct": "选择产品",
+
+  "home": "首页",
+  "cart": "购物车",
+  "profile": "个人资料",
+  "favorites": "收藏夹",
+  "orders": "订单",
+
+  "personal_information": "个人信息",
+  "my_wallet": "我的钱包",
+  "my_orders": "我的订单",
+  "affiliate_marketing": "联盟营销",
+  "language": "语言",
+  "rate_us": "评价我们",
+  "give_us_feedback": "给我们反馈",
+  "about_us": "关于我们",
+  "privacy_policy": "隐私政策",
+  "help": "帮助",
+  "delete_account": "删除账户",
+  "are_you_sure_you_want_to_logout": "您确定要退出登录吗？",
+  "logout_description": "您当前的会话将被终止，您需要重新登录以访问您的账户。",
+  "are_you_sure_you_want_to_delete": "您确定要删除您的账户吗？",
+  "delete_account_description": "您的所有数据将被永久删除，无法恢复。此操作不可逆。",
+  "cancel": "取消",
+  "change_language": "切换语言",
+  "arabic": "阿拉伯语",
+  "english": "英语",
+  "german": "德语",
+  "french": "法语",
+  "spanish": "西班牙语",
+  "italian": "意大利语",
+  "bengali": "孟加拉语",
+  "dutch": "荷兰语",
+  "hindi": "印地语",
+  "indonesian": "印尼语",
+  "japanese": "日语",
+  "javanese": "爪哇语",
+  "korean": "韩语",
+  "malay": "马来语/印尼语",
+  "mandarin_chinese": "中文",
+  "marathi": "马拉地语",
+  "persian": "波斯语",
+  "polish": "波兰语",
+  "portuguese": "葡萄牙语",
+  "punjabi": "旁遮普语",
+  "romanian": "罗马尼亚语",
+  "russian": "俄语",
+  "swahili": "斯瓦西里语",
+  "tamil": "泰米尔语",
+  "telugu": "泰卢固语",
+  "thai": "泰语",
+  "turkish": "土耳其语",
+  "ukrainian": "乌克兰语",
+  "urdu": "乌尔都语",
+  "vietnamese": "越南语",
+
+  "description": "描述",
+  "coupon_code": "优惠码",
+  "apply": "应用",
+
+  "product_details": "产品详情",
+  "reviews": "评论",
+  "in_stock": "有货",
+  "out_of_stock": "缺货",
+  "add_to_cart": "加入购物车",
+  "go_to_cart": "前往购物车",
+  "quantity": "数量",
+  "add_review": "添加评论",
+
+  "retry": "重试",
+  "available_options": "可选项",
+
+  "full_name": "全名",
+  "edit_profile": "编辑资料",
+  "save": "保存",
+
+  "pedning": "待处理....",
+  "back": "返回",
+  "pending_message": "您的请求正在审核中。\n请等待管理员批准。",
+
+  "rejected": "已拒绝",
+  "rejected_message": "您的注册请求已被拒绝。\n请重新注册。",
+  "register_again_as_affiliate": "重新注册为联盟成员",
+
+  "all": "全部",
+  "transactions": "交易",
+  "My_Wallet": "我的钱包",
+  "withdraw": "提现",
+
+  "Affiliate_marketing": "联盟营销",
+  "start_now": "立即开始",
+  "affiliate_welcome_message": "很荣幸您加入我们的营销团队",
+  "affiliate_welcome_subtitle": "我们提供一个简单高效的联盟营销系统，每位营销员都有唯一的推广码，可以分享给他们的受众。凡是通过推广码产生的订单，营销员都能获得佣金。佣金将直接转入钱包，无需中间人或延迟，确保快速便捷的结算。我们提供丰富多样的产品，覆盖多个领域，确保每位营销员都能找到适合其受众的产品，实现最高的销售业绩。我们的目标是帮助您通过最小的努力和聪明的营销获得稳定收入。",
+
+  "affiliate_account": "联盟账户",
+
+  "my_coupuns": "我的优惠券",
+  "create_coupon": "创建优惠券",
+
+  "join_us_as_affiliate": "加入我们成为联盟成员",
+
+  "next": "下一步",
+
+  "create": "创建",
+  "coupon": "优惠券",
+  "discount_rate": "折扣率",
+
+  "personal_data": "个人资料",
+
+  "nationality": "国籍",
+  "about_you": "关于你",
+  "city": "城市",
+  "phone": "电话",
+  "address": "地址",
+
+  "male": "男",
+  "female": "女",
+
+  "feedback": "反馈",
+
+  "help_us_improve": "帮助我们提升您的体验",
+
+  "feed_back_description": "分享您的想法，帮助我们改进您的体验",
+
+  "privacy_poilicy_camion_app": "政策 - Camion 应用",
+
+  "terms_of_use": "使用条款",
+  "terms_of_use_description1": "使用 Camion 即表示您同意遵守本政策中所列的所有条款和条件。",
+  "terms_of_use_description2": "Camion 保留随时更新或修改这些政策的权利。用户将通过应用或电子邮件收到变更通知。",
+  "terms_of_use_description3": "本应用不得用于任何非法活动，也不得违反当地或国际法律。",
+
+  "product_policy": "产品政策",
+  "product_policy_description1": "Camion 上的所有产品均为正品，并与产品页面所述规格一致。",
+  "product_policy_description2": "价格包含增值税（如适用），不包含运费，除非另有说明。",
+  "product_policy_description3": "由于屏幕设置或制造差异，产品颜色可能略有不同。",
+
+  "payment_policy": "支付政策",
+  "payment_policy_description1": "Camion 支持多种支付方式（信用/借记卡、银行转账、电子钱包以及货到付款（如可用））。",
+  "payment_policy_description2": "所有支付均通过认证的支付服务提供商安全处理。",
+  "payment_policy_description3": "如果支付失败，订单将不会确认，用户可以尝试使用其他方式支付。",
+
+  "shipping_policy": "运输与配送政策",
+  "shipping_policy_description1": "Camion 提供全球运输服务，使用值得信赖的国际快递。",
+  "shipping_policy_description2": "配送时间因目的国家和运输商不同而异。",
+  "shipping_policy_description3": "订单发货后，客户将收到一个追踪号。",
+  "shipping_policy_description4": "对于因海关、自然事件或快递问题造成的延误，Camion 不承担责任。",
+
+  "return_policy": "退货与退款政策",
+  "return_policy_description1": "客户可在收到订单后 14 天内申请退货，前提是商品未使用、未损坏并保持原包装。",
+  "return_policy_description2": "部分商品（如个人护理产品、食品或定制商品）不可退货。",
+  "return_policy_description3": "退回商品检查后，退款将在 7–14 个工作日内原路退回。",
+  "return_policy_description4": "运费不予退还，除非商品有缺陷或错误，否则退货运费由客户承担。",
+
+  "privacy_policy_details": "隐私政策",
+  "privacy_policy_description1": "Camion 尊重并保护您的个人数据。",
+  "privacy_policy_description2": "我们仅收集处理订单和改善用户体验所需的信息（如姓名、地址、联系方式和支付信息）。",
+  "privacy_policy_description3": "个人数据绝不会出售或与第三方共享，除非是为完成订单而与物流和支付合作伙伴共享。",
+  "privacy_policy_description4": "所有数据均安全存储，用户有权申请访问、更正或删除个人信息。",
+
+  "limitation_liability": "责任限制",
+  "limitation_liability_description1": "因使用应用或购买产品而引起的任何间接、附带或后果性损失，Camion 概不负责。",
+  "limitation_liability_description2": "产品使用的责任由客户承担。",
+  "limitation_liability_description3": "如有争议，Camion 的责任仅限于订单金额。",
+
+  "paid": "已支付",
+  "delivered": "已送达",
+  "completed": "已完成",
+
+  "Shipping_and_Delivery": "运输与配送",
+
+  "question_1": "配送时间多久？覆盖哪些地区？",
+  "answer_1": "通常 3 至 5 个工作日送达，全球范围均可配送。",
+
+  "question_2": "如何追踪我的订单？",
+  "answer_2": "订单发货后，您会收到通知和电子邮件，其中包含追踪号。您可以使用此号码在快递公司网站上追踪，也可以在账户的“我的订单”中查看状态。",
+
+  "Payments": "支付",
+
+  "question_3": "有哪些支付方式？",
+  "answer_3": "我们接受信用卡、Mada、Apple Pay 及货到付款。",
+
+  "Return_and_Exchange": "退换货",
+
+  "question_4": "退货政策是什么？",
+  "answer_4": "商品自收货日起 14 天内可退货，前提是保持原样。",
+
+  "Direct_communication": "直接沟通",
+  "Contact_us_via_WhatsApp": "通过 WhatsApp 联系我们",
+  "For_immediate_assistance": "立即协助",
+
+  "selected": "已选择",
+  "product": "产品",
+  "selected_for_sharing": "已选择分享",
+
+  "Your_wishlist_is_empty": "您的愿望清单为空",
+  "add_some_products_to_your_favorites": "将一些产品添加到收藏夹！",
+  "s": "秒",
+
+  "Continue_To_Checkout": "继续结算",
+
+  "payment_page_loading": "支付页面正在加载，请稍候...",
+
+  "address_confirmation": "地址确认",
+  "first_name": "名字",
+  "please_enter_your_first_name": "请输入名字",
+  "please_enter_your_last_name": "请输入姓氏",
+  "last_name": "姓氏",
+  "confirm": "确认",
+  "shipping_address": "收货地址",
+  "address_1": "地址 1",
+  "please_enter_your_address": "请输入地址",
+  "address_2": "地址 2",
+  "country": "国家",
+  "please_select_your_country": "请选择国家",
+  "please_enter_your_email": "请输入电子邮箱",
+  "please_enter_your_phone_number": "请输入电话号码",
+  "please_enter_your_city": "请输入城市",
+  "please_enter_your_state": "请输入州/省",
+  "please_enter_your_postal_code": "请输入邮政编码",
+  "state": "州/省",
+  "postal_code": "邮政编码",
+  "confirm_your_shipping_address": "确认您的收货地址",
+
+  "checkout": "结算",
+  "products": "产品",
+  "view_cart": "查看购物车",
+  "subtotal": "小计",
+  "total": "总计",
+  "Review_Your_Shipping_Address_Data": "核对您的收货地址信息",
+  "enter_your_coupon_code": "输入优惠码",
+
+  "notifications": "通知",
+
+  "order_details": "订单详情",
+  "order_id": "订单编号",
+  "order_number": "订单号：",
+  "order_date": "下单日期：",
+
+  "payment_method": "支付方式",
+  "payment_details": "支付详情",
+
+  "order_tracking": "订单追踪",
+  "order_status": "订单状态",
+
+  "delivery_charge": "运费",
+  "delivery_address": "收货地址",
+
+  "grand_total": "总额",
+
+  "order_is_paid": "订单已支付",
+  "order_is_delivered": "订单已送达",
+  "delivery_is_in_progress": "配送中",
+  "Will_arrive_within_days": "预计几天内送达",
+  "your_order_is_in_progress": "您的订单正在处理中",
+  "Number_of_products": "商品数量",
+  "Ordered_in": "下单于",
+
+  "Shipping_address_added_successfully": "收货地址添加成功",
+  "Shipping_address_updated_successfully": "收货地址更新成功",
+  "register": "注册",
+  "please_enter_your_name": "请输入姓名",
+
+  "account_created_successfully": "账户创建成功",
+
+  "choose_country": "选择国家",
+  "search_for_countries": "搜索国家",
+  "Coupon_applied_successfully": "优惠券应用成功",
+  "Review_Added_Successfully": "评论添加成功",
+  "please_select_your_gender": "请选择性别",
+  "please_select_your_nationality": "请选择国籍",
+  "please_enter_your_bio": "请输入个人简介",
+  "Coupon_created_successfully": "优惠券创建成功",
+  "please_enter_your_coupon_code": "请输入优惠码",
+  "please_enter_your_discount_rate": "请输入折扣率",
+
+  "profile_updated_successfully": "资料更新成功",
+
+  "You_are_subscribed_to_affiliate_marketing": "您已订阅联盟营销",
+  "view_your_activity": "查看您的活动",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "您尚未订阅联盟营销",
+  "subscribe_now": "立即订阅！",
+
+  "Something_went_wrong": "出现错误"
+}

@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +26,7 @@ class ListViewItemBuilding extends StatefulWidget {
     required this.averageRating,
     required this.reviewCount,
     required this.currencyCode,
+    required this.currencySymbol ,
   });
 
   final String imageUrl;
@@ -36,6 +39,7 @@ class ListViewItemBuilding extends StatefulWidget {
   final String averageRating;
   final String reviewCount;
   final String currencyCode;
+  final String currencySymbol;
 
   @override
   State<ListViewItemBuilding> createState() => _ListViewItemBuildingState();
@@ -155,7 +159,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     child: Text(
                       widget.productName,
                       style: AppStyle.styleBold18(context),
-                      textDirection: TextDirection.ltr,
+                      // textDirection: TextDirection.ltr,
                     ),
                   ),
 
@@ -177,7 +181,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   SizedBox(width: 4.w),
 
                   Text(
-                    widget.currencyCode,
+                    context.watch<LocalizationsCubit>().state.languageCode == 'ar' ? widget.currencySymbol : widget.currencyCode,
                     style: AppStyle.styleRegular16(context).copyWith(
                       fontWeight: FontWeight.w900,
                       color: AppColors.primaryColor,
@@ -185,7 +189,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                   ),
                   SizedBox(width: 8.w),
                   widget.originalPrice == widget.outPrice ? const SizedBox() : Text(
-                    "${widget.outPrice} ${widget.currencyCode} ",
+                    "${widget.outPrice} ${ context.watch<LocalizationsCubit>().state.languageCode == 'ar' ? widget.currencySymbol : widget.currencyCode} ",
                     style: AppStyle.styleRegular15(context).copyWith(
                       color: AppColors.gray,
                       decoration: TextDecoration.lineThrough,
@@ -271,7 +275,7 @@ class _ListViewItemBuildingState extends State<ListViewItemBuilding> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Choose Product',
+                         S.of(context).choose_prduct,
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: Colors.white),

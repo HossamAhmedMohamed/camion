@@ -5,6 +5,7 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/notifications/presentation/logic/cubit/notifications_cubit.dart';
 import 'package:camion/features/notifications/presentation/widgets/notification-loading_skeletonizer.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +38,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             actions: const [],
             isShownDivider: true,
             title: Text(
-              "Notifications",
+               S.of(context).notifications,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -171,7 +172,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                 .getNotifications();
                           },
                           child: Text(
-                            'Retry',
+                             S.of(context).retry,
                             style: TextStyle(fontSize: 16.sp),
                           ),
                         ),

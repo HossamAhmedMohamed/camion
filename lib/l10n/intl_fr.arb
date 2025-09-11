@@ -1,0 +1,340 @@
+{
+  "name": "Nom",
+  "phone_Number": "Numéro de téléphone",
+  "email": "E-mail",
+  "login": "Connexion",
+  "logout": "Déconnexion",
+  "settings": "Paramètres",
+  "Sign_up": "S'inscrire",
+  "dont_have_an_account": "Vous n'avez pas de compte",
+  "already_have_an_account": "Vous avez déjà un compte",
+  "enter_verify_otp": "Entrez le code de vérification envoyé au numéro 📱",
+  "enter_verify_otp_subtitle": "Entrez le code de vérification envoyé à votre mobile :",
+  "resend_otp": "Renvoyer après",
+  "continuee": "Continuer",
+
+
+  "search": "Rechercher",
+  "stories": "Histoires",
+  "join_us": "Rejoignez-nous maintenant",
+  "join_our_team": "Rejoignez notre équipe d'affiliation",
+  "join_our_team_description": "Transformez votre temps en ligne en profits ! Rejoignez notre programme d'affiliation et commencez à gagner de l'argent depuis chez vous.",
+  "categories": "Catégories",
+  "view_all": "Voir tout",
+  "camion_offers": "Offres Camion",
+  "top_sales": "Meilleures ventes",
+  "choose_prduct": "Choisir un produit",
+
+
+  "home": "Accueil",
+  "cart": "Panier",
+  "profile": "Profil",
+  "favorites": "Favoris",
+  "orders": "Commandes",
+
+
+  "personal_information": "Informations personnelles",
+  "my_wallet": "Mon portefeuille",
+  "my_orders": "Mes commandes",
+  "affiliate_marketing": "Marketing d'affiliation",
+  "language": "Langue",
+  "rate_us": "Évaluez-nous",
+  "give_us_feedback": "Donnez-nous votre avis",
+  "about_us": "À propos de nous",
+  "privacy_policy": "Politique de confidentialité",
+  "help": "Aide",
+  "delete_account": "Supprimer le compte",
+  "are_you_sure_you_want_to_logout": "Êtes-vous sûr de vouloir vous déconnecter ?",
+  "logout_description": "Votre session actuelle sera terminée et vous devrez vous reconnecter pour accéder à votre compte.",
+  "are_you_sure_you_want_to_delete": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+  "delete_account_description": "Toutes vos données seront définitivement supprimées et ne pourront pas être récupérées. Cette action est irréversible.",
+  "cancel": "Annuler",
+  "change_language": "Changer de langue",
+  "arabic": "Arabe",
+  "english": "Anglais",
+  "german": "Allemand",
+  "french": "Français",
+  "spanish": "Espagnol",
+  "italian": "Italien",
+  "bengali": "Bengali",
+  "dutch": "Néerlandais",
+  "hindi": "Hindi",
+  "indonesian": "Indonésien",
+  "japanese": "Japonais",
+  "javanese": "Javanais",
+  "korean": "Coréen",
+  "malay": "Malais/Indonésien",
+  "mandarin_chinese": "Chinois mandarin",
+  "marathi": "Marathi",
+  "persian": "Persan (Farsi)",
+  "polish": "Polonais",
+  "portuguese": "Portugais",
+  "punjabi": "Pendjabi",
+  "romanian": "Roumain",
+  "russian": "Russe",
+  "swahili": "Swahili",
+  "tamil": "Tamoul",
+  "telugu": "Télougou",
+  "thai": "Thaï",
+  "turkish": "Turc",
+  "ukrainian": "Ukrainien",
+  "urdu": "Ourdou",
+  "vietnamese": "Vietnamien",
+
+
+  "description": "Description",
+  "coupon_code": "Code promo",
+  "apply": "Appliquer",
+
+
+  "product_details": "Détails du produit",
+  "reviews": "Avis",
+  "in_stock": "En stock",
+  "out_of_stock": "Rupture de stock",
+  "add_to_cart": "Ajouter au panier",
+  "go_to_cart": "Aller au panier",
+  "quantity": "Quantité",
+  "add_review": "Ajouter un avis",
+
+  "retry": "Réessayer",
+  "available_options": "Options disponibles",
+
+  "full_name": "Nom complet",
+  "edit_profile": "Modifier le profil",
+  "save": "Enregistrer",
+
+  "pedning": "En attente....",
+  "back": "Retour",
+  "pending_message": "Votre demande est en cours d'examen.\nVeuillez attendre l'approbation de l'administrateur.",
+
+  "rejected": "Rejeté",
+  "rejected_message": "Votre demande d'inscription a été rejetée.\nVeuillez réessayer.",
+  "register_again_as_affiliate": "S'inscrire à nouveau comme affilié",
+
+  "all": "Tout",
+  "transactions": "Transactions",
+  "My_Wallet": "Mon portefeuille",
+  "withdraw": "Retrait",
+
+  "Affiliate_marketing": "Marketing d'affiliation",
+  "start_now": "Commencer maintenant",
+  "affiliate_welcome_message": "Nous sommes honorés de vous compter parmi notre équipe marketing",
+  "affiliate_welcome_subtitle": "Nous offrons un système d'affiliation simple et efficace basé sur des codes uniques pour chaque marketeur. Ces codes peuvent être partagés avec leur audience, leur permettant de gagner une commission sur chaque vente réalisée. La commission est transférée directement dans leur portefeuille sans intermédiaire ni retard, garantissant des paiements rapides et faciles. Nous proposons une grande variété de produits dans différents domaines afin que chaque marketeur trouve ce qui convient à son audience et atteigne les meilleures ventes. Notre objectif est de vous aider à gagner un revenu stable avec un minimum d'efforts et un marketing intelligent.",
+
+
+  "affiliate_account": "Compte affilié",
+
+  "my_coupuns": "Mes coupons",
+  "create_coupon": "Créer un coupon",
+
+
+  "join_us_as_affiliate": "Rejoignez-nous en tant qu'affilié",
+
+  "next": "Suivant",
+
+  "create": "Créer",
+  "coupon": "Coupon",
+  "discount_rate": "Taux de réduction",
+
+
+  "personal_data": "Données personnelles",
+
+  "nationality": "Nationalité",
+  "about_you": "À propos de vous",
+  "city": "Ville",
+  "phone": "Téléphone",
+  "address": "Adresse",
+
+  "male": "Homme",
+  "female": "Femme",
+
+
+  "feedback": "Retour d'information",
+
+  "help_us_improve": "Aidez-nous à améliorer votre expérience",
+
+  "feed_back_description": "Partagez vos réflexions et aidez-nous à améliorer votre expérience",
+
+  "privacy_poilicy_camion_app": "Politiques - Application Camion",
+
+  "terms_of_use": "Conditions d'utilisation",
+  "terms_of_use_description1": "En utilisant Camion, vous acceptez de respecter toutes les conditions énoncées dans cette politique.",
+  "terms_of_use_description2": "Camion se réserve le droit de mettre à jour ou de modifier ces politiques à tout moment. Les utilisateurs seront informés de tout changement via l'application ou par e-mail.",
+  "terms_of_use_description3": "L'application ne doit pas être utilisée pour des activités illégales ou en violation des lois locales ou internationales.",
+
+  "product_policy": "Politique produit",
+  "product_policy_description1": "Tous les produits listés sur Camion sont originaux et correspondent aux spécifications décrites sur la page du produit.",
+  "product_policy_description2": "Les prix incluent la TVA (le cas échéant) et n'incluent pas les frais d'expédition sauf indication contraire.",
+  "product_policy_description3": "Les couleurs des produits peuvent légèrement varier en raison des réglages de l'écran ou des différences de fabrication.",
+
+  "payment_policy": "Politique de paiement",
+  "payment_policy_description1": "Camion prend en charge plusieurs méthodes de paiement (cartes de crédit/débit, virement bancaire, portefeuilles électroniques et paiement à la livraison si disponible).",
+  "payment_policy_description2": "Tous les paiements sont sécurisés via des prestataires de services certifiés.",
+  "payment_policy_description3": "En cas d'échec du paiement, la commande ne sera pas confirmée et l'utilisateur pourra réessayer avec une autre méthode.",
+
+  "shipping_policy": "Politique d'expédition et de livraison",
+  "shipping_policy_description1": "Camion assure une expédition mondiale via des services de messagerie internationaux de confiance.",
+  "shipping_policy_description2": "Le délai de livraison varie selon le pays de destination et le transporteur.",
+  "shipping_policy_description3": "Les clients recevront un numéro de suivi une fois leur commande expédiée.",
+  "shipping_policy_description4": "Camion n'est pas responsable des retards causés par la douane, les événements naturels ou des problèmes de transport indépendants de notre volonté.",
+
+  "return_policy": "Politique de retour et de remboursement",
+  "return_policy_description1": "Les clients peuvent demander un retour dans les 14 jours suivant la réception de la commande, à condition que l'article soit inutilisé, non endommagé et dans son emballage d'origine.",
+  "return_policy_description2": "Certains articles tels que les produits de soins personnels, les aliments ou les articles personnalisés ne peuvent pas être retournés.",
+  "return_policy_description3": "Les remboursements seront effectués sur le mode de paiement initial dans un délai de 7 à 14 jours ouvrables après inspection de l'article retourné.",
+  "return_policy_description4": "Les frais de port ne sont pas remboursables et les frais de retour sont à la charge du client (sauf en cas d'article défectueux ou incorrect).",
+
+  "privacy_policy_details": "Politique de confidentialité",
+  "privacy_policy_description1": "Camion respecte et protège vos données personnelles.",
+  "privacy_policy_description2": "Nous collectons des informations (nom, adresse, coordonnées, infos de paiement) uniquement pour traiter les commandes et améliorer l'expérience utilisateur.",
+  "privacy_policy_description3": "Les données personnelles ne seront jamais vendues ou partagées avec des tiers, sauf avec les partenaires d'expédition et de paiement pour compléter la commande.",
+  "privacy_policy_description4": "Toutes les données sont stockées de manière sécurisée, et les utilisateurs ont le droit de demander l'accès, la correction ou la suppression de leurs informations personnelles.",
+
+  "limitation_liability": "Limitation de responsabilité",
+  "limitation_liability_description1": "Camion n'est pas responsable des dommages indirects, accessoires ou consécutifs résultant de l'utilisation de l'application ou des produits achetés.",
+  "limitation_liability_description2": "La responsabilité de l'utilisation du produit incombe au client.",
+  "limitation_liability_description3": "En cas de litige, la responsabilité de Camion est limitée à la valeur de la commande uniquement.",
+
+
+  "paid": "Payé",
+  "delivered": "Livré",
+  "completed": "Terminé",
+
+
+  "Shipping_and_Delivery": "Expédition et livraison",
+
+  "question_1": "Quel est le délai de livraison et quelles sont les zones couvertes ?",
+
+  "answer_1": "La livraison prend généralement de 3 à 5 jours ouvrables et l'expédition est disponible dans le monde entier.",
+
+  "question_2": "Comment puis-je suivre ma commande ?",
+
+  "answer_2": "Une fois votre commande expédiée, vous recevrez une notification et un e-mail contenant un numéro de suivi. Vous pouvez utiliser ce numéro pour suivre votre commande directement sur le site du transporteur. Vous pouvez également consulter le statut de votre commande dans la section Mes Commandes de votre compte.",
+
+  "Payments": "Paiements",
+
+  "question_3": "Quels sont les moyens de paiement disponibles ?",
+
+  "answer_3": "Nous acceptons les paiements par carte bancaire, Mada, Apple Pay et paiement à la livraison.",
+
+  "Return_and_Exchange": "Retour et échange",
+
+  "question_4": "Quelle est la politique de retour ?",
+
+  "answer_4": "Les produits peuvent être retournés dans les 14 jours suivant la réception, à condition qu'ils soient dans leur état d'origine.",
+
+  "Direct_communication": "Communication directe",
+
+  "Contact_us_via_WhatsApp": "Contactez-nous via WhatsApp",
+
+  "For_immediate_assistance": "Pour une assistance immédiate",
+
+
+  "selected": "Sélectionné",
+  "product": "Produit",
+  "selected_for_sharing": "Sélectionné pour le partage",
+
+  "Your_wishlist_is_empty": "Votre liste de souhaits est vide",
+  "add_some_products_to_your_favorites": "Ajoutez des produits à vos favoris !",
+  "s": "s",
+
+  "Continue_To_Checkout": "Continuer vers le paiement",
+
+  "payment_page_loading": "La page de paiement est en cours de chargement, veuillez patienter...",
+
+  "address_confirmation": "Confirmation d'adresse",
+  "first_name": "Prénom",
+  "please_enter_your_first_name": "Veuillez entrer votre prénom",
+  "please_enter_your_last_name": "Veuillez entrer votre nom",
+  "last_name": "Nom",
+  "confirm": "Confirmer",
+  "shipping_address": "Adresse de livraison",
+  "address_1": "Adresse 1",
+  "please_enter_your_address": "Veuillez entrer votre adresse",
+  "address_2": "Adresse 2",
+  "country": "Pays",
+  "please_select_your_country": "Veuillez sélectionner votre pays",
+  "please_enter_your_email": "Veuillez entrer votre e-mail",
+  "please_enter_your_phone_number": "Veuillez entrer votre numéro de téléphone",
+  "please_enter_your_city": "Veuillez entrer votre ville",
+  "please_enter_your_state": "Veuillez entrer votre état",
+  "please_enter_your_postal_code": "Veuillez entrer votre code postal",
+  "state": "État",
+  "postal_code": "Code postal",
+  "confirm_your_shipping_address": "Confirmez votre adresse de livraison",
+
+  "checkout": "Paiement",
+  "products": "Produits",
+  "view_cart": "Voir le panier",
+  "subtotal": "Sous-total",
+  "total": "Total",
+  "Review_Your_Shipping_Address_Data": "Vérifiez vos informations d'adresse de livraison",
+  "enter_your_coupon_code": "Entrez le code promo",
+
+  "notifications": "Notifications",
+
+  "order_details": "Détails de la commande",
+  "order_id": "ID de la commande",
+  "order_number": "Numéro de commande :",
+  "order_date": "Date de la commande :",
+
+  "payment_method": "Méthode de paiement",
+  "payment_details": "Détails du paiement",
+
+  "order_tracking": "Suivi de la commande",
+  "order_status": "Statut de la commande",
+
+  "delivery_charge": "Frais de livraison",
+  "delivery_address": "Adresse de livraison",
+
+  "grand_total": "Total général",
+
+  "order_is_paid": "La commande est payée",
+
+  "order_is_delivered": "La commande est livrée",
+
+  "delivery_is_in_progress": "La livraison est en cours",
+
+  "Will_arrive_within_days": "Arrivera dans quelques jours",
+
+  "your_order_is_in_progress": "Votre commande est en cours",
+
+  "Number_of_products": "Nombre de produits",
+
+  "Ordered_in": "Commandé dans",
+
+  "Shipping_address_added_successfully": "Adresse de livraison ajoutée avec succès",
+  "Shipping_address_updated_successfully": "Adresse de livraison mise à jour avec succès",
+  "register": "S'inscrire",
+  "please_enter_your_name": "Veuillez entrer votre nom",
+
+  "account_created_successfully": "Compte créé avec succès",
+
+  "choose_country": "Choisissez un pays",
+
+  "search_for_countries": "Rechercher un pays",
+
+  "Coupon_applied_successfully": "Code promo appliqué avec succès",
+
+  "Review_Added_Successfully": "Avis ajouté avec succès",
+
+  "please_select_your_gender": "Veuillez sélectionner votre sexe",
+
+  "please_select_your_nationality": "Veuillez sélectionner votre nationalité",
+
+  "please_enter_your_bio": "Veuillez entrer votre bio",
+  "Coupon_created_successfully": "Code promo créé avec succès",
+  "please_enter_your_coupon_code": "Veuillez entrer votre code promo",
+  "please_enter_your_discount_rate": "Veuillez entrer votre taux de réduction",
+
+  "profile_updated_successfully": "Profil mis à jour avec succès",
+
+  "You_are_subscribed_to_affiliate_marketing": "Vous êtes inscrit au marketing d'affiliation",
+  "view_your_activity": "Voir votre activité",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "Vous n'êtes pas inscrit au marketing d'affiliation",
+  "subscribe_now": "Inscrivez-vous maintenant !",
+
+
+  "Something_went_wrong": "Une erreur s'est produite"
+}

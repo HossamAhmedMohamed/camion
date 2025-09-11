@@ -1,9 +1,11 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
 import 'package:camion/features/home/presentation/logic/cubit/get_categories_cubit/get_categories_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart' show AppRouter;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +37,7 @@ class _CategoriesBodyState extends State<CategoriesBody> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Categories",
+                  S.of(context).categories,
                   style: AppStyle.styleSemiBold16(context).copyWith(
                     color: AppColors.black,
 
@@ -55,7 +57,7 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                   },
 
                   child: Text(
-                    "See all",
+                    S.of(context).view_all,
                     style: AppStyle.styleRegular14(context).copyWith(
                       color: AppColors.primaryColor,
 
@@ -149,7 +151,14 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                         ),
                                       ],
                                     ),
-                                    margin: EdgeInsets.only(left: 15.w),
+                                    margin:
+                                        context
+                                                .watch<LocalizationsCubit>()
+                                                .state
+                                                .languageCode ==
+                                            'ar'
+                                        ? EdgeInsets.only(right: 15.w)
+                                        : EdgeInsets.only(left: 15.w),
                                     child: SizedBox(
                                       height: widget.screenWidth > 800
                                           ? 120.h
@@ -171,17 +180,25 @@ class _CategoriesBodyState extends State<CategoriesBody> {
                                     ),
                                   ),
 
-                                  SizedBox(height: 8.h),
+                                  SizedBox(height: 5.h),
 
                                   Padding(
-                                    padding: EdgeInsets.only(left: 15.w),
+                                    padding:
+                                        context
+                                                .watch<LocalizationsCubit>()
+                                                .state
+                                                .languageCode ==
+                                            'ar'
+                                        ? EdgeInsets.only(right: 15.w)
+                                        : EdgeInsets.only(left: 15.w),
                                     child: SizedBox(
                                       width: widget.screenWidth > 800
                                           ? 140.w
                                           : 80.w,
                                       child: Center(
                                         child: Text(
-                                          maxLines: 2,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           categoriesWithImages[index].name,
                                           style: AppStyle.styleRegular12(
@@ -222,9 +239,12 @@ class _CategoriesBodyState extends State<CategoriesBody> {
 
                           ElevatedButton(
                             onPressed: () {
-                              context
-                                  .read<GetCategoriesCubit>()
-                                  .getCategories();
+                              context.read<GetCategoriesCubit>().getCategories(
+                                lang: context
+                                    .read<LocalizationsCubit>()
+                                    .state
+                                    .languageCode,
+                              );
                             },
                             child: Text(
                               'Retry',

@@ -2,6 +2,7 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -66,7 +67,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "Home",
+                         S.of(context).home,
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -98,7 +99,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "Orders",
+                         S.of(context).orders,
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -141,7 +142,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "Favorites",
+                         S.of(context).favorites,
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
@@ -240,7 +241,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       SizedBox(height: 8.h),
 
                       Text(
-                        "Profile",
+                         S.of(context).profile,
                         style: AppStyle.styleRegular14(context).copyWith(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,

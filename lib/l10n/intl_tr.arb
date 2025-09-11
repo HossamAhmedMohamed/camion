@@ -1,0 +1,340 @@
+{
+  "name": "Adınız",
+  "phone_Number": "Telefon Numarası",
+  "email": "E-posta",
+  "login": "Giriş Yap",
+  "logout": "Çıkış Yap",
+  "settings": "Ayarlar",
+  "Sign_up": "Kayıt Ol",
+  "dont_have_an_account": "Hesabınız yok mu?",
+  "already_have_an_account": "Zaten bir hesabınız var mı?",
+  "enter_verify_otp": "📱 numarasına gönderilen doğrulama kodunu girin",
+  "enter_verify_otp_subtitle": "Cep telefonunuza gönderilen doğrulama kodunu giriniz:",
+  "resend_otp": "Tekrar gönder",
+  "continuee": "Devam Et",
+
+
+  "search": "Ara",
+  "stories": "Hikayeler",
+  "join_us": "Bize Katıl",
+  "join_our_team": "Ortaklık Ekibimize Katılın",
+  "join_our_team_description": "Çevrimiçi zamanınızı kazanca dönüştürün! Ortaklık programımıza katılın ve evinizin rahatlığında para kazanmaya başlayın.",
+  "categories": "Kategoriler",
+  "view_all": "Tümünü Gör",
+  "camion_offers": "Camion Teklifleri",
+  "top_sales": "En Çok Satılanlar",
+  "choose_prduct": "Ürün Seçin",
+
+
+  "home": "Ana Sayfa",
+  "cart": "Sepet",
+  "profile": "Profil",
+  "favorites": "Favoriler",
+  "orders": "Siparişler",
+
+
+  "personal_information": "Kişisel Bilgiler",
+  "my_wallet": "Cüzdanım",
+  "my_orders": "Siparişlerim",
+  "affiliate_marketing": "Ortaklık Pazarlaması",
+  "language": "Dil",
+  "rate_us": "Bizi Değerlendirin",
+  "give_us_feedback": "Geri Bildirim Ver",
+  "about_us": "Hakkımızda",
+  "privacy_policy": "Gizlilik Politikası",
+  "help": "Yardım",
+  "delete_account": "Hesabı Sil",
+  "are_you_sure_you_want_to_logout": "Çıkış yapmak istediğinizden emin misiniz?",
+  "logout_description": "Mevcut oturumunuz sonlandırılacak ve hesabınıza tekrar erişmek için yeniden giriş yapmanız gerekecek.",
+  "are_you_sure_you_want_to_delete": "Hesabınızı silmek istediğinizden emin misiniz?",
+  "delete_account_description": "Tüm verileriniz kalıcı olarak silinecek ve geri alınamayacak. Bu işlem geri döndürülemez.",
+  "cancel": "İptal",
+  "change_language": "Dili Değiştir",
+  "arabic": "Arapça",
+  "english": "İngilizce",
+  "german": "Almanca",
+  "french": "Fransızca",
+  "spanish": "İspanyolca",
+  "italian": "İtalyanca",
+  "bengali": "Bengalce",
+  "dutch": "Felemenkçe",
+  "hindi": "Hintçe",
+  "indonesian": "Endonezce",
+  "japanese": "Japonca",
+  "javanese": "Cava Dili",
+  "korean": "Korece",
+  "malay": "Malayca/Endonezce",
+  "mandarin_chinese": "Mandarin Çincesi",
+  "marathi": "Marathi",
+  "persian": "Farsça",
+  "polish": "Lehçe",
+  "portuguese": "Portekizce",
+  "punjabi": "Pencapça",
+  "romanian": "Rumence",
+  "russian": "Rusça",
+  "swahili": "Svahili",
+  "tamil": "Tamilce",
+  "telugu": "Telugu",
+  "thai": "Tayca",
+  "turkish": "Türkçe",
+  "ukrainian": "Ukraynaca",
+  "urdu": "Urduca",
+  "vietnamese": "Vietnamca",
+
+
+  "description": "Açıklama",
+  "coupon_code": "Kupon Kodu",
+  "apply": "Uygula",
+
+
+  "product_details": "Ürün Detayları",
+  "reviews": "Yorumlar",
+  "in_stock": "Stokta Var",
+  "out_of_stock": "Stokta Yok",
+  "add_to_cart": "Sepete Ekle",
+  "go_to_cart": "Sepete Git",
+  "quantity": "Adet",
+  "add_review": "Yorum Ekle",
+
+  "retry": "Tekrar Dene",
+  "available_options": "Mevcut Seçenekler",
+
+  "full_name": "Tam Ad",
+  "edit_profile": "Profili Düzenle",
+  "save": "Kaydet",
+
+  "pedning": "Bekliyor...",
+  "back": "Geri",
+  "pending_message": "Talebiniz şu anda inceleniyor.\nLütfen yönetici onayını bekleyin.",
+
+  "rejected": "Reddedildi",
+  "rejected_message": "Kayıt talebiniz reddedildi.\nLütfen tekrar kayıt olmayı deneyin.",
+  "register_again_as_affiliate": "Tekrar Ortak Olarak Kayıt Ol",
+
+
+  "all": "Tümü",
+  "transactions": "İşlemler",
+  "My_Wallet": "Cüzdanım",
+  "withdraw": "Para Çek",
+
+  "Affiliate_marketing": "Ortaklık Pazarlaması",
+  "start_now": "Hemen Başla",
+  "affiliate_welcome_message": "Pazarlama ekibimize katıldığınız için onur duyuyoruz",
+  "affiliate_welcome_subtitle": "Benzersiz kodlara dayalı basit ve etkili bir ortaklık sistemi sunuyoruz. Pazarlamacılar bu kodları hedef kitleleriyle paylaşabilir, her satıştan komisyon kazanabilir. Komisyon doğrudan cüzdanlarına aktarılır. Geniş ürün yelpazemiz ile her pazarlamacı hedef kitlesine uygun ürünler bulabilir.",
+
+  "affiliate_account": "Ortaklık Hesabı",
+
+  "my_coupuns": "Kuponlarım",
+  "create_coupon": "Kupon Oluştur",
+
+
+  "join_us_as_affiliate": "Ortak olarak bize katılın",
+
+  "next": "Sonraki",
+
+  "create": "Oluştur",
+  "coupon": "Kupon",
+  "discount_rate": "İndirim Oranı",
+
+
+  "personal_data": "Kişisel Veriler",
+
+  "nationality": "Uyruk",
+  "about_you": "Hakkınızda",
+  "city": "Şehir",
+  "phone": "Telefon",
+  "address": "Adres",
+
+  "male": "Erkek",
+  "female": "Kadın",
+
+
+  "feedback": "Geri Bildirim",
+
+  "help_us_improve": "Deneyiminizi geliştirmemize yardımcı olun",
+
+  "feed_back_description": "Düşüncelerinizi paylaşın ve deneyiminizi geliştirmemize yardımcı olun",
+
+  "privacy_poilicy_camion_app": "Politikalar - Camion Uygulaması",
+
+  "terms_of_use": "Kullanım Koşulları",
+  "terms_of_use_description1": "Camion’u kullanarak bu politikada belirtilen tüm şartlara uymayı kabul edersiniz.",
+  "terms_of_use_description2": "Camion bu politikaları istediği zaman güncelleme hakkını saklı tutar.",
+  "terms_of_use_description3": "Uygulama yasadışı faaliyetler için kullanılamaz.",
+
+  "product_policy": "Ürün Politikası",
+  "product_policy_description1": "Tüm ürünler orijinaldir ve ürün sayfasındaki açıklamalara uygundur.",
+  "product_policy_description2": "Fiyatlara KDV dahildir (varsa), kargo ücreti dahil değildir.",
+  "product_policy_description3": "Ürün renkleri ekran ayarları nedeniyle farklılık gösterebilir.",
+
+  "payment_policy": "Ödeme Politikası",
+  "payment_policy_description1": "Camion birden fazla ödeme yöntemini destekler (kredi/banka kartı, banka havalesi, e-cüzdan ve kapıda ödeme).",
+  "payment_policy_description2": "Tüm ödemeler güvenli servis sağlayıcılar üzerinden yapılır.",
+  "payment_policy_description3": "Ödeme başarısız olursa sipariş onaylanmaz.",
+
+  "shipping_policy": "Kargo ve Teslimat Politikası",
+  "shipping_policy_description1": "Camion güvenilir uluslararası kargo firmalarıyla dünya çapında gönderim sağlar.",
+  "shipping_policy_description2": "Teslimat süresi ülkeye ve kargo şirketine bağlıdır.",
+  "shipping_policy_description3": "Sipariş gönderildiğinde takip numarası sağlanır.",
+  "shipping_policy_description4": "Camion gümrük, doğal afet veya kargo sorunlarından sorumlu değildir.",
+
+  "return_policy": "İade ve Geri Ödeme Politikası",
+  "return_policy_description1": "Müşteriler 14 gün içinde kullanılmamış ürünleri iade edebilir.",
+  "return_policy_description2": "Kişisel bakım, gıda veya özel ürünler iade edilemez.",
+  "return_policy_description3": "İade edilen ürün incelendikten sonra 7–14 iş günü içinde ödeme yapılır.",
+  "return_policy_description4": "Kargo ücreti iade edilmez, iade kargo masrafı müşteriye aittir.",
+
+  "privacy_policy_details": "Gizlilik Politikası",
+  "privacy_policy_description1": "Camion kişisel verilerinizi korur.",
+  "privacy_policy_description2": "Ad, adres, iletişim ve ödeme bilgileri sadece sipariş işleme amacıyla toplanır.",
+  "privacy_policy_description3": "Kişisel veriler üçüncü kişilerle paylaşılmaz.",
+  "privacy_policy_description4": "Veriler güvenli bir şekilde saklanır, kullanıcılar erişim ve silme talep edebilir.",
+
+  "limitation_liability": "Sorumluluk Sınırlaması",
+  "limitation_liability_description1": "Camion dolaylı veya sonuçsal zararlardan sorumlu değildir.",
+  "limitation_liability_description2": "Ürün kullanımı müşterinin sorumluluğundadır.",
+  "limitation_liability_description3": "Uyuşmazlıklarda Camion’un sorumluluğu sipariş tutarıyla sınırlıdır.",
+
+
+  "paid": "Ödendi",
+  "delivered": "Teslim Edildi",
+  "completed": "Tamamlandı",
+
+
+  "Shipping_and_Delivery": "Kargo ve Teslimat",
+
+  "question_1": "Teslimat süresi ne kadar ve kapsama alanları nerelerdir?",
+
+  "answer_1": "Teslimat genellikle 3-5 iş günü sürer ve dünya çapında kargo mevcuttur.",
+
+  "question_2": "Siparişimi nasıl takip edebilirim?",
+
+  "answer_2": "Sipariş gönderildiğinde bir takip numarası alırsınız ve kargo şirketinin web sitesinden takip edebilirsiniz. Ayrıca hesabınızdaki Siparişlerim bölümünden durumunu görebilirsiniz.",
+
+  "Payments": "Ödemeler",
+
+  "question_3": "Hangi ödeme yöntemleri mevcut?",
+
+  "answer_3": "Kredi kartı, Mada, Apple Pay ve kapıda ödeme kabul edilmektedir.",
+
+  "Return_and_Exchange": "İade ve Değişim",
+
+  "question_4": "İade politikası nedir?",
+
+  "answer_4": "Ürünler, teslim tarihinden itibaren 14 gün içinde orijinal durumda iade edilebilir.",
+
+  "Direct_communication": "Doğrudan İletişim",
+
+  "Contact_us_via_WhatsApp": "WhatsApp ile Bize Ulaşın",
+
+  "For_immediate_assistance": "Hemen yardım için",
+
+
+  "selected": "Seçildi",
+  "product": "Ürün",
+  "selected_for_sharing": "Paylaşım için seçildi",
+
+  "Your_wishlist_is_empty": "İstek listeniz boş",
+  "add_some_products_to_your_favorites": "Favorilerinize ürün ekleyin!",
+  "s": "s",
+
+  "Continue_To_Checkout": "Ödeme İşlemine Devam Et",
+
+  "payment_page_loading": "Ödeme sayfası yükleniyor, lütfen bekleyin...",
+
+  "address_confirmation": "Adres Onayı",
+  "first_name": "Ad",
+  "please_enter_your_first_name": "Lütfen adınızı girin",
+  "please_enter_your_last_name": "Lütfen soyadınızı girin",
+  "last_name": "Soyad",
+  "confirm": "Onayla",
+  "shipping_address": "Teslimat Adresi",
+  "address_1": "Adres 1",
+  "please_enter_your_address": "Lütfen adresinizi girin",
+  "address_2": "Adres 2",
+  "country": "Ülke",
+  "please_select_your_country": "Lütfen ülkenizi seçin",
+  "please_enter_your_email": "Lütfen e-posta adresinizi girin",
+  "please_enter_your_phone_number": "Lütfen telefon numaranızı girin",
+  "please_enter_your_city": "Lütfen şehrinizi girin",
+  "please_enter_your_state": "Lütfen eyaletinizi girin",
+  "please_enter_your_postal_code": "Lütfen posta kodunuzu girin",
+  "state": "Eyalet",
+  "postal_code": "Posta Kodu",
+  "confirm_your_shipping_address": "Teslimat adresinizi onaylayın",
+
+  "checkout": "Ödeme",
+  "products": "Ürünler",
+  "view_cart": "Sepeti Gör",
+  "subtotal": "Ara Toplam",
+  "total": "Toplam",
+  "Review_Your_Shipping_Address_Data": "Teslimat adresi bilgilerinizi gözden geçirin",
+  "enter_your_coupon_code": "Kupon kodunuzu girin",
+
+  "notifications": "Bildirimler",
+
+  "order_details": "Sipariş Detayları",
+  "order_id": "Sipariş ID",
+  "order_number": "Sipariş Numarası:",
+  "order_date": "Sipariş Tarihi:",
+
+  "payment_method": "Ödeme Yöntemi",
+  "payment_details": "Ödeme Detayları",
+
+  "order_tracking": "Sipariş Takibi",
+  "order_status": "Sipariş Durumu",
+
+  "delivery_charge": "Teslimat Ücreti",
+  "delivery_address": "Teslimat Adresi",
+
+  "grand_total": "Genel Toplam",
+
+  "order_is_paid": "Sipariş Ödendi",
+
+  "order_is_delivered": "Sipariş Teslim Edildi",
+
+  "delivery_is_in_progress": "Teslimat Devam Ediyor",
+
+  "Will_arrive_within_days": "Birkaç gün içinde ulaşacak",
+
+  "your_order_is_in_progress": "Siparişiniz işleniyor",
+
+  "Number_of_products": "Ürün Sayısı",
+
+  "Ordered_in": "Sipariş verildi",
+
+  "Shipping_address_added_successfully": "Teslimat adresi başarıyla eklendi",
+  "Shipping_address_updated_successfully": "Teslimat adresi başarıyla güncellendi",
+  "register": "Kayıt Ol",
+  "please_enter_your_name": "Lütfen adınızı girin",
+
+  "account_created_successfully": "Hesap başarıyla oluşturuldu",
+
+  "choose_country": "Ülke Seçin",
+
+  "search_for_countries": "Ülke ara",
+
+  "Coupon_applied_successfully": "Kupon başarıyla uygulandı",
+
+  "Review_Added_Successfully": "Yorum başarıyla eklendi",
+
+  "please_select_your_gender": "Lütfen cinsiyetinizi seçin",
+
+  "please_select_your_nationality": "Lütfen uyruğunuzu seçin",
+
+  "please_enter_your_bio": "Lütfen biyografinizi girin",
+  "Coupon_created_successfully": "Kupon başarıyla oluşturuldu",
+  "please_enter_your_coupon_code": "Lütfen kupon kodunuzu girin",
+  "please_enter_your_discount_rate": "Lütfen indirim oranınızı girin",
+
+  "profile_updated_successfully": "Profil başarıyla güncellendi",
+
+  "You_are_subscribed_to_affiliate_marketing": "Ortaklık pazarlamasına abonesiniz",
+  "view_your_activity": "Faaliyetlerinizi görüntüleyin",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "Ortaklık pazarlamasına abone değilsiniz",
+  "subscribe_now": "Hemen abone olun!",
+
+
+  "Something_went_wrong": "Bir şeyler yanlış gitti"
+}

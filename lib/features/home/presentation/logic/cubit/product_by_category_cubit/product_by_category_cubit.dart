@@ -21,6 +21,7 @@ class ProductByCategoryCubit extends Cubit<ProductByCategoryState> {
 
   Future<void> getProductsByCategory({
     required String slug,
+    required String lang,
     bool isLoadMore = false,
   }) async {
     if (!hasMore && isLoadMore) return;
@@ -44,6 +45,7 @@ class ProductByCategoryCubit extends Cubit<ProductByCategoryState> {
       slug: slug,
       page: currentPage,
       perPage: perPage,
+      lang: lang,
     );
     if (isClosed) {
       return;

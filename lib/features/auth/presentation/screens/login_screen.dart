@@ -1,7 +1,9 @@
  
  
+import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/widgets/camion_logo.dart';
 import 'package:camion/features/auth/presentation/widgets/login_form.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -95,11 +97,10 @@ class LoginScreen extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "Don't have an account? ",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                          ),
+                          text: "${S.of(context).dont_have_an_account} ",
+                          style: AppStyle.styleRegular16(
+                            context,
+                          ).copyWith(color: Colors.black),
                         ),
                         TextSpan(
                           recognizer: TapGestureRecognizer()
@@ -108,12 +109,12 @@ class LoginScreen extends StatelessWidget {
                                 context,
                               ).pushNamed(AppRouter.register);
                             },
-                          text: "Register",
-                          style: TextStyle(
-                            color: const Color(0xFFB92123),
+                          text:  S.of(context).register,
+                          style: AppStyle.styleRegular16(
+                            context,
+                          ).copyWith(color: const Color(0xFFB92123),
                             decoration: TextDecoration.underline,
-                            fontSize: 16.sp,
-                          ),
+                           ),
                         ),
                       ],
                     ),

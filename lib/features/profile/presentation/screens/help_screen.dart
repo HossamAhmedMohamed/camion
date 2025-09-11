@@ -2,6 +2,7 @@ import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,47 +19,41 @@ class HelpScreen extends StatefulWidget {
 class _HelpScreenState extends State<HelpScreen> {
   Map<int, bool> expandedItems = {};
 
-  final List<FAQSection> faqSections = [
-    FAQSection(
-      title: "Shipping and Delivery",
-      questions: [
-        FAQItem(
-          question:
-              "How long is the delivery time and what are the coverage areas?",
-          answer:
-              "Delivery typically takes 3 to 5 business days and shipping is available worldwide.",
-        ),
-        FAQItem(
-          question: "How can I track my order?",
-          answer:
-              "Once your order has shipped, you'll receive a notification and an email containing a tracking number. You can use this number to track your order directly on the shipping company's website. You can also check your order status through the My Orders section of your account.",
-        ),
-      ],
-    ),
-    FAQSection(
-      title: "Payments",
-      questions: [
-        FAQItem(
-          question: "What payment methods are available?",
-          answer:
-              "We accept payments via credit cards, Mada, Apple Pay, and cash on delivery",
-        ),
-      ],
-    ),
-    FAQSection(
-      title: "Return and Exchange",
-      questions: [
-        FAQItem(
-          question: "What is the return policy?",
-          answer:
-              "Products can be returned within 14 days from the date of receipt, provided they are in their original condition.",
-        ),
-      ],
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<FAQSection> faqSections = [
+      FAQSection(
+        title: S.of(context).Shipping_and_Delivery,
+        questions: [
+          FAQItem(
+            question: S.of(context).question_1,
+            answer: S.of(context).answer_1,
+          ),
+          FAQItem(
+            question: S.of(context).question_2,
+            answer: S.of(context).answer_2,
+          ),
+        ],
+      ),
+      FAQSection(
+        title: S.of(context).Payments,
+        questions: [
+          FAQItem(
+            question: S.of(context).question_3,
+            answer: S.of(context).answer_3,
+          ),
+        ],
+      ),
+      FAQSection(
+        title: S.of(context).Return_and_Exchange,
+        questions: [
+          FAQItem(
+            question: S.of(context).question_4,
+            answer: S.of(context).answer_4,
+          ),
+        ],
+      ),
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -68,7 +63,7 @@ class _HelpScreenState extends State<HelpScreen> {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "Help",
+              S.of(context).help,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -115,11 +110,9 @@ class _HelpScreenState extends State<HelpScreen> {
                             ),
                             child: Text(
                               section.title,
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red[600],
-                              ),
+                              style: AppStyle.styleBold16(
+                                context,
+                              ).copyWith(color: AppColors.primaryColor),
                             ),
                           ),
 
@@ -158,11 +151,13 @@ class _HelpScreenState extends State<HelpScreen> {
                                           Expanded(
                                             child: Text(
                                               item.question,
-                                              style: TextStyle(
-                                                fontSize: 16.sp,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.black87,
-                                              ),
+                                              style:
+                                                  AppStyle.styleSemiBold16(
+                                                    context,
+                                                  ).copyWith(
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black87,
+                                                  ),
                                             ),
                                           ),
 
@@ -200,11 +195,13 @@ class _HelpScreenState extends State<HelpScreen> {
                                         ),
                                         child: Text(
                                           item.answer,
-                                          style: TextStyle(
-                                            fontSize: 14.sp,
-                                            color: Colors.black54,
-                                            height: 1.5,
-                                          ),
+                                          style:
+                                              AppStyle.styleRegular14(
+                                                context,
+                                              ).copyWith(
+                                                color: Colors.black54,
+                                                height: 1.5,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -227,12 +224,10 @@ class _HelpScreenState extends State<HelpScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Direct communication",
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red[600],
-                          ),
+                          S.of(context).Direct_communication,
+                          style: AppStyle.styleBold16(context).copyWith(
+                            color: AppColors.primaryColor,
+                          )
                         ),
                         SizedBox(height: 16.h),
 
@@ -266,19 +261,17 @@ class _HelpScreenState extends State<HelpScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Contact us via WhatsApp",
-                                        style: TextStyle(
-                                          fontSize: 16.sp,
+                                        S.of(context).Contact_us_via_WhatsApp,
+                                        style: AppStyle.styleRegular14(context).copyWith(
                                           fontWeight: FontWeight.w500,
                                           color: Colors.black87,
-                                        ),
+                                        )
                                       ),
                                       Text(
-                                        "For immediate assistance",
-                                        style: TextStyle(
-                                          fontSize: 12.sp,
+                                        S.of(context).For_immediate_assistance,
+                                        style: AppStyle.styleRegular10(context).copyWith(
                                           color: Colors.blue,
-                                        ),
+                                        )
                                       ),
                                     ],
                                   ),

@@ -24,7 +24,7 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   Timer? _debounce;
 
-  Future<void> getProducts({bool isLoadMore = false}) async {
+  Future<void> getProducts({bool isLoadMore = false , required String lang}) async {
     if (!hasMore && isLoadMore) return;
     if (isLoading) return;
     if (isClosed) return;
@@ -49,6 +49,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     final result = await homeRepository.getProducts(
       page: currentPage,
       perPage: perPage,
+      lang: lang,
     );
     result.fold(
       (error) {
@@ -116,8 +117,8 @@ class ProductsCubit extends Cubit<ProductsState> {
     });
   }
 
-  void retryLoadMore() {
-    // hasLoadMoreError = false;
-    getProducts();
-  }
+  // void retryLoadMore() {
+  //   // hasLoadMoreError = false;
+  //   getProducts();
+  // }
 }

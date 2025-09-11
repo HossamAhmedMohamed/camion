@@ -4,6 +4,7 @@ import 'package:camion/features/profile/presentation/logic/cubit/get_user_cubit/
 import 'package:camion/features/profile/presentation/widgets/custom_info_sliver_app_bar.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_affiliate_or_not_affiliate.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_loading_skeletonizer.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -88,7 +89,7 @@ class MyInfoScreenBodyState extends State<MyInfoScreenBody> {
                         SizedBox(height: 20.h),
 
                         Text(
-                          "Full Name",
+                           S.of(context).full_name,
                           style: AppStyle.styleRegular16(
                             context,
                           ).copyWith(color: Colors.black),
@@ -104,7 +105,7 @@ class MyInfoScreenBodyState extends State<MyInfoScreenBody> {
                         SizedBox(height: 20.h),
 
                         Text(
-                          "Email",
+                           S.of(context).email,
                           style: AppStyle.styleRegular16(
                             context,
                           ).copyWith(color: Colors.black),
@@ -120,7 +121,7 @@ class MyInfoScreenBodyState extends State<MyInfoScreenBody> {
                         SizedBox(height: 20.h),
 
                         Text(
-                          "Phone Number",
+                           S.of(context).phone_Number,
                           style: AppStyle.styleRegular16(
                             context,
                           ).copyWith(color: Colors.black),
@@ -167,7 +168,7 @@ class MyInfoScreenBodyState extends State<MyInfoScreenBody> {
                     onPressed: () {
                       context.read<GetUserCubit>().getUserById();
                     },
-                    child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                    child: Text( S.of(context).retry, style: TextStyle(fontSize: 16.sp)),
                   ),
                 ],
               ),

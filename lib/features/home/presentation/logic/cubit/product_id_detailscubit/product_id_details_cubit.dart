@@ -16,7 +16,9 @@ class ProductIdDetailsCubit extends Cubit<ProductIdDetailsState> {
   // final Map<String, bool> _loadingStates = {};
 
   Future<void> getProductDetails(
-    String productId, {
+    String productId,
+    String lang,
+     {
     bool forceRefresh = false,
   }) async {
     if (isClosed) return;
@@ -35,7 +37,7 @@ class ProductIdDetailsCubit extends Cubit<ProductIdDetailsState> {
     final token = await sl<SecureCacheHelper>().getData(key: 'token');
     emit(ProductIdDetailsLoading());
 
-    final result = await homeRepo.getProductById(id: productId, token: token!);
+    final result = await homeRepo.getProductById(id: productId, token: token! , lang: lang);
     // _loadingStates[productId] = false;
 
     if (isClosed) return;

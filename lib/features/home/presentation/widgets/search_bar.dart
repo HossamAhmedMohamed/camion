@@ -1,6 +1,7 @@
  
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +32,7 @@ class SearchBarHome extends StatelessWidget {
                 onTap: onTap,
                 onChanged: onChanged,
                 controller: searchController,
-                hintText: "Search...",
+                hintText:  S.of(context).search,
                 readOnly: readOnly,
                 suffixIcon: Padding(
                   padding: EdgeInsets.all(12.r),

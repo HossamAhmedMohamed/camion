@@ -2,6 +2,7 @@ import 'package:camion/config/widgets/custom_elevated_button.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
-          const CustomJoinUsSliverAppBar(title: "Affiliate Marketing"),
+            CustomJoinUsSliverAppBar(title: S.of(context).Affiliate_marketing),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: Padding(
@@ -34,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                   SizedBox(height: 40.h),
                   Text(
                     textAlign: TextAlign.center,
-                    "We are honored to have you join our marketing team",
+                     S.of(context).affiliate_welcome_message,
                     style: AppStyle.styleRegular18(context).copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
@@ -45,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
 
                   Text(
                     textAlign: TextAlign.center,
-                    "We offer a simple and effective affiliate marketing system based on unique codes for each marketer. These codes can be shared with their audience, allowing them to earn a commission on every sale made using the code. The commission is transferred directly to their wallet without any intermediaries or delays, ensuring fast and easy payouts.We provide a wide variety of products across different fields, so every marketer can find what suits their audience and achieve the highest sales rates. Our goal is to help you earn a steady income through minimal effort and smart marketing",
+                    S.of(context).affiliate_welcome_subtitle,
                     style: AppStyle.styleRegular14(context).copyWith(
                       color: Colors.black54,
                       fontWeight: FontWeight.w400,
@@ -56,7 +57,7 @@ class WelcomeScreen extends StatelessWidget {
 
                   CustomElevatedButton(
                     child: Text(
-                      "Start Now",
+                       S.of(context).start_now,
                       style: AppStyle.styleRegular15(
                         context,
                       ).copyWith(color: Colors.white),

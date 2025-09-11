@@ -1,1 +1,350 @@
-{}
+{
+  "name": "Name here",
+  "phone_Number": "Phone Number",
+  "email": "Email",
+  "login": "Login",
+  "logout": "Logout",
+  "settings": "Settings",
+  "Sign_up": "Sign up",
+  "dont_have_an_account": "Don't have an account",
+  "already_have_an_account": "Already have an account",
+  "enter_verify_otp" : "Enter the verification code sent to the mobile number 📱",
+  "enter_verify_otp_subtitle" : "Enter the verification code sent to your mobile:",
+  "resend_otp" : "Resend after",
+  "continuee" : "Continue",
+
+
+
+  "search" : "Search",
+  "stories" : "Stories",
+  "join_us" : "Join Us Now",
+  "join_our_team" : "Join Our Affiliate Team",
+  "join_our_team_description" : "Turn your time online into profits! Join our affiliate program and start earning money from the comfort of your home.",
+  "categories" : "Categories",
+  "view_all" : "View All",
+  "camion_offers" : "Camion Offers",
+  "top_sales" : "Top Sales",
+  "choose_prduct" : "Choose Product",
+
+
+  "home" : "Home",
+  "cart" : "Cart",
+  "profile" : "Profile",
+  "favorites" : "Favorites",
+  "orders" : "Orders",
+
+
+
+  "personal_information" : "Personal Information",
+  "my_wallet" : "My Wallet",
+  "my_orders" : "My Orders",
+  "affiliate_marketing" : "Affiliate Marketing",
+  "language" : "Language",
+  "rate_us" : "Rate Us",
+  "give_us_feedback" : "Give Us Feedback",
+  "about_us" : "About Us",
+  "privacy_policy" : "Privacy Policy",
+  "help" : "Help",
+  "delete_account" : "Delete Account",
+  "are_you_sure_you_want_to_logout" : "Are you sure you want to logout?",
+  "logout_description" : "Your current session will be terminated, and you will need to log in again to access your account.",
+  "are_you_sure_you_want_to_delete" : "Are you sure you want to delete your account?",
+  "delete_account_description" : "All your data will be permanently deleted and will not be recoverable later. This action is irreversible.",
+  "cancel" : "Cancel",
+  "change_language" : "Change Language",
+ "arabic" : "Arabic",
+"english" : "English",
+"german" : "German",
+"french" : "French",
+"spanish" : "Spanish",
+"italian" : "Italian",
+"bengali" : "Bengali",
+"dutch" : "Dutch",
+"hindi" : "Hindi",
+"indonesian" : "Indonesian",
+"japanese" : "Japanese",
+"javanese" : "Javanese",
+"korean" : "Korean",
+"malay" : "Malay/Indonesian",
+"mandarin_chinese" : "Mandarin Chinese",
+"marathi" : "Marathi",
+"persian" : "Persian (Farsi)",
+"polish" : "Polish",
+"portuguese" : "Portuguese",
+"punjabi" : "Punjabi",
+"romanian" : "Romanian",
+"russian" : "Russian",
+"swahili" : "Swahili",
+"tamil" : "Tamil",
+"telugu" : "Telugu",
+"thai" : "Thai",
+"turkish" : "Turkish",
+"ukrainian" : "Ukrainian",
+"urdu" : "Urdu",
+"vietnamese" : "Vietnamese",
+
+
+
+
+  "description" : "Description",
+  "coupon_code" : "Coupon Code",
+  "apply" : "Apply",
+
+
+
+  "product_details" : "Product Details",
+  "reviews" : "Reviews",
+  "in_stock" : "In Stock",
+  "out_of_stock" : "Out of Stock",
+  "add_to_cart" : "Add to Cart",
+  "go_to_cart" : "Go to Cart",
+  "quantity" : "Quantity",
+  "add_review" : "Add Review",
+
+  "retry" : "Retry",
+  "available_options" : "Available Options",
+
+  "full_name" : "Full Name",
+  "edit_profile" : "Edit Profile",
+  "save" : "Save",
+
+  "pedning" : "Pending....",
+  "back" : "Back",
+  "pending_message" : "Your request is currently under review.\nPlease wait for admin approval.",
+
+  "rejected" : "Rejected",
+  "rejected_message" : "Your registration request has been rejected.\nPlease try registering again.",
+  "register_again_as_affiliate" : "Register Again as Affiliate",
+
+  "all" : "All",
+  "transactions" : "Transaction",
+  "My_Wallet": "My Wallet",
+  "withdraw": "Withdraw",
+
+  "Affiliate_marketing": "Affiliate Marketing",
+  "start_now": "Start Now",
+  "affiliate_welcome_message": "We are honored to have you join our marketing team",
+  "affiliate_welcome_subtitle": "We offer a simple and effective affiliate marketing system based on unique codes for each marketer. These codes can be shared with their audience, allowing them to earn a commission on every sale made using the code. The commission is transferred directly to their wallet without any intermediaries or delays, ensuring fast and easy payouts.We provide a wide variety of products across different fields, so every marketer can find what suits their audience and achieve the highest sales rates. Our goal is to help you earn a steady income through minimal effort and smart marketing.",
+
+
+  "affiliate_account": "Affiliate Account",
+
+  "my_coupuns": "My Coupons",
+  "create_coupon": "Create Coupon",
+
+
+  "join_us_as_affiliate": "Join Us as an Affiliate",
+
+  "next": "Next",
+
+  "create" : "Create",
+  "coupon" : "Coupon",
+  "discount_rate" : "Discount Rate",
+
+
+  "personal_data" : "Personal Data",
+
+  "nationality" : "Nationality",
+  "about_you" : "About You",
+  "city" : "City",
+  "phone" : "Phone",
+  "address" : "Address",
+
+  "male" : "Male",
+  "female" : "Female",
+
+
+  "feedback" : "Feedback",
+
+  "help_us_improve": "Help us improve your experience",
+
+  "feed_back_description": "Share your thoughts and help us improve your experience",
+
+  "privacy_poilicy_camion_app": "Policies - Camion App",
+
+  "terms_of_use": "Terms of Use",
+  "terms_of_use_description1":  "By using Camion, you agree to comply with all the terms and conditions stated in this policy.",
+  "terms_of_use_description2":  "Camion reserves the right to update or modify these policies at any time. Users will be notified of any changes via the app or email.",
+  "terms_of_use_description3":  "The app must not be used for any illegal activities or in violation of local or international laws.",
+
+"product_policy": "Product Policy",
+"product_policy_description1": "All products listed on Camion are original and match the specifications described on the product page.",
+"product_policy_description2": "Prices include VAT (if applicable) and do not include shipping fees unless otherwise stated.",
+"product_policy_description3": "Product colors may slightly vary due to screen settings or manufacturing differences.",
+
+"payment_policy": "Payment Policy",
+"payment_policy_description1": "Camion supports multiple payment methods (credit/debit cards, bank transfer, e-wallets, and cash on delivery if available).",
+"payment_policy_description2": "All payments are secured through certified payment service providers.",
+"payment_policy_description3": "If a payment fails, the order will not be confirmed, and the user may retry using a different method.",
+
+"shipping_policy": "Shipping & Delivery Policy",
+"shipping_policy_description1": "Camion provides worldwide shipping through trusted international courier services.",
+"shipping_policy_description2": "Delivery time varies depending on the destination country and shipping provider.",
+"shipping_policy_description3": "Customers will receive a tracking number once their order has been dispatched.",
+"shipping_policy_description4": "Camion is not responsible for delays caused by customs, natural events, or courier issues beyond our control.",
+
+"return_policy": "Return & Refund Policy",
+"return_policy_description1": "Customers may request a return within 14 days of receiving the order, provided the item is unused, undamaged, and in its original packaging.",
+"return_policy_description2": "Certain items such as personal care products, food, or customized items are non-returnable.",
+"return_policy_description3": "Refunds will be processed to the original payment method within 7–14 business days after the returned item is inspected.",
+"return_policy_description4": "Shipping fees are non-refundable, and return shipping costs are the responsibility of the customer (unless the item is defective or incorrect).",
+
+"privacy_policy_details": "Privacy Policy",
+"privacy_policy_description1": "Camion respects and protects your personal data.",
+"privacy_policy_description2": "We collect information (such as name, address, contact details, and payment info) only to process orders and improve user experience.",
+"privacy_policy_description3": "Personal data will never be sold or shared with third parties, except with shipping and payment partners to complete your order.",
+"privacy_policy_description4": "All data is securely stored, and users have the right to request access, correction, or deletion of their personal information.",
+
+"limitation_liability": "Limitation of Liability",
+"limitation_liability_description1": "Camion is not liable for any indirect, incidental, or consequential damages arising from the use of the app or purchased products.",
+"limitation_liability_description2": "Responsibility for product usage lies with the customer.",
+"limitation_liability_description3": "In case of disputes, Camion’s liability is limited to the order value only.",
+
+
+"paid": "Paid",
+"delivered": "Delivered",
+"completed": "Completed",
+
+
+"Shipping_and_Delivery": "Shipping and Delivery",
+
+"question_1": "How long is the delivery time and what are the coverage areas?",
+
+
+"answer_1": "Delivery typically takes 3 to 5 business days and shipping is available worldwide.",
+
+"question_2": "How can I track my order?",
+
+
+"answer_2": "Once your order has shipped, you'll receive a notification and an email containing a tracking number. You can use this number to track your order directly on the shipping company's website. You can also check your order status through the My Orders section of your account.",
+
+"Payments": "Payments",
+
+"question_3": "What payment methods are available?",
+
+"answer_3": "We accept payments via credit cards, Mada, Apple Pay, and cash on delivery.",
+
+"Return_and_Exchange": "Return and Exchange",
+
+"question_4": "What is the return policy?",
+
+"answer_4": "Products can be returned within 14 days from the date of receipt, provided they are in their original condition.",
+
+"Direct_communication": "Direct communication",
+
+"Contact_us_via_WhatsApp": "Contact us via WhatsApp",
+
+"For_immediate_assistance" : "For immediate assistance",
+
+
+"selected" : "Selected",
+"product" : "Product",
+"selected_for_sharing" : "Selected for sharing",
+
+"Your_wishlist_is_empty" : "Your wishlist is empty",
+"add_some_products_to_your_favorites" : "Add some products to your favorites!",
+"s": "s",
+
+"Continue_To_Checkout" : "Continue To Checkout",
+
+"payment_page_loading": "Payment page is loading, please wait...",
+
+"address_confirmation": "Address Confirmation",
+"first_name": "First Name",
+"please_enter_your_first_name": "Please enter your first name",
+"please_enter_your_last_name": "Please enter your last name",
+"last_name": "Last Name",
+"confirm": "Confirm",
+"shipping_address": "Shipping Address",
+"address_1": "Address 1",
+"please_enter_your_address": "Please enter your address",
+"address_2": "Address 2",
+"country": "Country",
+"please_select_your_country": "Please select your country",
+"please_enter_your_email": "Please enter your email",
+"please_enter_your_phone_number": "Please enter your phone number",
+"please_enter_your_city": "Please enter your city",
+"please_enter_your_state": "Please enter your state",
+"please_enter_your_postal_code": "Please enter your postal code",
+"state": "State",
+"postal_code": "Postal Code",
+"confirm_your_shipping_address": "Confirm your shipping address",
+
+"checkout": "Checkout",
+"products": "Products",
+"view_cart": "View Cart",
+"subtotal": "Subtotal",
+"total": "Total",
+"Review_Your_Shipping_Address_Data": "Review Your Shipping Address Data",
+"enter_your_coupon_code": "Enter coupon code",
+
+"notifications": "Notifications",
+
+"order_details": "Order Details",
+"order_id": "Order ID",
+"order_number": "Order Number:",
+"order_date": "Order Date:",
+
+"payment_method": "Payment Method",
+"payment_details": "Payment Details",
+
+"order_tracking": "Order Tracking",
+"order_status": "Order Status",
+
+"delivery_charge": "Delivery Charge",
+"delivery_address": "Delivery Address",
+
+"grand_total": "Grand Total",
+
+"order_is_paid": "Order is Paid",
+
+"order_is_delivered": "Order is Delivered",
+
+"delivery_is_in_progress": "Delivery is in Progress",
+
+"Will_arrive_within_days": "Will arrive within days",
+
+"your_order_is_in_progress": "Your order is in progress",
+
+"Number_of_products": "Number of products",
+
+"Ordered_in": "Ordered in",
+
+"Shipping_address_added_successfully": "Shipping address added successfully",
+"Shipping_address_updated_successfully": "Shipping address updated successfully",
+"register": "Register",
+"please_enter_your_name": "Please enter your name",
+
+"account_created_successfully": "Account created successfully",
+
+"choose_country": "Choose Country",
+
+"search_for_countries": "Search for countries",
+
+"Coupon_applied_successfully": "Coupon applied successfully",
+
+"Review_Added_Successfully": "Review Added Successfully",
+
+"please_select_your_gender": "Please select your gender",
+
+"please_select_your_nationality": "Please select your nationality",
+
+"please_enter_your_bio": "Please enter your bio",
+"Coupon_created_successfully": "Coupon created successfully",
+"please_enter_your_coupon_code": "Please enter your coupon code",
+"please_enter_your_discount_rate": "Please enter your discount rate",
+
+"profile_updated_successfully": "Profile updated successfully",
+
+"You_are_subscribed_to_affiliate_marketing" : "You are subscribed to affiliate marketing",
+"view_your_activity" : "View your activity",
+
+"You_are_not_subscribed_to_affiliate_marketing" : "You are not subscribed to affiliate marketing",
+"subscribe_now" : "Subscribe Now!",
+
+
+
+"Something_went_wrong" : "Something went wrong"
+
+
+}
