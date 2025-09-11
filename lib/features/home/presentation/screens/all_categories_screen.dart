@@ -1,10 +1,13 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/categories_model/get_categories_model.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +29,7 @@ class AllCategoriesScreen extends StatelessWidget {
             appBarHeight: 70.h,
             actions: const [],
             title: Text(
-              "Categories",
+              S.of(context).categories,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -114,7 +117,7 @@ class AllCategoriesScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              margin: EdgeInsets.only(left: 15.w),
+                              margin: context.watch<LocalizationsCubit>().state.languageCode == 'ar' ? EdgeInsets.only(right: 15.w) : EdgeInsets.only(left: 15.w),
                               // margin: EdgeInsets.only(right: index == 0 ? 0 : 10.w),
                               child: SizedBox(
                                 height: screenWidth > 800 ? 120.h : 60.h,
@@ -157,7 +160,7 @@ class AllCategoriesScreen extends StatelessWidget {
                             SizedBox(height: 5.h),
 
                             Padding(
-                                padding: EdgeInsets.only(left: 15.w),
+                                padding: context.watch<LocalizationsCubit>().state.languageCode == 'ar' ? EdgeInsets.only(right: 15.w) : EdgeInsets.only(left: 15.w),
                                     child: SizedBox(
                                       width: screenWidth > 800
                                           ? 140.w

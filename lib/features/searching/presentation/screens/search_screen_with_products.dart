@@ -1,8 +1,10 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/grid_item_skeletonizer.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +32,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
       if (cubit.hasMore && !cubit.isLoadingMore && !cubit.hasLoadMoreError) {
-        cubit.getProducts(isLoadMore: true);
+        cubit.getProducts(isLoadMore: true , lang: context.read<LocalizationsCubit>().state.languageCode);
       }
     }
   }
@@ -38,7 +40,9 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
   @override
   void initState() {
     super.initState();
-    context.read<ProductsCubit>().getProducts();
+    context.read<ProductsCubit>().getProducts(
+        lang: context.read<LocalizationsCubit>().state.languageCode
+    );
     _scrollController.addListener(_onScroll);
     _focusNode.requestFocus();
   }
@@ -72,7 +76,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
               autoFocus: true,
               controller: _searchController,
               focusNode: _focusNode,
-              hintText: 'Search...',
+              hintText:  S.of(context).search,
               onChanged: (value) {
                 context.read<ProductsCubit>().searchProducts(query: value);
               },
@@ -155,6 +159,7 @@ class _SearchScreenWithProductsState extends State<SearchScreenWithProducts> {
                                 ? ''
                                 : product.images[0].thumbnail,
                                 currencyCode: product.prices.currencyCode,
+                            currencySymbol: product.prices.currencySymbol,
                             productName: product.name,
                             originalPrice: product.prices.price.toString(),
                             outPrice: product.prices.regularPrice,

@@ -4,6 +4,7 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/presentation/logic/cubit/sliders_cubit/sliders_cubit.dart';
 import 'package:camion/features/home/presentation/logic/cubit/toggle_product_id_images/toggle_product_id_images_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/cursor_slider_skeleton.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class CamionOffers extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Camion Offers",
+                 S.of(context).camion_offers,
                 style: AppStyle.styleSemiBold16(
                   context,
                 ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

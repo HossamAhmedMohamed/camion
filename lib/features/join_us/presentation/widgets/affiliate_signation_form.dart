@@ -2,6 +2,7 @@ import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/gender_form_field.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +33,7 @@ class _AffiliateSignationFormState extends State<AffiliateSignationForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Personal data",
+           S.of(context).personal_data,
           style: AppStyle.styleRegular18(
             context,
           ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -43,10 +44,10 @@ class _AffiliateSignationFormState extends State<AffiliateSignationForm> {
 
         CustomTextFormField(
           controller: widget.fullNameController,
-          hintText: "Full name",
+          hintText: S.of(context).full_name,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your full name';
+              return S.of(context).please_enter_your_name;
             }
             return null;
           },
@@ -64,7 +65,7 @@ class _AffiliateSignationFormState extends State<AffiliateSignationForm> {
           },
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please select your gender';
+              return  S.of(context).please_select_your_gender;
             }
             return null;
           },
@@ -74,10 +75,10 @@ class _AffiliateSignationFormState extends State<AffiliateSignationForm> {
 
         CustomTextFormField(
           controller: widget.nationalityController,
-          hintText: "Nationality",
+          hintText: S.of(context).nationality,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your nationality';
+              return  S.of(context).please_select_your_nationality;
             }
             return null;
           },
@@ -87,12 +88,12 @@ class _AffiliateSignationFormState extends State<AffiliateSignationForm> {
 
         CustomTextFormField(
           controller: widget.bioController, 
-          hintText: "About you",
+          hintText:  S.of(context).about_you,
           maxLines: 7,
           maxLength: 200,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your bio';
+              return  S.of(context).please_enter_your_bio;
             }
             return null;
           },

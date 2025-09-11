@@ -2,6 +2,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/get_affiliate_status_cubit/get_affiliate_status_cubit.dart';
 import 'package:camion/features/join_us/presentation/screens/pending_screen.dart';
 import 'package:camion/features/join_us/presentation/screens/rejected_screen.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -101,7 +102,7 @@ class _WalletAffiliateCheckScreenState extends State<WalletAffiliateCheckScreen>
                               .read<GetAffiliateStatusCubit>()
                               .getAffiliateStatus();
                         },
-                        child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                        child: Text( S.of(context).retry, style: TextStyle(fontSize: 16.sp)),
                       ),
                     ],
                   ),

@@ -7,6 +7,7 @@ import 'package:camion/features/order_status/presentation/logic/cubit/get_orders
 import 'package:camion/features/order_status/presentation/logic/cubit/toggle_nav_bar/toggle_nav_bar_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/custom_order.dart';
 import 'package:camion/features/order_status/presentation/widgets/status_nav_bar.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,13 +36,13 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         onTap: () {
           context.read<GetOrdersCubit>().getOrders();
         },
-        title: "All",
+        title:  S.of(context).all,
       ),
       CategoriesModel(
         onTap: () {
           context.read<GetOrdersCubit>().getOrderStatus(status: "paid");
         },
-        title: "Paid",
+        title:  S.of(context).paid,
         image: Assets.imagesCalendar,
       ),
 
@@ -49,7 +50,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         onTap: () {
           context.read<GetOrdersCubit>().getOrderStatus(status: "delivered");
         },
-        title: "Delivered",
+        title:  S.of(context).delivered,
         image: Assets.imagesIconsDeliveryIconNewwwLight,
       ),
 
@@ -58,7 +59,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
           context.read<GetOrdersCubit>().getOrderStatus(status: "complete");
           ();
         },
-        title: "Completed",
+        title:  S.of(context).completed,
         image: Assets.imagesIconsCompleteIconNewww,
       ),
     ];
@@ -69,7 +70,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
         CustomSliverAppBar(
           appBarHeight: 70.h,
           title: Text(
-            "My Orders",
+             S.of(context).my_orders,
             style: AppStyle.styleRegular18(
               context,
             ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -95,32 +96,35 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
               color: AppColors.lightGray,
             ),
 
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                categories.length,
-                (index) =>
-                    BlocSelector<ToggleNavBarCubit, ToggleNavBarState, bool>(
-                      selector: (state) {
-                        return state.index == index;
-                      },
-                      builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
-                            context
-                                .read<ToggleNavBarCubit>()
-                                .toggle(index)
-                                .then((_) => categories[index].onTap());
-                          },
-
-                          child: StatusNavBar(
-                            isActive: state,
-                            title: categories[index].title,
-                            image: categories[index].image,
-                          ),
-                        );
-                      },
-                    ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(
+                  categories.length,
+                  (index) =>
+                      BlocSelector<ToggleNavBarCubit, ToggleNavBarState, bool>(
+                        selector: (state) {
+                          return state.index == index;
+                        },
+                        builder: (context, state) {
+                          return GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<ToggleNavBarCubit>()
+                                  .toggle(index)
+                                  .then((_) => categories[index].onTap());
+                            },
+              
+                            child: StatusNavBar(
+                              isActive: state,
+                              title: categories[index].title,
+                              image: categories[index].image,
+                            ),
+                          );
+                        },
+                      ),
+                ),
               ),
             ),
           ),
@@ -243,7 +247,7 @@ class _MyOrdersScreenState extends State<MyOrdersScreen> {
                         onPressed: () async {
                           context.read<GetOrdersCubit>().getOrders();
                         },
-                        child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                        child: Text( S.of(context).retry, style: TextStyle(fontSize: 16.sp)),
                       ),
                     ],
                   ),

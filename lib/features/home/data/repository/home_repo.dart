@@ -18,11 +18,13 @@ class HomeRepository {
   Future<Either<ApiErrorModel, List<AllProductModel>>> getProducts({
     required int page,
     required int perPage,
+    required String lang,
   }) async {
     try {
       final response = await remoteDataSource.getProducts(
         page: page,
         perPage: perPage,
+        lang: lang,
       );
 
       List<AllProductModel> products = [];
@@ -55,11 +57,13 @@ class HomeRepository {
   Future<Either<ApiErrorModel, AllProductModel>> getProductById({
     required String id,
     required String token,
+    required String lang,
   }) async {
     try {
       final response = await remoteDataSource.getProductById(
         id: id,
         token: token,
+        lang: lang,
       );
       return Right(AllProductModel.fromJson(response.data));
     } catch (e) {
@@ -98,9 +102,13 @@ class HomeRepository {
   }
 
   Future<Either<ApiErrorModel, List<GeTCategoriesModel>>>
-  getCategories() async {
+  getCategories(
+      {required String lang}
+  ) async {
     try {
-      final response = await remoteDataSource.getCategories();
+      final response = await remoteDataSource.getCategories(
+        lang: lang
+      );
       final categories = (response.data as List)
           .map((category) => GeTCategoriesModel.fromJson(category))
           .toList();
@@ -112,9 +120,10 @@ class HomeRepository {
 
   Future<Either<ApiErrorModel, List<GeTCategoriesModel>>> getSubCategories({
     required int id,
+    required String lang,
   }) async {
     try {
-      final response = await remoteDataSource.getSubCategories(id: id);
+      final response = await remoteDataSource.getSubCategories(id: id , lang: lang);
       final products = (response.data["subcategories"] as List)
           .map((product) => GeTCategoriesModel.fromJson(product))
           .toList();
@@ -129,9 +138,11 @@ class HomeRepository {
     required String slug,
     required int page,
     required int perPage,
+    required String lang,
   }) async {
     try {
       final response = await remoteDataSource.getProductsByCategory(
+        lang: lang,
         slug: slug,
 
         page: page,
@@ -155,9 +166,12 @@ class HomeRepository {
    
     required int page,
     required int perPage,
+    required String lang,
   }) async {
     try {
       final response = await remoteDataSource.getProductsOnSale(
+        
+        lang: lang,
         page: page,
         perPage: perPage,
       );
@@ -252,9 +266,12 @@ class HomeRepository {
 
   Future<Either<ApiErrorModel, List<ReviewModel>>> getReviews({
     required String productId,
+    required String lang,
   }) async {
     try {
-      final response = await remoteDataSource.getReviews(productId: productId);
+      final response = await remoteDataSource.getReviews(
+        lang: lang,
+        productId: productId);
       final List<ReviewModel> reviews = (response.data as List)
           .map((review) => ReviewModel.fromJson(review))
           .toList();

@@ -11,10 +11,13 @@ class HomeRemoteDataSource {
   Future<Response> getProducts({
     required int page,
     required int perPage,
+    required String lang,
   }) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/${EndPoints.products}",
-      queryParameters: {"page": page, "per_page": perPage},
+      queryParameters: {"page": page, "per_page": perPage,
+      "lang": lang
+      },
     );
 
     return response;
@@ -32,10 +35,12 @@ class HomeRemoteDataSource {
   Future<Response> getProductById({
     required String id,
     required String token,
+    required String lang,
   }) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/${EndPoints.products}/$id",
       headers: {"Authorization": "Bearer $token"},
+      queryParameters: {"lang": lang},
     );
 
     return response;
@@ -60,40 +65,46 @@ class HomeRemoteDataSource {
     return response;
   }
 
-  Future<Response> getCategories() async {
+  Future<Response> getCategories(
+    {required String lang}
+  ) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/categories",
+      queryParameters: {"lang": lang},
     );
+    
 
     return response;
   }
 
-  Future<Response> getSubCategories({required int id}) async {
+  Future<Response> getSubCategories({required int id  , required String lang}) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/categories/$id",
+      queryParameters: {"lang": lang},
     );
     return response;
   }
 
   Future<Response> getProductsByCategory({required String slug , required int page,
-    required int perPage,}) async {
+    required int perPage, required String lang}) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/${EndPoints.products}",
       queryParameters: {"category": slug,
         "page": page,
-        "per_page": perPage
+        "per_page": perPage,
+        "lang": lang
       },
     );
     return response;
   }
 
   Future<Response> getProductsOnSale(
-      {required int page, required int perPage})
+      {required int page, required int perPage , required String lang})
   async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/products",
 
-      queryParameters: {"on_sale": true , "page": page, "per_page": perPage},
+      queryParameters: {"on_sale": true , "page": page, "per_page": perPage , "lang": lang},
     );
     return response;
   }
@@ -148,11 +159,11 @@ class HomeRemoteDataSource {
     return response;
   }
 
-  Future<Response> getReviews({required String productId}) async {
+  Future<Response> getReviews({required String productId , required String lang}) async {
     final response = await apiConsumer.get(
       "https://buckydrop.camion-app.com/api/products/reviews",
 
-      queryParameters: {"product": productId},
+      queryParameters: {"product": productId , "lang": lang},
     );
     return response;
   }

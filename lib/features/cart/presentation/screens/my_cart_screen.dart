@@ -8,6 +8,7 @@ import 'package:camion/features/cart/presentation/logic/cubit/update_cubit/updat
 import 'package:camion/features/cart/presentation/widgets/cart_sliver_app_bar.dart';
 import 'package:camion/features/cart/presentation/widgets/custom_product_to_cart.dart';
 import 'package:camion/features/home/presentation/screens/home_screen.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -123,7 +124,7 @@ class MyCartScreenBodyState extends State<MyCartScreenBody> {
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(child: SizedBox(height: 15.h)),
-                const CartSliverAppBar(title: "Cart"),
+                  CartSliverAppBar(title:  S.of(context).cart),
                 SliverToBoxAdapter(child: SizedBox(height: 20.h)),
                 _buildCartContent(),
                 SliverToBoxAdapter(child: SizedBox(height: 120.h)),
@@ -232,7 +233,7 @@ class MyCartScreenBodyState extends State<MyCartScreenBody> {
             SizedBox(height: 10.h),
             ElevatedButton(
               onPressed: () => context.read<GetCartCubit>().getCart(),
-              child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+              child: Text( S.of(context).retry, style: TextStyle(fontSize: 16.sp)),
             ),
           ],
         ),
@@ -330,7 +331,7 @@ class MyCartScreenBodyState extends State<MyCartScreenBody> {
                         )
                       : () {},
                   child: Text(
-                    "Continue To Checkout",
+                    S.of(context).Continue_To_Checkout,
                     style: AppStyle.styleRegular15(
                       context,
                     ).copyWith(color: Colors.white),

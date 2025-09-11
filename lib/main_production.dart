@@ -1,4 +1,5 @@
 import 'package:camion/camion_app.dart';
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/cache/cache_helper.dart';
 import 'package:camion/core/cache/secure_cache_storage.dart';
 import 'package:camion/core/notifications/push_notification.dart';
@@ -9,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +31,10 @@ Future<void> main() async {
   runApp(
     DevicePreview(
       enabled: kDebugMode,
-      builder: (BuildContext context) => const CamionApp(),
+      builder: (BuildContext context) => BlocProvider(
+        create: (context) => LocalizationsCubit()..loadSavedLanguage(),
+        child: const CamionApp(),
+      ),
     ),
   );
 }

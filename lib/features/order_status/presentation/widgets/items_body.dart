@@ -1,6 +1,9 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -34,7 +37,7 @@ class ItemsBody extends StatelessWidget {
         // ),
         // SizedBox(height: 8.h),
         Text(
-          "Number of products : $numberOfProducts ",
+          "${S.of(context).Number_of_products}: $numberOfProducts ",
           style: AppStyle.styleRegular14(
             context,
           ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -45,7 +48,7 @@ class ItemsBody extends StatelessWidget {
         Row(
           children: [
             Text(
-              "Ordered in ${DateFormat('d MMMM h:mm a', 'en').format(title).replaceAll('ص', 'صباحاً').replaceAll('م', 'مساءً')}",
+              "${S.of(context).Ordered_in}: ${DateFormat('d MMMM h:mm a', context.read<LocalizationsCubit>().state.languageCode).format(title).replaceAll('ص', 'صباحاً').replaceAll('م', 'مساءً')}",
               style: AppStyle.styleRegular14(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -63,8 +66,6 @@ class ItemsBody extends StatelessWidget {
         ),
 
         // SizedBox(height: 10.h),
-
-        
       ],
     );
   }

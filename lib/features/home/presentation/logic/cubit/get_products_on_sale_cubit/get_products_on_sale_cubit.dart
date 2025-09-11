@@ -18,7 +18,11 @@ class GetProductsOnSaleCubit extends Cubit<GetProductsOnSaleState> {
 
   List<AllProductModel> allProducts = [];
 
-  Future<void> getProductsOnSale({bool isLoadMore = false}) async {
+  Future<void> getProductsOnSale(
+
+    {
+      required String lang,
+      bool isLoadMore = false}) async {
     if (!hasMore && isLoadMore) return;
     if (isLoading) return;
     if (isClosed) return;
@@ -41,6 +45,7 @@ class GetProductsOnSaleCubit extends Cubit<GetProductsOnSaleState> {
     final response = await homeRepository.getProductsOnSale(
       page: currentPage,
       perPage: perPage,
+      lang: lang,
     );
 
     if (isClosed) {

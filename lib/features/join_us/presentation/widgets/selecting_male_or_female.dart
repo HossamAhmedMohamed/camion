@@ -2,6 +2,7 @@ import 'package:camion/config/widgets/custom_selecting_method.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/toggle_join_us_gender/toggle_join_us_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class SelectingMaleOrFemale extends StatelessWidget {
                     logo: state == 0
                         ? Assets.imagesActiveMale
                         : Assets.imagesInActiveMale,
-                    text: "Male",
+                    text:  S.of(context).male,
                     textColor: state == 0 ? AppColors.primaryColor : null,
                     backgroundColor: state == 0
                         ? AppColors.primaryColor.withAlpha(15)
@@ -56,7 +57,7 @@ class SelectingMaleOrFemale extends StatelessWidget {
                     logo: state == 1
                         ? Assets.imagesActiveFemale
                         : Assets.imagesInactiveFemale,
-                    text: "Female",
+                    text:  S.of(context).female,
                     textColor: state == 1 ? AppColors.primaryColor : null,
                     backgroundColor: state == 1
                         ? AppColors.primaryColor.withAlpha(15)
@@ -69,7 +70,7 @@ class SelectingMaleOrFemale extends StatelessWidget {
           },
         ),
 
-        // عرض رسالة الخطأ
+ 
         if (errorText != null)
           Padding(
             padding: EdgeInsets.only(top: 5.h),

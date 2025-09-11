@@ -1,0 +1,314 @@
+{
+  "name": "名前を入力",
+  "phone_Number": "電話番号",
+  "email": "メール",
+  "login": "ログイン",
+  "logout": "ログアウト",
+  "settings": "設定",
+  "Sign_up": "サインアップ",
+  "dont_have_an_account": "アカウントをお持ちでない方",
+  "already_have_an_account": "すでにアカウントをお持ちの方",
+  "enter_verify_otp": "携帯番号に送信された認証コードを入力してください 📱",
+  "enter_verify_otp_subtitle": "携帯電話に送信された認証コードを入力してください:",
+  "resend_otp": "再送信まで",
+  "continuee": "続ける",
+
+  "search": "検索",
+  "stories": "ストーリー",
+  "join_us": "今すぐ参加",
+  "join_our_team": "アフィリエイトチームに参加",
+  "join_our_team_description": "オンラインの時間を収益に変えましょう！アフィリエイトプログラムに参加して、自宅で簡単に稼ぎ始めましょう。",
+  "categories": "カテゴリー",
+  "view_all": "すべて見る",
+  "camion_offers": "Camion オファー",
+  "top_sales": "トップセールス",
+  "choose_prduct": "商品を選択",
+
+  "home": "ホーム",
+  "cart": "カート",
+  "profile": "プロフィール",
+  "favorites": "お気に入り",
+  "orders": "注文",
+
+  "personal_information": "個人情報",
+  "my_wallet": "マイウォレット",
+  "my_orders": "マイ注文",
+  "affiliate_marketing": "アフィリエイトマーケティング",
+  "language": "言語",
+  "rate_us": "評価する",
+  "give_us_feedback": "フィードバックを送る",
+  "about_us": "私たちについて",
+  "privacy_policy": "プライバシーポリシー",
+  "help": "ヘルプ",
+  "delete_account": "アカウント削除",
+  "are_you_sure_you_want_to_logout": "ログアウトしてもよろしいですか？",
+  "logout_description": "現在のセッションは終了し、再度ログインする必要があります。",
+  "are_you_sure_you_want_to_delete": "アカウントを削除してもよろしいですか？",
+  "delete_account_description": "すべてのデータは完全に削除され、復元できません。この操作は取り消せません。",
+  "cancel": "キャンセル",
+  "change_language": "言語を変更",
+  "arabic": "アラビア語",
+  "english": "英語",
+  "german": "ドイツ語",
+  "french": "フランス語",
+  "spanish": "スペイン語",
+  "italian": "イタリア語",
+  "bengali": "ベンガル語",
+  "dutch": "オランダ語",
+  "hindi": "ヒンディー語",
+  "indonesian": "インドネシア語",
+  "japanese": "日本語",
+  "javanese": "ジャワ語",
+  "korean": "韓国語",
+  "malay": "マレー語/インドネシア語",
+  "mandarin_chinese": "中国語（標準語）",
+  "marathi": "マラーティー語",
+  "persian": "ペルシャ語（ファルシ語）",
+  "polish": "ポーランド語",
+  "portuguese": "ポルトガル語",
+  "punjabi": "パンジャーブ語",
+  "romanian": "ルーマニア語",
+  "russian": "ロシア語",
+  "swahili": "スワヒリ語",
+  "tamil": "タミル語",
+  "telugu": "テルグ語",
+  "thai": "タイ語",
+  "turkish": "トルコ語",
+  "ukrainian": "ウクライナ語",
+  "urdu": "ウルドゥー語",
+  "vietnamese": "ベトナム語",
+
+  "description": "説明",
+  "coupon_code": "クーポンコード",
+  "apply": "適用",
+
+  "product_details": "商品詳細",
+  "reviews": "レビュー",
+  "in_stock": "在庫あり",
+  "out_of_stock": "在庫なし",
+  "add_to_cart": "カートに追加",
+  "go_to_cart": "カートに進む",
+  "quantity": "数量",
+  "add_review": "レビューを追加",
+
+  "retry": "再試行",
+  "available_options": "利用可能なオプション",
+
+  "full_name": "フルネーム",
+  "edit_profile": "プロフィールを編集",
+  "save": "保存",
+
+  "pedning": "保留中....",
+  "back": "戻る",
+  "pending_message": "リクエストは現在審査中です。\n管理者の承認をお待ちください。",
+
+  "rejected": "却下されました",
+  "rejected_message": "登録リクエストが却下されました。\nもう一度登録をお試しください。",
+  "register_again_as_affiliate": "アフィリエイトとして再登録",
+
+  "all": "すべて",
+  "transactions": "取引",
+  "My_Wallet": "マイウォレット",
+  "withdraw": "出金",
+
+  "Affiliate_marketing": "アフィリエイトマーケティング",
+  "start_now": "今すぐ始める",
+  "affiliate_welcome_message": "マーケティングチームにご参加いただきありがとうございます",
+  "affiliate_welcome_subtitle": "私たちは、各マーケター専用のコードに基づくシンプルで効果的なアフィリエイトシステムを提供しています。このコードをオーディエンスと共有することで、販売ごとにコミッションを得ることができます。報酬は仲介者や遅延なしに直接ウォレットに転送されます。さまざまな分野の商品を用意しているので、オーディエンスに合った商品を選び、最高の販売率を達成できます。私たちの目標は、最小限の労力とスマートなマーケティングで安定した収入を得るお手伝いをすることです。",
+
+  "affiliate_account": "アフィリエイトアカウント",
+
+  "my_coupuns": "マイクーポン",
+  "create_coupon": "クーポンを作成",
+
+  "join_us_as_affiliate": "アフィリエイトとして参加",
+
+  "next": "次へ",
+
+  "create": "作成",
+  "coupon": "クーポン",
+  "discount_rate": "割引率",
+
+  "personal_data": "個人データ",
+
+  "nationality": "国籍",
+  "about_you": "自己紹介",
+  "city": "市区町村",
+  "phone": "電話",
+  "address": "住所",
+
+  "male": "男性",
+  "female": "女性",
+
+  "feedback": "フィードバック",
+
+  "help_us_improve": "体験向上にご協力ください",
+
+  "feed_back_description": "ご意見を共有して、体験の向上にご協力ください",
+
+  "privacy_poilicy_camion_app": "ポリシー - Camionアプリ",
+
+  "terms_of_use": "利用規約",
+  "terms_of_use_description1": "Camionを利用することで、本規約に記載されたすべての条件に従うことに同意したものとみなされます。",
+  "terms_of_use_description2": "Camionは、これらのポリシーをいつでも更新または変更する権利を有します。変更があった場合は、アプリまたはメールで通知します。",
+  "terms_of_use_description3": "アプリを違法行為や現地または国際法に違反する目的で使用することはできません。",
+
+  "product_policy": "商品ポリシー",
+  "product_policy_description1": "Camionに掲載されているすべての商品は正規品であり、商品ページに記載された仕様と一致しています。",
+  "product_policy_description2": "価格には付加価値税（該当する場合）が含まれており、特に記載がない限り送料は含まれていません。",
+  "product_policy_description3": "商品の色は、画面設定や製造の違いにより若干異なる場合があります。",
+
+  "payment_policy": "支払いポリシー",
+  "payment_policy_description1": "Camionは複数の支払い方法（クレジット/デビットカード、銀行振込、電子ウォレット、代金引換が利用可能な場合）をサポートしています。",
+  "payment_policy_description2": "すべての支払いは認定された決済サービスプロバイダーを通じて安全に処理されます。",
+  "payment_policy_description3": "支払いが失敗した場合、注文は確認されず、別の方法で再試行することができます。",
+
+  "shipping_policy": "配送ポリシー",
+  "shipping_policy_description1": "Camionは信頼できる国際宅配便を通じて世界中に配送します。",
+  "shipping_policy_description2": "配送時間は配送先の国や配送業者によって異なります。",
+  "shipping_policy_description3": "注文が発送されると、追跡番号が通知されます。",
+  "shipping_policy_description4": "税関、自然災害、または配送業者の問題による遅延について、Camionは責任を負いません。",
+
+  "return_policy": "返品・返金ポリシー",
+  "return_policy_description1": "商品受領後14日以内であれば、未使用・未損傷・元の包装のままの商品について返品をリクエストできます。",
+  "return_policy_description2": "パーソナルケア製品、食品、カスタマイズ商品など一部の商品は返品不可です。",
+  "return_policy_description3": "返品された商品を確認後、7〜14営業日以内に元の支払い方法に返金されます。",
+  "return_policy_description4": "送料は返金不可であり、返品送料はお客様負担となります（不良品や誤配送の場合を除く）。",
+
+  "privacy_policy_details": "プライバシーポリシー",
+  "privacy_policy_description1": "Camionはお客様の個人データを尊重し、保護します。",
+  "privacy_policy_description2": "注文処理およびユーザー体験の向上のために、氏名・住所・連絡先・支払い情報などを収集します。",
+  "privacy_policy_description3": "個人データが第三者に販売・共有されることはありません。配送および決済パートナーとの間のみで共有されます。",
+  "privacy_policy_description4": "すべてのデータは安全に保存され、ユーザーは自身の個人情報へのアクセス、修正、削除をリクエストする権利があります。",
+
+  "limitation_liability": "免責事項",
+  "limitation_liability_description1": "Camionは、アプリや購入した商品の使用に起因する間接的、偶発的、または結果的な損害について責任を負いません。",
+  "limitation_liability_description2": "商品の使用に関する責任はお客様にあります。",
+  "limitation_liability_description3": "紛争が発生した場合、Camionの責任は注文金額のみに限定されます。",
+
+  "paid": "支払い済み",
+  "delivered": "配達済み",
+  "completed": "完了",
+
+  "Shipping_and_Delivery": "配送とお届け",
+
+  "question_1": "配送時間はどれくらいで、対応地域はどこですか？",
+  "answer_1": "配送は通常3〜5営業日かかり、世界中に配送可能です。",
+
+  "question_2": "注文を追跡する方法は？",
+  "answer_2": "注文が発送されると、通知とメールで追跡番号が送られます。この番号を使って配送業者のウェブサイトで追跡できます。また、アカウントの「マイ注文」からも確認できます。",
+
+  "Payments": "支払い方法",
+
+  "question_3": "利用可能な支払い方法は？",
+  "answer_3": "クレジットカード、Mada、Apple Pay、代金引換に対応しています。",
+
+  "Return_and_Exchange": "返品・交換",
+
+  "question_4": "返品ポリシーは？",
+  "answer_4": "商品は受領後14日以内であれば、元の状態で返品可能です。",
+
+  "Direct_communication": "直接連絡",
+
+  "Contact_us_via_WhatsApp": "WhatsAppでお問い合わせ",
+  "For_immediate_assistance": "迅速なサポート",
+
+  "selected": "選択済み",
+  "product": "商品",
+  "selected_for_sharing": "共有用に選択",
+
+  "Your_wishlist_is_empty": "ウィッシュリストは空です",
+  "add_some_products_to_your_favorites": "お気に入りに商品を追加しましょう！",
+  "s": "秒",
+
+  "Continue_To_Checkout": "チェックアウトに進む",
+
+  "payment_page_loading": "決済ページを読み込み中です。お待ちください...",
+
+  "address_confirmation": "住所確認",
+  "first_name": "名",
+  "please_enter_your_first_name": "名を入力してください",
+  "please_enter_your_last_name": "姓を入力してください",
+  "last_name": "姓",
+  "confirm": "確認",
+  "shipping_address": "配送先住所",
+  "address_1": "住所1",
+  "please_enter_your_address": "住所を入力してください",
+  "address_2": "住所2",
+  "country": "国",
+  "please_select_your_country": "国を選択してください",
+  "please_enter_your_email": "メールアドレスを入力してください",
+  "please_enter_your_phone_number": "電話番号を入力してください",
+  "please_enter_your_city": "市区町村を入力してください",
+  "please_enter_your_state": "都道府県を入力してください",
+  "please_enter_your_postal_code": "郵便番号を入力してください",
+  "state": "都道府県",
+  "postal_code": "郵便番号",
+  "confirm_your_shipping_address": "配送先住所を確認してください",
+
+  "checkout": "チェックアウト",
+  "products": "商品",
+  "view_cart": "カートを見る",
+  "subtotal": "小計",
+  "total": "合計",
+  "Review_Your_Shipping_Address_Data": "配送先住所データを確認",
+  "enter_your_coupon_code": "クーポンコードを入力",
+
+  "notifications": "通知",
+
+  "order_details": "注文詳細",
+  "order_id": "注文ID",
+  "order_number": "注文番号:",
+  "order_date": "注文日:",
+
+  "payment_method": "支払い方法",
+  "payment_details": "支払い詳細",
+
+  "order_tracking": "注文追跡",
+  "order_status": "注文状況",
+
+  "delivery_charge": "配送料",
+  "delivery_address": "配送先住所",
+
+  "grand_total": "総合計",
+
+  "order_is_paid": "注文は支払い済みです",
+  "order_is_delivered": "注文は配達されました",
+  "delivery_is_in_progress": "配送中です",
+  "Will_arrive_within_days": "数日以内に到着予定",
+  "your_order_is_in_progress": "注文は処理中です",
+  "Number_of_products": "商品の数",
+  "Ordered_in": "注文日",
+
+  "Shipping_address_added_successfully": "配送先住所を追加しました",
+  "Shipping_address_updated_successfully": "配送先住所を更新しました",
+  "register": "登録",
+  "please_enter_your_name": "名前を入力してください",
+
+  "account_created_successfully": "アカウントが正常に作成されました",
+
+  "choose_country": "国を選択",
+
+  "search_for_countries": "国を検索",
+
+  "Coupon_applied_successfully": "クーポンが適用されました",
+
+  "Review_Added_Successfully": "レビューが追加されました",
+
+  "please_select_your_gender": "性別を選択してください",
+  "please_select_your_nationality": "国籍を選択してください",
+  "please_enter_your_bio": "自己紹介を入力してください",
+  "Coupon_created_successfully": "クーポンが作成されました",
+  "please_enter_your_coupon_code": "クーポンコードを入力してください",
+  "please_enter_your_discount_rate": "割引率を入力してください",
+
+  "profile_updated_successfully": "プロフィールが更新されました",
+
+  "You_are_subscribed_to_affiliate_marketing": "アフィリエイトマーケティングに登録済みです",
+  "view_your_activity": "アクティビティを見る",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "アフィリエイトマーケティングに登録していません",
+  "subscribe_now": "今すぐ登録！",
+
+  "Something_went_wrong": "エラーが発生しました"
+}

@@ -1,3 +1,4 @@
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -104,7 +105,7 @@ class _PaymentWebViewPageState extends State<PaymentWebViewPage> {
                     ),
                     SizedBox(height: 16.h),
                     Text(
-                      "Payment page is loading, please wait...",
+                       S.of(context).payment_page_loading,
                       style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.grey[600],

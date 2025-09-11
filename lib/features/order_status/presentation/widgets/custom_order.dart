@@ -6,6 +6,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/order_status/presentation/logic/cubit/get_orders_cubit/get_orders_cubit.dart';
 import 'package:camion/features/order_status/presentation/widgets/items_body.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,19 +76,19 @@ class _CustomOrderState extends State<CustomOrder> {
                   borderRadius: BorderRadius.circular(15.r),
                 ),
                 child: widget.isOrderPaied ? Text(
-                  "Order is paid",
+                   S.of(context).order_is_paid,
                   style: AppStyle.styleRegular12(context).copyWith(
                     color: AppColors.white,
                     fontWeight: FontWeight.w500,
                   ),
                 ) : widget.isOrderShipped ? Text(
-                  "Order is delivered",
+                   S.of(context).order_is_delivered,
                   style: AppStyle.styleRegular12(context).copyWith(
                     color: AppColors.green,
                     fontWeight: FontWeight.w500,
                   ),
                 )  : Text(
-                  "Delivery is in progress",
+                   S.of(context).delivery_is_in_progress,
                   style: AppStyle.styleRegular12(context).copyWith(
                     color: AppColors.green,
                     fontWeight: FontWeight.w500,
@@ -96,7 +97,7 @@ class _CustomOrderState extends State<CustomOrder> {
               ),
 
               widget.isOrderShipped ? const SizedBox() : Text(
-                "Will arrive within days",
+                 S.of(context).Will_arrive_within_days,
                 style: AppStyle.styleRegular14(
                   context,
                 ).copyWith(color: AppColors.gray),
@@ -117,7 +118,7 @@ class _CustomOrderState extends State<CustomOrder> {
           Row(
             children: [
               Text(
-                "Total:",
+                "${S.of(context).total}:",
                 style: AppStyle.styleRegular18(
                   context,
                 ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -177,7 +178,7 @@ class _CustomOrderState extends State<CustomOrder> {
                                   backgroundColor: Colors.green,
                                   gravity: ToastGravity.TOP,
                                   textColor: Colors.white,
-                                  msg: "Your order is in progress");
+                                  msg: S.of(context).your_order_is_in_progress, );
                               } : () {
                                 final extra =
                                     "https://t.17track.net/en#nums=$trackingNumber";
@@ -189,7 +190,7 @@ class _CustomOrderState extends State<CustomOrder> {
                               },
                               verticalPadding: 5.h,
                               child: Text(
-                                "Order Tracking",
+                                 S.of(context).order_tracking,
                                 style: AppStyle.styleRegular15(
                                   context,
                                 ).copyWith(color: Colors.white),
@@ -213,7 +214,7 @@ class _CustomOrderState extends State<CustomOrder> {
                             },
                             verticalPadding: 5.h,
                             child: Text(
-                              "Order Tracking",
+                               S.of(context).order_tracking,
                               style: AppStyle.styleRegular15(
                                 context,
                               ).copyWith(color: Colors.white),
@@ -230,7 +231,7 @@ class _CustomOrderState extends State<CustomOrder> {
                         onPressed: widget.onTapOnOrderDetails,
                         verticalPadding: 5.h,
                         child: Text(
-                          "Order Details",
+                           S.of(context).order_details,
                           style: AppStyle.styleRegular15(
                             context,
                           ).copyWith(color: AppColors.primaryColor),

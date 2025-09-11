@@ -1,3 +1,4 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -145,7 +146,13 @@ class CustomSliverAppBar extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(width: 16.w),
+                SizedBox(
+                  width:
+                      context.watch<LocalizationsCubit>().state.languageCode ==
+                          'ar'
+                      ? 0
+                      : 16.w,
+                ),
               ],
             ),
           ],

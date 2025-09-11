@@ -4,6 +4,7 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/logic/register_cubit/register_cubit.dart';
 import 'package:camion/features/auth/presentation/widgets/custom_phone_number_controller.dart';
 import 'package:camion/features/auth/presentation/widgets/phone_number_controller.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,11 +50,11 @@ class _RegisterFormState extends State<RegisterForm> {
         children: [
           CustomTextFormField(
             controller: _fullNameController,
-            hintText: "Name here",
+            hintText: S.of(context).full_name,
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your name';
+                return S.of(context).please_enter_your_name;
               }
               return null;
             },
@@ -67,15 +68,13 @@ class _RegisterFormState extends State<RegisterForm> {
                 flex: 2,
                 child: CustomPhoneNumberField(
                   controller: _phoneNumberController,
-                  hintText: "Phone number",
+                  hintText: S.of(context).phone_Number,
 
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'please enter your phone number';
+                      return S.of(context).please_enter_your_phone_number;
                     }
-                    if (value.length < 8) {
-                      return 'Number must be at least 8 digits';
-                    }
+
                     return null;
                   },
                 ),
@@ -89,11 +88,11 @@ class _RegisterFormState extends State<RegisterForm> {
 
           CustomTextFormField(
             controller: _emailController,
-            hintText: "Email",
+            hintText:  S.of(context).email,
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your email';
+                return  S.of(context).please_enter_your_email;
               }
               return null;
             },
@@ -107,14 +106,16 @@ class _RegisterFormState extends State<RegisterForm> {
                 Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
                   backgroundColor: Colors.green,
-                  msg: "Account created successfully");
+                  msg: S.of(context).account_created_successfully,
+                );
                 GoRouter.of(context).push(AppRouter.login);
               }
               if (state is RegisterError) {
-                  Fluttertoast.showToast(
+                Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
                   backgroundColor: Colors.red,
-                  msg: state.error.message);
+                  msg: state.error.message,
+                );
               }
             },
             builder: (context, state) {
@@ -122,7 +123,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 child: state is RegisterLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
-                        "Register",
+                        S.of(context).register,
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: Colors.white),
@@ -132,7 +133,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     return;
                   }
 
-                  final fullPhoneNumber = _phoneNumberController.fullPhoneNumber;
+                  final fullPhoneNumber =
+                      _phoneNumberController.fullPhoneNumber;
                   context.read<RegisterCubit>().register(
                     fullName: _fullNameController.text,
                     email: _emailController.text,

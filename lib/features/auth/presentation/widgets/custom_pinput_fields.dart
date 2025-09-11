@@ -3,6 +3,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/logic/verify_cubit/verify_cubit.dart';
 import 'package:camion/features/auth/presentation/widgets/repeating_timer_counter.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,7 +103,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Resend after",
+                  S.of(context).resend_otp,
                   style: AppStyle.styleRegular14(
                     context,
                   ).copyWith(color: Colors.grey),
@@ -138,7 +139,7 @@ class _CustomPinPutFieldState extends State<CustomPinPutField> {
                   child: state is VerifyLoading
                       ? const CircularProgressIndicator(color: Colors.white)
                       : Text(
-                          "Continue",
+                           S.of(context).continuee,
                           style: AppStyle.styleRegular15(
                             context,
                           ).copyWith(color: Colors.white),

@@ -1,8 +1,10 @@
- import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
+ import 'package:camion/config/localization/cubit/localizations_cubit.dart';
+import 'package:camion/features/home/presentation/logic/cubit/products_cubit/products_cubit.dart';
 import 'package:camion/features/home/presentation/widgets/custom_product.dart';
 import 'package:camion/features/home/presentation/widgets/list_view_item_skeletonizer.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,6 +62,7 @@ class SliverListViewBuilding extends StatelessWidget {
                       productName: product.name,
                       originalPrice: product.prices.price.toString(),
                       currencyCode: product.prices.currencyCode,
+                      currencySymbol: product.prices.currencySymbol,
                       isGridView: false,
                       onAddToCartTap: () {
                         // context.read<AddCartCubit>().addToCart(
@@ -117,9 +120,11 @@ class SliverListViewBuilding extends StatelessWidget {
 
                   ElevatedButton(
                     onPressed: () {
-                      context.read<ProductsCubit>().retryLoadMore();
+                      context.read<ProductsCubit>().getProducts(
+                          lang: context.read<LocalizationsCubit>().state.languageCode
+                      );
                     },
-                    child: Text('Retry', style: TextStyle(fontSize: 16.sp)),
+                    child: Text( S.of(context).retry, style: TextStyle(fontSize: 16.sp)),
                   ),
                 ],
               ),

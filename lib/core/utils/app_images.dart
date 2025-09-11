@@ -186,6 +186,10 @@ class Assets {
   /// assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg
   static const String imagesIconsInactiveShoppingCartIconNewNavbar = "assets/images/icons/inactive_Shopping_Cart_icon_new_navbar.svg";
 
+  /// Assets for imagesIconsJoinAffiliateTranslate
+  /// assets/images/icons/join_affiliate_translate.png
+  static const String imagesIconsJoinAffiliateTranslate = "assets/images/icons/join_affiliate_translate.png";
+
   /// Assets for imagesIconsLogosMastercard
   /// assets/images/icons/logos_mastercard.svg
   static const String imagesIconsLogosMastercard = "assets/images/icons/logos_mastercard.svg";

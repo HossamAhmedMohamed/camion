@@ -8,6 +8,7 @@ import 'package:camion/features/profile/presentation/logic/cubit/get_all_transat
 import 'package:camion/features/profile/presentation/logic/cubit/get_wallet_cubit/get_wallet_balance_cubit.dart';
 import 'package:camion/features/profile/presentation/widgets/profile_sliver_app_bar.dart';
 import 'package:camion/features/profile/presentation/widgets/wallet_widget.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +43,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
         slivers: [
           ProfileSliverAppBar(
             title: Text(
-              "Wallet",
+               S.of(context).my_wallet,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -97,7 +98,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
                 },
                 widget: Image.asset(Assets.imagesRefresh),
                 child: Text(
-                  "Withdraw",
+                  S.of(context).withdraw,
                   style: AppStyle.styleRegular15(
                     context,
                   ).copyWith(color: Colors.white),
@@ -113,7 +114,7 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: ExpandedRowForUserImplementation(
                 // firstTitle: 'العمليات',
-                secondTitle: 'All',
+                secondTitle:  S.of(context).all,
                 onTapOnSecondTitle: () {},
               ),
             ),
@@ -165,13 +166,13 @@ class _MyWalletScreenState extends State<MyWalletScreen> {
               return SliverList.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const Skeletonizer(
+                  return   Skeletonizer(
                     enabled: true,
                     child: Column(
                       children: [
-                        CustomListTile(title: 'Transaction'),
+                        CustomListTile(title: S.of(context).transactions),
 
-                        Row(
+                        const Row(
                           children: [
                             Expanded(child: Divider(color: AppColors.paleGray)),
                           ],

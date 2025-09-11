@@ -2,6 +2,7 @@
 import 'dart:developer';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/features/auth/data/models/countries_model/shipping/shipping_countries_model.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:country_state_city/country_state_city.dart' as csc;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +76,7 @@ class _CountryStateCityWidgetState extends State<CountryStateCityWidget> {
           icon: const Icon(Icons.keyboard_arrow_down),
           value: selectedCountry,
           decoration: InputDecoration(
-            hintText: "Country",
+            hintText: S.of(context).country,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(color: Colors.grey.shade300, width: 1.w),
@@ -104,7 +105,7 @@ class _CountryStateCityWidgetState extends State<CountryStateCityWidget> {
           isExpanded: true,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please select your country';
+              return S.of(context).please_select_your_country;
             }
             return null;
           },
@@ -158,7 +159,7 @@ class _CountryStateCityWidgetState extends State<CountryStateCityWidget> {
           icon: const Icon(Icons.keyboard_arrow_down),
           value: selectedState,
           decoration: InputDecoration(
-            hintText: "State",
+            hintText: S.of(context).state,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
               borderSide: BorderSide(color: Colors.grey.shade300, width: 1.w),
@@ -187,7 +188,7 @@ class _CountryStateCityWidgetState extends State<CountryStateCityWidget> {
           isExpanded: true,
           validator: (value) {
             if (selectedCountry != null && (value == null || value.isEmpty)) {
-              return 'Please select your state';
+              return S.of(context).please_enter_your_state;
             }
             return null;
           },
@@ -223,7 +224,7 @@ class _CountryStateCityWidgetState extends State<CountryStateCityWidget> {
           icon: const Icon(Icons.keyboard_arrow_down),
           value: selectedCity,
           decoration: InputDecoration(
-            hintText: "City",
+            hintText: S.of(context).city,
 
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
@@ -253,7 +254,7 @@ class _CountryStateCityWidgetState extends State<CountryStateCityWidget> {
           isExpanded: true,
           validator: (value) {
             if (selectedState != null && (value == null || value.isEmpty)) {
-              return 'Please select your city';
+              return S.of(context).please_enter_your_city;
             }
             return null;
           },

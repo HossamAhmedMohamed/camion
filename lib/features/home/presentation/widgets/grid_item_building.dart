@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -18,6 +20,7 @@ class GridItemBuilding extends StatelessWidget {
   final String productId;
   final VoidCallback onTap;
   final String currencyCode;
+  final String currencySymbol;
   const GridItemBuilding({
     super.key,
     required this.imageUrl,
@@ -29,6 +32,7 @@ class GridItemBuilding extends StatelessWidget {
     required this.outPrice,
     required this.productId,
     required this.currencyCode,
+    required this.currencySymbol,
   });
 
   @override
@@ -88,7 +92,7 @@ class GridItemBuilding extends StatelessWidget {
                   style: AppStyle.styleBold14(
                     context,
                   ).copyWith(color: Colors.black, fontWeight: FontWeight.w500),
-                  textDirection: TextDirection.ltr,
+                  // textDirection: TextDirection.ltr,
                 ),
 
                 SizedBox(height: 6.h),
@@ -111,7 +115,7 @@ class GridItemBuilding extends StatelessWidget {
 
                             SizedBox(width: 5.w),
                             Text(
-                              currencyCode,
+                              context.watch<LocalizationsCubit>().state.languageCode == 'ar' ? currencySymbol : currencyCode,
                               style: AppStyle.styleBold16(
                                 context,
                               ).copyWith(color: AppColors.primaryColor),

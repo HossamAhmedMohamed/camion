@@ -4,6 +4,7 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/Affiliate_sign_cubit/affiliate_sign_cubit.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
 import 'package:camion/features/join_us/presentation/widgets/affiliate_signation_form.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +45,9 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
         children: [
           CustomScrollView(
             slivers: [
-              const CustomJoinUsSliverAppBar(title: "Join Us As Affiliate"),
+              CustomJoinUsSliverAppBar(
+                title: S.of(context).join_us_as_affiliate,
+              ),
               SliverToBoxAdapter(child: SizedBox(height: 20.h)),
 
               SliverToBoxAdapter(
@@ -91,7 +94,9 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
             child: BlocConsumer<AffiliateSignCubit, AffiliateSignState>(
               listener: (context, state) {
                 if (state is AffiliateSignSuccess) {
-                  GoRouter.of(context).pushReplacement(AppRouter.affiliateCheckScreen);
+                  GoRouter.of(
+                    context,
+                  ).pushReplacement(AppRouter.affiliateCheckScreen);
                 }
                 if (state is AffiliateSignError) {
                   Fluttertoast.showToast(
@@ -102,39 +107,41 @@ class _JoinUsScreenState extends State<JoinUsScreen> {
                 }
               },
               builder: (context, state) {
-                return  CustomElevatedButton(
-                        onPressed: state is AffiliateSignLoading
-                            ? () {}
-                            : () {
-                                formKey.currentState!.save();
+                return CustomElevatedButton(
+                  onPressed: state is AffiliateSignLoading
+                      ? () {}
+                      : () {
+                          formKey.currentState!.save();
 
-                                if (!formKey.currentState!.validate()) {
-                                  return;
-                                }
+                          if (!formKey.currentState!.validate()) {
+                            return;
+                          }
 
-                                if (selectedGender == null ||
-                                    selectedGender!.isEmpty) {
-                                  Fluttertoast.showToast(
-                                    msg: "Please select a gender",
-                                    backgroundColor: Colors.red,
-                                  );
-                                  return;
-                                }
+                          if (selectedGender == null ||
+                              selectedGender!.isEmpty) {
+                            Fluttertoast.showToast(
+                              msg: "Please select a gender",
+                              backgroundColor: Colors.red,
+                            );
+                            return;
+                          }
 
-                                context.read<AffiliateSignCubit>().signSupplier(
-                                  name: fullNameController.text,
-                                  nationality: nationalityController.text,
-                                  gender: selectedGender!,  
-                                  bio: bioController.text,
-                                );
-                              },
-                        child: state is AffiliateSignLoading ? const CircularProgressIndicator(color: Colors.white,) : Text(
-                          "Next",
+                          context.read<AffiliateSignCubit>().signSupplier(
+                            name: fullNameController.text,
+                            nationality: nationalityController.text,
+                            gender: selectedGender!,
+                            bio: bioController.text,
+                          );
+                        },
+                  child: state is AffiliateSignLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : Text(
+                          S.of(context).next,
                           style: AppStyle.styleRegular15(
                             context,
                           ).copyWith(color: Colors.white),
                         ),
-                      );
+                );
               },
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/presentation/logic/login_cubit/login_cubit.dart';
 import 'package:camion/features/auth/presentation/widgets/custom_phone_number_controller.dart';
 import 'package:camion/features/auth/presentation/widgets/phone_number_controller.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,11 +45,10 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           CustomTextFormField(
             controller: _emailController,
-            hintText: "Email",
-
+            hintText: S.of(context).email,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your email';
+                return  S.of(context).please_enter_your_email;
               }
               return null;
             },
@@ -58,11 +58,11 @@ class _LoginFormState extends State<LoginForm> {
 
           CustomPhoneNumberField(
             controller: _phoneNumberController,
-            hintText: "Phone number",
+            hintText:  S.of(context).phone_Number,
 
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter your phone number';
+                return S.of(context).please_enter_your_phone_number;
               }
               return null;
             },
@@ -94,7 +94,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: state is LoginLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
-                        "Login",
+                         S.of(context).login,
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: Colors.white),
@@ -110,7 +110,6 @@ class _LoginFormState extends State<LoginForm> {
                     email: _emailController.text,
                     phoneNumber: fullPhoneNumber,
                   );
-                 
                 },
               );
             },

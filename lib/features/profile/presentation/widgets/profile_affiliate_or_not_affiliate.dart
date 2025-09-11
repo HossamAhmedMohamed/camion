@@ -1,6 +1,7 @@
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +21,7 @@ class ProfileNotaffiliateShown extends StatelessWidget {
 
         Expanded(
           child: Text(
-            "You are not subscribed to affiliate marketing",
+             S.of(context).You_are_not_subscribed_to_affiliate_marketing,
             style: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
           ),
         ),
@@ -39,7 +40,8 @@ class ProfileNotaffiliateShown extends StatelessWidget {
               GoRouter.of(context).push(AppRouter.affiliateCheckScreen);
             },
             child: Text(
-              "Subscribe Now!",
+              
+              S.of(context).subscribe_now,
               style: AppStyle.styleRegular14(
                 context,
               ).copyWith(color: Colors.white),
@@ -64,7 +66,7 @@ class ProfileAffiliateShown extends StatelessWidget {
 
         Expanded(
           child: Text(
-            "You are subscribed to affiliate marketing",
+             S.of(context).You_are_subscribed_to_affiliate_marketing,
             style: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
           ),
         ),
@@ -83,7 +85,7 @@ class ProfileAffiliateShown extends StatelessWidget {
               GoRouter.of(context).push(AppRouter.supplierAccount);
             },
             child: Text(
-              "View your activity",
+               S.of(context).view_your_activity,
               style: AppStyle.styleRegular14(
                 context,
               ).copyWith(color: Colors.white),

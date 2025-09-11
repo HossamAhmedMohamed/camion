@@ -3,6 +3,7 @@ import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/product_variations.dart';
 import 'package:camion/features/home/presentation/widgets/color_helper.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -531,8 +532,8 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Available Options',
-          style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+           S.of(context).available_options,
+          style: AppStyle.styleBold18(context),
         ),
         SizedBox(height: 15.h),
         SizedBox(
@@ -745,7 +746,7 @@ class _ProductsSelectionOptionsState extends State<ProductsSelectionOptions> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Quantity',
+           S.of(context).quantity,
           style: AppStyle.styleRegular18(
             context,
           ).copyWith(color: Colors.black, fontWeight: FontWeight.w700),

@@ -3,6 +3,7 @@ import 'package:camion/config/widgets/custom_text_form_field.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/logic/cubit/create_coupon_cubit/create_coupon_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,10 +36,10 @@ class _CouponFormState extends State<CouponForm> {
         children: [
           CustomTextFormField(
             controller: couponCodeController,
-            hintText: "Coupon ",
+            hintText: S.of(context).coupon,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter a coupon code';
+                return  S.of(context).please_enter_your_coupon_code;
               }
               return null;
             },
@@ -46,10 +47,10 @@ class _CouponFormState extends State<CouponForm> {
           SizedBox(height: 20.h),
           CustomTextFormField(
             controller: discountController,
-            hintText: "Discount rate",
+            hintText:  S.of(context).discount_rate,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter a discount rate';
+                return  S.of(context).please_enter_your_discount_rate;
               }
               return null;
             },
@@ -62,7 +63,7 @@ class _CouponFormState extends State<CouponForm> {
               if (state is CreateCouponSuccess) {
                 Fluttertoast.showToast(
                   gravity: ToastGravity.TOP,
-                  msg: "Coupon created successfully",
+                  msg: S.of(context).Coupon_created_successfully,
                   backgroundColor: Colors.green
                 );
               }
@@ -95,7 +96,7 @@ class _CouponFormState extends State<CouponForm> {
                 child: state is CreateCouponLoading
                     ? const CircularProgressIndicator(color: Colors.white)
                     : Text(
-                        "Create",
+                         S.of(context).create,
                         style: AppStyle.styleRegular15(
                           context,
                         ).copyWith(color: AppColors.primaryColor),

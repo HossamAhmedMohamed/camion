@@ -1,6 +1,7 @@
  
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class RejectedScreen extends StatelessWidget {
         SizedBox(height: 10.h),
 
         Text(
-          'Rejected',
+           S.of(context).rejected,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
@@ -31,7 +32,7 @@ class RejectedScreen extends StatelessWidget {
         SizedBox(height: 8.h),
 
         Text(
-          'Your registration request has been rejected.\nPlease try registering again.',
+           S.of(context).rejected_message,
           style: TextStyle(fontSize: 16.sp, color: Colors.black54),
           textAlign: TextAlign.center,
         ),
@@ -50,7 +51,7 @@ class RejectedScreen extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Register Again As Affiliate',
+             S.of(context).register_again_as_affiliate,
             style: TextStyle(fontSize: 18.sp, color: Colors.white),
           ),
         ),

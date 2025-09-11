@@ -2,6 +2,7 @@ import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class CustomInfoSliverAppBar extends StatelessWidget {
     return CustomSliverAppBar(
       appBarHeight: 70.h,
       title: Text(
-        "Personal Information",
+         S.of(context).personal_information,
         style: AppStyle.styleRegular18(
           context,
         ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),

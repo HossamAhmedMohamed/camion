@@ -1,0 +1,308 @@
+{
+  "name": "Tên",
+  "phone_Number": "Số điện thoại",
+  "email": "Email",
+  "login": "Đăng nhập",
+  "logout": "Đăng xuất",
+  "settings": "Cài đặt",
+  "Sign_up": "Đăng ký",
+  "dont_have_an_account": "Chưa có tài khoản",
+  "already_have_an_account": "Đã có tài khoản",
+  "enter_verify_otp": "Nhập mã xác minh được gửi đến số điện thoại 📱",
+  "enter_verify_otp_subtitle": "Nhập mã xác minh được gửi đến điện thoại của bạn:",
+  "resend_otp": "Gửi lại sau",
+  "continuee": "Tiếp tục",
+
+  "search": "Tìm kiếm",
+  "stories": "Câu chuyện",
+  "join_us": "Tham gia ngay",
+  "join_our_team": "Tham gia nhóm liên kết của chúng tôi",
+  "join_our_team_description": "Biến thời gian trực tuyến của bạn thành lợi nhuận! Tham gia chương trình liên kết và bắt đầu kiếm tiền ngay tại nhà.",
+  "categories": "Danh mục",
+  "view_all": "Xem tất cả",
+  "camion_offers": "Ưu đãi Camion",
+  "top_sales": "Bán chạy nhất",
+  "choose_prduct": "Chọn sản phẩm",
+
+  "home": "Trang chủ",
+  "cart": "Giỏ hàng",
+  "profile": "Hồ sơ",
+  "favorites": "Yêu thích",
+  "orders": "Đơn hàng",
+
+  "personal_information": "Thông tin cá nhân",
+  "my_wallet": "Ví của tôi",
+  "my_orders": "Đơn hàng của tôi",
+  "affiliate_marketing": "Tiếp thị liên kết",
+  "language": "Ngôn ngữ",
+  "rate_us": "Đánh giá chúng tôi",
+  "give_us_feedback": "Gửi phản hồi",
+  "about_us": "Về chúng tôi",
+  "privacy_policy": "Chính sách bảo mật",
+  "help": "Trợ giúp",
+  "delete_account": "Xóa tài khoản",
+  "are_you_sure_you_want_to_logout": "Bạn có chắc muốn đăng xuất?",
+  "logout_description": "Phiên đăng nhập hiện tại sẽ bị chấm dứt và bạn sẽ cần đăng nhập lại để truy cập tài khoản.",
+  "are_you_sure_you_want_to_delete": "Bạn có chắc muốn xóa tài khoản của mình?",
+  "delete_account_description": "Tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn và không thể khôi phục. Hành động này là không thể đảo ngược.",
+  "cancel": "Hủy",
+  "change_language": "Thay đổi ngôn ngữ",
+  "arabic": "Tiếng Ả Rập",
+  "english": "Tiếng Anh",
+  "german": "Tiếng Đức",
+  "french": "Tiếng Pháp",
+  "spanish": "Tiếng Tây Ban Nha",
+  "italian": "Tiếng Ý",
+  "bengali": "Tiếng Bengal",
+  "dutch": "Tiếng Hà Lan",
+  "hindi": "Tiếng Hindi",
+  "indonesian": "Tiếng Indonesia",
+  "japanese": "Tiếng Nhật",
+  "javanese": "Tiếng Java",
+  "korean": "Tiếng Hàn",
+  "malay": "Tiếng Mã Lai/Indonesia",
+  "mandarin_chinese": "Tiếng Trung Quan thoại",
+  "marathi": "Tiếng Marathi",
+  "persian": "Tiếng Ba Tư (Farsi)",
+  "polish": "Tiếng Ba Lan",
+  "portuguese": "Tiếng Bồ Đào Nha",
+  "punjabi": "Tiếng Punjab",
+  "romanian": "Tiếng Romania",
+  "russian": "Tiếng Nga",
+  "swahili": "Tiếng Swahili",
+  "tamil": "Tiếng Tamil",
+  "telugu": "Tiếng Telugu",
+  "thai": "Tiếng Thái",
+  "turkish": "Tiếng Thổ Nhĩ Kỳ",
+  "ukrainian": "Tiếng Ukraina",
+  "urdu": "Tiếng Urdu",
+  "vietnamese": "Tiếng Việt",
+
+  "description": "Mô tả",
+  "coupon_code": "Mã giảm giá",
+  "apply": "Áp dụng",
+
+  "product_details": "Chi tiết sản phẩm",
+  "reviews": "Đánh giá",
+  "in_stock": "Còn hàng",
+  "out_of_stock": "Hết hàng",
+  "add_to_cart": "Thêm vào giỏ",
+  "go_to_cart": "Xem giỏ hàng",
+  "quantity": "Số lượng",
+  "add_review": "Thêm đánh giá",
+
+  "retry": "Thử lại",
+  "available_options": "Tùy chọn có sẵn",
+
+  "full_name": "Họ và tên",
+  "edit_profile": "Chỉnh sửa hồ sơ",
+  "save": "Lưu",
+
+  "pedning": "Đang chờ....",
+  "back": "Quay lại",
+  "pending_message": "Yêu cầu của bạn đang được xem xét.\nVui lòng chờ quản trị viên phê duyệt.",
+
+  "rejected": "Bị từ chối",
+  "rejected_message": "Yêu cầu đăng ký của bạn đã bị từ chối.\nVui lòng thử đăng ký lại.",
+  "register_again_as_affiliate": "Đăng ký lại làm tiếp thị liên kết",
+
+  "all": "Tất cả",
+  "transactions": "Giao dịch",
+  "My_Wallet": "Ví của tôi",
+  "withdraw": "Rút tiền",
+
+  "Affiliate_marketing": "Tiếp thị liên kết",
+  "start_now": "Bắt đầu ngay",
+  "affiliate_welcome_message": "Chúng tôi rất vinh dự khi bạn tham gia nhóm tiếp thị",
+  "affiliate_welcome_subtitle": "Chúng tôi cung cấp hệ thống tiếp thị liên kết đơn giản và hiệu quả dựa trên mã độc quyền cho từng người tiếp thị. Những mã này có thể được chia sẻ với khán giả của họ, cho phép họ kiếm hoa hồng trên mỗi giao dịch. Hoa hồng được chuyển trực tiếp vào ví của họ mà không qua trung gian, đảm bảo thanh toán nhanh chóng và dễ dàng. Chúng tôi có nhiều sản phẩm đa dạng để phù hợp với mọi đối tượng. Mục tiêu của chúng tôi là giúp bạn kiếm thu nhập ổn định với ít nỗ lực và tiếp thị thông minh.",
+
+  "affiliate_account": "Tài khoản tiếp thị liên kết",
+
+  "my_coupuns": "Mã giảm giá của tôi",
+  "create_coupon": "Tạo mã giảm giá",
+
+  "join_us_as_affiliate": "Tham gia làm tiếp thị liên kết",
+
+  "next": "Tiếp theo",
+
+  "create": "Tạo",
+  "coupon": "Mã giảm giá",
+  "discount_rate": "Tỷ lệ giảm giá",
+
+  "personal_data": "Dữ liệu cá nhân",
+
+  "nationality": "Quốc tịch",
+  "about_you": "Giới thiệu bản thân",
+  "city": "Thành phố",
+  "phone": "Điện thoại",
+  "address": "Địa chỉ",
+
+  "male": "Nam",
+  "female": "Nữ",
+
+  "feedback": "Phản hồi",
+
+  "help_us_improve": "Giúp chúng tôi cải thiện trải nghiệm của bạn",
+
+  "feed_back_description": "Chia sẻ ý kiến của bạn và giúp chúng tôi cải thiện trải nghiệm",
+
+  "privacy_poilicy_camion_app": "Chính sách - Ứng dụng Camion",
+
+  "terms_of_use": "Điều khoản sử dụng",
+  "terms_of_use_description1": "Bằng việc sử dụng Camion, bạn đồng ý tuân thủ tất cả các điều khoản và điều kiện trong chính sách này.",
+  "terms_of_use_description2": "Camion có quyền cập nhật hoặc thay đổi chính sách này bất cứ lúc nào. Người dùng sẽ được thông báo qua ứng dụng hoặc email.",
+  "terms_of_use_description3": "Ứng dụng không được sử dụng cho các hoạt động bất hợp pháp hoặc vi phạm luật pháp địa phương/quốc tế.",
+
+  "product_policy": "Chính sách sản phẩm",
+  "product_policy_description1": "Tất cả sản phẩm trên Camion đều chính hãng và đúng với mô tả trên trang sản phẩm.",
+  "product_policy_description2": "Giá đã bao gồm VAT (nếu có) và không bao gồm phí vận chuyển trừ khi có thông báo khác.",
+  "product_policy_description3": "Màu sắc sản phẩm có thể khác một chút do cài đặt màn hình hoặc sự khác biệt trong sản xuất.",
+
+  "payment_policy": "Chính sách thanh toán",
+  "payment_policy_description1": "Camion hỗ trợ nhiều phương thức thanh toán (thẻ tín dụng/ghi nợ, chuyển khoản, ví điện tử, và thanh toán khi nhận hàng nếu có).",
+  "payment_policy_description2": "Tất cả thanh toán được bảo mật qua nhà cung cấp dịch vụ uy tín.",
+  "payment_policy_description3": "Nếu thanh toán thất bại, đơn hàng sẽ không được xác nhận và bạn có thể thử lại bằng phương thức khác.",
+
+  "shipping_policy": "Chính sách vận chuyển & giao hàng",
+  "shipping_policy_description1": "Camion cung cấp dịch vụ vận chuyển toàn cầu qua các đối tác uy tín.",
+  "shipping_policy_description2": "Thời gian giao hàng phụ thuộc vào quốc gia và đơn vị vận chuyển.",
+  "shipping_policy_description3": "Khách hàng sẽ nhận số theo dõi sau khi đơn hàng được gửi đi.",
+  "shipping_policy_description4": "Camion không chịu trách nhiệm về sự chậm trễ do hải quan, thiên tai hoặc sự cố vận chuyển ngoài tầm kiểm soát.",
+
+  "return_policy": "Chính sách đổi trả & hoàn tiền",
+  "return_policy_description1": "Khách hàng có thể yêu cầu trả hàng trong vòng 14 ngày kể từ khi nhận được đơn, với điều kiện sản phẩm chưa qua sử dụng, không hư hỏng và còn nguyên bao bì.",
+  "return_policy_description2": "Một số mặt hàng như sản phẩm chăm sóc cá nhân, thực phẩm, hoặc sản phẩm tùy chỉnh không được trả.",
+  "return_policy_description3": "Hoàn tiền sẽ được xử lý về phương thức thanh toán ban đầu trong vòng 7–14 ngày sau khi kiểm tra sản phẩm trả lại.",
+  "return_policy_description4": "Phí vận chuyển không được hoàn lại, chi phí trả hàng do khách hàng chịu (trừ khi sản phẩm bị lỗi hoặc giao sai).",
+
+  "privacy_policy_details": "Chính sách bảo mật",
+  "privacy_policy_description1": "Camion tôn trọng và bảo vệ dữ liệu cá nhân của bạn.",
+  "privacy_policy_description2": "Chúng tôi chỉ thu thập thông tin (tên, địa chỉ, liên hệ, thanh toán) để xử lý đơn và cải thiện trải nghiệm.",
+  "privacy_policy_description3": "Dữ liệu cá nhân không bao giờ được bán hoặc chia sẻ, trừ khi cần thiết với đối tác vận chuyển/thanh toán.",
+  "privacy_policy_description4": "Mọi dữ liệu được lưu trữ an toàn, và bạn có quyền yêu cầu truy cập, chỉnh sửa hoặc xóa thông tin cá nhân.",
+
+  "limitation_liability": "Giới hạn trách nhiệm",
+  "limitation_liability_description1": "Camion không chịu trách nhiệm về thiệt hại gián tiếp, ngẫu nhiên hoặc hậu quả từ việc sử dụng ứng dụng hoặc sản phẩm.",
+  "limitation_liability_description2": "Khách hàng tự chịu trách nhiệm khi sử dụng sản phẩm.",
+  "limitation_liability_description3": "Trong trường hợp tranh chấp, trách nhiệm của Camion chỉ giới hạn ở giá trị đơn hàng.",
+
+  "paid": "Đã thanh toán",
+  "delivered": "Đã giao",
+  "completed": "Hoàn tất",
+
+  "Shipping_and_Delivery": "Vận chuyển và giao hàng",
+
+  "question_1": "Thời gian giao hàng bao lâu và phạm vi phủ sóng thế nào?",
+  "answer_1": "Thời gian giao thường từ 3 đến 5 ngày làm việc và giao hàng trên toàn thế giới.",
+
+  "question_2": "Làm thế nào để theo dõi đơn hàng?",
+  "answer_2": "Sau khi đơn hàng được gửi đi, bạn sẽ nhận thông báo và email kèm số theo dõi. Bạn có thể dùng số này để kiểm tra trực tiếp trên website của đơn vị vận chuyển hoặc xem trong mục Đơn hàng của bạn.",
+
+  "Payments": "Thanh toán",
+  "question_3": "Có những phương thức thanh toán nào?",
+  "answer_3": "Chúng tôi chấp nhận thanh toán qua thẻ tín dụng, Mada, Apple Pay và tiền mặt khi giao hàng.",
+
+  "Return_and_Exchange": "Đổi trả và hoàn tiền",
+  "question_4": "Chính sách đổi trả thế nào?",
+  "answer_4": "Sản phẩm có thể được trả trong vòng 14 ngày kể từ khi nhận hàng, với điều kiện còn nguyên trạng.",
+
+  "Direct_communication": "Liên hệ trực tiếp",
+  "Contact_us_via_WhatsApp": "Liên hệ qua WhatsApp",
+  "For_immediate_assistance": "Để được hỗ trợ ngay lập tức",
+
+  "selected": "Đã chọn",
+  "product": "Sản phẩm",
+  "selected_for_sharing": "Đã chọn để chia sẻ",
+
+  "Your_wishlist_is_empty": "Danh sách yêu thích trống",
+  "add_some_products_to_your_favorites": "Thêm sản phẩm vào mục yêu thích!",
+  "s": "s",
+
+  "Continue_To_Checkout": "Tiếp tục thanh toán",
+
+  "payment_page_loading": "Đang tải trang thanh toán, vui lòng chờ...",
+
+  "address_confirmation": "Xác nhận địa chỉ",
+  "first_name": "Tên",
+  "please_enter_your_first_name": "Vui lòng nhập tên",
+  "please_enter_your_last_name": "Vui lòng nhập họ",
+  "last_name": "Họ",
+  "confirm": "Xác nhận",
+  "shipping_address": "Địa chỉ giao hàng",
+  "address_1": "Địa chỉ 1",
+  "please_enter_your_address": "Vui lòng nhập địa chỉ",
+  "address_2": "Địa chỉ 2",
+  "country": "Quốc gia",
+  "please_select_your_country": "Vui lòng chọn quốc gia",
+  "please_enter_your_email": "Vui lòng nhập email",
+  "please_enter_your_phone_number": "Vui lòng nhập số điện thoại",
+  "please_enter_your_city": "Vui lòng nhập thành phố",
+  "please_enter_your_state": "Vui lòng nhập bang/tỉnh",
+  "please_enter_your_postal_code": "Vui lòng nhập mã bưu điện",
+  "state": "Bang/Tỉnh",
+  "postal_code": "Mã bưu điện",
+  "confirm_your_shipping_address": "Xác nhận địa chỉ giao hàng",
+
+  "checkout": "Thanh toán",
+  "products": "Sản phẩm",
+  "view_cart": "Xem giỏ hàng",
+  "subtotal": "Tạm tính",
+  "total": "Tổng cộng",
+  "Review_Your_Shipping_Address_Data": "Xem lại địa chỉ giao hàng",
+  "enter_your_coupon_code": "Nhập mã giảm giá",
+
+  "notifications": "Thông báo",
+
+  "order_details": "Chi tiết đơn hàng",
+  "order_id": "Mã đơn hàng",
+  "order_number": "Số đơn hàng:",
+  "order_date": "Ngày đặt:",
+
+  "payment_method": "Phương thức thanh toán",
+  "payment_details": "Chi tiết thanh toán",
+
+  "order_tracking": "Theo dõi đơn hàng",
+  "order_status": "Trạng thái đơn hàng",
+
+  "delivery_charge": "Phí giao hàng",
+  "delivery_address": "Địa chỉ giao hàng",
+
+  "grand_total": "Tổng cộng cuối cùng",
+
+  "order_is_paid": "Đơn hàng đã được thanh toán",
+  "order_is_delivered": "Đơn hàng đã được giao",
+  "delivery_is_in_progress": "Đơn hàng đang được giao",
+  "Will_arrive_within_days": "Sẽ đến trong vài ngày",
+  "your_order_is_in_progress": "Đơn hàng của bạn đang xử lý",
+  "Number_of_products": "Số lượng sản phẩm",
+  "Ordered_in": "Đã đặt vào",
+
+  "Shipping_address_added_successfully": "Đã thêm địa chỉ giao hàng thành công",
+  "Shipping_address_updated_successfully": "Đã cập nhật địa chỉ giao hàng thành công",
+  "register": "Đăng ký",
+  "please_enter_your_name": "Vui lòng nhập tên",
+
+  "account_created_successfully": "Tạo tài khoản thành công",
+
+  "choose_country": "Chọn quốc gia",
+  "search_for_countries": "Tìm kiếm quốc gia",
+
+  "Coupon_applied_successfully": "Áp dụng mã giảm giá thành công",
+  "Review_Added_Successfully": "Đánh giá đã được thêm thành công",
+  "please_select_your_gender": "Vui lòng chọn giới tính",
+  "please_select_your_nationality": "Vui lòng chọn quốc tịch",
+  "please_enter_your_bio": "Vui lòng nhập tiểu sử",
+  "Coupon_created_successfully": "Tạo mã giảm giá thành công",
+  "please_enter_your_coupon_code": "Vui lòng nhập mã giảm giá",
+  "please_enter_your_discount_rate": "Vui lòng nhập tỷ lệ giảm giá",
+
+  "profile_updated_successfully": "Cập nhật hồ sơ thành công",
+
+  "You_are_subscribed_to_affiliate_marketing": "Bạn đã đăng ký tiếp thị liên kết",
+  "view_your_activity": "Xem hoạt động của bạn",
+
+  "You_are_not_subscribed_to_affiliate_marketing": "Bạn chưa đăng ký tiếp thị liên kết",
+  "subscribe_now": "Đăng ký ngay!",
+
+  "Something_went_wrong": "Đã xảy ra lỗi"
+}

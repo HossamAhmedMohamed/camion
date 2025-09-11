@@ -6,6 +6,7 @@ import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/profile/presentation/logic/cubit/update_user_cubit/update_user_cubit.dart';
 import 'package:camion/features/profile/presentation/screens/my_info.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -83,7 +84,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
           CustomSliverAppBar(
             appBarHeight: 70.h,
             title: Text(
-              "Edit Information",
+               S.of(context).edit_profile,
               style: AppStyle.styleRegular18(
                 context,
               ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -123,7 +124,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                   Row(
                     children: [
                       Text(
-                        "Full Name",
+                         S.of(context).full_name,
                         style: AppStyle.styleRegular16(
                           context,
                         ).copyWith(color: Colors.black),
@@ -135,7 +136,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                   SizedBox(height: 8.h),
 
                   CustomTextFormField(
-                    hintText: "Full Name",
+                    hintText:  S.of(context).full_name,
                     controller: nameController,
                     onChanged: (value) {
                       checkIfValuesChanged();
@@ -147,7 +148,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                   Row(
                     children: [
                       Text(
-                        "Email",
+                         S.of(context).email,
                         style: AppStyle.styleRegular16(
                           context,
                         ).copyWith(color: Colors.black),
@@ -159,7 +160,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                   SizedBox(height: 8.h),
 
                   CustomTextFormField(
-                    hintText: "Email",
+                    hintText:  S.of(context).email,
                     controller: emailController,
                     onChanged: (value) {
                       checkIfValuesChanged();
@@ -171,7 +172,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                   Row(
                     children: [
                       Text(
-                        "Phone Number",
+                         S.of(context).phone_Number,
                         style: AppStyle.styleRegular16(
                           context,
                         ).copyWith(color: Colors.black),
@@ -183,7 +184,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                   SizedBox(height: 8.h),
 
                   CustomTextFormField(
-                    hintText: "Phone Number",
+                    hintText:  S.of(context).phone_Number,
                     controller: phoneController,
                     onChanged: (value) {
                       checkIfValuesChanged();
@@ -206,7 +207,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                         Fluttertoast.showToast(
                           gravity: ToastGravity.TOP,
                           backgroundColor: Colors.green,
-                          msg: "Profile Updated",
+                          msg: S.of(context).profile_updated_successfully,
                         );
                         MyInfoScreen.profileKey.currentState!.refreshGetUser();
                       }
@@ -239,7 +240,7 @@ class _EditInfoScreenState extends State<EditInfoScreen> {
                                 color: Colors.white,
                               )
                             : Text(
-                                "Save",
+                                 S.of(context).save,
                                 style: AppStyle.styleRegular16(
                                   context,
                                 ).copyWith(color: Colors.white),

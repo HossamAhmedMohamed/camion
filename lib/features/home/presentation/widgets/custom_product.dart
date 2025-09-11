@@ -14,6 +14,7 @@ class ProductCarouselWidget extends StatelessWidget {
   final String averageRating;
   final String reviewCount;
   final String currencyCode;
+  final String currencySymbol;
 
   const ProductCarouselWidget({
     super.key,
@@ -28,6 +29,7 @@ class ProductCarouselWidget extends StatelessWidget {
     required this.averageRating,
     required this.reviewCount,
     required this.currencyCode,
+    required this.currencySymbol,
   });
 
   @override
@@ -43,8 +45,10 @@ class ProductCarouselWidget extends StatelessWidget {
             outPrice: outPrice,
             onTap: onAddToCartTap,
             currencyCode: currencyCode,
+            currencySymbol: currencySymbol,
           )
         : ListViewItemBuilding(
+
           reviewCount: reviewCount,
           outPrice: outPrice,
             imageUrl: imageUrl,
@@ -55,6 +59,7 @@ class ProductCarouselWidget extends StatelessWidget {
             onAddToWishListTap: onAddToWishListTap,
             averageRating: averageRating,
             currencyCode: currencyCode,
+            currencySymbol: currencySymbol,
           );
   }
 }

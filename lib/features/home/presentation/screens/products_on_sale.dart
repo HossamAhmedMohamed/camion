@@ -1,3 +1,4 @@
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/core/services/service_locator.dart';
 import 'package:camion/core/utils/app_style.dart';
@@ -12,6 +13,7 @@ import 'package:camion/features/home/presentation/widgets/list_view_item_skeleto
 import 'package:camion/features/wish_list/data/repository/wish_list_repo.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,14 +61,18 @@ class _ProductsOnSaleScreenBodyState extends State<ProductsOnSaleScreenBody> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
       if (cubit.hasMore && !cubit.isLoadingMore && !cubit.hasLoadMoreError) {
-        cubit.getProductsOnSale(isLoadMore: true);
+        cubit.getProductsOnSale(
+            lang: context.read<LocalizationsCubit>().state.languageCode,
+          isLoadMore: true);
       }
     }
   }
 
   @override
   void initState() {
-    context.read<GetProductsOnSaleCubit>().getProductsOnSale();
+    context.read<GetProductsOnSaleCubit>().getProductsOnSale(
+        lang: context.read<LocalizationsCubit>().state.languageCode
+    );
     context.read<GetWishListCubit>().getWishList();
     _scrollController.addListener(_onScroll);
     super.initState();
@@ -151,6 +157,7 @@ class _ProductsOnSaleScreenBodyState extends State<ProductsOnSaleScreenBody> {
                                 ? ''
                                 : product.images[0].thumbnail,
                             currencyCode: product.prices.currencyCode,
+                            currencySymbol: product.prices.currencySymbol,
                             productName: product.name,
                             originalPrice: product.prices.price.toString(),
                             outPrice: product.prices.regularPrice.toString(),
@@ -212,10 +219,12 @@ class _ProductsOnSaleScreenBodyState extends State<ProductsOnSaleScreenBody> {
                           onPressed: () {
                             context
                                 .read<GetProductsOnSaleCubit>()
-                                .getProductsOnSale();
+                                .getProductsOnSale(
+                                  lang: context.read<LocalizationsCubit>().state.languageCode,
+                                );
                           },
                           child: Text(
-                            'Retry',
+                             S.of(context).retry,
                             style: TextStyle(fontSize: 16.sp),
                           ),
                         ),

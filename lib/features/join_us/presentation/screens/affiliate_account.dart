@@ -2,6 +2,7 @@ import 'package:camion/config/widgets/custom_box_decoration.dart';
 import 'package:camion/core/utils/app_images.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/join_us/presentation/widgets/custom__join_us_sliver_app_bar.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class AffiliateAccountScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: SizedBox(height: 15.h)),
-          const CustomJoinUsSliverAppBar(title: "Affiliate Account"),
+            CustomJoinUsSliverAppBar(title:  S.of(context).affiliate_account),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
           SliverToBoxAdapter(
             child: GestureDetector(
@@ -41,7 +42,7 @@ class AffiliateAccountScreen extends StatelessWidget {
                     SizedBox(width: 15.w),
 
                     Text(
-                      "My Coupons",
+                       S.of(context).my_coupuns,
                       style: AppStyle.styleRegular18(context).copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -69,7 +70,7 @@ class AffiliateAccountScreen extends StatelessWidget {
                     SizedBox(width: 15.w),
 
                     Text(
-                      "Create Coupon",
+                       S.of(context).create_coupon,
                       style: AppStyle.styleRegular18(context).copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,

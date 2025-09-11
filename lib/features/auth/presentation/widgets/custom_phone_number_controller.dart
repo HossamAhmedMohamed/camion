@@ -16,7 +16,7 @@ class CustomPhoneNumberField extends StatefulWidget {
   const CustomPhoneNumberField({
     super.key,
     required this.controller,
-    this.hintText = 'Phone Number',
+    this.hintText,
     this.validator,
     this.enabled = true,
     this.onTap,

@@ -1,8 +1,11 @@
 // widgets/country_picker_bottom_sheet.dart
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/auth/data/models/countries_model/country_model.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CountryPickerBottomSheet extends StatefulWidget {
@@ -16,7 +19,8 @@ class CountryPickerBottomSheet extends StatefulWidget {
   });
 
   @override
-  State<CountryPickerBottomSheet> createState() => _CountryPickerBottomSheetState();
+  State<CountryPickerBottomSheet> createState() =>
+      _CountryPickerBottomSheetState();
 }
 
 class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
@@ -35,9 +39,11 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
         filteredCountries = CountriesData.countries;
       } else {
         filteredCountries = CountriesData.countries
-            .where((country) =>
-                country.name.toLowerCase().contains(query.toLowerCase()) ||
-                country.dialCode.contains(query))
+            .where(
+              (country) =>
+                  country.name.toLowerCase().contains(query.toLowerCase()) ||
+                  country.dialCode.contains(query),
+            )
             .toList();
       }
     });
@@ -45,6 +51,10 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    List<CountryModel> filteredCountries =
+        context.read<LocalizationsCubit>().state.languageCode == 'ar'
+        ? CountriesData.countriesArabic
+        : CountriesData.countries;
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       decoration: BoxDecoration(
@@ -70,7 +80,7 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
             child: Row(
               children: [
                 Text(
-                  'Choose Country',
+                  S.of(context).choose_country,
                   style: AppStyle.styleSemiBold18(context),
                 ),
                 const Spacer(),
@@ -89,8 +99,10 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
               controller: _searchController,
               onChanged: _filterCountries,
               decoration: InputDecoration(
-                hintText: 'Search For Country...',
-                hintStyle: AppStyle.styleRegular14(context).copyWith(color: Colors.black),
+                hintText: S.of(context).search_for_countries,
+                hintStyle: AppStyle.styleRegular14(
+                  context,
+                ).copyWith(color: Colors.black),
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.r),
@@ -109,10 +121,8 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
             child: ListView.separated(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               itemCount: filteredCountries.length,
-              separatorBuilder: (context, index) => Divider(
-                height: 1.h,
-                color: Colors.grey.shade200,
-              ),
+              separatorBuilder: (context, index) =>
+                  Divider(height: 1.h, color: Colors.grey.shade200),
               itemBuilder: (context, index) {
                 final country = filteredCountries[index];
                 final isSelected = country == widget.selectedCountry;
@@ -129,7 +139,9 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                   title: Text(
                     country.name,
                     style: AppStyle.styleRegular18(context).copyWith(
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                       color: isSelected ? AppColors.primaryColor : Colors.black,
                     ),
                   ),
@@ -137,7 +149,9 @@ class _CountryPickerBottomSheetState extends State<CountryPickerBottomSheet> {
                     country.dialCode,
                     style: AppStyle.styleRegular14(context).copyWith(
                       color: isSelected ? AppColors.primaryColor : Colors.grey,
-                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                     ),
                   ),
                   selected: isSelected,

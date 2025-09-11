@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:camion/config/localization/cubit/localizations_cubit.dart';
 import 'package:camion/config/widgets/custom_expansion_tile.dart';
 import 'package:camion/config/widgets/custom_sliver_app_bar.dart';
 import 'package:camion/config/widgets/custom_text_form_field.dart';
@@ -20,6 +21,7 @@ import 'package:camion/features/home/presentation/widgets/review_container.dart'
 import 'package:camion/features/wish_list/presentation/logic/cubit/add_to_wish_list/wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/logic/cubit/get_wish_listcubit/get_wish_list_cubit.dart';
 import 'package:camion/features/wish_list/presentation/screens/wish_list_screen.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:camion/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,15 +60,20 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   void initState() {
-    BlocProvider.of<ProductIdDetailsCubit>(
-      context,
-    ).getProductDetails(widget.productId);
+    BlocProvider.of<ProductIdDetailsCubit>(context).getProductDetails(
+      widget.productId,
+      context.read<LocalizationsCubit>().state.languageCode,
+    );
+    ();
     BlocProvider.of<GetWishListCubit>(context).getWishList();
     super.initState();
     BlocProvider.of<GetCartCubit>(context).getCart();
     super.initState();
 
-    context.read<GetReviewCubit>().getReviews(productId: widget.productId);
+    context.read<GetReviewCubit>().getReviews(
+      lang: context.read<LocalizationsCubit>().state.languageCode,
+      productId: widget.productId,
+    );
   }
 
   void refreshGetCart() {
@@ -122,16 +129,18 @@ class _ProductDetailsState extends State<ProductDetails> {
             chosenAttributes.clear();
             chosenQuantity = 1;
           });
-          BlocProvider.of<ProductIdDetailsCubit>(
-            context,
-          ).getProductDetails(widget.productId, forceRefresh: true);
+          BlocProvider.of<ProductIdDetailsCubit>(context).getProductDetails(
+            widget.productId,
+            context.read<LocalizationsCubit>().state.languageCode,
+            forceRefresh: true,
+          );
         },
         child: CustomScrollView(
           slivers: [
             CustomSliverAppBar(
               appBarHeight: 70.h,
               title: Text(
-                "Product Details",
+                S.of(context).product_details,
                 style: AppStyle.styleRegular18(
                   context,
                 ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
@@ -432,11 +441,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   onPressed: () {
                                     context
                                         .read<ProductIdDetailsCubit>()
-                                        .getProductDetails(widget.productId);
+                                        .getProductDetails(
+                                          widget.productId,
+                                          context
+                                              .read<LocalizationsCubit>()
+                                              .state
+                                              .languageCode,
+                                        );
                                     ();
                                   },
                                   child: Text(
-                                    'Retry',
+                                    S.of(context).retry,
                                     style: TextStyle(fontSize: 16.sp),
                                   ),
                                 ),
@@ -521,7 +536,6 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                                   SizedBox(height: 15.h),
 
-                                  // اسم المنتج
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -530,7 +544,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         child: Text(
                                           product.name,
                                           style: AppStyle.styleBold18(context),
-                                          textDirection: TextDirection.ltr,
+                                           
                                         ),
                                       ),
                                     ],
@@ -538,7 +552,6 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                                   SizedBox(height: 8.h),
 
-                                  // الأسعار المحدثة
                                   Row(
                                     children: [
                                       Text(
@@ -554,7 +567,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       SizedBox(width: 4.w),
 
                                       Text(
-                                        product.prices.currencyCode,
+                                        context
+                                                    .read<LocalizationsCubit>()
+                                                    .state
+                                                    .languageCode ==
+                                                'ar'
+                                            ? product.prices.currencySymbol
+                                            : product.prices.currencyCode,
                                         style: AppStyle.styleRegular16(context)
                                             .copyWith(
                                               fontWeight: FontWeight.w900,
@@ -563,21 +582,25 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ),
 
                                       SizedBox(width: 8.w),
-                                      displayData['price'] == displayData['regularPrice'] ? const SizedBox() : Text(
-                                        "${double.parse(displayData['regularPrice'].toString()).toStringAsFixed(2)} ${product.prices.currencyCode}",
-                                        style: AppStyle.styleRegular15(context)
-                                            .copyWith(
-                                              color: AppColors.gray,
-                                              decoration:
-                                                  TextDecoration.lineThrough,
+                                      displayData['price'] ==
+                                              displayData['regularPrice']
+                                          ? const SizedBox()
+                                          : Text(
+                                              "${double.parse(displayData['regularPrice'].toString()).toStringAsFixed(2)} ${ context.read<LocalizationsCubit>().state.languageCode == 'ar' ? product.prices.currencySymbol : product.prices.currencyCode}",
+                                              style:
+                                                  AppStyle.styleRegular15(
+                                                    context,
+                                                  ).copyWith(
+                                                    color: AppColors.gray,
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                  ),
                                             ),
-                                      ),
                                     ],
                                   ),
 
                                   SizedBox(height: 5.h),
 
-                                  // Rating (يبقى كما هو)
                                   Row(
                                     children: [
                                       Text(
@@ -609,7 +632,6 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                                   SizedBox(height: 5.h),
 
-                                  // مراجعات المنتج
                                   Row(
                                     children: [
                                       Text(
@@ -643,7 +665,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Text(
-                                                "In Stock",
+                                                S.of(context).in_stock,
                                                 style: AppStyle.styleRegular12(
                                                   context,
                                                 ).copyWith(color: Colors.white),
@@ -672,7 +694,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             ),
                                           ),
                                           child: Text(
-                                            "Out Of Stock",
+                                            S.of(context).out_of_stock,
                                             style: AppStyle.styleRegular14(
                                               context,
                                             ).copyWith(color: Colors.white),
@@ -701,7 +723,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   SizedBox(height: 20.h),
 
                                   CustomExpansionTile(
-                                    title: "Description",
+                                    title: S.of(context).description,
                                     content: product.description.replaceAll(
                                       RegExp(
                                         r"<[^>]*>",
@@ -751,7 +773,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   SizedBox(height: 30.h),
 
                                   Align(
-                                    alignment: Alignment.centerLeft,
+                                    alignment:
+                                        context
+                                                .read<LocalizationsCubit>()
+                                                .state
+                                                .languageCode ==
+                                            'ar'
+                                        ? Alignment.centerRight
+                                        : Alignment.centerLeft,
                                     child: RatingBar.builder(
                                       unratedColor: AppColors.paleGray,
                                       initialRating: _rating,
@@ -790,7 +819,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         Fluttertoast.showToast(
                                           gravity: ToastGravity.TOP,
                                           backgroundColor: Colors.green,
-                                          msg: "Review Added Successfully",
+                                          msg: S.of(context).Review_Added_Successfully,
                                         );
                                       }
 
@@ -807,7 +836,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         controller: _reviewController,
                                         maxLines: 2,
                                         // maxLength: 2000,
-                                        hintText: "Add Review",
+                                        hintText: S.of(context).add_review,
 
                                         suffixIcon: GestureDetector(
                                           child: state is CreateReviewLoading
@@ -839,6 +868,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                                               context
                                                   .read<GetReviewCubit>()
                                                   .getReviews(
+                                                    lang: context
+                                                        .read<
+                                                          LocalizationsCubit
+                                                        >()
+                                                        .state
+                                                        .languageCode,
                                                     productId: product.id
                                                         .toString(),
                                                   );
@@ -903,7 +938,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      'Go To Cart',
+                                                      S.of(context).go_to_cart,
                                                       style:
                                                           AppStyle.styleRegular15(
                                                             context,
@@ -948,7 +983,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      'Go To Cart',
+                                                      S.of(context).go_to_cart,
                                                       style:
                                                           AppStyle.styleRegular15(
                                                             context,
@@ -1032,7 +1067,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                         ]
                                                       : [
                                                           Text(
-                                                            'Add To Cart',
+                                                            S
+                                                                .of(context)
+                                                                .add_to_cart,
                                                             style:
                                                                 AppStyle.styleRegular15(
                                                                   context,
@@ -1088,11 +1125,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                                             .read<ProductIdDetailsCubit>()
                                             .getProductDetails(
                                               widget.productId,
+                                              context
+                                                  .read<LocalizationsCubit>()
+                                                  .state
+                                                  .languageCode,
                                             );
                                         ();
                                       },
                                       child: Text(
-                                        'Retry',
+                                        S.of(context).retry,
                                         style: TextStyle(fontSize: 16.sp),
                                       ),
                                     ),

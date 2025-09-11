@@ -3,6 +3,7 @@ import 'package:camion/config/widgets/custom_cached_network_image.dart';
 import 'package:camion/core/utils/app_colors.dart';
 import 'package:camion/core/utils/app_style.dart';
 import 'package:camion/features/home/data/models/all_products_model/sub_models/variation.dart';
+import 'package:camion/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -110,7 +111,7 @@ class CustomOrderDetails extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Total:",
+                    "${S.of(context).total}:",
                     style: AppStyle.styleRegular16(context).copyWith(
                       color: AppColors.black,
                       fontWeight: FontWeight.w500,
@@ -141,7 +142,7 @@ class CustomOrderDetails extends StatelessWidget {
               ),
 
               Text(
-                "Quantity: $quantity",
+                "${S.of(context).quantity}: $quantity",
                 style: AppStyle.styleRegular16(
                   context,
                 ).copyWith(color: AppColors.black, fontWeight: FontWeight.w500),
